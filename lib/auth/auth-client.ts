@@ -13,10 +13,8 @@ export const authClient = createAuthClient({
       additionalOptions: {
         use_fedcm_for_prompt: process.env.NODE_ENV === "production"
       },
-      // Configure prompt behavior and exponential backoff:
       promptOptions: {
-        baseDelay: 1000,   // Base delay in ms (default: 1000)
-        maxAttempts: 5     // Maximum number of attempts before triggering onPromptNotification (default: 5)
+        fedCM: false, // Force better-auth to use the Google JS script (which respects additionalOptions)
       }
     })] : []),
     magicLinkClient(),
