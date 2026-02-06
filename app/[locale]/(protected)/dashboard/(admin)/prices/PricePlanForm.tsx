@@ -805,9 +805,15 @@ export function PricePlanForm({ initialData, planId }: PricePlanFormProps) {
                   name="provider"
                   render={({ field }) => {
                     const handleChange = (value: string | string[]) => {
-                      field.onChange(
-                        typeof value === "string" ? value : value[0]
-                      );
+                      const newValue =
+                        typeof value === "string" ? value : value[0];
+                      field.onChange(newValue);
+
+                      // Clear shared fields in this card when provider changes
+                      form.setValue("paymentType", "");
+                      form.setValue("recurringInterval", "");
+                      form.setValue("price", undefined);
+                      form.setValue("currency", "");
                     };
                     return (
                       <FormItem>
