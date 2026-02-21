@@ -58,5 +58,17 @@ class TaskStore {
   }
 }
 
-const globalForTaskStore = globalThis as unknown as { __taskStore?: TaskStore };
-export const taskStore = globalForTaskStore.__taskStore ??= new TaskStore();
+const globalForTaskStore = globalThis as unknown as {
+  __taskStore?: TaskStore;
+  __taskStoreVersion?: number;
+};
+
+// Bump this version when changing the TaskStore class to invalidate stale HMR instances
+const TASK_STORE_VERSION = 2;
+
+if (globalForTaskStore.__taskStoreVersion !== TASK_STORE_VERSION) {
+  globalForTaskStore.__taskStore = new TaskStore();
+  globalForTaskStore.__taskStoreVersion = TASK_STORE_VERSION;
+}
+
+export const taskStore = globalForTaskStore.__taskStore!;
