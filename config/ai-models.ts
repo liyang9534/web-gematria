@@ -48,6 +48,33 @@ export const LANGUAGE_MODELS: LanguageModelConfig[] = [
   { provider: "openrouter", id: "google/gemini-2.5-pro", name: "Gemini 2.5 Pro (OpenRouter)", inputSupport: ["text", "image"], outputSupport: ["text", "reasoning"] },
 ];
 
+// ------ Custom OpenAI-Compatible Models ------
+// Parsed from NEXT_PUBLIC_CUSTOM_OPENAI_MODELS env var.
+// Format: "model-id:Display Name,model-id-2:Display Name 2"
+// If no display name is provided, the model id is used as the name.
+function parseCustomOpenAIModels(): LanguageModelConfig[] {
+  const raw = process.env.NEXT_PUBLIC_CUSTOM_OPENAI_MODELS;
+  if (!raw) return [];
+  return raw
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      const colonIdx = entry.indexOf(":");
+      const id = colonIdx > -1 ? entry.slice(0, colonIdx) : entry;
+      const name = colonIdx > -1 ? entry.slice(colonIdx + 1) : entry;
+      return {
+        provider: "custom-openai",
+        id,
+        name,
+        inputSupport: ["text"] as LanguageModelConfig["inputSupport"],
+        outputSupport: ["text"] as LanguageModelConfig["outputSupport"],
+      };
+    });
+}
+
+LANGUAGE_MODELS.push(...parseCustomOpenAIModels());
+
 // ------ Image Models ------
 
 export interface ImageModelCapabilities {

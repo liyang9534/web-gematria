@@ -2,7 +2,7 @@ import { anthropic } from "@ai-sdk/anthropic";
 import { deepseek } from "@ai-sdk/deepseek";
 import { fal } from "@ai-sdk/fal";
 import { google } from "@ai-sdk/google";
-import { openai } from "@ai-sdk/openai";
+import { createOpenAI, openai } from "@ai-sdk/openai";
 import { replicate } from "@ai-sdk/replicate";
 import { xai } from "@ai-sdk/xai";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
@@ -109,6 +109,19 @@ export const AI_PROVIDERS: Record<string, ProviderConfig> = {
     capabilities: ["image", "video"],
     // KIE image and video use custom adapters (lib/ai/adapters/kie-*.ts)
     // Uses unified jobs API: POST /api/v1/jobs/createTask
+  },
+  "custom-openai": {
+    id: "custom-openai",
+    name: "Custom OpenAI",
+    envKey: "CUSTOM_OPENAI_API_KEY",
+    capabilities: ["chat"],
+    languageModel: (modelId) => {
+      const provider = createOpenAI({
+        baseURL: process.env.CUSTOM_OPENAI_BASE_URL,
+        apiKey: process.env.CUSTOM_OPENAI_API_KEY,
+      });
+      return provider.chat(modelId); // Use /v1/chat/completions instead of /v1/responses
+    },
   },
 };
 
