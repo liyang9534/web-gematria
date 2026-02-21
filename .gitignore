@@ -132,3 +132,5 @@ dist
 .pnpm-store
 
 .backup/
+
+docs/

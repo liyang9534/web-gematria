@@ -5,7 +5,7 @@
  * https://sdk.vercel.ai/providers/ai-sdk-providers
  */
 
-import { createAIModel } from "@/lib/ai-model-factory";
+import { getLanguageModel } from "@/config/ai-providers";
 import { apiResponse } from "@/lib/api-response";
 import { isAdmin } from "@/lib/auth/server";
 import {
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     let model;
     try {
-      model = createAIModel(provider, modelId);
+      model = getLanguageModel(provider, modelId);
     } catch (error) {
       console.error("Failed to create AI model:", error);
       const message = error instanceof Error ? error.message : String(error);
@@ -48,9 +48,7 @@ export async function POST(req: Request) {
       prompt: prompt,
     });
 
-    return result.toDataStreamResponse({
-      sendReasoning: true,
-    });
+    return result.toTextStreamResponse();
 
   } catch (error: any) {
     console.error("Chat generation failed:", error);

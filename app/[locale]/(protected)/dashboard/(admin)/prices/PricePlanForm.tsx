@@ -560,14 +560,12 @@ export function PricePlanForm({ initialData, planId }: PricePlanFormProps) {
     complete,
   } = useCompletion({
     api: "/api/admin/translate",
+    streamProtocol: "text",
     experimental_throttle: 300,
     body: {
       // you can change the model and provider here
       modelId: process.env.NEXT_PUBLIC_AI_MODEL_ID || "",
       provider: process.env.NEXT_PUBLIC_AI_PROVIDER || "",
-    },
-    onResponse: (response) => {
-      // form.setValue("langJsonb", completion, { shouldValidate: true });
     },
     onFinish: (prompt: string, completion: string) => {
       const extractedJson = extractJsonFromText(completion);

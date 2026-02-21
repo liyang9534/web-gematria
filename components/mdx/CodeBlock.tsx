@@ -1,4 +1,4 @@
-import CopyButton from "@/components/mdx/CopyButton";
+import CopyButton from "@/components/shared/CopyButton";
 import React, { HTMLAttributes } from "react";
 
 type ExtractableNode = React.ReactNode;

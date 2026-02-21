@@ -41,6 +41,7 @@ export function TranslationButton({
     complete,
   } = useCompletion({
     api: "/api/admin/translate",
+    streamProtocol: "text",
     experimental_throttle: 300,
     body: {
       modelId: process.env.NEXT_PUBLIC_AI_MODEL_ID || "",
