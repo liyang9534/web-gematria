@@ -1,5 +1,6 @@
 import { generateVideoWithReplicate } from "./adapters/replicate-video";
 import { generateVideoWithFal } from "./adapters/fal-video";
+import { generateVideoWithKIE } from "./adapters/kie-video";
 import { taskStore } from "./task-store";
 
 export interface VideoGenerationInput {
@@ -16,6 +17,7 @@ export interface VideoGenerationInput {
   generateAudio?: boolean;
   cameraFixed?: boolean;
   seed?: number;
+  mode?: string;
 }
 
 export interface VideoGenerationTask {
@@ -86,8 +88,22 @@ async function processVideoGeneration(
     case "fal":
       result = await generateVideoWithFal(input);
       break;
+    case "kie":
+      result = await generateVideoWithKIE(input);
+      break;
     default:
       throw new Error(`Unsupported video provider: ${input.provider}`);
+  }
+
+  // Register external → internal ID mapping (used by webhook callbacks)
+  if (result.externalId) {
+    taskStore.setExternalId(result.externalId, taskId);
+    taskStore.update(taskId, { externalId: result.externalId });
+  }
+
+  // KIE callback mode: videoUrl is empty, callback handler will fill it later
+  if (input.provider === "kie" && process.env.KIE_CALLBACK_URL && !result.videoUrl) {
+    return;
   }
 
   taskStore.update(taskId, {

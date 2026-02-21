@@ -102,6 +102,14 @@ export const AI_PROVIDERS: Record<string, ProviderConfig> = {
     capabilities: ["image", "video"],
     imageModel: (modelId) => fal.image(modelId),
   },
+  kie: {
+    id: "kie",
+    name: "KIE",
+    envKey: "KIE_API_KEY",
+    capabilities: ["image", "video"],
+    // KIE image and video use custom adapters (lib/ai/adapters/kie-*.ts)
+    // Uses unified jobs API: POST /api/v1/jobs/createTask
+  },
 };
 
 // ============================================================

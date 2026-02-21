@@ -29,6 +29,7 @@
     "@ai-sdk/fireworks": "^0.2.6",
     "@ai-sdk/google": "^3.0.29",
     "@ai-sdk/openai": "^3.0.29",
+    "@ai-sdk/openai-compatible": "^2.0.30",
     "@ai-sdk/react": "^3.0.91",
     "@ai-sdk/replicate": "^2.0.20",
     "@ai-sdk/xai": "^3.0.57",

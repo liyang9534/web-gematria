@@ -21,6 +21,7 @@ const I2V_MODELS = getVideoModelsByType("image-to-video");
 
 function getDefaults(capabilities: VideoModelCapabilities): VideoAdvancedValues {
   return {
+    aspectRatio: capabilities.aspectRatios?.[0],
     resolution: capabilities.resolutions?.[0],
     generateAudio: capabilities.generateAudio ? (capabilities.generateAudioDefault ?? false) : undefined,
     cameraFixed: capabilities.cameraFixed ? false : undefined,

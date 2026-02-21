@@ -19,7 +19,7 @@ import {
   Layers,
   RefreshCw,
   Sparkles,
-  Zap
+  Zap,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -153,98 +153,96 @@ export default function SingleTurnChat() {
   };
 
   const isStreamingReasoning =
-    isLoading &&
-    reasoningParts.some((p: any) => p.state === "streaming");
+    isLoading && reasoningParts.some((p: any) => p.state === "streaming");
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Left: Input Panel */}
       <Card>
         <CardContent className="p-5 space-y-5">
-        <div>
-          <Label className="text-xs text-muted-foreground flex items-center gap-1.5 mb-2">
-            <Layers className="h-3.5 w-3.5" />
-            {t("model")}
-          </Label>
-          <ModelSelector
-            models={LANGUAGE_MODELS.map((m) => ({
-              provider: m.provider,
-              id: m.id,
-              name: m.name,
-            }))}
-            value={selected}
-            onChange={setSelected}
-            disabled={isLoading}
-            className="w-full"
-          />
-          {selectedModelConfig && (
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {selectedModelConfig.outputSupport.includes("reasoning") && (
-                <Badge
-                  variant="secondary"
-                  className="text-xs gap-1 bg-primary/10 text-primary"
-                >
-                  <Zap className="h-3 w-3" />
-                  {t("reasoning")}
-                </Badge>
-              )}
-              {selectedModelConfig.inputSupport.includes("image") && (
-                <Badge
-                  variant="secondary"
-                  className="text-xs gap-1"
-                >
-                  Vision
-                </Badge>
-              )}
-            </div>
-          )}
-        </div>
+          <div>
+            <Label className="text-xs text-muted-foreground flex items-center gap-1.5 mb-2">
+              <Layers className="h-3.5 w-3.5" />
+              {t("model")}
+            </Label>
+            <ModelSelector
+              models={LANGUAGE_MODELS.map((m) => ({
+                provider: m.provider,
+                id: m.id,
+                name: m.name,
+              }))}
+              value={selected}
+              onChange={setSelected}
+              disabled={isLoading}
+              className="w-full"
+            />
+            {selectedModelConfig && (
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {selectedModelConfig.outputSupport.includes("reasoning") && (
+                  <Badge
+                    variant="secondary"
+                    className="text-xs gap-1 bg-primary/10 text-primary"
+                  >
+                    <Zap className="h-3 w-3" />
+                    {t("reasoning")}
+                  </Badge>
+                )}
+                {selectedModelConfig.inputSupport.includes("image") && (
+                  <Badge variant="secondary" className="text-xs gap-1">
+                    Vision
+                  </Badge>
+                )}
+              </div>
+            )}
+          </div>
 
-        <div>
-          <Label className="text-xs text-muted-foreground flex items-center gap-1.5 mb-2">
-            <FileText className="h-3.5 w-3.5" />
-            {t("yourQuestion")}
-          </Label>
-          <PromptInput
-            value={prompt}
-            onChange={setPrompt}
-            onSubmit={handleSubmit}
-            placeholder={t("promptPlaceholder")}
-            disabled={isLoading}
-            maxLength={4000}
-          />
-        </div>
+          <div>
+            <Label className="text-xs text-muted-foreground flex items-center gap-1.5 mb-2">
+              <FileText className="h-3.5 w-3.5" />
+              {t("yourQuestion")}
+            </Label>
+            <PromptInput
+              value={prompt}
+              onChange={setPrompt}
+              onSubmit={handleSubmit}
+              placeholder={t("promptPlaceholder")}
+              disabled={isLoading}
+              maxLength={4000}
+            />
+          </div>
 
-        <div className="flex gap-2">
-          <GenerateButton
-            onClick={handleSubmit}
-            loading={isLoading}
-            disabled={!prompt?.trim()}
-            loadingText={t("generating")}
-            onCancel={() => { }}
-            className="flex-1"
-          >
-            <Sparkles className="h-4 w-4 mr-2" />
-            {t("generateResponse")}
-          </GenerateButton>
-          {(prompt || completion) && !isLoading && (
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleClear}
-              title={t("clear")}
+          <div className="flex gap-2">
+            <GenerateButton
+              onClick={handleSubmit}
+              loading={isLoading}
+              disabled={!prompt?.trim()}
+              loadingText={t("generating")}
+              onCancel={() => {}}
+              className="flex-1"
             >
-              <RefreshCw className="h-4 w-4" />
-            </Button>
-          )}
-        </div>
+              <Sparkles className="h-4 w-4 mr-2" />
+              {t("generateResponse")}
+            </GenerateButton>
+            {(prompt || completion) && !isLoading && (
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleClear}
+                title={t("clear")}
+              >
+                <RefreshCw className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
         </CardContent>
       </Card>
 
       {/* Right: Response Panel */}
       <div className="flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium text-foreground/80">{t("response")}</h3>
+          <h3 className="text-sm font-medium text-foreground/80">
+            {t("response")}
+          </h3>
           <div className="flex items-center gap-2">
             {isLoading && (
               <span className="text-xs text-muted-foreground animate-pulse">
@@ -256,16 +254,11 @@ export default function SingleTurnChat() {
                 {t("chars", { count: completion.length })}
               </span>
             )}
-            {completion && (
-              <CopyButton
-                text={completion}
-                variant="ghost"
-              />
-            )}
+            {completion && <CopyButton text={completion} variant="ghost" />}
           </div>
         </div>
 
-        <Card className="flex-1 min-h-[320px]">
+        <Card className="flex-1 min-h-[320px] p-0">
           <CardContent className="p-4 h-full overflow-y-auto">
             {isLoading && !completion && reasoningParts.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full gap-3 text-muted-foreground">
@@ -292,7 +285,9 @@ export default function SingleTurnChat() {
                   <ReasoningBlock
                     key={i}
                     text={part.text ?? ""}
-                    isStreaming={isStreamingReasoning && part.state === "streaming"}
+                    isStreaming={
+                      isStreamingReasoning && part.state === "streaming"
+                    }
                   />
                 ))}
                 {/* Main response */}

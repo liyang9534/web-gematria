@@ -17,6 +17,7 @@ const inputSchema = z.object({
   generateAudio: z.boolean().optional(),
   cameraFixed: z.boolean().optional(),
   seed: z.number().int().optional(),
+  mode: z.string().optional(),
 });
 
 export async function POST(req: Request) {
@@ -51,6 +52,7 @@ export async function POST(req: Request) {
       generateAudio: input.generateAudio,
       cameraFixed: input.cameraFixed,
       seed: input.seed,
+      mode: input.mode,
     });
 
     return apiResponse.success({ taskId });

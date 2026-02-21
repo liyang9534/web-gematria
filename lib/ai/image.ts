@@ -1,6 +1,7 @@
 import { getImageModel, validateProviderKey } from "@/config/ai-providers";
 import { google } from "@ai-sdk/google";
 import { type DataContent, generateImage, generateText } from "ai";
+import { generateImageWithKIE } from "./adapters/kie-image";
 
 export interface ImageGenerationInput {
   prompt: string;
@@ -100,13 +101,18 @@ function extractBase64(dataUri: string): string {
 
 /**
  * Unified image generation entry point.
- * Automatically routes between standard (generateImage) and gemini (generateText) paths.
+ * Automatically routes between standard (generateImage), gemini (generateText), and kie (custom adapter) paths.
  */
 export async function generateImageUnified(
   input: ImageGenerationInput
 ): Promise<ImageGenerationResult> {
   const keyCheck = validateProviderKey(input.provider);
   if (!keyCheck.valid) throw new Error(keyCheck.error);
+
+  // KIE path: use custom adapter for async task-based API
+  if (input.provider === "kie") {
+    return generateImageWithKIE(input);
+  }
 
   // Gemini special path: generate images via generateText with multimodal output
   if (input.generationMethod === "gemini") {

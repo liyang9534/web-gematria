@@ -31,7 +31,6 @@ export const LANGUAGE_MODELS: LanguageModelConfig[] = [
   // Google
   { provider: "google", id: "gemini-2.5-pro", name: "Gemini 2.5 Pro", inputSupport: ["text", "image"], outputSupport: ["text", "reasoning"] },
   { provider: "google", id: "gemini-2.5-flash", name: "Gemini 2.5 Flash", inputSupport: ["text", "image"], outputSupport: ["text", "reasoning"] },
-  { provider: "google", id: "gemini-2.0-flash", name: "Gemini 2.0 Flash", inputSupport: ["text", "image"], outputSupport: ["text"] },
 
   // DeepSeek
   { provider: "deepseek", id: "deepseek-chat", name: "DeepSeek V3.2", inputSupport: ["text"], outputSupport: ["text"] },
@@ -158,6 +157,23 @@ export const IMAGE_MODELS: ImageModelConfig[] = [
       outputFormats: ["jpeg", "png"],
     },
   },
+
+  // KIE - Image Models
+  {
+    provider: "kie", id: "nano-banana-pro", name: "Nano Banana Pro (KIE)",
+    capabilities: {
+      imageToImage: true,
+      aspectRatios: ["1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"],
+      resolutions: ["1K", "2K", "4K"],
+      outputFormats: ["png", "jpg"],
+    },
+  },
+  {
+    provider: "kie", id: "z-image", name: "Z-Image (KIE)",
+    capabilities: {
+      aspectRatios: ["1:1", "4:3", "3:4", "16:9", "9:16"],
+    },
+  },
 ];
 
 // ------ Video Models ------
@@ -237,6 +253,28 @@ export const VIDEO_MODELS: VideoModelConfig[] = [
     provider: "fal", id: "fal-ai/wan/v2.6/image-to-video", name: "Wan 2.6 I2V (fal.ai)",
     type: "image-to-video", supportedDurations: [5, 10, 15], maxWaitSeconds: 600,
     capabilities: { resolutions: ["720p", "1080p"], negativePrompt: true, seed: true },
+  },
+
+  // KIE - Video Models
+  {
+    provider: "kie", id: "kling-2.6/text-to-video", name: "Kling 2.6 (KIE)",
+    type: "text-to-video", supportedDurations: [5, 10], maxWaitSeconds: 600,
+    capabilities: { aspectRatios: ["16:9", "9:16", "1:1"], negativePrompt: true, cfgScale: [0, 1, 0.5], generateAudio: true },
+  },
+  {
+    provider: "kie", id: "grok-imagine/text-to-video", name: "Grok Imagine (KIE)",
+    type: "text-to-video", supportedDurations: [6, 10], maxWaitSeconds: 600,
+    capabilities: { aspectRatios: ["2:3", "3:2", "1:1", "16:9", "9:16"], resolutions: ["480p", "720p"] },
+  },
+  {
+    provider: "kie", id: "kling-2.6/image-to-video", name: "Kling 2.6 (KIE)",
+    type: "image-to-video", supportedDurations: [5, 10], maxWaitSeconds: 600,
+    capabilities: { generateAudio: true },
+  },
+  {
+    provider: "kie", id: "grok-imagine/image-to-video", name: "Grok Imagine (KIE)",
+    type: "image-to-video", supportedDurations: [6, 10], maxWaitSeconds: 600,
+    capabilities: { resolutions: ["480p", "720p"] },
   },
 ];
 
