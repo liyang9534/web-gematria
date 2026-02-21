@@ -262,22 +262,22 @@ export const VIDEO_MODELS: VideoModelConfig[] = [
     capabilities: { aspectRatios: ["16:9", "9:16", "1:1"], negativePrompt: true, generateAudio: true },
   },
   {
-    provider: "replicate", id: "bytedance/seedance-1.5-pro", name: "Seedance 1.5 Pro I2V (Replicate)",
+    provider: "replicate", id: "bytedance/seedance-1.5-pro", name: "Seedance 1.5 Pro (Replicate)",
     type: "image-to-video", supportedDurations: [5, 10], maxWaitSeconds: 600,
     capabilities: { aspectRatios: ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"], resolutions: ["480p", "720p"], generateAudio: true, generateAudioDefault: true, cameraFixed: true, seed: true },
   },
   {
-    provider: "fal", id: "fal-ai/kling-video/v2.6/pro/image-to-video", name: "Kling 2.6 Pro I2V (fal.ai)",
+    provider: "fal", id: "fal-ai/kling-video/v2.6/pro/image-to-video", name: "Kling 2.6 Pro (fal.ai)",
     type: "image-to-video", supportedDurations: [5, 10], maxWaitSeconds: 600,
     capabilities: { negativePrompt: true, generateAudio: true },
   },
   {
-    provider: "fal", id: "fal-ai/bytedance/seedance/v1.5/pro/image-to-video", name: "Seedance 1.5 Pro I2V (fal.ai)",
+    provider: "fal", id: "fal-ai/bytedance/seedance/v1.5/pro/image-to-video", name: "Seedance 1.5 Pro (fal.ai)",
     type: "image-to-video", supportedDurations: [5, 10], maxWaitSeconds: 600,
     capabilities: { aspectRatios: ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"], resolutions: ["480p", "720p"], generateAudio: true, generateAudioDefault: true, cameraFixed: true, seed: true },
   },
   {
-    provider: "fal", id: "fal-ai/wan/v2.6/image-to-video", name: "Wan 2.6 I2V (fal.ai)",
+    provider: "fal", id: "fal-ai/wan/v2.6/image-to-video", name: "Wan 2.6 (fal.ai)",
     type: "image-to-video", supportedDurations: [5, 10, 15], maxWaitSeconds: 600,
     capabilities: { resolutions: ["720p", "1080p"], negativePrompt: true, seed: true },
   },
