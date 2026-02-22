@@ -1,3 +1,4 @@
+import { after } from "next/server";
 import { generateVideoWithFal } from "./adapters/fal-video";
 import { generateVideoWithKIE } from "./adapters/kie-video";
 import { generateVideoWithReplicate } from "./adapters/replicate-video";
@@ -57,13 +58,17 @@ export async function submitVideoGeneration(
   };
   await taskStore.set(taskId, task);
 
-  // Dispatch to the corresponding adapter (runs async, does not block the response)
-  processVideoGeneration(taskId, input).catch(async (error) => {
-    await taskStore.update(taskId, {
-      status: "failed",
-      error: error.message,
-    });
-  });
+  // Dispatch to the corresponding adapter (runs async, does not block the response).
+  // `after` ensures the serverless function stays alive until this completes,
+  // even after the HTTP response has been sent — critical for webhook correlation.
+  after(
+    processVideoGeneration(taskId, input).catch(async (error) => {
+      await taskStore.update(taskId, {
+        status: "failed",
+        error: error.message,
+      });
+    })
+  );
 
   return { taskId };
 }
