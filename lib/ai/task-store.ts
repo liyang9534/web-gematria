@@ -1,74 +1,57 @@
+import { redis } from "@/lib/upstash";
+import { REDIS_KEYS_CONFIGS } from "@/lib/upstash/redis-keys";
 import type { VideoGenerationTask } from "./video";
 
+// TODO [Persistent Storage]: Redis is used as a short-lived cache (TTL = 1 hour).
+//   For production, add a database layer so task history persists beyond the TTL.
+//   Pattern:
+//     - Write to DB first (single source of truth)
+//     - Write to Redis as a hot cache for polling
+//     - On cache miss in `get()`, fall back to DB query
+//   See the `ai_video_tasks` table suggestion in app/api/ai-demo/video/route.ts.
+
+// TODO [Task List API]: To support a task history dashboard page, add a `list` method:
+//   async list(userId: string, limit = 20): Promise<VideoGenerationTask[]>
+//   This should query the database (not Redis) for the user's tasks sorted by createdAt DESC.
+//   Redis is not suitable for listing by user — tasks are keyed by taskId, not userId.
+
+const TTL = 60 * 60; // 1 hour in seconds
+const keys = REDIS_KEYS_CONFIGS.videoTask;
+
 /**
- * In-memory task store.
- *
- * For production, consider replacing with Redis (Upstash) or a database.
- * Currently uses a Map, suitable for single-instance deployments.
- * Automatically cleans up tasks older than 1 hour.
- *
- * Uses globalThis to persist across Next.js HMR in development.
+ * Video generation task store backed by Upstash Redis.
+ * All keys auto-expire after 1 hour.
  */
-class TaskStore {
-  private store = new Map<string, VideoGenerationTask>();
-  /** Reverse mapping: external (KIE/provider) taskId → internal taskId */
-  private externalIdMap = new Map<string, string>();
-  private readonly TTL = 60 * 60 * 1000; // 1 hour
+export const taskStore = {
+  async set(taskId: string, task: VideoGenerationTask): Promise<void> {
+    if (!redis) return;
+    await redis.set(keys.task(taskId), JSON.stringify(task), { ex: TTL });
+  },
 
-  set(taskId: string, task: VideoGenerationTask): void {
-    this.store.set(taskId, task);
-    this.cleanup();
-  }
+  async get(taskId: string): Promise<VideoGenerationTask | null> {
+    if (!redis) return null;
+    const data = await redis.get<string>(keys.task(taskId));
+    if (!data) return null;
+    return typeof data === "string" ? JSON.parse(data) : data;
+  },
 
-  get(taskId: string): VideoGenerationTask | null {
-    return this.store.get(taskId) || null;
-  }
-
-  /** Look up internal taskId by external (provider) taskId */
-  getByExternalId(externalId: string): VideoGenerationTask | null {
-    const internalId = this.externalIdMap.get(externalId);
+  async getByExternalId(externalId: string): Promise<VideoGenerationTask | null> {
+    if (!redis) return null;
+    const internalId = await redis.get<string>(keys.externalId(externalId));
     if (!internalId) return null;
-    return this.store.get(internalId) || null;
-  }
+    return this.get(internalId);
+  },
 
-  /** Register a mapping from external taskId → internal taskId */
-  setExternalId(externalId: string, internalId: string): void {
-    this.externalIdMap.set(externalId, internalId);
-  }
+  async setExternalId(externalId: string, internalId: string): Promise<void> {
+    if (!redis) return;
+    await redis.set(keys.externalId(externalId), internalId, { ex: TTL });
+  },
 
-  update(taskId: string, updates: Partial<VideoGenerationTask>): void {
-    const task = this.store.get(taskId);
-    if (task) {
-      Object.assign(task, updates, { updatedAt: Date.now() });
-    }
-  }
-
-  /** Clean up expired tasks */
-  private cleanup(): void {
-    const now = Date.now();
-    for (const [id, task] of this.store) {
-      if (now - task.createdAt > this.TTL) {
-        this.store.delete(id);
-        // Also clean up external ID mapping
-        if (task.externalId) {
-          this.externalIdMap.delete(task.externalId);
-        }
-      }
-    }
-  }
-}
-
-const globalForTaskStore = globalThis as unknown as {
-  __taskStore?: TaskStore;
-  __taskStoreVersion?: number;
+  async update(taskId: string, updates: Partial<VideoGenerationTask>): Promise<void> {
+    if (!redis) return;
+    const task = await this.get(taskId);
+    if (!task) return;
+    const updated = { ...task, ...updates, updatedAt: Date.now() };
+    await redis.set(keys.task(taskId), JSON.stringify(updated), { ex: TTL });
+  },
 };
-
-// Bump this version when changing the TaskStore class to invalidate stale HMR instances
-const TASK_STORE_VERSION = 2;
-
-if (globalForTaskStore.__taskStoreVersion !== TASK_STORE_VERSION) {
-  globalForTaskStore.__taskStore = new TaskStore();
-  globalForTaskStore.__taskStoreVersion = TASK_STORE_VERSION;
-}
-
-export const taskStore = globalForTaskStore.__taskStore!;

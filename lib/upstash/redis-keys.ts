@@ -22,6 +22,13 @@ export const REDIS_KEYS_CONFIGS = {
       `${LOWER_CASE_SITE_NAME}:post:views:ip:${postType}:${slug}:${locale}:${ip}`,
   },
 
+  videoTask: {
+    /** @example wenext:vtask:{taskId} */
+    task: (taskId: string) => `${LOWER_CASE_SITE_NAME}:vtask:${taskId}`,
+    /** @example wenext:vtask:ext:{externalId} */
+    externalId: (externalId: string) => `${LOWER_CASE_SITE_NAME}:vtask:ext:${externalId}`,
+  },
+
   // Add other modules here as needed
   // user: { ... },
   // cache: { ... },

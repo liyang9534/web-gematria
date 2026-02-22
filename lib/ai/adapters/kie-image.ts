@@ -5,6 +5,7 @@
  * Docs: https://docs.kie.ai/
  */
 
+import { IMAGE_MODELS } from "@/config/ai-models";
 import { serverUploadFile } from "@/lib/cloudflare/r2";
 import type { ImageGenerationInput, ImageGenerationResult } from "../image";
 
@@ -79,8 +80,8 @@ async function submitImageTask(
     payload.input.aspect_ratio = input.aspectRatio;
   }
 
-  // Add resolution for nano-banana-pro
-  if (input.resolution && input.modelId === "nano-banana-pro") {
+  // Add resolution
+  if (input.resolution) {
     payload.input.resolution = input.resolution;
   }
 
@@ -91,10 +92,11 @@ async function submitImageTask(
   // Add reference image for I2I
   if (input.sourceImage) {
     const imageUrl = await ensureImageUrl(input.sourceImage);
+    const modelCfg = IMAGE_MODELS.find((m) => m.id === input.modelId);
+    const { imageInputField, imageInputIsArray } = modelCfg?.capabilities ?? {};
 
-    if (input.modelId === "nano-banana-pro") {
-      // nano-banana-pro uses image_input (array of URLs)
-      payload.input.image_input = [imageUrl];
+    if (imageInputField) {
+      payload.input[imageInputField] = imageInputIsArray ? [imageUrl] : imageUrl;
     }
   }
 
@@ -178,7 +180,21 @@ async function pollTaskStatus(
 }
 
 /**
- * Download image from URL and convert to base64 data URI
+ * Download image from URL and convert to base64 data URI.
+ *
+ * TODO [Save to R2 Instead of Base64]: Rather than returning a base64 data URI,
+ *   upload the image directly to R2 and return the R2 public URL.
+ *   This avoids encoding overhead and large JSON payloads in the API response.
+ *   Use fetchExternalUrlToR2() from lib/cloudflare/r2-fetch-upload.ts:
+ *
+ *   import { fetchExternalUrlToR2 } from "@/lib/cloudflare/r2-fetch-upload";
+ *   import { generateR2Key } from "@/lib/cloudflare/r2-utils";
+ *   const key = generateR2Key({ fileName: "image.png", path: "ai-images" });
+ *   const { url: r2Url } = await fetchExternalUrlToR2(imageUrl, key);
+ *   return { imageUrl: r2Url, mimeType: "image/png" };
+ *
+ *   When using R2 URLs, update ImageResultArea.tsx to use downloadFileFromUrl()
+ *   instead of downloadBase64File() for the download button.
  */
 async function downloadImage(imageUrl: string): Promise<ImageGenerationResult> {
   const imageResponse = await fetch(imageUrl);

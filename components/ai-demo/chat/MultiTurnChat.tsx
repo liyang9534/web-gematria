@@ -1,5 +1,17 @@
 "use client";
 
+// TODO [Persist Conversation]: Multi-turn conversations are currently in-memory only
+//   (React state via useChat). For production, persist sessions to the database:
+//   1. Assign a sessionId (UUID) to each conversation on first message
+//   2. Save each message to the DB in the /api/ai-demo/chat route's onFinish callback
+//      Schema: ai_chat_messages { id, sessionId, userId, role, content, provider, modelId, createdAt }
+//   3. Load previous messages from DB when the user revisits (via a session history page)
+//   4. Add a "Load history" button that fetches past sessions from a Server Action
+
+// TODO [Multimodal - Image Attachments]: Same as SingleTurnChat — see its TODO.
+//   The AI SDK useChat hook supports attachments via the experimental_attachments option.
+//   Upload images to R2 first (presigned URL), then include the R2 URL in the message.
+
 import ModelSelector from "@/components/ai-demo/shared/ModelSelector";
 import CopyButton from "@/components/shared/CopyButton";
 import { Badge } from "@/components/ui/badge";
@@ -341,7 +353,7 @@ export default function MultiTurnChat() {
                 size="icon"
                 onClick={handleSend}
                 disabled={isLoading || !input.trim()}
-                className="flex-shrink-0 h-10 w-10"
+                className="shrink-0 h-10 w-10"
               >
                 {isLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />

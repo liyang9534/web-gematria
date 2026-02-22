@@ -6,6 +6,33 @@ import Image from "next/image";
 import { useCallback } from "react";
 import { toast } from "sonner";
 
+// TODO [R2 Upload - Presigned URL]: The current implementation converts files to
+//   base64 data URIs and returns them via `onChange`. This is fine for demos but
+//   adds significant payload size to API requests.
+//
+//   For production, replace base64 output with a client-side R2 upload flow:
+//
+//   1. Get a presigned upload URL from the server (authenticated users):
+//      import { generateUserPresignedUploadUrl } from "@/actions/r2-resources";
+//      const { data } = await generateUserPresignedUploadUrl({
+//        fileName: file.name,
+//        contentType: file.type,
+//        path: "ai-inputs",
+//        prefix: "upload",
+//      });
+//
+//   2. Upload the file directly from the browser to R2 (no server round-trip):
+//      await fetch(data.presignedUrl, { method: "PUT", body: file, headers: { "Content-Type": file.type } });
+//
+//   3. Return the permanent R2 public URL via onChange:
+//      onChange(data.publicObjectUrl);
+//
+//   For unauthenticated/public use, call generatePublicPresignedUploadUrl() instead.
+//   This avoids large base64 payloads and the extra server-side re-upload in kie adapters.
+//
+//   Add an `onUploadComplete?: (r2Url: string, r2Key: string) => void` prop alongside
+//   the existing `onChange` to let parent components persist the key for later deletion.
+
 interface ImageUploaderProps {
   value: string | null;
   onChange: (dataUri: string | null) => void;

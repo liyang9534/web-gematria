@@ -81,31 +81,19 @@ async function submitVideoTask(
     },
   };
 
-  // Add callback URL: prefer env var, fall back to input.webhookUrl
-  const callbackUrl = process.env.KIE_CALLBACK_URL || input.webhookUrl;
-  if (callbackUrl) {
-    payload.callBackUrl = callbackUrl;
+  if (input.webhookUrl) {
+    payload.callBackUrl = input.webhookUrl;
   }
 
-  const isGrok = input.modelId.startsWith("grok-imagine/");
-  const isKling = input.modelId.startsWith("kling-");
-
-  if (isKling) {
-    // Kling-specific fields
-    payload.input.aspect_ratio = input.aspectRatio || "16:9";
-    payload.input.sound = input.generateAudio ?? false;
-    if (input.negativePrompt) {
-      payload.input.negative_prompt = input.negativePrompt;
-    }
-    if (input.cfgScale !== undefined) {
-      payload.input.cfg_scale = input.cfgScale;
-    }
-  } else if (isGrok) {
-    // Grok-imagine specific fields
-    payload.input.aspect_ratio = input.aspectRatio || "2:3";
-    payload.input.mode = input.mode || "normal";
-    payload.input.resolution = input.resolution || "480p";
-  }
+  // Pass through optional fields generically (no model-specific branching)
+  if (input.aspectRatio) payload.input.aspect_ratio = input.aspectRatio;
+  if (input.negativePrompt) payload.input.negative_prompt = input.negativePrompt;
+  if (input.cfgScale !== undefined) payload.input.cfg_scale = input.cfgScale;
+  // KIE API uses "sound" for the audio generation field across all models
+  if (input.generateAudio !== undefined) payload.input.sound = input.generateAudio;
+  if (input.resolution) payload.input.resolution = input.resolution;
+  if (input.mode) payload.input.mode = input.mode;
+  if (input.seed !== undefined) payload.input.seed = input.seed;
 
   // Add image for I2V — KIE requires `image_urls` with public URLs
   if (input.image) {
@@ -136,68 +124,11 @@ async function submitVideoTask(
   return result.data.taskId;
 }
 
-/**
- * Poll task status until completion using GET /api/v1/jobs/recordInfo
- */
-async function pollVideoTaskStatus(
-  taskId: string,
-  apiKey: string,
-  maxAttempts = 180,
-  intervalMs = 3000
-): Promise<string> {
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const response = await fetch(
-      `${KIE_BASE_URL}/api/v1/jobs/recordInfo?taskId=${encodeURIComponent(taskId)}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      }
-    );
-
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(`KIE status check error: ${response.status} - ${error}`);
-    }
-
-    const result: KIERecordInfoResponse = await response.json();
-
-    if (result.code !== 200) {
-      throw new Error(`KIE status check error: ${result.message}`);
-    }
-
-    const { state, resultJson, failMsg } = result.data;
-
-    if (state === "success") {
-      if (!resultJson) {
-        throw new Error("KIE task succeeded but resultJson is empty");
-      }
-      const parsed = JSON.parse(resultJson);
-      const urls: string[] = parsed.resultUrls || [];
-      if (urls.length === 0) {
-        throw new Error("KIE did not return any video URLs");
-      }
-      return urls[0];
-    }
-
-    if (state === "fail") {
-      throw new Error(`KIE task failed: ${failMsg || "Unknown error"}`);
-    }
-
-    // Still waiting/queuing/generating, wait and retry
-    await new Promise((resolve) => setTimeout(resolve, intervalMs));
-  }
-
-  throw new Error("KIE video generation timed out");
-}
 
 /**
  * Generate video with KIE.
- *
- * If KIE_CALLBACK_URL is configured, submits the task and returns immediately
- * (the callback handler will update the task store when KIE finishes).
- * Otherwise, falls back to polling.
+ * Requires input.webhookUrl (built from WEBHOOK_BASE_URL) — submits the task and returns immediately.
+ * The callback handler at /api/webhooks/kie will update the task store when KIE finishes.
  */
 export async function generateVideoWithKIE(
   input: VideoGenerationInput
@@ -206,25 +137,15 @@ export async function generateVideoWithKIE(
   if (!apiKey) {
     throw new Error("KIE_API_KEY is not configured");
   }
+  if (!input.webhookUrl) {
+    throw new Error("KIE adapter requires a webhookUrl (WEBHOOK_BASE_URL is not configured)");
+  }
 
-  // Step 1: Submit task
   const kieTaskId = await submitVideoTask(input, apiKey);
   console.log(`[KIE] Video task submitted: ${kieTaskId}`);
 
-  // Step 2: If callback is configured, return immediately (callback will handle completion)
-  if (process.env.KIE_CALLBACK_URL) {
-    return {
-      videoUrl: "", // Will be filled by callback handler
-      externalId: kieTaskId,
-    };
-  }
-
-  // Step 3: No callback — fall back to polling
-  const videoUrl = await pollVideoTaskStatus(kieTaskId, apiKey);
-  console.log(`[KIE] Video task completed: ${kieTaskId}`);
-
   return {
-    videoUrl,
+    videoUrl: "", // Filled by webhook handler at /api/webhooks/kie
     externalId: kieTaskId,
   };
 }

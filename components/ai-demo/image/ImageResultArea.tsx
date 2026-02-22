@@ -43,6 +43,13 @@ export default function ImageResultArea({
 
   const handleDownload = () => {
     if (!imageUrl) return;
+    // TODO [Download - R2 URL vs Base64]: Once the API route saves generated images
+    //   to R2 (see TODO in app/api/ai-demo/image/route.ts), imageUrl will be an R2 URL
+    //   instead of a base64 data URI. Replace downloadBase64File with downloadFileFromUrl():
+    //   import { downloadFileFromUrl } from "@/lib/cloudflare/r2-download";
+    //   downloadFileFromUrl(imageUrl, "user"); // or "public" for unauthenticated users
+    //
+    // For now (base64 output), the current downloadBase64File() works correctly.
     const mimeMatch = imageUrl.match(/^data:image\/(\w+)/);
     const ext = mimeMatch?.[1] === "jpeg" ? "jpg" : mimeMatch?.[1] || "png";
     downloadBase64File(imageUrl, `generated-image.${ext}`);

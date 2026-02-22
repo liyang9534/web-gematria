@@ -1,5 +1,19 @@
 "use client";
 
+// TODO [Multimodal - Image Attachments]: To support sending images in the prompt
+//   (for vision-capable models like GPT-4o, Claude, Gemini), add an image attachment
+//   feature. Recommended flow:
+//   1. Add an <ImageUploader> or file input alongside the prompt textarea
+//   2. Upload the image to R2 via presigned URL (client-side) using generateUserPresignedUploadUrl()
+//      from actions/r2-resources/index.ts — do NOT send base64 in the chat body
+//   3. Include the R2 public URL in the messages parts array sent to /api/ai-demo/chat
+//   4. In the chat route, pass the image URL to the AI SDK message parts
+//   Check the model's `input.image` capability flag in config/ai-models.ts before enabling.
+
+// TODO [Auth - Login Guard]: For production, wrap this component in an auth guard.
+//   Check the user's session and redirect unauthenticated users to the login page.
+//   Use the useSession() hook from @/lib/auth/client or check server-side in the page component.
+
 import GenerateButton from "@/components/ai-demo/shared/GenerateButton";
 import ModelSelector from "@/components/ai-demo/shared/ModelSelector";
 import PromptInput from "@/components/ai-demo/shared/PromptInput";
@@ -240,9 +254,9 @@ export default function SingleTurnChat() {
       {/* Right: Response Panel */}
       <div className="flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium text-foreground/80">
+          <div className="text-sm font-medium text-foreground/80">
             {t("response")}
-          </h3>
+          </div>
           <div className="flex items-center gap-2">
             {isLoading && (
               <span className="text-xs text-muted-foreground animate-pulse">

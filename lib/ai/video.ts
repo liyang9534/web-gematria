@@ -1,6 +1,6 @@
-import { generateVideoWithReplicate } from "./adapters/replicate-video";
 import { generateVideoWithFal } from "./adapters/fal-video";
 import { generateVideoWithKIE } from "./adapters/kie-video";
+import { generateVideoWithReplicate } from "./adapters/replicate-video";
 import { taskStore } from "./task-store";
 
 export interface VideoGenerationInput {
@@ -18,6 +18,9 @@ export interface VideoGenerationInput {
   cameraFixed?: boolean;
   seed?: number;
   mode?: string;
+  // TODO [Auth]: Add userId to track ownership of tasks.
+  //   userId?: string;
+  //   Pass from the API route: const session = await getSession(); userId: session.user.id
 }
 
 export interface VideoGenerationTask {
@@ -25,12 +28,14 @@ export interface VideoGenerationTask {
   status: "pending" | "processing" | "succeeded" | "failed";
   provider: string;
   modelId: string;
-  /** Original job ID from the platform (Replicate prediction ID / fal request ID) */
+  // Original job ID from the platform (Replicate prediction ID / fal request ID / KIE taskId).
   externalId: string;
   videoUrl?: string;
   error?: string;
   createdAt: number;
   updatedAt: number;
+  // TODO [Auth]: Add userId to enable ownership checks and user-specific task history.
+  //   userId?: string;
 }
 
 /**
@@ -50,11 +55,11 @@ export async function submitVideoGeneration(
     createdAt: Date.now(),
     updatedAt: Date.now(),
   };
-  taskStore.set(taskId, task);
+  await taskStore.set(taskId, task);
 
   // Dispatch to the corresponding adapter (runs async, does not block the response)
-  processVideoGeneration(taskId, input).catch((error) => {
-    taskStore.update(taskId, {
+  processVideoGeneration(taskId, input).catch(async (error) => {
+    await taskStore.update(taskId, {
       status: "failed",
       error: error.message,
     });
@@ -66,30 +71,53 @@ export async function submitVideoGeneration(
 /**
  * Query the status of a video generation task.
  */
-export function getVideoTaskStatus(taskId: string): VideoGenerationTask | null {
+export async function getVideoTaskStatus(taskId: string): Promise<VideoGenerationTask | null> {
   return taskStore.get(taskId);
 }
 
 /**
- * Internal: execute video generation (async)
+ * Build the webhook callback URL for a given provider and task.
+ * Requires WEBHOOK_BASE_URL env var (e.g. https://your-domain.com or ngrok URL for local dev).
+ */
+function buildWebhookUrl(provider: string, taskId: string): string {
+  const base = process.env.WEBHOOK_BASE_URL?.replace(/\/+$/, '');
+  if (!base) throw new Error("WEBHOOK_BASE_URL is not configured");
+  switch (provider) {
+    case "replicate":
+      return `${base}/api/webhooks/replicate?taskId=${taskId}`;
+    case "fal":
+      return `${base}/api/webhooks/fal?taskId=${taskId}`;
+    case "kie":
+      return `${base}/api/webhooks/kie`;
+    default:
+      return "";
+  }
+}
+
+/**
+ * Internal: submit video generation task to provider (async, webhook-based).
+ * All providers return immediately after submission; completion is notified via webhook.
  */
 async function processVideoGeneration(
   taskId: string,
   input: VideoGenerationInput
 ): Promise<void> {
-  taskStore.update(taskId, { status: "processing" });
+  await taskStore.update(taskId, { status: "processing" });
+
+  const webhookUrl = buildWebhookUrl(input.provider, taskId);
+  const inputWithWebhook: VideoGenerationInput = { ...input, webhookUrl };
 
   let result: { videoUrl: string; externalId: string };
 
   switch (input.provider) {
     case "replicate":
-      result = await generateVideoWithReplicate(input);
+      result = await generateVideoWithReplicate(inputWithWebhook);
       break;
     case "fal":
-      result = await generateVideoWithFal(input);
+      result = await generateVideoWithFal(inputWithWebhook);
       break;
     case "kie":
-      result = await generateVideoWithKIE(input);
+      result = await generateVideoWithKIE(inputWithWebhook);
       break;
     default:
       throw new Error(`Unsupported video provider: ${input.provider}`);
@@ -97,18 +125,8 @@ async function processVideoGeneration(
 
   // Register external → internal ID mapping (used by webhook callbacks)
   if (result.externalId) {
-    taskStore.setExternalId(result.externalId, taskId);
-    taskStore.update(taskId, { externalId: result.externalId });
+    await taskStore.setExternalId(result.externalId, taskId);
+    await taskStore.update(taskId, { externalId: result.externalId });
   }
-
-  // KIE callback mode: videoUrl is empty, callback handler will fill it later
-  if (input.provider === "kie" && process.env.KIE_CALLBACK_URL && !result.videoUrl) {
-    return;
-  }
-
-  taskStore.update(taskId, {
-    status: "succeeded",
-    videoUrl: result.videoUrl,
-    externalId: result.externalId,
-  });
+  // Task stays "processing" — webhook handler will mark it succeeded/failed.
 }

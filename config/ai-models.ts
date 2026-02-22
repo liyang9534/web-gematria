@@ -91,6 +91,10 @@ export interface ImageModelCapabilities {
   guidanceScale?: [number, number, number];
   inferenceSteps?: [number, number, number];
   strength?: [number, number, number];
+  /** API field name used to pass the source image (provider-specific) */
+  imageInputField?: string;
+  /** Whether the imageInputField expects an array of URLs */
+  imageInputIsArray?: boolean;
 }
 
 export interface ImageModelConfig {
@@ -193,6 +197,8 @@ export const IMAGE_MODELS: ImageModelConfig[] = [
       aspectRatios: ["1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"],
       resolutions: ["1K", "2K", "4K"],
       outputFormats: ["png", "jpg"],
+      imageInputField: "image_input",
+      imageInputIsArray: true,
     },
   },
   {

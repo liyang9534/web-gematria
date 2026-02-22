@@ -45,8 +45,16 @@ const features = [
     glowColor: "group-hover:shadow-indigo-500/25",
     bgPattern:
       "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-100/80 via-transparent to-transparent dark:from-indigo-900/20",
-    tags: ["OpenAI", "Anthropic", "Google", "DeepSeek", "xAI"],
-    stat: "18+",
+    tags: [
+      "OpenAI",
+      "Anthropic",
+      "Google",
+      "DeepSeek",
+      "xAI",
+      "OpenRouter",
+      "Custom Provider",
+    ],
+    stat: "19+",
     statLabel: "Models",
   },
   {
@@ -57,8 +65,8 @@ const features = [
     glowColor: "group-hover:shadow-emerald-500/25",
     bgPattern:
       "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-100/80 via-transparent to-transparent dark:from-emerald-900/20",
-    tags: ["GPT Image", "Nano Banana", "Grok", "Flux"],
-    stat: "8+",
+    tags: ["GPT Image", "Nano Banana", "Grok", "Flux", "KIE"],
+    stat: "10+",
     statLabel: "Models",
   },
   {
@@ -69,8 +77,8 @@ const features = [
     glowColor: "group-hover:shadow-rose-500/25",
     bgPattern:
       "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rose-100/80 via-transparent to-transparent dark:from-rose-900/20",
-    tags: ["Seedance", "Kling", "Wan"],
-    stat: "9+",
+    tags: ["Seedance", "Kling", "Wan", "Grok", "KIE"],
+    stat: "14+",
     statLabel: "Models",
   },
 ];
@@ -83,7 +91,7 @@ export default async function AIHubPage({ params }: { params: Params }) {
   });
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div>
       {/* Hero */}
       <div className="text-center mb-16 space-y-4">
         <FeatureBadge
@@ -104,14 +112,14 @@ export default async function AIHubPage({ params }: { params: Params }) {
             <div className="flex items-center gap-1.5">
               <Bot className="h-4 w-4 text-primary" />
               <span>
-                <strong className="text-foreground">8</strong> Providers
+                <strong className="text-foreground">10</strong> Providers
               </span>
             </div>
             <div className="h-4 w-px bg-border" />
             <div className="flex items-center gap-1.5">
               <Zap className="h-4 w-4 text-primary" />
               <span>
-                <strong className="text-foreground">35+</strong> Models
+                <strong className="text-foreground">43+</strong> Models
               </span>
             </div>
             <div className="h-4 w-px bg-border" />

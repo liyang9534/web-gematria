@@ -248,6 +248,11 @@ export default function VideoPage() {
                       <ImagePlus className="h-3.5 w-3.5" />
                       {t("referenceImage")}
                     </Label>
+                    {/* TODO [R2 Upload]: Replace base64 upload with R2 presigned URL upload.
+                        When ImageUploader is updated to support presigned uploads (see its TODO),
+                        use the returned R2 public URL as `sourceImage` instead of a base64 string.
+                        This avoids sending large payloads to the server and eliminates the
+                        server-side base64→R2 re-upload in kie-video.ts (ensureImageUrl). */}
                     <ImageUploader
                       value={sourceImage}
                       onChange={(v) => {

@@ -35,6 +35,13 @@ export default function VideoResultArea({
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(0);
 
+  // TODO [Polling Reduction]: Polling every 3 seconds creates constant HTTP traffic,
+  //   especially for long video jobs (2–5 minutes). Consider these alternatives:
+  //   1. Exponential backoff: start at 3s, increase to 10s after 30s, cap at 30s.
+  //   2. Server-Sent Events (SSE): the status API route emits events when status changes.
+  //   3. Task history page: let users navigate away; they check results from a dashboard
+  //      page that queries the database. See TODO in app/api/ai-demo/video/status/route.ts.
+
   // Polling logic (absorbed from TaskStatusBar)
   useEffect(() => {
     if (!taskId) return;
@@ -95,6 +102,13 @@ export default function VideoResultArea({
 
   const handleDownload = useCallback(() => {
     if (!videoUrl) return;
+    // TODO [Download - Presigned URL]: When videoUrl is an R2 URL (after implementing
+    //   the R2 save step in webhook handlers), use presigned download for better security:
+    //   import { downloadFileFromUrl } from "@/lib/cloudflare/r2-download";
+    //   downloadFileFromUrl(videoUrl, "user");
+    //
+    //   If the R2 bucket is public, the direct URL below works for CORS-allowed origins.
+    //   Use presigned downloads when the bucket is private or for access-controlled assets.
     const a = document.createElement("a");
     a.href = videoUrl;
     a.download = "generated-video.mp4";

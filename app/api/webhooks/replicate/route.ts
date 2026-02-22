@@ -2,6 +2,27 @@ import { NextResponse } from "next/server";
 import { validateWebhook } from "replicate";
 import { taskStore } from "@/lib/ai/task-store";
 
+// TODO [Save Video to R2]: Replicate output URLs expire within ~1 hour.
+//   After a successful prediction, immediately download the video and upload it
+//   to R2 for permanent storage using fetchExternalUrlToR2():
+//
+//   import { fetchExternalUrlToR2 } from "@/lib/cloudflare/r2-fetch-upload";
+//   import { generateR2Key } from "@/lib/cloudflare/r2-utils";
+//
+//   const key = generateR2Key({ fileName: `${taskId}.mp4`, path: "ai-videos" });
+//   const { url: r2Url } = await fetchExternalUrlToR2(videoUrl, key);
+//   await taskStore.update(taskId, { status: "succeeded", videoUrl: r2Url, externalId: prediction.id });
+//
+//   This ensures the video is accessible beyond the Replicate URL expiry window.
+
+// TODO [DB - Update Task Record]: After uploading to R2, update the database record.
+//   await db.update(aiVideoTasks)
+//     .set({ status: "succeeded", r2Key: key, r2Url: r2Url, updatedAt: new Date() })
+//     .where(eq(aiVideoTasks.taskId, taskId));
+
+// TODO [Notify User]: Optionally send an email or push notification when the video
+//   is ready. Use Resend (lib/resend.ts or nexty-email skill) for email notifications.
+
 export async function POST(request: Request) {
   try {
     const secret = process.env.REPLICATE_WEBHOOK_SIGNING_SECRET;
@@ -33,7 +54,7 @@ export async function POST(request: Request) {
           ? output
           : null;
 
-      taskStore.update(taskId, {
+      await taskStore.update(taskId, {
         status: "succeeded",
         videoUrl: videoUrl || undefined,
         externalId: prediction.id,
@@ -42,7 +63,7 @@ export async function POST(request: Request) {
       prediction.status === "failed" ||
       prediction.status === "canceled"
     ) {
-      taskStore.update(taskId, {
+      await taskStore.update(taskId, {
         status: "failed",
         error:
           typeof prediction.error === "string"

@@ -16,7 +16,7 @@ Pages (app/[locale]/(basic-layout)/ai-demo/) → API Routes (app/api/ai-demo/) �
 - **Core Logic**: `lib/ai/chat.ts`, `lib/ai/image.ts`, `lib/ai/video.ts`
 - **Adapters**: `lib/ai/adapters/` (provider-specific adapters: KIE image/video, fal video, replicate video)
 - **API Routes**: `app/api/ai-demo/{chat,image,video}/`
-- **Webhooks**: `app/api/webhooks/{fal,replicate}/`, `app/api/ai-demo/kie-callback/`
+- **Webhooks**: `app/api/webhooks/{fal,replicate,kie}/`
 - **UI Components**: `components/ai-demo/{chat,image,video,shared}/`
 - **Types**: `types/ai.ts`
 
@@ -142,7 +142,7 @@ Accepts all image generation parameters, validates with Zod, returns `{ imageUrl
 
 ### Core: `lib/ai/video.ts`
 
-Video generation is async (task-based) because it takes minutes:
+Video generation is fully webhook-based (task-based) because it takes minutes. All providers submit the job and return immediately; completion is notified via webhook callback.
 
 ```typescript
 import { submitVideoGeneration } from '@/lib/ai/video';
@@ -153,50 +153,66 @@ const { taskId } = await submitVideoGeneration({
   modelId: 'kwaivgi/kling-v2.5-turbo-pro',
   aspectRatio: '16:9',
   duration: 5,
-  // Optional: referenceImageUrl, webhookUrl, negativePrompt, generateAudio, etc.
+  // Optional: image, negativePrompt, generateAudio, cfgScale, seed, etc.
 });
 ```
 
 Flow:
-1. Client submits → receives `taskId`
-2. Server processes via provider adapters (`lib/ai/adapters/`)
-3. Client polls `GET /api/ai-demo/video/status?taskId=xxx`
-4. Optional webhook callbacks update task status
+1. Client submits → receives `taskId` immediately (no blocking)
+2. Server builds per-task webhook URL from `WEBHOOK_BASE_URL` and submits to provider
+3. Task status stays `"processing"` in Redis
+4. Provider finishes → calls webhook → handler updates task to `"succeeded"` with `videoUrl`
+5. Client polls `GET /api/ai-demo/video/status?taskId=xxx` until done
+
+### Webhook URL Construction (`lib/ai/video.ts`)
+
+`buildWebhookUrl(provider, taskId)` constructs per-provider callback URLs:
+
+| Provider | Webhook URL |
+|----------|-------------|
+| Replicate | `${WEBHOOK_BASE_URL}/api/webhooks/replicate?taskId={taskId}` |
+| fal.ai | `${WEBHOOK_BASE_URL}/api/webhooks/fal?taskId={taskId}` |
+| KIE | `${WEBHOOK_BASE_URL}/api/webhooks/kie` |
+
+`WEBHOOK_BASE_URL` must be publicly reachable. For local dev, use ngrok or Cloudflare Tunnel.
 
 ### Adapters: `lib/ai/adapters/`
 
-- `fal-video.ts` — uses `@fal-ai/client` with `fal.subscribe()`
-- `replicate-video.ts` — uses `replicate` SDK with `predictions.create()` + `replicate.wait()`
-- `kie-video.ts` — custom adapter using KIE jobs API with polling or webhook callback
+All video adapters return `{ videoUrl: "", externalId }` immediately after submission — webhook fills the URL later.
+
+- `replicate-video.ts` — `predictions.create()` with `webhook` + `webhook_events_filter: ["completed"]`
+- `fal-video.ts` — `fal.queue.submit()` with `webhookUrl`
+- `kie-video.ts` — `POST /api/v1/jobs/createTask` with `callBackUrl`; also exports `fetchKIETaskResult()` used by webhook handler
 - `kie-image.ts` — custom adapter for KIE image generation (uploads base64 to R2, submits via jobs API)
 
 ### KIE Provider Details
 
 KIE uses a unified jobs API at `https://api.kie.ai`:
 - Submit: `POST /api/v1/jobs/createTask` with model-specific parameters
-- Poll: `GET /api/v1/jobs/recordInfo?taskId=xxx`
-- Webhook: `app/api/ai-demo/kie-callback/route.ts`
+- Result fetch: `GET /api/v1/jobs/recordInfo?taskId=xxx` (called by webhook handler after callback)
+- Webhook: `app/api/webhooks/kie/route.ts`
 
 KIE image generation requires Cloudflare R2 for reference image uploads (KIE needs public URLs, not base64).
 
-```env
-KIE_API_KEY=xxx
-KIE_CALLBACK_URL=https://your-domain.com/api/ai-demo/kie-callback  # Optional, recommended for production
-```
-
 ### Task Store: `lib/ai/task-store.ts`
 
-In-memory store with 1-hour TTL. For production multi-instance, replace with Redis/database.
+Upstash Redis-backed store with 1-hour TTL. Two key types:
+- `{site}:vtask:{taskId}` — task object (status, videoUrl, externalId, …)
+- `{site}:vtask:ext:{externalId}` — reverse mapping: platform ID → internal taskId (used by KIE webhook)
 
 ```typescript
-import { taskStore, getVideoTaskStatus } from '@/lib/ai/task-store';
+import { taskStore } from '@/lib/ai/task-store';
 ```
 
 ### Webhooks
 
-- `app/api/webhooks/fal/route.ts` — JWKS signature verification
-- `app/api/webhooks/replicate/route.ts` — HMAC signature validation
-- `app/api/ai-demo/kie-callback/route.ts` — KIE webhook callback handler
+| Handler | Path | Auth |
+|---------|------|------|
+| Replicate | `app/api/webhooks/replicate/route.ts` | HMAC signature (optional, `REPLICATE_WEBHOOK_SIGNING_SECRET`) |
+| fal.ai | `app/api/webhooks/fal/route.ts` | JWKS / Ed25519 (optional, `FAL_VERIFY_WEBHOOKS=true`) |
+| KIE | `app/api/webhooks/kie/route.ts` | None (uses externalId lookup) |
+
+Replicate and fal.ai receive `taskId` in the URL query string. KIE receives `kieTaskId` in the body and looks up the internal task via the Redis reverse mapping.
 
 ### UI Components
 
@@ -256,11 +272,12 @@ NEXT_PUBLIC_CUSTOM_OPENAI_MODELS=   # Format: model-id:Display Name,model-id-2:D
 
 # Image & Video Providers
 REPLICATE_API_TOKEN=
-REPLICATE_WEBHOOK_SIGNING_SECRET=   # Optional
+REPLICATE_WEBHOOK_SIGNING_SECRET=   # Optional: enable Replicate webhook signature verification
 FAL_KEY=
-FAL_VERIFY_WEBHOOKS=false           # Optional
+FAL_VERIFY_WEBHOOKS=false           # Optional: set "true" to enable fal.ai JWKS verification
 KIE_API_KEY=
-KIE_CALLBACK_URL=                   # Optional, recommended for production
+WEBHOOK_BASE_URL=                   # Required for video: public base URL for webhook callbacks
+                                    # e.g. https://your-domain.com or https://xxxx.ngrok.io
 
 # Required for KIE image uploads (reference images)
 R2_ACCOUNT_ID=

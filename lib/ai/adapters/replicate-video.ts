@@ -26,37 +26,24 @@ export async function generateVideoWithReplicate(
   if (input.cameraFixed !== undefined) replicateInput.camera_fixed = input.cameraFixed;
   if (input.seed !== undefined) replicateInput.seed = input.seed;
 
-  // Create prediction
+  if (!input.webhookUrl) {
+    throw new Error("Replicate adapter requires a webhookUrl (WEBHOOK_BASE_URL is not configured)");
+  }
+
+  // Create prediction with webhook — returns immediately, result delivered via callback
   const prediction = await replicate.predictions.create({
     model: input.modelId as `${string}/${string}`,
     input: replicateInput,
-    // Use webhook mode if a webhook URL is provided
-    ...(input.webhookUrl && {
-      webhook: input.webhookUrl,
-      webhook_events_filter: ["completed"],
-    }),
+    webhook: input.webhookUrl,
+    webhook_events_filter: ["completed"],
   });
 
   if (prediction.status === "failed") {
     throw new Error(`Replicate prediction failed: ${prediction.error}`);
   }
 
-  // Synchronously wait for results (used when no webhook is configured)
-  const finalPrediction = await replicate.wait(prediction);
-
-  const output = finalPrediction.output;
-  const videoUrl = Array.isArray(output)
-    ? output[0]
-    : typeof output === "string"
-      ? output
-      : null;
-
-  if (!videoUrl || typeof videoUrl !== "string") {
-    throw new Error("Replicate did not return a valid video URL.");
-  }
-
   return {
-    videoUrl,
+    videoUrl: "", // Filled by webhook handler
     externalId: prediction.id,
   };
 }

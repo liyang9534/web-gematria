@@ -26,24 +26,18 @@ export async function generateVideoWithFal(
   if (input.cameraFixed !== undefined) falInput.camera_fixed = input.cameraFixed;
   if (input.seed !== undefined) falInput.seed = input.seed;
 
-  // Use subscribe mode: auto-submit + poll for results
-  const result = await fal.subscribe(input.modelId, {
-    input: falInput,
-    logs: true,
-    onQueueUpdate: (update) => {
-      if (update.status === "IN_PROGRESS") {
-        console.log(`[fal.ai] ${input.modelId} processing...`);
-      }
-    },
-  });
-
-  const videoUrl = (result.data as any)?.video?.url;
-  if (!videoUrl) {
-    throw new Error("fal.ai did not return a valid video URL.");
+  if (!input.webhookUrl) {
+    throw new Error("fal.ai adapter requires a webhookUrl (WEBHOOK_BASE_URL is not configured)");
   }
 
+  // Submit to queue with webhook — returns immediately, result delivered via callback
+  const result = await fal.queue.submit(input.modelId, {
+    input: falInput,
+    webhookUrl: input.webhookUrl,
+  });
+
   return {
-    videoUrl,
-    externalId: result.requestId,
+    videoUrl: "", // Filled by webhook handler
+    externalId: result.request_id,
   };
 }
