@@ -1,6 +1,7 @@
 import { submitVideoGeneration } from "@/lib/ai/video";
 import { VIDEO_MODELS } from "@/config/ai-models";
 import { validateProviderKey } from "@/config/ai-providers";
+import { getSession } from "@/lib/auth/server";
 import { apiResponse } from "@/lib/api-response";
 import { z } from "zod";
 
@@ -54,6 +55,16 @@ const inputSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    // Demo restriction: Only admins can use AI demo to prevent API key abuse.
+    // In production, remove this check and use proper auth + rate limiting instead.
+    const session = await getSession();
+    if (!session?.user) {
+      return apiResponse.unauthorized("Please sign in to use the AI demo.");
+    }
+    if (session.user.role !== "admin") {
+      return apiResponse.forbidden("Admin privileges required.");
+    }
+
     const body = await req.json();
     const input = inputSchema.parse(body);
 

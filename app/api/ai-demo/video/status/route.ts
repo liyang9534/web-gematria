@@ -1,4 +1,5 @@
 import { getVideoTaskStatus } from "@/lib/ai/video";
+import { getSession } from "@/lib/auth/server";
 import { apiResponse } from "@/lib/api-response";
 
 // TODO [Auth]: Verify the requesting user owns this task before returning status.
@@ -23,6 +24,16 @@ import { apiResponse } from "@/lib/api-response";
 //   Return the DB record when Redis returns null.
 
 export async function GET(req: Request) {
+  // Demo restriction: Only admins can use AI demo to prevent API key abuse.
+  // In production, remove this check and use proper auth + rate limiting instead.
+  const session = await getSession();
+  if (!session?.user) {
+    return apiResponse.unauthorized("Please sign in to use the AI demo.");
+  }
+  if (session.user.role !== "admin") {
+    return apiResponse.forbidden("Admin privileges required.");
+  }
+
   const { searchParams } = new URL(req.url);
   const taskId = searchParams.get("taskId");
 

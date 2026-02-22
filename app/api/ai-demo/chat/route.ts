@@ -1,4 +1,6 @@
 import { streamChat } from "@/lib/ai/chat";
+import { getSession } from "@/lib/auth/server";
+import { apiResponse } from "@/lib/api-response";
 import { z } from "zod";
 
 // TODO [Auth]: Add session verification before handling the request.
@@ -66,6 +68,16 @@ function extractContent(msg: z.infer<typeof uiMessageSchema>): string {
 
 export async function POST(req: Request) {
   try {
+    // Demo restriction: Only admins can use AI demo to prevent API key abuse.
+    // In production, remove this check and use proper auth + rate limiting instead.
+    const session = await getSession();
+    if (!session?.user) {
+      return apiResponse.unauthorized("Please sign in to use the AI demo.");
+    }
+    if (session.user.role !== "admin") {
+      return apiResponse.forbidden("Admin privileges required.");
+    }
+
     const body = await req.json();
     const input = inputSchema.parse(body);
 
@@ -84,9 +96,6 @@ export async function POST(req: Request) {
 
     return result.toUIMessageStreamResponse();
   } catch (error: any) {
-    return Response.json(
-      { error: error.message || "Chat generation failed" },
-      { status: error.message?.includes("Missing") ? 500 : 400 }
-    );
+    return apiResponse.serverError(error.message || "Chat generation failed");
   }
 }
