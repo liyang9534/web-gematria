@@ -19,6 +19,7 @@ This skill covers every change needed to move a NEXTY.DEV project from a Node.js
 | Auth layer | `auth` singleton → `getAuth()` factory |
 | Auth route | `toNextJsHandler(auth)` → manual per-method handlers |
 | Blog/CMS | Pre-build MDX into `lib/cms/blog-data.ts` at build time |
+| Email rendering | `react:` prop → render to HTML via dynamic `react-dom/server` import |
 | Scripts | Add `cf:build`, `cf:deploy`, `cf:preview`, `cf:sync-env`, `blog:build-data` |
 | Middleware | Rename `proxy.ts` → `middleware.ts` |
 | Static assets | Add `public/_headers` for immutable cache headers |
@@ -386,6 +387,42 @@ if (typeof window === 'undefined') {
 
 ---
 
+## Step 13 — Fix Email Rendering for Cloudflare Workers
+
+Cloudflare Workers does not support passing React elements directly to Resend's `react:` prop at runtime. Instead, render the React email component to an HTML string using a dynamic import of `react-dom/server`.
+
+### Update `actions/resend/index.ts`
+
+```typescript
+// Add a helper that dynamically imports react-dom/server
+// Dynamic import avoids static bundling issues in the CF Workers edge runtime
+async function renderEmailToHtml(element: React.ReactElement): Promise<string> {
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const htmlBody = renderToStaticMarkup(element);
+  const doctype =
+    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+  return `${doctype}${htmlBody.replace(/<!DOCTYPE.*?>/i, '')}`;
+}
+
+// Inside sendEmail(), replace the react: field with a pre-rendered html: string:
+// Before:
+const emailContent = reactProps
+  ? React.createElement(react as React.ComponentType<any>, reactProps)
+  : (react as React.ReactElement);
+await resend.emails.send({ from, to, subject, react: emailContent, ... });
+
+// After:
+const emailElement = reactProps
+  ? React.createElement(react as React.ComponentType<any>, reactProps)
+  : (react as React.ReactElement);
+const html = await renderEmailToHtml(emailElement as React.ReactElement);
+await resend.emails.send({ from, to, subject, html, ... });
+```
+
+**Why:** Cloudflare Workers may fail to resolve `react-dom/server` at the module level. A dynamic `import()` defers resolution to request time, where the edge runtime can handle it correctly.
+
+---
+
 ## Migration Checklist
 
 - [ ] Install `@opennextjs/cloudflare` and `wrangler`
@@ -403,6 +440,7 @@ if (typeof window === 'undefined') {
 - [ ] Rename `proxy.ts` → `middleware.ts`
 - [ ] Create `scripts/build-blog-data.ts` and `lib/cms/blog-data-loader.ts`
 - [ ] Update `lib/cms/index.ts` to use pre-built data on CF Workers
+- [ ] Update `actions/resend/index.ts` — replace `react:` prop with `renderEmailToHtml()` + `html:` (dynamic import of `react-dom/server`)
 
 ---
 
