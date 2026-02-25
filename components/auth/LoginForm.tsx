@@ -12,7 +12,7 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { Github, Link as LinkIcon, Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 interface LoginFormProps {
@@ -34,11 +34,11 @@ export default function LoginForm({ className = "" }: LoginFormProps) {
   const [isGithubLoading, setIsGithubLoading] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const [showTurnstile, setShowTurnstile] = useState(false);
+  const turnstileRef = useRef<any>(null);
 
   // OTP specific state
   const [otpCode, setOtpCode] = useState("");
   const [isOtpLoading, setIsOtpLoading] = useState(false);
-  const [isCodeSent, setIsCodeSent] = useState(false);
   const [countdown, setCountdown] = useState(0);
 
   const searchParams = useSearchParams();
@@ -145,7 +145,6 @@ export default function LoginForm({ className = "" }: LoginFormProps) {
       toast.success(t("Toast.OTP.sendSuccessTitle"), {
         description: t("Toast.OTP.sendSuccessDescription"),
       });
-      setIsCodeSent(true);
       setCountdown(60);
     } catch (error) {
       toast.error(t("Toast.OTP.errorTitle"), {
@@ -247,7 +246,6 @@ export default function LoginForm({ className = "" }: LoginFormProps) {
   const toggleMode = () => {
     setMode(mode === "otp" ? "magic-link" : "otp");
     setOtpCode("");
-    setIsCodeSent(false);
   };
 
   return (
@@ -363,14 +361,29 @@ export default function LoginForm({ className = "" }: LoginFormProps) {
 
         {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && showTurnstile && (
           <Turnstile
+            ref={turnstileRef}
             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
             onSuccess={(token: string) => {
+              console.log("[Turnstile] Success, token received");
               setCaptchaToken(token);
             }}
-            onError={() => setCaptchaToken("")}
-            onExpire={() => setCaptchaToken("")}
+            onError={(error: any) => {
+              console.error("[Turnstile] Error:", error);
+              setCaptchaToken("");
+              toast.error("Verification failed", {
+                description: "Please try again or refresh the page",
+              });
+            }}
+            onExpire={() => {
+              console.log("[Turnstile] Token expired, resetting...");
+              setCaptchaToken("");
+              // Auto-reset the widget to get a new token
+              turnstileRef.current?.reset?.();
+            }}
             options={{
               size: "flexible",
+              theme: "auto",
+              language: locale,
             }}
           />
         )}
