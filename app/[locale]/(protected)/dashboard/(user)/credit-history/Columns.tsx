@@ -97,20 +97,20 @@ export const getColumns = (
     },
   },
   {
-    accessorKey: "oneTimeBalanceAfter",
+    accessorKey: "oneTimeCreditsSnapshot",
     header: "One-Time Balance After",
     cell: ({ row }) => (
       <div className="text-muted-foreground">
-        {row.getValue("oneTimeBalanceAfter")}
+        {row.getValue("oneTimeCreditsSnapshot")}
       </div>
     ),
   },
   {
-    accessorKey: "subscriptionBalanceAfter",
+    accessorKey: "subscriptionCreditsSnapshot",
     header: "Subscription Balance After",
     cell: ({ row }) => (
       <div className="text-muted-foreground">
-        {row.getValue("subscriptionBalanceAfter")}
+        {row.getValue("subscriptionCreditsSnapshot")}
       </div>
     ),
   },

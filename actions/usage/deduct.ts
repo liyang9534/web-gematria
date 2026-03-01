@@ -76,8 +76,8 @@ export async function deductCredits(
         .values({
           userId: user.id,
           amount: -amountToDeduct,
-          oneTimeBalanceAfter: newOneTimeBalance,
-          subscriptionBalanceAfter: newSubBalance,
+          oneTimeCreditsSnapshot: newOneTimeBalance,
+          subscriptionCreditsSnapshot: newSubBalance,
           type: 'feature_usage',
           notes: notes,
         });

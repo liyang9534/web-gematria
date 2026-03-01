@@ -232,7 +232,7 @@ CREEM_API_BASE_URL  # Optional: defaults to https://api.creem.io/v1
 
 ### Credit Logs Table (`creditLogs`)
 - `userId`, `amount`, `type`, `notes`, `relatedOrderId`
-- `oneTimeBalanceAfter`, `subscriptionBalanceAfter`
+- `oneTimeCreditsSnapshot`, `subscriptionCreditsSnapshot`
 - `createdAt`
 
 ---

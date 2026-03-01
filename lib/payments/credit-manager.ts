@@ -96,8 +96,8 @@ export async function upgradeOneTimeCredits(userId: string, planId: string, orde
               },
             })
             .returning({
-              oneTimeBalanceAfter: usageSchema.oneTimeCreditsBalance,
-              subscriptionBalanceAfter: usageSchema.subscriptionCreditsBalance,
+              oneTimeCreditsSnapshot: usageSchema.oneTimeCreditsBalance,
+              subscriptionCreditsSnapshot: usageSchema.subscriptionCreditsBalance,
             });
 
           const balances = updatedUsage[0];
@@ -108,8 +108,8 @@ export async function upgradeOneTimeCredits(userId: string, planId: string, orde
           await tx.insert(creditLogsSchema).values({
             userId: userId,
             amount: creditsToGrant,
-            oneTimeBalanceAfter: balances.oneTimeBalanceAfter,
-            subscriptionBalanceAfter: balances.subscriptionBalanceAfter,
+            oneTimeCreditsSnapshot: balances.oneTimeCreditsSnapshot,
+            subscriptionCreditsSnapshot: balances.subscriptionCreditsSnapshot,
             type: 'one_time_purchase',
             notes: 'One-time credit purchase',
             relatedOrderId: orderId,
@@ -204,8 +204,8 @@ export async function revokeOneTimeCredits(refundAmountCents: number, originalOr
               await tx.insert(creditLogsSchema).values({
                 userId,
                 amount: -amountRevoked,
-                oneTimeBalanceAfter: newOneTimeBalance,
-                subscriptionBalanceAfter: usage.subscriptionCreditsBalance,
+                oneTimeCreditsSnapshot: newOneTimeBalance,
+                subscriptionCreditsSnapshot: usage.subscriptionCreditsBalance,
                 type: 'refund_revoke',
                 notes: `Full refund for order ${originalOrder.id}.`,
                 relatedOrderId: originalOrder.id,
@@ -312,8 +312,8 @@ export async function upgradeSubscriptionCredits(userId: string, planId: string,
                 },
               })
               .returning({
-                oneTimeBalanceAfter: usageSchema.oneTimeCreditsBalance,
-                subscriptionBalanceAfter: usageSchema.subscriptionCreditsBalance,
+                oneTimeCreditsSnapshot: usageSchema.oneTimeCreditsBalance,
+                subscriptionCreditsSnapshot: usageSchema.subscriptionCreditsBalance,
               });
 
             const balances = updatedUsage[0];
@@ -322,8 +322,8 @@ export async function upgradeSubscriptionCredits(userId: string, planId: string,
             await tx.insert(creditLogsSchema).values({
               userId: userId,
               amount: creditsToGrant,
-              oneTimeBalanceAfter: balances.oneTimeBalanceAfter,
-              subscriptionBalanceAfter: balances.subscriptionBalanceAfter,
+              oneTimeCreditsSnapshot: balances.oneTimeCreditsSnapshot,
+              subscriptionCreditsSnapshot: balances.subscriptionCreditsSnapshot,
               type: 'subscription_grant',
               notes: 'Subscription credits granted/reset',
               relatedOrderId: orderId,
@@ -385,8 +385,8 @@ export async function upgradeSubscriptionCredits(userId: string, planId: string,
                 }
               })
               .returning({
-                oneTimeBalanceAfter: usageSchema.oneTimeCreditsBalance,
-                subscriptionBalanceAfter: usageSchema.subscriptionCreditsBalance,
+                oneTimeCreditsSnapshot: usageSchema.oneTimeCreditsBalance,
+                subscriptionCreditsSnapshot: usageSchema.subscriptionCreditsBalance,
               });
 
             const balances = updatedUsage[0];
@@ -395,8 +395,8 @@ export async function upgradeSubscriptionCredits(userId: string, planId: string,
             await tx.insert(creditLogsSchema).values({
               userId: userId,
               amount: benefits.monthlyCredits,
-              oneTimeBalanceAfter: balances.oneTimeBalanceAfter,
-              subscriptionBalanceAfter: balances.subscriptionBalanceAfter,
+              oneTimeCreditsSnapshot: balances.oneTimeCreditsSnapshot,
+              subscriptionCreditsSnapshot: balances.subscriptionCreditsSnapshot,
               type: 'subscription_grant',
               notes: 'Yearly plan initial credits granted',
               relatedOrderId: orderId,
@@ -617,8 +617,8 @@ async function applySubscriptionCreditsRevocation(params: {
       await tx.insert(creditLogsSchema).values({
         userId,
         amount: -amountRevoked,
-        oneTimeBalanceAfter: usage.oneTimeCreditsBalance,
-        subscriptionBalanceAfter: newSubBalance,
+        oneTimeCreditsSnapshot: usage.oneTimeCreditsBalance,
+        subscriptionCreditsSnapshot: newSubBalance,
         type: logType,
         notes,
         relatedOrderId: relatedOrderId ?? null,

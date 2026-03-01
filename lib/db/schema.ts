@@ -344,8 +344,8 @@ export const creditLogs = pgTable(
       .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
     amount: integer('amount').notNull(),
-    oneTimeBalanceAfter: integer('one_time_balance_after').notNull(),
-    subscriptionBalanceAfter: integer('subscription_balance_after').notNull(),
+    oneTimeCreditsSnapshot: integer('one_time_credits_snapshot').notNull(),
+    subscriptionCreditsSnapshot: integer('subscription_credits_snapshot').notNull(),
     type: text('type').notNull(),
     notes: text('notes'),
     relatedOrderId: uuid('related_order_id').references(() => orders.id, {

@@ -255,8 +255,8 @@ async function processYearlySubscriptionCatchUp(
         })
         .where(eq(usageSchema.userId, userId))
         .returning({
-          oneTimeBalanceAfter: usageSchema.oneTimeCreditsBalance,
-          subscriptionBalanceAfter: usageSchema.subscriptionCreditsBalance,
+          oneTimeCreditsSnapshot: usageSchema.oneTimeCreditsBalance,
+          subscriptionCreditsSnapshot: usageSchema.subscriptionCreditsBalance,
         });
 
       const balances = updatedUsage[0];
@@ -267,8 +267,8 @@ async function processYearlySubscriptionCatchUp(
         await tx.insert(creditLogsSchema).values({
           userId: userId,
           amount: creditsToAllocate,
-          oneTimeBalanceAfter: balances.oneTimeBalanceAfter,
-          subscriptionBalanceAfter: balances.subscriptionBalanceAfter,
+          oneTimeCreditsSnapshot: balances.oneTimeCreditsSnapshot,
+          subscriptionCreditsSnapshot: balances.subscriptionCreditsSnapshot,
           type: 'subscription_grant',
           notes: `Yearly subscription monthly credits allocated`,
           relatedOrderId: relatedOrderId,
