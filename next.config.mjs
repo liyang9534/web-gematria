@@ -1,4 +1,5 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
+import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
@@ -44,6 +45,8 @@ const nextConfig = {
           }
         : false,
   },
+  // Pino uses worker threads for transports — must be treated as external in Next.js
+  serverExternalPackages: ["pino", "pino-pretty", "pino-roll", "thread-stream"],
 };
 
 const withBundleAnalyzerWrapper = withBundleAnalyzer({
@@ -60,4 +63,18 @@ if (
   process.env.NEXTY_WELCOME_SHOWN = "true";
 }
 
-export default withBundleAnalyzerWrapper(withNextIntl(nextConfig));
+const sentryConfig = {
+  // Suppress noisy Sentry CLI output during build
+  silent: !process.env.CI,
+  // Upload source maps only when SENTRY_AUTH_TOKEN is set
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  // Automatically tree-shake Sentry logger statements in production
+  disableLogger: true,
+};
+
+export default withSentryConfig(
+  withBundleAnalyzerWrapper(withNextIntl(nextConfig)),
+  sentryConfig
+);
