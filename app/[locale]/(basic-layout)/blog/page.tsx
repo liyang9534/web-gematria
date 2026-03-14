@@ -10,6 +10,8 @@ import { TextSearch } from "lucide-react";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+export const revalidate = 60;
+
 type Params = Promise<{ locale: string }>;
 
 type MetadataProps = {
