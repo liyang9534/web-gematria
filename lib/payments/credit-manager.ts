@@ -146,8 +146,14 @@ export async function upgradeOneTimeCredits(userId: string, planId: string, orde
  * @param refundAmountCents - The refund amount in cents
  * @param originalOrder - The original order being refunded
  * @param refundOrderId - The refund order's ID
+ * @param originalAmountCents - The original order amount in cents
  */
-export async function revokeOneTimeCredits(refundAmountCents: number, originalOrder: Order, refundOrderId: string) {
+export async function revokeOneTimeCredits(
+  refundAmountCents: number,
+  originalOrder: Order,
+  refundOrderId: string,
+  originalAmountCents: number
+) {
   // --- TODO: [custom] Revoke the user's one time purchase benefits ---
   /**
    * Complete the user's benefit revoke based on your business logic.
@@ -165,63 +171,65 @@ export async function revokeOneTimeCredits(refundAmountCents: number, originalOr
   const planId = originalOrder.planId as string;
   const userId = originalOrder.userId as string;
 
-  const isFullRefund = refundAmountCents === Math.round(parseFloat(originalOrder.amountTotal!) * 100);
+  const planDataResults = await db
+    .select({ benefitsJsonb: pricingPlansSchema.benefitsJsonb })
+    .from(pricingPlansSchema)
+    .where(eq(pricingPlansSchema.id, planId))
+    .limit(1);
+  const planData = planDataResults[0];
 
-  if (isFullRefund) {
-    const planDataResults = await db
-      .select({ benefitsJsonb: pricingPlansSchema.benefitsJsonb })
-      .from(pricingPlansSchema)
-      .where(eq(pricingPlansSchema.id, planId))
-      .limit(1);
-    const planData = planDataResults[0];
+  if (!planData) {
+    console.error(`Error fetching plan benefits for planId ${planId} during refund ${refundOrderId}:`);
+    return;
+  }
 
-    if (!planData) {
-      console.error(`Error fetching plan benefits for planId ${planId} during refund ${refundOrderId}:`);
-    } else {
-      let oneTimeToRevoke = 0;
-      const benefits = planData.benefitsJsonb as any;
+  const benefits = planData.benefitsJsonb as any;
+  const totalCredits = benefits?.oneTimeCredits || 0;
 
-      if (benefits?.oneTimeCredits > 0) {
-        oneTimeToRevoke = benefits.oneTimeCredits;
-      }
+  if (totalCredits <= 0) {
+    console.log(`No credits defined to revoke for plan ${planId}, order type ${originalOrder.orderType} on refund ${refundOrderId}.`);
+    return;
+  }
 
-      if (oneTimeToRevoke > 0) {
-        try {
-          await db.transaction(async (tx) => {
-            const usageResults = await tx.select().from(usageSchema).where(eq(usageSchema.userId, userId)).for('update');
-            const usage = usageResults[0];
+  const creditsToRevoke = originalAmountCents > 0
+    ? Math.round((totalCredits * refundAmountCents) / originalAmountCents)
+    : totalCredits;
 
-            if (!usage) { return; }
+  const isFullRefund = refundAmountCents >= originalAmountCents;
 
-            const newOneTimeBalance = Math.max(0, usage.oneTimeCreditsBalance - oneTimeToRevoke);
-            const amountRevoked = usage.oneTimeCreditsBalance - newOneTimeBalance;
+  if (creditsToRevoke > 0) {
+    try {
+      await db.transaction(async (tx) => {
+        const usageResults = await tx.select().from(usageSchema).where(eq(usageSchema.userId, userId)).for('update');
+        const usage = usageResults[0];
 
-            if (amountRevoked > 0) {
-              await tx.update(usageSchema)
-                .set({ oneTimeCreditsBalance: newOneTimeBalance })
-                .where(eq(usageSchema.userId, userId));
+        if (!usage) { return; }
 
-              await tx.insert(creditLogsSchema).values({
-                userId,
-                amount: -amountRevoked,
-                oneTimeCreditsSnapshot: newOneTimeBalance,
-                subscriptionCreditsSnapshot: usage.subscriptionCreditsBalance,
-                type: 'refund_revoke',
-                notes: `Full refund for order ${originalOrder.id}.`,
-                relatedOrderId: originalOrder.id,
-              });
-            }
+        const newOneTimeBalance = Math.max(0, usage.oneTimeCreditsBalance - creditsToRevoke);
+        const amountRevoked = usage.oneTimeCreditsBalance - newOneTimeBalance;
+
+        if (amountRevoked > 0) {
+          await tx.update(usageSchema)
+            .set({ oneTimeCreditsBalance: newOneTimeBalance })
+            .where(eq(usageSchema.userId, userId));
+
+          await tx.insert(creditLogsSchema).values({
+            userId,
+            amount: -amountRevoked,
+            oneTimeCreditsSnapshot: newOneTimeBalance,
+            subscriptionCreditsSnapshot: usage.subscriptionCreditsBalance,
+            type: 'refund_revoke',
+            notes: isFullRefund
+              ? `Full refund for order ${originalOrder.id}.`
+              : `Partial refund (${refundAmountCents}/${originalAmountCents}) for order ${originalOrder.id}. Revoked ${creditsToRevoke} of ${totalCredits} credits.`,
+            relatedOrderId: originalOrder.id,
           });
-          console.log(`Successfully revoked credits for user ${userId} related to refund ${refundOrderId}.`);
-        } catch (revokeError) {
-          console.error(`Error calling revoke credits and log for user ${userId}, refund ${refundOrderId}:`, revokeError);
         }
-      } else {
-        console.log(`No credits defined to revoke for plan ${planId}, order type ${originalOrder.orderType} on refund ${refundOrderId}.`);
-      }
+      });
+      console.log(`Successfully revoked ${creditsToRevoke} credits for user ${userId} related to refund ${refundOrderId} (${refundAmountCents}/${originalAmountCents}).`);
+    } catch (revokeError) {
+      console.error(`Error calling revoke credits and log for user ${userId}, refund ${refundOrderId}:`, revokeError);
     }
-  } else {
-    console.log(`Refund ${refundOrderId} is not a full refund. Skipping credit revocation. Refunded: ${refundAmountCents}, Original Total: ${parseFloat(originalOrder.amountTotal!) * 100}`);
   }
   // --- End: [custom] Revoke the user's one time purchase benefits ---
 }
@@ -435,8 +443,14 @@ export async function upgradeSubscriptionCredits(userId: string, planId: string,
  * 返金されたサブスクリプション注文のサブスクリプションクレジットを取り消します。
  * 
  * @param originalOrder - The original subscription order being refunded
+ * @param refundAmountCents - The refund amount in cents
+ * @param originalAmountCents - The original order amount in cents
  */
-export async function revokeSubscriptionCredits(originalOrder: Order) {
+export async function revokeSubscriptionCredits(
+  originalOrder: Order,
+  refundAmountCents: number,
+  originalAmountCents: number
+) {
   // --- TODO: [custom] Revoke the user's subscription benefits ---
   /**
    * Complete the user's subscription benefit revocation based on your business logic.
@@ -453,17 +467,25 @@ export async function revokeSubscriptionCredits(originalOrder: Order) {
     const ctx = await getSubscriptionRevokeContext(planId, userId);
     if (!ctx) { return; }
 
-    if (ctx.subscriptionToRevoke > 0) {
+    const amountToRevoke = originalAmountCents > 0
+      ? Math.round((ctx.subscriptionToRevoke * refundAmountCents) / originalAmountCents)
+      : ctx.subscriptionToRevoke;
+
+    const isFullRefund = refundAmountCents >= originalAmountCents;
+
+    if (amountToRevoke > 0) {
       await applySubscriptionCreditsRevocation({
         userId,
-        amountToRevoke: ctx.subscriptionToRevoke,
-        clearMonthly: ctx.clearMonthly,
-        clearYearly: ctx.clearYearly,
+        amountToRevoke,
+        clearMonthly: isFullRefund ? ctx.clearMonthly : false,
+        clearYearly: isFullRefund ? ctx.clearYearly : false,
         logType: 'refund_revoke',
-        notes: `Full refund for subscription order ${originalOrder.id}.`,
+        notes: isFullRefund
+          ? `Full refund for subscription order ${originalOrder.id}.`
+          : `Partial refund (${refundAmountCents}/${originalAmountCents}) for subscription order ${originalOrder.id}.`,
         relatedOrderId: originalOrder.id,
       });
-      console.log(`Successfully revoked subscription credits for user ${userId} related to subscription ${subscriptionId} refund.`);
+      console.log(`Successfully revoked ${amountToRevoke} subscription credits for user ${userId} related to subscription ${subscriptionId} refund (${refundAmountCents}/${originalAmountCents}).`);
     }
   } catch (error) {
     console.error(`Error during revokeSubscriptionCredits for user ${userId}, subscription ${subscriptionId}:`, error);

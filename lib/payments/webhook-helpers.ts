@@ -151,7 +151,8 @@ export async function updateOrderStatusAfterRefund(
   refundedAmount: number,
   originalAmount: number
 ) {
-  const isFullRefund = Math.abs(refundedAmount) === originalAmount;
+  const REFUND_TOLERANCE_CENTS = 1; // 1 cent tolerance
+  const isFullRefund = Math.abs(Math.abs(refundedAmount) - originalAmount) <= REFUND_TOLERANCE_CENTS;
 
   await db
     .update(ordersSchema)

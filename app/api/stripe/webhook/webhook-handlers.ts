@@ -348,16 +348,22 @@ export async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
  * @param charge The Stripe Charge object (specifically the refunded charge).
  */
 export async function handleRefund(charge: Stripe.Charge) {
-  if (!charge.refunded) {
+  if (!charge.amount_refunded || charge.amount_refunded <= 0) {
+    console.log(`Charge ${charge.id} has no refund amount, skipping.`);
     return;
   }
 
   const chargeId = charge.id;
   const paymentIntentId = charge.payment_intent as string | null;
   const customerId = typeof charge.customer === 'string' ? charge.customer : null;
+  const refundAmountCents = charge.amount_refunded;
 
-  if (!chargeId || !paymentIntentId) {
+  if (!chargeId) {
     console.error(`Refund ID missing from refunded charge: ${charge.id}. Cannot process refund fully.`);
+    return;
+  }
+  if (!paymentIntentId) {
+    console.error(`Payment intent ID missing from refunded charge: ${charge.id}. Cannot process refund.`);
     return;
   }
   if (!customerId) {
@@ -438,11 +444,12 @@ export async function handleRefund(charge: Stripe.Charge) {
   }
 
   // --- [custom] Revoke the user's benefits  ---
+  const originalAmountCents = Math.round(parseFloat(originalOrder.amountTotal!) * 100);
+
   if (originalOrder.subscriptionId) {
-    revokeSubscriptionCredits(originalOrder);
+    await revokeSubscriptionCredits(originalOrder, refundAmountCents, originalAmountCents);
   } else {
-    const refundAmountCents = Math.abs(charge.amount_refunded);
-    revokeOneTimeCredits(refundAmountCents, originalOrder, refundOrder.id);
+    await revokeOneTimeCredits(refundAmountCents, originalOrder, refundOrder.id, originalAmountCents);
   }
   // --- End: [custom] Revoke the user's benefits ---
 }
