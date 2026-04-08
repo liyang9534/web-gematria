@@ -71,6 +71,11 @@ export function createDatabaseConfig(config: DBConfig) {
     supabase: {
       ssl: 'require' as const,
       application_name: 'drizzle-supabase',
+      // CRITICAL: Supabase pooled connections go through PgBouncer (transaction mode).
+      // PgBouncer does NOT support prepared statements — using prepare: true causes
+      // silent transaction failures where COMMIT succeeds but data is rolled back.
+      // See: https://supabase.com/docs/guides/database/connecting-to-postgres#connection-pooler
+      prepare: false,
       // PostgreSQL connection parameters
       // See: https://www.postgresql.org/docs/current/runtime-config-client.html
       connection: {
