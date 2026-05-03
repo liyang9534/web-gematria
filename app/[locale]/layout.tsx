@@ -18,6 +18,8 @@ import { siteConfig } from "@/config/site";
 import { DEFAULT_LOCALE, Locale, routing } from "@/i18n/routing";
 import { constructMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { ThemeScript } from "@/components/theme/theme-script";
 import "@/styles/globals.css";
 import "@/styles/loading.css";
 import { Analytics } from "@vercel/analytics/react";
@@ -28,7 +30,6 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
-import { ThemeProvider } from "next-themes";
 import { Inter as FontSans } from "next/font/google";
 import { notFound } from "next/navigation";
 
@@ -36,6 +37,8 @@ const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
+
+const defaultTheme = siteConfig.defaultNextTheme as "light" | "dark" | "system";
 
 type MetadataProps = {
   params: Promise<{ locale: string }>;
@@ -81,6 +84,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
       <head>
+        <ThemeScript defaultTheme={defaultTheme} enableSystem />
         <ToltScript />
       </head>
       <body
@@ -92,7 +96,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme={siteConfig.defaultNextTheme}
+            defaultTheme={defaultTheme}
             enableSystem
           >
             <PostHogProvider>
