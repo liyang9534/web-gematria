@@ -34,6 +34,8 @@
       "database_name": "nexty-business",
       "database_id": "<YOUR_BUSINESS_D1_DATABASE_ID>",
       "migrations_dir": "lib/db/migrations-d1",
+      // next dev defaults to local D1. Set NEXTY_DEV_DB=remote to opt into this remote binding.
+      "remote": true,
     },
     {
       // OpenNext tag cache for revalidateTag/revalidatePath.

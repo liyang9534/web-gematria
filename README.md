@@ -58,7 +58,25 @@ curl -I http://127.0.0.1:3100/
 
 `pnpm test` 会执行数据库配置检查和本地 D1 自动化测试。D1 测试通过 `wrangler d1 execute DB --local` 在临时目录里应用 `lib/db/migrations-d1`，不需要 Cloudflare 登录态或远程数据库，主要验证迁移、核心表/索引、用户、订单、套餐、用量 JSON、文章标签查询和唯一约束。
 
-本地 `next dev` / `next start` 没有 Cloudflare D1 binding 时，公共页面会按未登录状态渲染；登录、Dashboard、支付、CMS 等数据库功能需要 D1 binding。需要验证完整 Workers 运行时可使用 `pnpm cf:preview`。
+本地 `next dev` 默认使用 Wrangler 的本地 D1，数据保存在 `.wrangler/state/v3/d1`。首次运行本地数据库功能前执行：
+
+```bash
+pnpm db:migrate:local
+pnpm db:seed:local
+pnpm dev
+```
+
+如果需要本地 `pnpm dev` 直接连接 Cloudflare 远端业务 D1，可以显式启用远端 binding：
+
+```bash
+NEXTY_DEV_DB=remote pnpm dev
+# 或
+pnpm dev:remote-db
+```
+
+远端模式要求 `wrangler.jsonc` 中 `DB.database_id` 已替换成真实业务 D1 database id，并且本机已登录 Wrangler 或配置 `CLOUDFLARE_API_TOKEN`。注意远端模式会读写真实 Cloudflare D1 数据，日常开发建议使用默认的本地 D1。
+
+本地 `next start` 没有 Cloudflare D1 binding 时，公共页面会按未登录状态渲染；登录、Dashboard、支付、CMS 等数据库功能需要 D1 binding。需要验证完整 Workers 运行时可使用 `pnpm cf:preview`。
 
 ### 2. 准备 Cloudflare 账号和 Wrangler
 
@@ -177,7 +195,7 @@ pnpm exec wrangler d1 migrations apply DB --remote
 本地 D1 调试可用：
 
 ```bash
-pnpm exec wrangler d1 migrations apply DB --local
+pnpm db:migrate:local
 ```
 
 也可以用 Drizzle HTTP driver 直接应用远程迁移：
@@ -196,6 +214,12 @@ pnpm db:migrate
 
 ```bash
 pnpm db:seed
+```
+
+同步到 Wrangler 本地 D1：
+
+```bash
+pnpm db:seed:local
 ```
 
 从 D1 导出当前定价配置到 `lib/db/seed/pricing-config.ts`：

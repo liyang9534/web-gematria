@@ -76,7 +76,15 @@ const sentryConfig = {
 };
 
 if (process.env.NODE_ENV === "development") {
-  initOpenNextCloudflareForDev();
+  const devDbMode = process.env.NEXTY_DEV_DB ?? "local";
+
+  if (!["local", "remote"].includes(devDbMode)) {
+    throw new Error("NEXTY_DEV_DB must be either \"local\" or \"remote\".");
+  }
+
+  initOpenNextCloudflareForDev({
+    remoteBindings: devDbMode === "remote",
+  });
 }
 
 export default withSentryConfig(
