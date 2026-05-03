@@ -224,8 +224,7 @@ export async function revokeOneTimeCredits(
         const usageResults = await tx
           .select()
           .from(usageSchema)
-          .where(eq(usageSchema.userId, userId))
-          .for("update");
+          .where(eq(usageSchema.userId, userId));
         const usage = usageResults[0];
 
         if (!usage) {
@@ -359,7 +358,7 @@ export async function upgradeSubscriptionCredits(
                 target: usageSchema.userId,
                 set: {
                   subscriptionCreditsBalance: creditsToGrant,
-                  balanceJsonb: sql`coalesce(${usageSchema.balanceJsonb}, '{}'::jsonb) - 'monthlyAllocationDetails' || ${JSON.stringify(monthlyDetails)}::jsonb`,
+                  balanceJsonb: sql`json_patch(coalesce(${usageSchema.balanceJsonb}, '{}'), ${JSON.stringify(monthlyDetails)})`,
                 },
               })
               .returning({
@@ -455,7 +454,7 @@ export async function upgradeSubscriptionCredits(
                 target: usageSchema.userId,
                 set: {
                   subscriptionCreditsBalance: benefits.monthlyCredits,
-                  balanceJsonb: sql`coalesce(${usageSchema.balanceJsonb}, '{}'::jsonb) - 'yearlyAllocationDetails' || ${JSON.stringify(yearlyDetails)}::jsonb`,
+                  balanceJsonb: sql`json_patch(coalesce(${usageSchema.balanceJsonb}, '{}'), ${JSON.stringify(yearlyDetails)})`,
                 },
               })
               .returning({
@@ -740,8 +739,7 @@ async function applySubscriptionCreditsRevocation(params: {
     const usageResults = await tx
       .select()
       .from(usageSchema)
-      .where(eq(usageSchema.userId, userId))
-      .for("update");
+      .where(eq(usageSchema.userId, userId));
     const usage = usageResults[0];
     if (!usage) {
       return;

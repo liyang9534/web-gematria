@@ -69,19 +69,19 @@
       },
       {
         "title": "データベース",
-        "description": "複数のデータベースオプションに対応した Drizzle ORM を統合。Supabase、Neon、セルフホスト PostgreSQL など。",
+        "description": "Drizzle ORM を統合し、業務データベースに Cloudflare D1 を使用します。",
         "details": [
           {
             "title": "ワンライン設定",
-            "description": "DATABASE_URL を設定するだけで、最適な設定が自動で完了します。"
+            "description": "Cloudflare D1 を DB としてバインドし、同梱のマイグレーションを適用します。"
           },
           {
             "title": "包括的な組み込みテーブル",
             "description": "ユーザー管理、料金プラン、注文、コンテンツ管理などの包括的なテーブルセット。"
           },
           {
-            "title": "複数のデータベースオプション",
-            "description": "Supabase、Neon、セルフホスト PostgreSQL。"
+            "title": "Cloudflare ネイティブ",
+            "description": "Workers、D1、R2、Durable Objects に対応。"
           }
         ],
         "images": [

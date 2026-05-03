@@ -69,19 +69,19 @@
       },
       {
         "title": "Database",
-        "description": "Integrated Drizzle ORM with multiple database options, such as Supabase, Neon, and Self-hosted PostgreSQL.",
+        "description": "Integrated Drizzle ORM with Cloudflare D1 for the business database.",
         "details": [
           {
             "title": "One Line Configuration",
-            "description": "Just fill in DATABASE_URL, and the best configuration will be automatically completed."
+            "description": "Bind Cloudflare D1 as DB and apply the included migrations."
           },
           {
             "title": "Comprehensive Built-in Tables",
             "description": "Comprehensive set of tables for user management, pricing plans, orders, content management, and more."
           },
           {
-            "title": "Multiple Database Options",
-            "description": "Supabase, Neon, and Self-hosted PostgreSQL."
+            "title": "Cloudflare Native",
+            "description": "Workers, D1, R2, and Durable Objects."
           }
         ],
         "images": [

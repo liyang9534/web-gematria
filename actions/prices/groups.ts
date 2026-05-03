@@ -4,6 +4,10 @@ import { actionResponse, ActionResult } from "@/lib/action-response";
 import { isAdmin } from "@/lib/auth/server";
 import { getDb } from "@/lib/db";
 import { pricingPlanGroups } from "@/lib/db/schema";
+import {
+  isForeignKeyConstraintError,
+  isUniqueConstraintError,
+} from "@/lib/db/sqlite";
 import { getErrorMessage } from "@/lib/error-utils";
 import { SLUG_REGEX } from "@/lib/pricing/slug";
 import { PricingPlanGroup } from "@/types/pricing";
@@ -78,9 +82,7 @@ export async function createPricingGroupAction({
   } catch (error) {
     console.error("Unexpected error in createPricingGroupAction:", error);
     const errorMessage = getErrorMessage(error);
-    if (
-      errorMessage.includes("duplicate key value violates unique constraint")
-    ) {
+    if (isUniqueConstraintError(errorMessage)) {
       return actionResponse.conflict(`Group "${trimmedSlug}" already exists.`);
     }
     return actionResponse.error(errorMessage);
@@ -136,7 +138,7 @@ export async function deletePricingGroupAction({
   } catch (error) {
     console.error("Unexpected error in deletePricingGroupAction:", error);
     const errorMessage = getErrorMessage(error);
-    if (errorMessage.includes("violates foreign key constraint")) {
+    if (isForeignKeyConstraintError(errorMessage)) {
       return actionResponse.badRequest(
         "Cannot delete group as it has associated pricing plans.",
       );

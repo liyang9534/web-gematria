@@ -29,10 +29,17 @@
   ],
   "d1_databases": [
     {
+      // Business SQLite database used by Drizzle and Better Auth.
+      "binding": "DB",
+      "database_name": "nexty-business",
+      "database_id": "<YOUR_BUSINESS_D1_DATABASE_ID>",
+      "migrations_dir": "lib/db/migrations-d1",
+    },
+    {
       // OpenNext tag cache for revalidateTag/revalidatePath.
       "binding": "NEXT_TAG_CACHE_D1",
       "database_name": "nexty-opennext-tag-cache",
-      "database_id": "<YOUR_D1_DATABASE_ID>",
+      "database_id": "<YOUR_TAG_CACHE_D1_DATABASE_ID>",
     },
   ],
   "durable_objects": {
@@ -48,13 +55,6 @@
     {
       "tag": "v1",
       "new_sqlite_classes": ["DOQueueHandler"],
-    },
-  ],
-  "hyperdrive": [
-    {
-      // Application Postgres database binding. Point this at your Cloudflare Hyperdrive config.
-      "binding": "HYPERDRIVE",
-      "id": "<YOUR_HYPERDRIVE_ID>",
     },
   ],
   "images": {

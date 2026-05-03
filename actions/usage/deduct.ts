@@ -39,15 +39,13 @@ export async function deductCredits(
 
   try {
     await getDb().transaction(async (tx) => {
-      // Lock the user's usage row for the duration of the transaction
       const usageResults = await tx
         .select({
           oneTimeCreditsBalance: usageSchema.oneTimeCreditsBalance,
           subscriptionCreditsBalance: usageSchema.subscriptionCreditsBalance,
         })
         .from(usageSchema)
-        .where(eq(usageSchema.userId, user.id))
-        .for("update");
+        .where(eq(usageSchema.userId, user.id));
 
       const usage = usageResults[0];
 

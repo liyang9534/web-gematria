@@ -12,19 +12,14 @@ test.afterEach(() => {
   }
 });
 
-test("uses Cloudflare-safe postgres options when DEPLOYMENT_PLATFORM is cloudflare", () => {
+test("describes Cloudflare D1 as the business database", () => {
   process.env.DEPLOYMENT_PLATFORM = "cloudflare";
 
-  const preview = previewConfig({
-    connectionString: "postgresql://user:pass@example.com:5432/app",
-  });
+  const preview = previewConfig();
 
   assert.equal(preview.platform, "cloudflare");
+  assert.equal(preview.database, "cloudflare-d1");
   assert.equal(preview.summary.isServerless, true);
-  assert.equal(preview.config.max, 1);
-  assert.equal(preview.config.prepare, false);
-  assert.equal(
-    (preview.config as { fetch_types?: boolean }).fetch_types,
-    false,
-  );
+  assert.equal(preview.summary.connectionPooling, false);
+  assert.equal(preview.summary.runtimeBinding, "DB");
 });

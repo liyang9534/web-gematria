@@ -6,10 +6,13 @@ const projectDir = process.cwd();
 loadEnvConfig(projectDir);
 
 export default defineConfig({
-  out: './lib/db/migrations',
+  out: './lib/db/migrations-d1',
   schema: './lib/db/schema.ts',
-  dialect: 'postgresql',
+  dialect: 'sqlite',
+  driver: 'd1-http',
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    accountId: process.env.CLOUDFLARE_ACCOUNT_ID!,
+    databaseId: process.env.CLOUDFLARE_D1_DATABASE_ID!,
+    token: process.env.CLOUDFLARE_API_TOKEN!,
   },
 });

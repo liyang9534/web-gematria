@@ -1,96 +1,100 @@
+import { sql } from 'drizzle-orm'
 import {
-  boolean,
   index,
   integer,
-  jsonb,
   numeric,
-  pgEnum,
-  pgTable,
   primaryKey,
+  sqliteTable,
   text,
-  timestamp,
   unique,
-  uuid,
-  varchar,
-} from 'drizzle-orm/pg-core';
+} from 'drizzle-orm/sqlite-core'
 
-export const userRoleEnum = pgEnum('user_role', ['user', 'admin'])
+const uuid = (name: string) =>
+  text(name)
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID())
 
-export const user = pgTable('user', {
-  id: uuid('id').primaryKey().defaultRandom(),
+const timestamp = (name: string) => integer(name, { mode: 'timestamp_ms' })
+const boolean = (name: string) => integer(name, { mode: 'boolean' })
+const json = <T>(name: string) => text(name, { mode: 'json' }).$type<T>()
+
+export const userRoleEnum = ['user', 'admin'] as const
+
+export const user = sqliteTable('user', {
+  id: uuid('id'),
   email: text('email').unique().notNull(),
   emailVerified: boolean("email_verified").default(false).notNull(), // better-auth
   name: text("name"), // better-auth
   image: text("image"), // better-auth
-  role: userRoleEnum('role').default('user').notNull(),
+  role: text('role', { enum: userRoleEnum }).default('user').notNull(),
   isAnonymous: boolean('is_anonymous').default(false).notNull(),
   referral: text('referral'),
   stripeCustomerId: text("stripe_customer_id").unique(),
   banned: boolean('banned'),
   banReason: text('ban_reason'),
   banExpires: timestamp('ban_expires'),
-  createdAt: timestamp('created_at', { withTimezone: true })
+  createdAt: timestamp('created_at')
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp('updated_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at')
     .defaultNow()
     .notNull()
     .$onUpdate(() => new Date()),
 })
 
-export const session = pgTable("session", {
-  id: uuid('id').primaryKey().defaultRandom(),
-  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+export const session = sqliteTable("session", {
+  id: uuid('id'),
+  expiresAt: timestamp('expires_at').notNull(),
   token: text("token").notNull().unique(),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
   ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
-  userId: uuid("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 });
 
-export const account = pgTable("account", {
-  id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+export const account = sqliteTable("account", {
+  id: uuid('id'),
+  userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
   accountId: text('account_id').notNull(),
   providerId: text('provider_id').notNull(),
   accessToken: text('access_token'),
   refreshToken: text('refresh_token'),
   idToken: text('id_token'),
-  accessTokenExpiresAt: timestamp('access_token_expires_at', { withTimezone: true }),
-  refreshTokenExpiresAt: timestamp('refresh_token_expires_at', { withTimezone: true }),
+  accessTokenExpiresAt: timestamp('access_token_expires_at'),
+  refreshTokenExpiresAt: timestamp('refresh_token_expires_at'),
   scope: text('scope'),
   password: text("password"),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
 });
 
-export const verification = pgTable("verification", {
-  id: uuid('id').primaryKey().defaultRandom(),
+export const verification = sqliteTable("verification", {
+  id: uuid('id'),
   identifier: text('identifier').notNull(),
   value: text('value').notNull(),
-  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
 });
 
 // User source/attribution tracking
-export const userSource = pgTable(
+export const userSource = sqliteTable(
   'user_source',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id')
+    id: uuid('id'),
+    userId: text('user_id')
       .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
 
@@ -123,12 +127,12 @@ export const userSource = pgTable(
 
     // Network & Location (from Cloudflare headers)
     ipAddress: text('ip_address'),
-    countryCode: varchar('country_code', { length: 2 }),
+    countryCode: text('country_code', { length: 2 }),
 
     // Extensibility
-    metadata: jsonb('metadata'),
+    metadata: json<Record<string, unknown>>('metadata'),
 
-    createdAt: timestamp('created_at', { withTimezone: true })
+    createdAt: timestamp('created_at')
       .defaultNow()
       .notNull(),
   },
@@ -141,94 +145,94 @@ export const userSource = pgTable(
   })
 )
 
-export const pricingPlanEnvironmentEnum = pgEnum('pricing_plan_environment', [
+export const pricingPlanEnvironmentEnum = [
   'test',
   'live',
-])
+] as const
 
-export const providerEnum = pgEnum('provider', [
+export const providerEnum = [
   'none', // no payment feature
   'stripe',
   'creem',
-])
-export type PaymentProvider = (typeof providerEnum.enumValues)[number]
+] as const
+export type PaymentProvider = (typeof providerEnum)[number]
 
-export const paymentTypeEnum = pgEnum('payment_type', [
+export const paymentTypeEnum = [
   'one_time', // stripe
   'onetime', // creem
   'recurring', // stripe and creem
-])
-export type PaymentType = (typeof paymentTypeEnum.enumValues)[number]
+] as const
+export type PaymentType = (typeof paymentTypeEnum)[number]
 
-export const recurringIntervalEnum = pgEnum('recurring_interval', [
+export const recurringIntervalEnum = [
   'month', // stripe
   'year', // stripe
   'every-month', // creem recurring
   'every-year', // creem recurring
   'once', // creem onetime
-])
-export type RecurringInterval = (typeof recurringIntervalEnum.enumValues)[number]
+] as const
+export type RecurringInterval = (typeof recurringIntervalEnum)[number]
 
 // Pricing plan groups for organizing plans
 // Using slug as primary key for simplicity and easier querying
-export const pricingPlanGroups = pgTable('pricing_plan_groups', {
-  slug: varchar('slug', { length: 100 }).primaryKey(),
-  createdAt: timestamp('created_at', { withTimezone: true })
+export const pricingPlanGroups = sqliteTable('pricing_plan_groups', {
+  slug: text('slug', { length: 100 }).primaryKey(),
+  createdAt: timestamp('created_at')
     .defaultNow()
     .notNull(),
 })
 
-export const pricingPlans = pgTable('pricing_plans', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  environment: pricingPlanEnvironmentEnum('environment').notNull(),
-  groupSlug: varchar('group_slug', { length: 100 })
+export const pricingPlans = sqliteTable('pricing_plans', {
+  id: uuid('id'),
+  environment: text('environment', { enum: pricingPlanEnvironmentEnum }).notNull(),
+  groupSlug: text('group_slug', { length: 100 })
     .references(() => pricingPlanGroups.slug, { onDelete: 'restrict' })
     .default('default')
     .notNull(),
   cardTitle: text('card_title').notNull(),
   cardDescription: text('card_description'),
-  provider: providerEnum('provider').default('none'),
-  stripePriceId: varchar('stripe_price_id', { length: 255 }),
-  stripeProductId: varchar('stripe_product_id', { length: 255 }),
-  stripeCouponId: varchar('stripe_coupon_id', { length: 255 }),
-  creemProductId: varchar('creem_product_id', { length: 255 }),
-  creemDiscountCode: varchar('creem_discount_code', { length: 255 }),
+  provider: text('provider', { enum: providerEnum }).default('none'),
+  stripePriceId: text('stripe_price_id', { length: 255 }),
+  stripeProductId: text('stripe_product_id', { length: 255 }),
+  stripeCouponId: text('stripe_coupon_id', { length: 255 }),
+  creemProductId: text('creem_product_id', { length: 255 }),
+  creemDiscountCode: text('creem_discount_code', { length: 255 }),
   enableManualInputCoupon: boolean('enable_manual_input_coupon')
     .default(false)
     .notNull(),
   // paymentType: varchar('payment_type', { length: 50 }),
-  paymentType: paymentTypeEnum('payment_type'),
+  paymentType: text('payment_type', { enum: paymentTypeEnum }),
   // recurringInterval: varchar('recurring_interval', { length: 50 }),
-  recurringInterval: recurringIntervalEnum('recurring_interval'),
+  recurringInterval: text('recurring_interval', { enum: recurringIntervalEnum }),
   trialPeriodDays: integer('trial_period_days'),
   price: numeric('price'),
-  currency: varchar('currency', { length: 10 }),
-  displayPrice: varchar('display_price', { length: 50 }),
-  originalPrice: varchar('original_price', { length: 50 }),
-  priceSuffix: varchar('price_suffix', { length: 100 }),
-  features: jsonb('features').default('[]').notNull(),
+  currency: text('currency', { length: 10 }),
+  displayPrice: text('display_price', { length: 50 }),
+  originalPrice: text('original_price', { length: 50 }),
+  priceSuffix: text('price_suffix', { length: 100 }),
+  features: json<unknown[]>('features').default(sql`'[]'`).notNull(),
   isHighlighted: boolean('is_highlighted').default(false).notNull(),
   highlightText: text('highlight_text'),
   buttonText: text('button_text'),
   buttonLink: text('button_link'),
   displayOrder: integer('display_order').default(0).notNull(),
   isActive: boolean('is_active').default(true).notNull(),
-  langJsonb: jsonb('lang_jsonb').default('{}').notNull(),
-  benefitsJsonb: jsonb('benefits_jsonb').default('{}'),
-  createdAt: timestamp('created_at', { withTimezone: true })
+  langJsonb: json<Record<string, unknown>>('lang_jsonb').default(sql`'{}'`).notNull(),
+  benefitsJsonb: json<Record<string, unknown>>('benefits_jsonb').default(sql`'{}'`),
+  createdAt: timestamp('created_at')
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp('updated_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at')
     .defaultNow()
     .notNull()
     .$onUpdate(() => new Date()),
 })
 
-export const orders = pgTable(
+export const orders = sqliteTable(
   'orders',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id')
+    id: uuid('id'),
+    userId: text('user_id')
       .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
     provider: text('provider').notNull(),
@@ -239,21 +243,21 @@ export const orders = pgTable(
     stripeInvoiceId: text('stripe_invoice_id'),
     stripeChargeId: text('stripe_charge_id'),
     subscriptionId: text('subscription_id'),
-    planId: uuid('plan_id').references(() => pricingPlans.id, {
+    planId: text('plan_id').references(() => pricingPlans.id, {
       onDelete: 'set null',
     }),
     productId: text('product_id'),
-    priceId: varchar('price_id', { length: 255 }),
+    priceId: text('price_id', { length: 255 }),
     amountSubtotal: numeric('amount_subtotal'),
     amountDiscount: numeric('amount_discount').default('0'),
     amountTax: numeric('amount_tax').default('0'),
     amountTotal: numeric('amount_total').notNull(),
-    currency: varchar('currency', { length: 10 }).notNull(),
-    metadata: jsonb('metadata'),
-    createdAt: timestamp('created_at', { withTimezone: true })
+    currency: text('currency', { length: 10 }).notNull(),
+    metadata: json<Record<string, unknown>>('metadata'),
+    createdAt: timestamp('created_at')
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp('updated_at', { withTimezone: true })
+    updatedAt: timestamp('updated_at')
       .defaultNow()
       .notNull()
       .$onUpdate(() => new Date()),
@@ -270,36 +274,34 @@ export const orders = pgTable(
   }
 )
 
-export const subscriptions = pgTable(
+export const subscriptions = sqliteTable(
   'subscriptions',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id')
+    id: uuid('id'),
+    userId: text('user_id')
       .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
-    planId: uuid('plan_id')
+    planId: text('plan_id')
       .references(() => pricingPlans.id, { onDelete: 'restrict' })
       .notNull(),
-    provider: providerEnum('provider').notNull(),
+    provider: text('provider', { enum: providerEnum }).notNull(),
     subscriptionId: text('subscription_id').notNull().unique(),
     customerId: text('customer_id').notNull(),
     productId: text('product_id'),
-    priceId: varchar('price_id'),
+    priceId: text('price_id'),
     status: text('status').notNull(),
-    currentPeriodStart: timestamp('current_period_start', {
-      withTimezone: true,
-    }),
-    currentPeriodEnd: timestamp('current_period_end', { withTimezone: true }),
+    currentPeriodStart: timestamp('current_period_start'),
+    currentPeriodEnd: timestamp('current_period_end'),
     cancelAtPeriodEnd: boolean('cancel_at_period_end').default(false).notNull(),
-    canceledAt: timestamp('canceled_at', { withTimezone: true }),
-    endedAt: timestamp('ended_at', { withTimezone: true }),
-    trialStart: timestamp('trial_start', { withTimezone: true }),
-    trialEnd: timestamp('trial_end', { withTimezone: true }),
-    metadata: jsonb('metadata'),
-    createdAt: timestamp('created_at', { withTimezone: true })
+    canceledAt: timestamp('canceled_at'),
+    endedAt: timestamp('ended_at'),
+    trialStart: timestamp('trial_start'),
+    trialEnd: timestamp('trial_end'),
+    metadata: json<Record<string, unknown>>('metadata'),
+    createdAt: timestamp('created_at')
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp('updated_at', { withTimezone: true })
+    updatedAt: timestamp('updated_at')
       .defaultNow()
       .notNull()
       .$onUpdate(() => new Date()),
@@ -314,9 +316,9 @@ export const subscriptions = pgTable(
   }
 )
 
-export const usage = pgTable('usage', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id')
+export const usage = sqliteTable('usage', {
+  id: uuid('id'),
+  userId: text('user_id')
     .references(() => user.id, { onDelete: 'cascade' })
     .notNull()
     .unique(),
@@ -326,21 +328,21 @@ export const usage = pgTable('usage', {
   oneTimeCreditsBalance: integer('one_time_credits_balance')
     .default(0)
     .notNull(),
-  balanceJsonb: jsonb('balance_jsonb').default('{}').notNull(),
-  createdAt: timestamp('created_at', { withTimezone: true })
+  balanceJsonb: json<Record<string, unknown>>('balance_jsonb').default(sql`'{}'`).notNull(),
+  createdAt: timestamp('created_at')
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp('updated_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at')
     .defaultNow()
     .notNull()
     .$onUpdate(() => new Date()),
 })
 
-export const creditLogs = pgTable(
+export const creditLogs = sqliteTable(
   'credit_logs',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id')
+    id: uuid('id'),
+    userId: text('user_id')
       .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
     amount: integer('amount').notNull(),
@@ -348,10 +350,10 @@ export const creditLogs = pgTable(
     subscriptionCreditsSnapshot: integer('subscription_credits_snapshot').notNull(),
     type: text('type').notNull(),
     notes: text('notes'),
-    relatedOrderId: uuid('related_order_id').references(() => orders.id, {
+    relatedOrderId: text('related_order_id').references(() => orders.id, {
       onDelete: 'set null',
     }),
-    createdAt: timestamp('created_at', { withTimezone: true })
+    createdAt: timestamp('created_at')
       .defaultNow()
       .notNull(),
   },
@@ -366,32 +368,32 @@ export const creditLogs = pgTable(
   }
 )
 
-export const postTypeEnum = pgEnum('post_type', [
+export const postTypeEnum = [
   'blog',
   'glossary',
-])
-export type PostType = (typeof postTypeEnum.enumValues)[number]
+] as const
+export type PostType = (typeof postTypeEnum)[number]
 
-export const postStatusEnum = pgEnum('post_status', [
+export const postStatusEnum = [
   'draft',
   'published',
   'archived',
-])
-export type PostStatus = (typeof postStatusEnum.enumValues)[number]
+] as const
+export type PostStatus = (typeof postStatusEnum)[number]
 
-export const postVisibilityEnum = pgEnum('post_visibility', [
+export const postVisibilityEnum = [
   'public',
   'logged_in',
   'subscribers',
-])
+] as const
 
-export const posts = pgTable(
+export const posts = sqliteTable(
   'posts',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
-    language: varchar('language', { length: 10 }).notNull(),
-    postType: postTypeEnum('post_type').default('blog'),
-    authorId: uuid('author_id')
+    id: uuid('id'),
+    language: text('language', { length: 10 }).notNull(),
+    postType: text('post_type', { enum: postTypeEnum }).default('blog'),
+    authorId: text('author_id')
       .references(() => user.id, { onDelete: 'set null' })
       .notNull(),
     title: text('title').notNull(),
@@ -400,15 +402,15 @@ export const posts = pgTable(
     description: text('description'),
     featuredImageUrl: text('featured_image_url'),
     isPinned: boolean('is_pinned').default(false).notNull(),
-    status: postStatusEnum('status').default('draft').notNull(),
-    visibility: postVisibilityEnum('visibility').default('public').notNull(),
-    publishedAt: timestamp('published_at', { withTimezone: true })
+    status: text('status', { enum: postStatusEnum }).default('draft').notNull(),
+    visibility: text('visibility', { enum: postVisibilityEnum }).default('public').notNull(),
+    publishedAt: timestamp('published_at')
       .defaultNow()
       .notNull(),
-    createdAt: timestamp('created_at', { withTimezone: true })
+    createdAt: timestamp('created_at')
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp('updated_at', { withTimezone: true })
+    updatedAt: timestamp('updated_at')
       .defaultNow()
       .notNull()
       .$onUpdate(() => new Date()),
@@ -437,13 +439,13 @@ export const posts = pgTable(
   }
 )
 
-export const tags = pgTable(
+export const tags = sqliteTable(
   'tags',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
+    id: uuid('id'),
     name: text('name').notNull(),
-    postType: postTypeEnum('post_type').default('blog'),
-    createdAt: timestamp('created_at', { withTimezone: true })
+    postType: text('post_type', { enum: postTypeEnum }).default('blog'),
+    createdAt: timestamp('created_at')
       .defaultNow()
       .notNull(),
   },
@@ -458,13 +460,13 @@ export const tags = pgTable(
   }
 )
 
-export const postTags = pgTable(
+export const postTags = sqliteTable(
   'post_tags',
   {
-    postId: uuid('post_id')
+    postId: text('post_id')
       .references(() => posts.id, { onDelete: 'cascade' })
       .notNull(),
-    tagId: uuid('tag_id')
+    tagId: text('tag_id')
       .references(() => tags.id, { onDelete: 'cascade' })
       .notNull(),
   },

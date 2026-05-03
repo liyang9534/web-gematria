@@ -1,29 +1,18 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { createDatabase, type DB } from "./config";
+import { createDatabase, type D1Binding, type DB } from "./config";
 
 export type { DB } from "./config";
 
-type HyperdriveBinding = {
-  connectionString: string;
-};
-
-type DatabaseEnv = CloudflareEnv & {
-  HYPERDRIVE?: HyperdriveBinding;
-  DATABASE_URL?: string;
-  POSTGRES_URL?: string;
+type DatabaseEnv = {
+  DB?: D1Binding;
+  NEXTY_DB?: D1Binding;
 };
 
 let cachedDb: DB | null = null;
-let cachedConnectionString: string | null = null;
+let cachedBinding: D1Binding | null = null;
 
-function resolveFromEnv(env?: DatabaseEnv) {
-  return (
-    env?.HYPERDRIVE?.connectionString ||
-    env?.DATABASE_URL ||
-    env?.POSTGRES_URL ||
-    process.env.DATABASE_URL ||
-    ""
-  );
+function resolveBinding(env?: DatabaseEnv) {
+  return env?.DB || env?.NEXTY_DB || null;
 }
 
 function getCloudflareEnv() {
@@ -43,34 +32,34 @@ async function getCloudflareEnvAsync() {
   }
 }
 
-function getCachedDb(connectionString: string) {
-  if (!connectionString) {
+function getCachedDb(binding: D1Binding | null) {
+  if (!binding) {
     throw new Error(
-      "Database connection is not configured. Set DATABASE_URL for Node/local deployments or bind HYPERDRIVE in Cloudflare Workers.",
+      "Business database is not configured. Bind Cloudflare D1 as DB in wrangler.jsonc.",
     );
   }
 
-  if (!cachedDb || cachedConnectionString !== connectionString) {
-    cachedDb = createDatabase({ connectionString });
-    cachedConnectionString = connectionString;
+  if (!cachedDb || cachedBinding !== binding) {
+    cachedDb = createDatabase(binding);
+    cachedBinding = binding;
   }
 
   return cachedDb;
 }
 
 export function getDb() {
-  return getCachedDb(resolveFromEnv(getCloudflareEnv()));
+  return getCachedDb(resolveBinding(getCloudflareEnv()));
 }
 
 export async function getDbAsync() {
-  return getCachedDb(resolveFromEnv(await getCloudflareEnvAsync()));
+  return getCachedDb(resolveBinding(await getCloudflareEnvAsync()));
 }
 
 export function isDatabaseConfigured() {
-  return !!resolveFromEnv(getCloudflareEnv());
+  return !!resolveBinding(getCloudflareEnv());
 }
 
-export const isDatabaseEnabled = !!process.env.DATABASE_URL;
+export const isDatabaseEnabled = false;
 
 export const db = new Proxy({} as DB, {
   get(_target, property, receiver) {

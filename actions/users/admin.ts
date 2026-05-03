@@ -9,8 +9,9 @@ import {
   user as userSchema,
   userSource as userSourceSchema,
 } from "@/lib/db/schema";
+import { containsInsensitive } from "@/lib/db/sqlite";
 import { getErrorMessage } from "@/lib/error-utils";
-import { count, desc, eq, ilike, or } from "drizzle-orm";
+import { count, desc, eq, or } from "drizzle-orm";
 
 type UserType = typeof userSchema.$inferSelect;
 
@@ -61,8 +62,8 @@ export async function getUsers({
     if (filter) {
       conditions.push(
         or(
-          ilike(userSchema.email, `%${filter}%`),
-          ilike(userSchema.name, `%${filter}%`),
+          containsInsensitive(userSchema.email, filter),
+          containsInsensitive(userSchema.name, filter),
         ),
       );
     }

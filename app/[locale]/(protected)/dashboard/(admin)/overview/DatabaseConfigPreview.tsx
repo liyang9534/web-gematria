@@ -17,22 +17,7 @@ import {
 } from "lucide-react";
 
 export const DatabaseConfigPreview = () => {
-  if (!process.env.DATABASE_URL) {
-    return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Database Configuration</CardTitle>
-          <CardDescription>
-            DATABASE_URL environment variable is not set.
-          </CardDescription>
-        </CardHeader>
-      </Card>
-    );
-  }
-
-  const configPreview = previewConfig({
-    connectionString: process.env.DATABASE_URL,
-  });
+  const configPreview = previewConfig();
 
   const { platform, database, summary } = configPreview;
 
@@ -86,15 +71,9 @@ export const DatabaseConfigPreview = () => {
             <LinkIcon className="h-4 w-4" />
             <span>Connection Pooling</span>
           </div>
-          {summary.connectionPooling ? (
-            <Badge variant="default" className="w-fit">
-              Enabled
-            </Badge>
-          ) : (
-            <Badge variant="secondary" className="w-fit">
-              Disabled (Single Connection)
-            </Badge>
-          )}
+          <Badge variant="secondary" className="w-fit">
+            Not Used
+          </Badge>
         </div>
 
         <div className="space-y-2">
@@ -116,17 +95,11 @@ export const DatabaseConfigPreview = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-muted-foreground">
             <ShieldCheck className="h-4 w-4" />
-            <span>SSL/TLS</span>
+            <span>D1 Binding</span>
           </div>
-          {summary.requiresSSL ? (
-            <Badge variant="default" className="w-fit">
-              Required
-            </Badge>
-          ) : (
-            <Badge variant="secondary" className="w-fit">
-              Not Required
-            </Badge>
-          )}
+          <Badge variant="default" className="font-mono w-fit">
+            {summary.runtimeBinding}
+          </Badge>
         </div>
       </CardContent>
     </Card>

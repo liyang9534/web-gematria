@@ -4,8 +4,9 @@ import { actionResponse, ActionResult } from "@/lib/action-response";
 import { getSession } from "@/lib/auth/server";
 import { getDb } from "@/lib/db";
 import { orders as ordersSchema } from "@/lib/db/schema";
+import { containsInsensitive } from "@/lib/db/sqlite";
 import { getErrorMessage } from "@/lib/error-utils";
-import { and, count, desc, eq, ilike, or, sql, type SQL } from "drizzle-orm";
+import { and, count, desc, eq, or, sql, type SQL } from "drizzle-orm";
 import { z } from "zod";
 
 const FilterSchema = z.object({
@@ -47,8 +48,8 @@ export async function getMyOrders(
     if (filter) {
       optionalConditions.push(
         or(
-          ilike(ordersSchema.providerOrderId, `%${filter}%`),
-          sql`CAST(${ordersSchema.id} AS TEXT) ILIKE ${`%${filter}%`}`,
+          containsInsensitive(ordersSchema.providerOrderId, filter),
+          sql`lower(cast(${ordersSchema.id} as text)) like ${`%${filter.toLowerCase()}%`}`,
         ) as SQL,
       );
     }

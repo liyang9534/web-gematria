@@ -108,7 +108,7 @@ function createAuthConfig(databaseInstance: DB) {
       },
     },
     database: drizzleAdapter(databaseInstance, {
-      provider: "pg",
+      provider: "sqlite",
       schema: {
         user: user,
         session: session,

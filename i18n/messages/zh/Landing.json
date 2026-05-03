@@ -69,19 +69,19 @@
       },
       {
         "title": "数据库",
-        "description": "集成了支持多种数据库选项的 Drizzle ORM，如 Supabase、Neon 和自托管 PostgreSQL。",
+        "description": "集成 Drizzle ORM，并使用 Cloudflare D1 作为业务数据库。",
         "details": [
           {
             "title": "一行配置",
-            "description": "只需填写 DATABASE_URL，最佳配置将自动完成。"
+            "description": "将 Cloudflare D1 绑定为 DB，并应用内置迁移。"
           },
           {
             "title": "全面的内置表结构",
             "description": "包含用户管理、定价方案、订单、内容管理等完整的表结构集合。"
           },
           {
-            "title": "多种数据库选项",
-            "description": "支持 Supabase、Neon 和自托管 PostgreSQL。"
+            "title": "Cloudflare 原生",
+            "description": "支持 Workers、D1、R2 和 Durable Objects。"
           }
         ],
         "images": [

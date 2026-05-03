@@ -13,6 +13,10 @@ import {
   subscriptions as subscriptionsSchema,
   tags as tagsSchema,
 } from "@/lib/db/schema";
+import {
+  containsInsensitive,
+  isUniqueConstraintError,
+} from "@/lib/db/sqlite";
 import { getErrorMessage } from "@/lib/error-utils";
 import { PostWithTags, PublicPost, PublicPostWithContent } from "@/types/cms";
 import {
@@ -20,11 +24,8 @@ import {
   count,
   desc,
   eq,
-  getTableColumns,
-  ilike,
   inArray,
   or,
-  sql,
 } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -48,6 +49,47 @@ interface ListPostsResult {
     count?: number;
   };
   error?: string;
+}
+
+const publicPostSelection = {
+  id: postsSchema.id,
+  language: postsSchema.language,
+  postType: postsSchema.postType,
+  title: postsSchema.title,
+  slug: postsSchema.slug,
+  description: postsSchema.description,
+  featuredImageUrl: postsSchema.featuredImageUrl,
+  status: postsSchema.status,
+  visibility: postsSchema.visibility,
+  isPinned: postsSchema.isPinned,
+  publishedAt: postsSchema.publishedAt,
+  createdAt: postsSchema.createdAt,
+};
+
+async function getTagNamesByPostId(postIds: string[]) {
+  if (postIds.length === 0) {
+    return {} as Record<string, string[]>;
+  }
+
+  const rows = await getDb()
+    .select({
+      postId: postTagsSchema.postId,
+      tagName: tagsSchema.name,
+    })
+    .from(postTagsSchema)
+    .innerJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
+    .where(inArray(postTagsSchema.postId, postIds));
+
+  return rows.reduce(
+    (acc, row) => {
+      if (!acc[row.postId]) {
+        acc[row.postId] = [];
+      }
+      acc[row.postId].push(row.tagName);
+      return acc;
+    },
+    {} as Record<string, string[]>,
+  );
 }
 
 export async function listPostsAction({
@@ -74,12 +116,11 @@ export async function listPostsAction({
       conditions.push(eq(postsSchema.language, language));
     }
     if (filter) {
-      const filterValue = `%${filter}%`;
       conditions.push(
         or(
-          ilike(postsSchema.title, filterValue),
-          ilike(postsSchema.slug, filterValue),
-          ilike(postsSchema.description, filterValue),
+          containsInsensitive(postsSchema.title, filter),
+          containsInsensitive(postsSchema.slug, filter),
+          containsInsensitive(postsSchema.description, filter),
         ),
       );
     }
@@ -305,7 +346,7 @@ export async function createPostAction({
   } catch (error) {
     console.error("Create Post Action Failed:", error);
     const errorMessage = getErrorMessage(error);
-    if ((error as any)?.cause?.code === "23505") {
+    if (isUniqueConstraintError(errorMessage)) {
       return actionResponse.conflict(
         `Slug '${validatedFields.data.slug}' already exists.`,
       );
@@ -411,7 +452,7 @@ export async function updatePostAction({
   } catch (error) {
     console.error("Update Post Action Failed:", error);
     const errorMessage = getErrorMessage(error);
-    if ((error as any)?.cause?.code === "23505") {
+    if (isUniqueConstraintError(errorMessage)) {
       return actionResponse.conflict(
         `Slug '${validatedFields.data.slug}' already exists for language '${validatedFields.data.language}'.`,
       );
@@ -516,53 +557,58 @@ export async function listPublishedPostsAction({
       conditions.push(eq(postsSchema.language, locale));
     }
 
-    const postsSubquery = getDb()
-      .$with("posts_with_tags")
-      .as(
-        getDb()
-          .select({
-            ...getTableColumns(postsSchema),
-            tag_ids: sql<string[]>`array_agg(${postTagsSchema.tagId})`.as(
-              "tag_ids",
-            ),
-            tag_names: sql<string[]>`array_agg(${tagsSchema.name})`.as(
-              "tag_names",
-            ),
-          })
+    const whereCondition = and(...conditions);
+    const paginatedQuery = tagId
+      ? getDb()
+          .select(publicPostSelection)
           .from(postsSchema)
-          .leftJoin(postTagsSchema, eq(postsSchema.id, postTagsSchema.postId))
-          .leftJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
-          .where(and(...conditions))
-          .groupBy(postsSchema.id),
-      );
+          .innerJoin(
+            postTagsSchema,
+            eq(postsSchema.id, postTagsSchema.postId),
+          )
+          .where(and(whereCondition, eq(postTagsSchema.tagId, tagId)))
+          .orderBy(
+            desc(postsSchema.isPinned),
+            desc(postsSchema.publishedAt),
+            desc(postsSchema.createdAt),
+          )
+          .limit(pageSize)
+          .offset(pageIndex * pageSize)
+      : getDb()
+          .select(publicPostSelection)
+          .from(postsSchema)
+          .where(whereCondition)
+          .orderBy(
+            desc(postsSchema.isPinned),
+            desc(postsSchema.publishedAt),
+            desc(postsSchema.createdAt),
+          )
+          .limit(pageSize)
+          .offset(pageIndex * pageSize);
 
-    let query = getDb().with(postsSubquery).select().from(postsSubquery);
-    let countQuery = getDb()
-      .with(postsSubquery)
-      .select({ value: count() })
-      .from(postsSubquery);
-
-    if (tagId) {
-      query.where(sql`${tagId} = ANY(tag_ids)`);
-      countQuery.where(sql`${tagId} = ANY(tag_ids)`);
-    }
-
-    const paginatedQuery = query
-      .orderBy(
-        desc(postsSubquery.isPinned),
-        desc(postsSubquery.publishedAt),
-        desc(postsSubquery.createdAt),
-      )
-      .limit(pageSize)
-      .offset(pageIndex * pageSize);
+    const countQuery = tagId
+      ? getDb()
+          .select({ value: count() })
+          .from(postsSchema)
+          .innerJoin(
+            postTagsSchema,
+            eq(postsSchema.id, postTagsSchema.postId),
+          )
+          .where(and(whereCondition, eq(postTagsSchema.tagId, tagId)))
+      : getDb()
+          .select({ value: count() })
+          .from(postsSchema)
+          .where(whereCondition);
 
     const [data, countResult] = await Promise.all([paginatedQuery, countQuery]);
+    const tagNamesByPostId = await getTagNamesByPostId(
+      data.map((post) => post.id),
+    );
 
     const postsWithProcessedTags = (data || []).map((post) => {
-      const tagNames = post.tag_names?.filter(Boolean).join(", ") || null;
-      const { tag_ids, tag_names, ...restOfPost } = post;
+      const tagNames = tagNamesByPostId[post.id]?.join(", ") || null;
       return {
-        ...restOfPost,
+        ...post,
         tags: tagNames,
       };
     });
@@ -850,50 +896,31 @@ export async function getRelatedPostsAction({
       return actionResponse.success({ posts: [] });
     }
 
-    // Get the related posts with tag names
-    const postsSubquery = getDb()
-      .$with("posts_with_tags")
-      .as(
-        getDb()
-          .select({
-            ...getTableColumns(postsSchema),
-            tag_ids: sql<string[]>`array_agg(${postTagsSchema.tagId})`.as(
-              "tag_ids",
-            ),
-            tag_names: sql<string[]>`array_agg(${tagsSchema.name})`.as(
-              "tag_names",
-            ),
-          })
-          .from(postsSchema)
-          .leftJoin(postTagsSchema, eq(postsSchema.id, postTagsSchema.postId))
-          .leftJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
-          .where(
-            and(
-              inArray(postsSchema.id, postIdsArray),
-              eq(postsSchema.status, "published"),
-              eq(postsSchema.postType, postType),
-              eq(postsSchema.language, locale),
-            ),
-          )
-          .groupBy(postsSchema.id),
-      );
-
     const data = await getDb()
-      .with(postsSubquery)
-      .select()
-      .from(postsSubquery)
+      .select(publicPostSelection)
+      .from(postsSchema)
+      .where(
+        and(
+          inArray(postsSchema.id, postIdsArray),
+          eq(postsSchema.status, "published"),
+          eq(postsSchema.postType, postType),
+          eq(postsSchema.language, locale),
+        ),
+      )
       .orderBy(
-        desc(postsSubquery.isPinned),
-        desc(postsSubquery.publishedAt),
-        desc(postsSubquery.createdAt),
+        desc(postsSchema.isPinned),
+        desc(postsSchema.publishedAt),
+        desc(postsSchema.createdAt),
       )
       .limit(limit);
+    const tagNamesByPostId = await getTagNamesByPostId(
+      data.map((post) => post.id),
+    );
 
     const postsWithProcessedTags = (data || []).map((post) => {
-      const tagNames = post.tag_names?.filter(Boolean).join(", ") || null;
-      const { tag_ids, tag_names, content, ...restOfPost } = post;
+      const tagNames = tagNamesByPostId[post.id]?.join(", ") || null;
       return {
-        ...restOfPost,
+        ...post,
         tags: tagNames,
       };
     });

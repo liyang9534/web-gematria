@@ -5,6 +5,7 @@ import { actionResponse, ActionResult } from "@/lib/action-response";
 import { isAdmin } from "@/lib/auth/server";
 import { getDb } from "@/lib/db";
 import { pricingPlans as pricingPlansSchema } from "@/lib/db/schema";
+import { isUniqueConstraintError } from "@/lib/db/sqlite";
 import { getErrorMessage } from "@/lib/error-utils";
 import { asc, eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
@@ -183,9 +184,7 @@ export async function createPricingPlanAction({
   } catch (err) {
     console.error("Unexpected error creating pricing plan:", err);
     const errorMessage = getErrorMessage(err);
-    if (
-      errorMessage.includes("duplicate key value violates unique constraint")
-    ) {
+    if (isUniqueConstraintError(errorMessage)) {
       return actionResponse.conflict(
         t("createPlanConflict", { message: errorMessage }),
       );

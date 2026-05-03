@@ -14,25 +14,18 @@
 
 import { loadEnvConfig } from '@next/env'
 import 'dotenv/config'
-import { drizzle } from 'drizzle-orm/postgres-js'
-import postgres from 'postgres'
 import { pricingPlanGroups, pricingPlans as pricingPlansTable } from '../schema'
+import { createD1HttpDatabase } from './d1-http'
 import { pricingGroups, pricingPlans } from './pricing-config'
 
 const projectDir = process.cwd()
 loadEnvConfig(projectDir)
 
 async function main() {
-  const connectionString = process.env.DATABASE_URL
-  if (!connectionString) {
-    throw new Error('DATABASE_URL environment variable is not set')
-  }
-
   console.log('🌱 Seeding database...\n')
   console.log(`📦 Found ${pricingGroups.length} groups and ${pricingPlans.length} plans`)
 
-  const client = postgres(connectionString)
-  const db = drizzle(client)
+  const db = createD1HttpDatabase()
 
   try {
     // Insert pricing_plan_groups
@@ -131,8 +124,6 @@ async function main() {
   } catch (error) {
     console.error('\n❌ An error occurred while seeding the database:', error)
     process.exit(1)
-  } finally {
-    await client.end()
   }
 }
 

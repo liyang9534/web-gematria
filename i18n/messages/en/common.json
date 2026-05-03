@@ -2,7 +2,7 @@
   "Home": {
     "title": "NEXTY.DEV",
     "tagLine": "A Modern Next.js Full-Stack SaaS Template",
-    "description": "A production-ready Next.js and Supabase starter template for building modern SaaS applications. Launch your content, AI, or subscription service faster."
+    "description": "A production-ready Next.js and Cloudflare D1 starter template for building modern SaaS applications. Launch your content, AI, or subscription service faster."
   },
   "Login": {
     "title": "Welcome back",

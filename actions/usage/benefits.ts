@@ -216,8 +216,7 @@ async function processYearlySubscriptionCatchUp(
       const usageResults = await tx
         .select()
         .from(usageSchema)
-        .where(eq(usageSchema.userId, userId))
-        .for("update");
+        .where(eq(usageSchema.userId, userId));
       const usage = usageResults[0];
 
       if (!usage) {

@@ -4,9 +4,14 @@ import { actionResponse } from "@/lib/action-response";
 import { isAdmin } from "@/lib/auth/server";
 import { getDb } from "@/lib/db";
 import { PostType, tags as tagsSchema } from "@/lib/db/schema";
+import {
+  containsInsensitive,
+  isForeignKeyConstraintError,
+  isUniqueConstraintError,
+} from "@/lib/db/sqlite";
 import { getErrorMessage } from "@/lib/error-utils";
 import { Tag } from "@/types/cms";
-import { and, asc, eq, ilike, not } from "drizzle-orm";
+import { and, asc, eq, not } from "drizzle-orm";
 
 interface ListTagsResponse {
   success: boolean;
@@ -44,7 +49,7 @@ export async function listTagsAction({
     conditions.push(eq(tagsSchema.postType, postType));
 
     if (query) {
-      conditions.push(ilike(tagsSchema.name, `%${query}%`));
+      conditions.push(containsInsensitive(tagsSchema.name, query));
     }
 
     const whereCondition =
@@ -107,9 +112,7 @@ export async function createTagAction({
   } catch (error) {
     console.error("Create tag action failed:", error);
     const errorMessage = getErrorMessage(error);
-    if (
-      errorMessage.includes("duplicate key value violates unique constraint")
-    ) {
+    if (isUniqueConstraintError(errorMessage)) {
       return actionResponse.conflict(`Tag "${name}" already exists.`);
     }
     if (errorMessage.includes("permission denied")) {
@@ -180,9 +183,7 @@ export async function updateTagAction({
   } catch (error) {
     console.error("Update tag action failed:", error);
     const errorMessage = getErrorMessage(error);
-    if (
-      errorMessage.includes("duplicate key value violates unique constraint")
-    ) {
+    if (isUniqueConstraintError(errorMessage)) {
       return actionResponse.conflict(
         `Tag name "${name}" is already in use by another tag.`,
       );
@@ -217,7 +218,7 @@ export async function deleteTagAction({
     if (errorMessage.includes("permission denied")) {
       return actionResponse.forbidden("Permission denied to delete tags.");
     }
-    if (errorMessage.includes("violates foreign key constraint")) {
+    if (isForeignKeyConstraintError(errorMessage)) {
       return actionResponse.badRequest(
         "Cannot delete tag as it is currently in use by one or more posts.",
       );

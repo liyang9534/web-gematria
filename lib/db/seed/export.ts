@@ -13,14 +13,13 @@ import { loadEnvConfig } from '@next/env'
 import 'dotenv/config'
 import type { InferSelectModel } from 'drizzle-orm'
 import { asc } from 'drizzle-orm'
-import { drizzle } from 'drizzle-orm/postgres-js'
 import * as fs from 'fs'
 import * as path from 'path'
-import postgres from 'postgres'
 import {
   pricingPlanGroups,
   pricingPlans as pricingPlansTable,
 } from '../schema'
+import { createD1HttpDatabase } from './d1-http'
 
 const projectDir = process.cwd()
 loadEnvConfig(projectDir)
@@ -172,15 +171,9 @@ function convertPlanToConfig(plan: DbPricingPlan): string {
 }
 
 async function main() {
-  const connectionString = process.env.DATABASE_URL
-  if (!connectionString) {
-    throw new Error('DATABASE_URL environment variable is not set')
-  }
-
   console.log('Exporting pricing data from database...')
 
-  const client = postgres(connectionString)
-  const db = drizzle(client)
+  const db = createD1HttpDatabase()
 
   try {
     // Fetch groups using Drizzle ORM
@@ -322,8 +315,6 @@ ${plans.map(p => convertPlanToConfig(p)).join('\n')}
   } catch (error) {
     console.error('Error exporting pricing data:', error)
     process.exit(1)
-  } finally {
-    await client.end()
   }
 }
 
