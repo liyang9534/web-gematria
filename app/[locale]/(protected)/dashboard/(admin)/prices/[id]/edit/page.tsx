@@ -1,5 +1,5 @@
 import { isAdmin } from "@/lib/auth/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { pricingPlans as pricingPlansSchema } from "@/lib/db/schema";
 import { constructMetadata } from "@/lib/metadata";
 import { eq } from "drizzle-orm";
@@ -13,7 +13,7 @@ type PricingPlan = typeof pricingPlansSchema.$inferSelect;
 
 async function getPricingPlanById(id: string): Promise<PricingPlan | null> {
   try {
-    const results = await db
+    const results = await getDb()
       .select()
       .from(pricingPlansSchema)
       .where(eq(pricingPlansSchema.id, id))

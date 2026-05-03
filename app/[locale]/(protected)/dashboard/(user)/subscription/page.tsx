@@ -5,7 +5,7 @@ import CurrentUserBenefitsDisplay from "@/components/layout/CurrentUserBenefitsD
 import { Button } from "@/components/ui/button";
 import { Link as I18nLink } from "@/i18n/routing";
 import { getSession } from "@/lib/auth/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { subscriptions as subscriptionsSchema } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -19,7 +19,7 @@ export default async function SubscriptionPage() {
   const benefits = await getUserBenefits(user.id);
 
   // Get the user's subscription provider
-  const subscriptionResults = await db
+  const subscriptionResults = await getDb()
     .select({ provider: subscriptionsSchema.provider })
     .from(subscriptionsSchema)
     .where(eq(subscriptionsSchema.userId, user.id))

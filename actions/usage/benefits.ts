@@ -1,10 +1,14 @@
-'use server';
+"use server";
 
-import { actionResponse, ActionResult } from '@/lib/action-response';
-import { getSession } from '@/lib/auth/server';
-import { db } from '@/lib/db';
-import { creditLogs as creditLogsSchema, subscriptions as subscriptionsSchema, usage as usageSchema } from '@/lib/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { actionResponse, ActionResult } from "@/lib/action-response";
+import { getSession } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
+import {
+  creditLogs as creditLogsSchema,
+  subscriptions as subscriptionsSchema,
+  usage as usageSchema,
+} from "@/lib/db/schema";
+import { desc, eq } from "drizzle-orm";
 
 export interface UserBenefits {
   activePlanId: string | null;
@@ -42,7 +46,7 @@ const defaultUserBenefits: UserBenefits = {
 function createUserBenefitsFromData(
   usageData: UsageData | null,
   subscription: SubscriptionData | null,
-  currentYearlyDetails: any | null = null
+  currentYearlyDetails: any | null = null,
 ): UserBenefits {
   const subCredits = (usageData?.subscriptionCreditsBalance ?? 0) as number;
   const oneTimeCredits = (usageData?.oneTimeCreditsBalance ?? 0) as number;
@@ -52,12 +56,19 @@ function createUserBenefitsFromData(
   const nextCreditDate = currentYearlyDetails?.nextCreditDate ?? null;
 
   let finalStatus = subscription?.status ?? null;
-  if (finalStatus && subscription?.currentPeriodEnd && new Date(subscription.currentPeriodEnd) < new Date()) {
-    finalStatus = 'inactive_period_ended';
+  if (
+    finalStatus &&
+    subscription?.currentPeriodEnd &&
+    new Date(subscription.currentPeriodEnd) < new Date()
+  ) {
+    finalStatus = "inactive_period_ended";
   }
 
   return {
-    activePlanId: (finalStatus === 'active' || finalStatus === 'trialing') ? subscription?.planId ?? null : null,
+    activePlanId:
+      finalStatus === "active" || finalStatus === "trialing"
+        ? (subscription?.planId ?? null)
+        : null,
     subscriptionStatus: finalStatus,
     currentPeriodEnd,
     nextCreditDate,
@@ -68,10 +79,10 @@ function createUserBenefitsFromData(
 }
 
 async function fetchSubscriptionData(
-  userId: string
+  userId: string,
 ): Promise<SubscriptionData | null> {
   try {
-    const result = await db
+    const result = await getDb()
       .select({
         planId: subscriptionsSchema.planId,
         status: subscriptionsSchema.status,
@@ -96,7 +107,7 @@ async function fetchSubscriptionData(
   } catch (error) {
     console.error(
       `Unexpected error in fetchSubscriptionData for user ${userId}:`,
-      error
+      error,
     );
     return null;
   }
@@ -112,7 +123,7 @@ export async function getUserBenefits(userId: string): Promise<UserBenefits> {
   }
 
   try {
-    const result = await db
+    const result = await getDb()
       .select({
         subscriptionCreditsBalance: usageSchema.subscriptionCreditsBalance,
         oneTimeCreditsBalance: usageSchema.oneTimeCreditsBalance,
@@ -138,15 +149,17 @@ export async function getUserBenefits(userId: string): Promise<UserBenefits> {
     // ------------------------------------------
     if (finalUsageData) {
       // Process yearly subscription catch-up logic
-      finalUsageData = await processYearlySubscriptionCatchUp(userId) ?? finalUsageData;
+      finalUsageData =
+        (await processYearlySubscriptionCatchUp(userId)) ?? finalUsageData;
 
       const subscription = await fetchSubscriptionData(userId);
-      const currentYearlyDetails = (finalUsageData.balanceJsonb as any)?.yearlyAllocationDetails;
+      const currentYearlyDetails = (finalUsageData.balanceJsonb as any)
+        ?.yearlyAllocationDetails;
 
       return createUserBenefitsFromData(
         finalUsageData,
         subscription,
-        currentYearlyDetails
+        currentYearlyDetails,
       );
     } else {
       const subscription = await fetchSubscriptionData(userId);
@@ -154,7 +167,10 @@ export async function getUserBenefits(userId: string): Promise<UserBenefits> {
       return createUserBenefitsFromData(null, subscription);
     }
   } catch (error) {
-    console.error(`Unexpected error in getUserBenefits for user ${userId}:`, error);
+    console.error(
+      `Unexpected error in getUserBenefits for user ${userId}:`,
+      error,
+    );
     return defaultUserBenefits;
   }
 }
@@ -163,8 +179,10 @@ export async function getUserBenefits(userId: string): Promise<UserBenefits> {
  * Retrieves the user's current benefits
  * Client-side action.
  */
-export async function getClientUserBenefits(): Promise<ActionResult<UserBenefits>> {
-  const session = await getSession()
+export async function getClientUserBenefits(): Promise<
+  ActionResult<UserBenefits>
+> {
+  const session = await getSession();
   const user = session?.user;
   if (!user) return actionResponse.unauthorized();
 
@@ -174,7 +192,7 @@ export async function getClientUserBenefits(): Promise<ActionResult<UserBenefits
   } catch (error: any) {
     console.error("Error fetching user benefits for client:", error);
     return actionResponse.error(
-      error.message || "Failed to fetch user benefits."
+      error.message || "Failed to fetch user benefits.",
     );
   }
 }
@@ -188,18 +206,18 @@ export async function getClientUserBenefits(): Promise<ActionResult<UserBenefits
  * @returns A promise resolving to the updated UsageData or null if no usage data exists.
  */
 async function processYearlySubscriptionCatchUp(
-  userId: string
+  userId: string,
 ): Promise<UsageData | null> {
   let finalUsageData: UsageData | null = null;
   let shouldContinue = true;
 
   while (shouldContinue) {
-    shouldContinue = await db.transaction(async (tx) => {
+    shouldContinue = await getDb().transaction(async (tx) => {
       const usageResults = await tx
         .select()
         .from(usageSchema)
         .where(eq(usageSchema.userId, userId))
-        .for('update');
+        .for("update");
       const usage = usageResults[0];
 
       if (!usage) {
@@ -207,7 +225,8 @@ async function processYearlySubscriptionCatchUp(
       }
 
       finalUsageData = usage as UsageData;
-      const yearlyDetails = (usage.balanceJsonb as any)?.yearlyAllocationDetails;
+      const yearlyDetails = (usage.balanceJsonb as any)
+        ?.yearlyAllocationDetails;
 
       if (
         !yearlyDetails ||
@@ -269,7 +288,7 @@ async function processYearlySubscriptionCatchUp(
           amount: creditsToAllocate,
           oneTimeCreditsSnapshot: balances.oneTimeCreditsSnapshot,
           subscriptionCreditsSnapshot: balances.subscriptionCreditsSnapshot,
-          type: 'subscription_grant',
+          type: "subscription_grant",
           notes: `Yearly subscription monthly credits allocated`,
           relatedOrderId: relatedOrderId,
           createdAt: allocationDate, // use the date of the month to allocate the credits

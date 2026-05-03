@@ -3,12 +3,9 @@
 import { DEFAULT_LOCALE } from "@/i18n/routing";
 import { actionResponse } from "@/lib/action-response";
 import { getSession } from "@/lib/auth/server";
-import {
-  deleteFile,
-  serverUploadFile,
-} from "@/lib/cloudflare/r2";
+import { deleteFile, serverUploadFile } from "@/lib/cloudflare/r2";
 import { generateR2Key } from "@/lib/cloudflare/r2-utils";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { user as userSchema } from "@/lib/db/schema";
 import { getErrorMessage } from "@/lib/error-utils";
 import {
@@ -33,7 +30,7 @@ export async function updateUserSettingsAction({
   locale = DEFAULT_LOCALE,
 }: UpdateUserSettingsParams) {
   try {
-    const session = await getSession()
+    const session = await getSession();
     const authUser = session?.user;
 
     if (!authUser) return actionResponse.unauthorized();
@@ -46,7 +43,11 @@ export async function updateUserSettingsAction({
     const fullName = formData.get("fullName") as string;
     const avatar = formData.get("avatar") as File | null;
 
-    if (!fullName || !isValidFullName(fullName.trim()) || fullName.trim().length > FULL_NAME_MAX_LENGTH) {
+    if (
+      !fullName ||
+      !isValidFullName(fullName.trim()) ||
+      fullName.trim().length > FULL_NAME_MAX_LENGTH
+    ) {
       return actionResponse.badRequest(t("toast.errorInvalidFullName"));
     }
 
@@ -61,7 +62,7 @@ export async function updateUserSettingsAction({
         return actionResponse.badRequest(
           t("toast.errorFileSizeExceeded", {
             maxSizeInMB: MAX_FILE_SIZE / 1024 / 1024,
-          })
+          }),
         );
       }
 
@@ -83,7 +84,10 @@ export async function updateUserSettingsAction({
         if (authUser.image) {
           try {
             const oldAvatarUrl = authUser.image as string;
-            const oldPath = new URL(oldAvatarUrl).pathname.split('/').slice(-3).join('/');
+            const oldPath = new URL(oldAvatarUrl).pathname
+              .split("/")
+              .slice(-3)
+              .join("/");
 
             if (oldPath.startsWith(`avatars/${authUser.id}/`)) {
               await deleteFile(oldPath);
@@ -100,7 +104,7 @@ export async function updateUserSettingsAction({
     }
 
     try {
-      await db
+      await getDb()
         .update(userSchema)
         .set({
           name: fullName.trim(),
@@ -112,10 +116,14 @@ export async function updateUserSettingsAction({
       return actionResponse.error(t("toast.errorUpdateUserProfile"));
     }
 
-    return actionResponse.success({ message: t("toast.updateSuccessDescription") });
+    return actionResponse.success({
+      message: t("toast.updateSuccessDescription"),
+    });
   } catch (error) {
     console.error("Update user settings action error:", error);
     const errorMessage = getErrorMessage(error);
-    return actionResponse.error(errorMessage || "An unexpected error occurred.");
+    return actionResponse.error(
+      errorMessage || "An unexpected error occurred.",
+    );
   }
-} 
+}

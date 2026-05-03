@@ -20,7 +20,7 @@ export default async function Footer() {
   footerLinks.forEach((group) => {
     const pricingLink = group.links.find((link) => link.id === "pricing");
     if (pricingLink) {
-      pricingLink.href = process.env.NEXT_PUBLIC_PRICING_PATH!;
+      pricingLink.href = process.env.NEXT_PUBLIC_PRICING_PATH || "/#pricing";
     }
   });
 
@@ -149,33 +149,37 @@ export default async function Footer() {
                   {section.title}
                 </div>
                 <ul className="space-y-2 text-sm">
-                  {section.links.map((link) => (
-                    <li key={link.href}>
-                      {link.href.startsWith("/") && !link.useA ? (
-                        <I18nLink
-                          href={link.href}
-                          title={link.name}
-                          prefetch={false}
-                          className="hover:text-white transition-colors"
-                          target={link.target || ""}
-                          rel={link.rel || ""}
-                        >
-                          {link.name}
-                        </I18nLink>
-                      ) : (
-                        <Link
-                          href={link.href}
-                          title={link.name}
-                          prefetch={false}
-                          className="hover:text-white transition-colors"
-                          target={link.target || ""}
-                          rel={link.rel || ""}
-                        >
-                          {link.name}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
+                  {section.links.map((link) => {
+                    const href = link.href || "#";
+
+                    return (
+                      <li key={`${link.name}-${href}`}>
+                        {href.startsWith("/") && !link.useA ? (
+                          <I18nLink
+                            href={href}
+                            title={link.name}
+                            prefetch={false}
+                            className="hover:text-white transition-colors"
+                            target={link.target || ""}
+                            rel={link.rel || ""}
+                          >
+                            {link.name}
+                          </I18nLink>
+                        ) : (
+                          <Link
+                            href={href}
+                            title={link.name}
+                            prefetch={false}
+                            className="hover:text-white transition-colors"
+                            target={link.target || ""}
+                            rel={link.rel || ""}
+                          >
+                            {link.name}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

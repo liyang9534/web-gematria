@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { actionResponse } from '@/lib/action-response';
-import resend from '@/lib/resend';
-import * as React from 'react';
+import { actionResponse } from "@/lib/action-response";
+import resend from "@/lib/resend";
+import * as React from "react";
 
 interface SendEmailProps {
   email: string;
@@ -18,6 +18,15 @@ interface SendEmailProps {
   hasUnsubscribeLink?: boolean;
 }
 
+async function renderEmailToHtml(element: React.ReactElement): Promise<string> {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const htmlBody = renderToStaticMarkup(element);
+  const doctype =
+    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+
+  return `${doctype}${htmlBody.replace(/<!DOCTYPE.*?>/i, "")}`;
+}
+
 export async function sendEmail({
   email,
   subject,
@@ -30,11 +39,11 @@ export async function sendEmail({
 }: SendEmailProps) {
   try {
     if (!email) {
-      return actionResponse.error('Email is required.');
+      return actionResponse.error("Email is required.");
     }
 
     if (!resend) {
-      return actionResponse.error('Resend env is not set');
+      return actionResponse.error("Resend env is not set");
     }
 
     // add user to contacts
@@ -45,40 +54,43 @@ export async function sendEmail({
     }
 
     // send email
-    const senderName = fromName ?? process.env.ADMIN_NAME ?? 'Admin';
+    const senderName = fromName ?? process.env.ADMIN_NAME ?? "Admin";
     const senderEmail = fromEmail ?? process.env.ADMIN_EMAIL;
-    
+
     if (!senderEmail) {
-      return actionResponse.error('Sender email is not configured. Please set fromEmail or ADMIN_EMAIL environment variable.');
+      return actionResponse.error(
+        "Sender email is not configured. Please set fromEmail or ADMIN_EMAIL environment variable.",
+      );
     }
-    
+
     const from = `${senderName} <${senderEmail}>`;
     const to = email;
 
     const emailContent = reactProps
       ? React.createElement(react as React.ComponentType<any>, reactProps)
       : (react as React.ReactElement);
+    const html = await renderEmailToHtml(emailContent as React.ReactElement);
 
     const emailOptions: Parameters<typeof resend.emails.send>[0] = {
       from,
       to,
       subject,
-      react: emailContent,
+      html,
     };
 
     // Add unsubscribe headers only if hasUnsubscribeLink is true
     if (hasUnsubscribeLink) {
-      const unsubscribeToken = Buffer.from(email).toString('base64');
+      const unsubscribeToken = Buffer.from(email).toString("base64");
       const unsubscribeLinkEN = `${process.env.NEXT_PUBLIC_SITE_URL}/unsubscribe/newsletter?token=${unsubscribeToken}`;
       emailOptions.headers = {
         "List-Unsubscribe": `<${unsubscribeLinkEN}>`,
-        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
+        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
       };
     }
 
     await resend.emails.send(emailOptions);
   } catch (error) {
-    console.error('Failed to send email:', error);
+    console.error("Failed to send email:", error);
   }
 }
 
@@ -91,9 +103,8 @@ export async function removeUserFromContacts(email: string) {
     await resend.contacts.remove({
       email,
     });
-
   } catch (error) {
-    console.error('Failed to remove user from Resend contacts:', error);
+    console.error("Failed to remove user from Resend contacts:", error);
     // Silently fail - we don't care about the result
   }
 }

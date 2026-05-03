@@ -1,36 +1,53 @@
-'use server'
+"use server";
 
-import { postActionSchema } from '@/components/cms/post-config'
-import { DEFAULT_LOCALE } from '@/i18n/routing'
-import { actionResponse } from '@/lib/action-response'
-import { getSession, isAdmin } from '@/lib/auth/server'
-import { db } from '@/lib/db'
-import { posts as postsSchema, PostStatus, postTags as postTagsSchema, PostType, subscriptions as subscriptionsSchema, tags as tagsSchema } from '@/lib/db/schema'
-import { getErrorMessage } from '@/lib/error-utils'
-import { PostWithTags, PublicPost, PublicPostWithContent } from '@/types/cms'
-import { and, count, desc, eq, getTableColumns, ilike, inArray, or, sql } from 'drizzle-orm'
-import { revalidatePath } from 'next/cache'
-import { z } from 'zod'
+import { postActionSchema } from "@/components/cms/post-config";
+import { DEFAULT_LOCALE } from "@/i18n/routing";
+import { actionResponse } from "@/lib/action-response";
+import { getSession, isAdmin } from "@/lib/auth/server";
+import { getDb, isDatabaseConfigured } from "@/lib/db";
+import {
+  posts as postsSchema,
+  PostStatus,
+  postTags as postTagsSchema,
+  PostType,
+  subscriptions as subscriptionsSchema,
+  tags as tagsSchema,
+} from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import { PostWithTags, PublicPost, PublicPostWithContent } from "@/types/cms";
+import {
+  and,
+  count,
+  desc,
+  eq,
+  getTableColumns,
+  ilike,
+  inArray,
+  or,
+  sql,
+} from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
-export type PostListItem = Omit<typeof postsSchema.$inferSelect, 'content'>
+export type PostListItem = Omit<typeof postsSchema.$inferSelect, "content">;
 
 interface ListPostsParams {
-  pageIndex?: number
-  pageSize?: number
-  status?: PostStatus
-  filter?: string
-  postType: PostType
-  language?: string
-  locale?: string
+  pageIndex?: number;
+  pageSize?: number;
+  status?: PostStatus;
+  filter?: string;
+  postType: PostType;
+  language?: string;
+  locale?: string;
 }
 
 interface ListPostsResult {
-  success: boolean
+  success: boolean;
   data?: {
-    posts?: PostWithTags[]
-    count?: number
-  }
-  error?: string
+    posts?: PostWithTags[];
+    count?: number;
+  };
+  error?: string;
 }
 
 export async function listPostsAction({
@@ -38,38 +55,39 @@ export async function listPostsAction({
   pageSize = 20,
   status,
   language,
-  filter = '',
-  postType = 'blog',
+  filter = "",
+  postType = "blog",
 }: ListPostsParams): Promise<ListPostsResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   try {
-    const conditions = []
+    const conditions = [];
     if (postType) {
-      conditions.push(eq(postsSchema.postType, postType))
+      conditions.push(eq(postsSchema.postType, postType));
     }
     if (status) {
-      conditions.push(eq(postsSchema.status, status))
+      conditions.push(eq(postsSchema.status, status));
     }
     if (language) {
-      conditions.push(eq(postsSchema.language, language))
+      conditions.push(eq(postsSchema.language, language));
     }
     if (filter) {
-      const filterValue = `%${filter}%`
+      const filterValue = `%${filter}%`;
       conditions.push(
         or(
           ilike(postsSchema.title, filterValue),
           ilike(postsSchema.slug, filterValue),
-          ilike(postsSchema.description, filterValue)
-        )
-      )
+          ilike(postsSchema.description, filterValue),
+        ),
+      );
     }
 
-    const whereCondition = conditions.length > 0 ? and(...conditions) : undefined
+    const whereCondition =
+      conditions.length > 0 ? and(...conditions) : undefined;
 
-    const postsQuery = db
+    const postsQuery = getDb()
       .select({
         id: postsSchema.id,
         language: postsSchema.language,
@@ -88,19 +106,19 @@ export async function listPostsAction({
       .where(whereCondition)
       .orderBy(desc(postsSchema.isPinned), desc(postsSchema.createdAt))
       .limit(pageSize)
-      .offset(pageIndex * pageSize)
+      .offset(pageIndex * pageSize);
 
-    const countQuery = db
+    const countQuery = getDb()
       .select({ value: count() })
       .from(postsSchema)
-      .where(whereCondition)
+      .where(whereCondition);
 
-    const [postsData, countData] = await Promise.all([postsQuery, countQuery])
+    const [postsData, countData] = await Promise.all([postsQuery, countQuery]);
 
-    const postIds = postsData.map((p) => p.id)
-    let tagsData: any[] = []
+    const postIds = postsData.map((p) => p.id);
+    let tagsData: any[] = [];
     if (postIds.length > 0) {
-      tagsData = await db
+      tagsData = await getDb()
         .select({
           postId: postTagsSchema.postId,
           tagId: tagsSchema.id,
@@ -109,76 +127,79 @@ export async function listPostsAction({
         })
         .from(postTagsSchema)
         .innerJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
-        .where(inArray(postTagsSchema.postId, postIds))
+        .where(inArray(postTagsSchema.postId, postIds));
     }
 
-    const tagsByPostId = tagsData.reduce((acc, row) => {
-      if (!acc[row.postId]) {
-        acc[row.postId] = []
-      }
-      acc[row.postId].push({
-        id: row.tagId,
-        name: row.tagName,
-        createdAt: row.tagCreatedAt,
-      })
-      return acc
-    }, {} as Record<string, any[]>)
+    const tagsByPostId = tagsData.reduce(
+      (acc, row) => {
+        if (!acc[row.postId]) {
+          acc[row.postId] = [];
+        }
+        acc[row.postId].push({
+          id: row.tagId,
+          name: row.tagName,
+          createdAt: row.tagCreatedAt,
+        });
+        return acc;
+      },
+      {} as Record<string, any[]>,
+    );
 
     const postsWithTags: PostWithTags[] = postsData.map((post) => ({
       ...(post as any),
       tags: tagsByPostId[post.id] || [],
-    }))
+    }));
 
     return actionResponse.success({
       posts: postsWithTags,
       count: countData[0].value,
-    })
+    });
   } catch (error) {
-    console.error('List Posts Action Failed:', error)
-    const errorMessage = getErrorMessage(error)
-    if (errorMessage.includes('permission denied')) {
-      return actionResponse.forbidden('Permission denied to list posts.')
+    console.error("List Posts Action Failed:", error);
+    const errorMessage = getErrorMessage(error);
+    if (errorMessage.includes("permission denied")) {
+      return actionResponse.forbidden("Permission denied to list posts.");
     }
-    return actionResponse.error(errorMessage)
+    return actionResponse.error(errorMessage);
   }
 }
 
 interface GetPostByIdParams {
-  postId: string
+  postId: string;
 }
 
 interface GetPostResult {
-  success: boolean
+  success: boolean;
   data?: {
-    post?: PostWithTags
-  }
-  error?: string
+    post?: PostWithTags;
+  };
+  error?: string;
 }
 
 export async function getPostByIdAction({
   postId,
 }: GetPostByIdParams): Promise<GetPostResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   if (!postId || !z.string().uuid().safeParse(postId).success) {
-    return actionResponse.badRequest('Invalid Post ID provided.')
+    return actionResponse.badRequest("Invalid Post ID provided.");
   }
 
   try {
-    const postData = await db
+    const postData = await getDb()
       .select()
       .from(postsSchema)
       .where(eq(postsSchema.id, postId))
-      .limit(1)
+      .limit(1);
 
     if (!postData || postData.length === 0) {
-      return actionResponse.notFound('Post not found.')
+      return actionResponse.notFound("Post not found.");
     }
-    const post = postData[0]
+    const post = postData[0];
 
-    const tagsData = await db
+    const tagsData = await getDb()
       .select({
         id: tagsSchema.id,
         name: tagsSchema.name,
@@ -186,66 +207,66 @@ export async function getPostByIdAction({
       })
       .from(postTagsSchema)
       .innerJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
-      .where(eq(postTagsSchema.postId, postId))
+      .where(eq(postTagsSchema.postId, postId));
 
     const postWithTags: PostWithTags = {
       ...post,
       tags: tagsData || [],
-    }
+    };
 
-    return actionResponse.success({ post: postWithTags })
+    return actionResponse.success({ post: postWithTags });
   } catch (error) {
-    console.error(`Get Post By ID Action Failed for ${postId}:`, error)
-    const errorMessage = getErrorMessage(error)
-    if (errorMessage.includes('permission denied')) {
-      return actionResponse.forbidden('Permission denied to view this post.')
+    console.error(`Get Post By ID Action Failed for ${postId}:`, error);
+    const errorMessage = getErrorMessage(error);
+    if (errorMessage.includes("permission denied")) {
+      return actionResponse.forbidden("Permission denied to view this post.");
     }
-    return actionResponse.error(errorMessage)
+    return actionResponse.error(errorMessage);
   }
 }
 
-type PostActionInput = z.infer<typeof postActionSchema>
+type PostActionInput = z.infer<typeof postActionSchema>;
 
 interface CreatePostParams {
-  data: PostActionInput
-  postType: PostType
+  data: PostActionInput;
+  postType: PostType;
 }
 interface ActionResult {
-  success: boolean
+  success: boolean;
   data?: {
-    postId?: string
-  }
-  error?: string
+    postId?: string;
+  };
+  error?: string;
 }
 
 export async function createPostAction({
   data,
-  postType = 'blog',
+  postType = "blog",
 }: CreatePostParams): Promise<ActionResult> {
-  const validatedFields = postActionSchema.safeParse(data)
+  const validatedFields = postActionSchema.safeParse(data);
   if (!validatedFields.success) {
     console.error(
-      'Validation Error:',
-      validatedFields.error.flatten().fieldErrors
-    )
-    return actionResponse.badRequest('Invalid input data.')
+      "Validation Error:",
+      validatedFields.error.flatten().fieldErrors,
+    );
+    return actionResponse.badRequest("Invalid input data.");
   }
 
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
-  const session = await getSession()
-  const user = session?.user
-  if (!user) return actionResponse.unauthorized()
-  const authorId = user.id
+  const session = await getSession();
+  const user = session?.user;
+  if (!user) return actionResponse.unauthorized();
+  const authorId = user.id;
 
-  const { tags: inputTags, ...postData } = validatedFields.data
+  const { tags: inputTags, ...postData } = validatedFields.data;
   const finalFeaturedImageUrl =
-    postData.featuredImageUrl === '' ? null : postData.featuredImageUrl
+    postData.featuredImageUrl === "" ? null : postData.featuredImageUrl;
 
   try {
-    const newPost = await db
+    const newPost = await getDb()
       .insert(postsSchema)
       .values({
         ...postData,
@@ -256,74 +277,81 @@ export async function createPostAction({
         description: postData.description || null,
         isPinned: postData.isPinned || false,
       })
-      .returning({ id: postsSchema.id })
+      .returning({ id: postsSchema.id });
 
     if (!newPost || newPost.length === 0 || !newPost[0].id) {
-      throw new Error('Failed to create post: No ID returned.')
+      throw new Error("Failed to create post: No ID returned.");
     }
-    const postId = newPost[0].id
+    const postId = newPost[0].id;
 
     if (inputTags && inputTags.length > 0) {
       const tagAssociations = inputTags.map((tag) => ({
         postId: postId,
         tagId: tag.id,
-      }))
-      await db.insert(postTagsSchema).values(tagAssociations)
+      }));
+      await getDb().insert(postTagsSchema).values(tagAssociations);
     }
 
-    if (postData.status === 'published') {
-      revalidatePath(`${postData.language === DEFAULT_LOCALE ? '' : '/' + postData.language}/${postType}`)
-      revalidatePath(`${postData.language === DEFAULT_LOCALE ? '' : '/' + postData.language}/${postType}/${postData.slug}`)
+    if (postData.status === "published") {
+      revalidatePath(
+        `${postData.language === DEFAULT_LOCALE ? "" : "/" + postData.language}/${postType}`,
+      );
+      revalidatePath(
+        `${postData.language === DEFAULT_LOCALE ? "" : "/" + postData.language}/${postType}/${postData.slug}`,
+      );
     }
 
-    return actionResponse.success({ postId: postId })
+    return actionResponse.success({ postId: postId });
   } catch (error) {
-    console.error('Create Post Action Failed:', error)
-    const errorMessage = getErrorMessage(error)
-    if ((error as any)?.cause?.code === '23505') {
+    console.error("Create Post Action Failed:", error);
+    const errorMessage = getErrorMessage(error);
+    if ((error as any)?.cause?.code === "23505") {
       return actionResponse.conflict(
-        `Slug '${validatedFields.data.slug}' already exists.`
-      )
+        `Slug '${validatedFields.data.slug}' already exists.`,
+      );
     }
-    return actionResponse.error(errorMessage)
+    return actionResponse.error(errorMessage);
   }
 }
 
 interface UpdatePostParams {
-  data: PostActionInput
+  data: PostActionInput;
 }
 
 export async function updatePostAction({
   data,
 }: UpdatePostParams): Promise<ActionResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   const validatedFields = postActionSchema
     .extend({
-      id: z.string().uuid({ message: 'Valid Post ID is required for update.' }),
+      id: z.string().uuid({ message: "Valid Post ID is required for update." }),
     })
-    .safeParse(data)
+    .safeParse(data);
 
   if (!validatedFields.success) {
     console.error(
-      'Validation Error:',
-      validatedFields.error.flatten().fieldErrors
-    )
-    return actionResponse.badRequest('Invalid input data for update.')
+      "Validation Error:",
+      validatedFields.error.flatten().fieldErrors,
+    );
+    return actionResponse.badRequest("Invalid input data for update.");
   }
 
-  const { id: postId, tags: inputTags, ...postUpdateData } =
-    validatedFields.data
+  const {
+    id: postId,
+    tags: inputTags,
+    ...postUpdateData
+  } = validatedFields.data;
 
   const finalFeaturedImageUrl =
-    postUpdateData.featuredImageUrl === ''
+    postUpdateData.featuredImageUrl === ""
       ? null
-      : postUpdateData.featuredImageUrl
+      : postUpdateData.featuredImageUrl;
 
   try {
-    const currentPostData = await db
+    const currentPostData = await getDb()
       .select({
         slug: postsSchema.slug,
         language: postsSchema.language,
@@ -332,17 +360,17 @@ export async function updatePostAction({
       })
       .from(postsSchema)
       .where(eq(postsSchema.id, postId))
-      .limit(1)
+      .limit(1);
 
     if (!currentPostData || currentPostData.length === 0) {
-      return actionResponse.notFound(`Post with ID ${postId} not found.`)
+      return actionResponse.notFound(`Post with ID ${postId} not found.`);
     }
-    const currentPost = currentPostData[0]
+    const currentPost = currentPostData[0];
 
     // Use provided postType or keep existing one
-    const finalPostType = currentPost.postType
+    const finalPostType = currentPost.postType;
 
-    await db
+    await getDb()
       .update(postsSchema)
       .set({
         ...postUpdateData,
@@ -352,57 +380,63 @@ export async function updatePostAction({
         description: postUpdateData.description || null,
         isPinned: postUpdateData.isPinned || false,
       })
-      .where(eq(postsSchema.id, postId))
+      .where(eq(postsSchema.id, postId));
 
-    await db.delete(postTagsSchema).where(eq(postTagsSchema.postId, postId))
+    await getDb()
+      .delete(postTagsSchema)
+      .where(eq(postTagsSchema.postId, postId));
 
     if (inputTags && inputTags.length > 0) {
       const newTagAssociations = inputTags.map((tag) => ({
         postId: postId,
         tagId: tag.id,
-      }))
-      await db.insert(postTagsSchema).values(newTagAssociations)
+      }));
+      await getDb().insert(postTagsSchema).values(newTagAssociations);
     }
 
-    revalidatePath(`${currentPost.language === DEFAULT_LOCALE ? '' : '/' + currentPost.language}/${finalPostType}`)
-    revalidatePath(`${currentPost.language === DEFAULT_LOCALE ? '' : '/' + currentPost.language}/${finalPostType}/${currentPost.slug}`)
+    revalidatePath(
+      `${currentPost.language === DEFAULT_LOCALE ? "" : "/" + currentPost.language}/${finalPostType}`,
+    );
+    revalidatePath(
+      `${currentPost.language === DEFAULT_LOCALE ? "" : "/" + currentPost.language}/${finalPostType}/${currentPost.slug}`,
+    );
 
-    if (postUpdateData.status === 'published') {
+    if (postUpdateData.status === "published") {
       revalidatePath(
-        `${postUpdateData.language === DEFAULT_LOCALE ? '' : '/' + postUpdateData.language}/${finalPostType}/${postUpdateData.slug}`
-      )
+        `${postUpdateData.language === DEFAULT_LOCALE ? "" : "/" + postUpdateData.language}/${finalPostType}/${postUpdateData.slug}`,
+      );
     }
 
-    return actionResponse.success({ postId: postId })
+    return actionResponse.success({ postId: postId });
   } catch (error) {
-    console.error('Update Post Action Failed:', error)
-    const errorMessage = getErrorMessage(error)
-    if ((error as any)?.cause?.code === '23505') {
+    console.error("Update Post Action Failed:", error);
+    const errorMessage = getErrorMessage(error);
+    if ((error as any)?.cause?.code === "23505") {
       return actionResponse.conflict(
-        `Slug '${validatedFields.data.slug}' already exists for language '${validatedFields.data.language}'.`
-      )
+        `Slug '${validatedFields.data.slug}' already exists for language '${validatedFields.data.language}'.`,
+      );
     }
-    return actionResponse.error(errorMessage)
+    return actionResponse.error(errorMessage);
   }
 }
 
 interface DeletePostParams {
-  postId: string
+  postId: string;
 }
 
 export async function deletePostAction({
   postId,
 }: DeletePostParams): Promise<ActionResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   if (!postId || !z.string().uuid().safeParse(postId).success) {
-    return actionResponse.badRequest('Invalid Post ID provided.')
+    return actionResponse.badRequest("Invalid Post ID provided.");
   }
 
   try {
-    const postDetailsData = await db
+    const postDetailsData = await getDb()
       .select({
         slug: postsSchema.slug,
         language: postsSchema.language,
@@ -410,28 +444,32 @@ export async function deletePostAction({
       })
       .from(postsSchema)
       .where(eq(postsSchema.id, postId))
-      .limit(1)
+      .limit(1);
 
     if (!postDetailsData || postDetailsData.length === 0) {
-      return actionResponse.notFound('Failed to fetch post information.')
+      return actionResponse.notFound("Failed to fetch post information.");
     }
-    const postDetails = postDetailsData[0]
+    const postDetails = postDetailsData[0];
 
-    await db.delete(postsSchema).where(eq(postsSchema.id, postId))
+    await getDb().delete(postsSchema).where(eq(postsSchema.id, postId));
 
     if (postDetails?.slug && postDetails?.language) {
-      revalidatePath(`${postDetails?.language === DEFAULT_LOCALE ? '' : '/' + postDetails?.language}/${postDetails.postType}`)
-      revalidatePath(`${postDetails?.language === DEFAULT_LOCALE ? '' : '/' + postDetails?.language}/${postDetails.postType}/${postDetails.slug}`)
+      revalidatePath(
+        `${postDetails?.language === DEFAULT_LOCALE ? "" : "/" + postDetails?.language}/${postDetails.postType}`,
+      );
+      revalidatePath(
+        `${postDetails?.language === DEFAULT_LOCALE ? "" : "/" + postDetails?.language}/${postDetails.postType}/${postDetails.slug}`,
+      );
     }
 
-    return actionResponse.success({ postId: postId })
+    return actionResponse.success({ postId: postId });
   } catch (error) {
-    console.error(`Delete Post Action Failed for ${postId}:`, error)
-    const errorMessage = getErrorMessage(error)
-    if (errorMessage.includes('permission denied')) {
-      return actionResponse.forbidden('Permission denied to delete this post.')
+    console.error(`Delete Post Action Failed for ${postId}:`, error);
+    const errorMessage = getErrorMessage(error);
+    if (errorMessage.includes("permission denied")) {
+      return actionResponse.forbidden("Permission denied to delete this post.");
     }
-    return actionResponse.error(errorMessage)
+    return actionResponse.error(errorMessage);
   }
 }
 
@@ -439,166 +477,178 @@ export async function deletePostAction({
  * User-side functionality
  */
 interface ListPublishedPostsParams {
-  pageIndex?: number
-  pageSize?: number
-  tagId?: string | null
-  visibility?: 'public' | 'logged_in' | 'subscribers' | null
-  postType: PostType
-  locale: string
+  pageIndex?: number;
+  pageSize?: number;
+  tagId?: string | null;
+  visibility?: "public" | "logged_in" | "subscribers" | null;
+  postType: PostType;
+  locale: string;
 }
 
 interface ListPublishedPostsResult {
-  success: boolean
+  success: boolean;
   data?: {
-    posts?: PublicPost[]
-    count?: number
-  }
-  error?: string
+    posts?: PublicPost[];
+    count?: number;
+  };
+  error?: string;
 }
 
 export async function listPublishedPostsAction({
   pageIndex = 0,
   pageSize = 60,
   tagId = null,
-  postType = 'blog',
+  postType = "blog",
   visibility,
   locale = DEFAULT_LOCALE,
 }: ListPublishedPostsParams): Promise<ListPublishedPostsResult> {
+  if (!isDatabaseConfigured()) {
+    return actionResponse.success({ posts: [], count: 0 });
+  }
+
   try {
-    const conditions = [eq(postsSchema.status, 'published')]
+    const conditions = [eq(postsSchema.status, "published")];
     if (visibility) {
-      conditions.push(eq(postsSchema.visibility, visibility))
+      conditions.push(eq(postsSchema.visibility, visibility));
     }
-    conditions.push(eq(postsSchema.postType, postType))
+    conditions.push(eq(postsSchema.postType, postType));
     if (locale) {
-      conditions.push(eq(postsSchema.language, locale))
+      conditions.push(eq(postsSchema.language, locale));
     }
 
-    const postsSubquery = db
-      .$with('posts_with_tags')
+    const postsSubquery = getDb()
+      .$with("posts_with_tags")
       .as(
-        db
+        getDb()
           .select({
             ...getTableColumns(postsSchema),
-            tag_ids: sql<string[]>`array_agg(${postTagsSchema.tagId})`.as('tag_ids'),
-            tag_names: sql<string[]>`array_agg(${tagsSchema.name})`.as('tag_names'),
+            tag_ids: sql<string[]>`array_agg(${postTagsSchema.tagId})`.as(
+              "tag_ids",
+            ),
+            tag_names: sql<string[]>`array_agg(${tagsSchema.name})`.as(
+              "tag_names",
+            ),
           })
           .from(postsSchema)
-          .leftJoin(
-            postTagsSchema,
-            eq(postsSchema.id, postTagsSchema.postId)
-          )
+          .leftJoin(postTagsSchema, eq(postsSchema.id, postTagsSchema.postId))
           .leftJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
           .where(and(...conditions))
-          .groupBy(postsSchema.id)
-      )
+          .groupBy(postsSchema.id),
+      );
 
-    let query = db.with(postsSubquery).select().from(postsSubquery)
-    let countQuery = db.with(postsSubquery).select({ value: count() }).from(postsSubquery)
+    let query = getDb().with(postsSubquery).select().from(postsSubquery);
+    let countQuery = getDb()
+      .with(postsSubquery)
+      .select({ value: count() })
+      .from(postsSubquery);
 
     if (tagId) {
-      query.where(sql`${tagId} = ANY(tag_ids)`)
-      countQuery.where(sql`${tagId} = ANY(tag_ids)`)
+      query.where(sql`${tagId} = ANY(tag_ids)`);
+      countQuery.where(sql`${tagId} = ANY(tag_ids)`);
     }
 
     const paginatedQuery = query
       .orderBy(
         desc(postsSubquery.isPinned),
         desc(postsSubquery.publishedAt),
-        desc(postsSubquery.createdAt)
+        desc(postsSubquery.createdAt),
       )
       .limit(pageSize)
-      .offset(pageIndex * pageSize)
+      .offset(pageIndex * pageSize);
 
-    const [data, countResult] = await Promise.all([paginatedQuery, countQuery])
+    const [data, countResult] = await Promise.all([paginatedQuery, countQuery]);
 
     const postsWithProcessedTags = (data || []).map((post) => {
-      const tagNames = post.tag_names?.filter(Boolean).join(', ') || null
-      const { tag_ids, tag_names, ...restOfPost } = post
+      const tagNames = post.tag_names?.filter(Boolean).join(", ") || null;
+      const { tag_ids, tag_names, ...restOfPost } = post;
       return {
         ...restOfPost,
         tags: tagNames,
-      }
-    })
+      };
+    });
 
     return actionResponse.success({
       posts: postsWithProcessedTags as unknown as PublicPost[],
       count: countResult[0].value,
-    })
+    });
   } catch (error) {
-    console.error('List Published Posts Action Failed:', error)
-    const errorMessage = getErrorMessage(error)
-    return actionResponse.error(errorMessage)
+    console.error("List Published Posts Action Failed:", error);
+    const errorMessage = getErrorMessage(error);
+    return actionResponse.error(errorMessage);
   }
 }
 
 interface GetPublishedPostBySlugParams {
-  slug: string
-  postType: PostType
-  locale?: string
+  slug: string;
+  postType: PostType;
+  locale?: string;
 }
 
 interface GetPublishedPostBySlugResult {
-  success: boolean
+  success: boolean;
   data?: {
-    post?: PublicPostWithContent
-  }
-  error?: string
-  customCode?: string
+    post?: PublicPostWithContent;
+  };
+  error?: string;
+  customCode?: string;
 }
 
 export async function getPublishedPostBySlugAction({
   slug,
-  postType = 'blog',
-  locale = 'en',
+  postType = "blog",
+  locale = "en",
 }: GetPublishedPostBySlugParams): Promise<GetPublishedPostBySlugResult> {
   if (!slug) {
-    return actionResponse.badRequest('Slug is required.')
+    return actionResponse.badRequest("Slug is required.");
+  }
+
+  if (!isDatabaseConfigured()) {
+    return actionResponse.notFound("Post not found.");
   }
 
   try {
     const conditions = [
       eq(postsSchema.slug, slug),
       eq(postsSchema.language, locale),
-      eq(postsSchema.status, 'published'),
-      eq(postsSchema.postType, postType)
-    ]
+      eq(postsSchema.status, "published"),
+      eq(postsSchema.postType, postType),
+    ];
 
-    const postData = await db
+    const postData = await getDb()
       .select()
       .from(postsSchema)
       .where(and(...conditions))
-      .limit(1)
+      .limit(1);
 
     if (!postData || postData.length === 0) {
-      return actionResponse.notFound('Post not found.')
+      return actionResponse.notFound("Post not found.");
     }
-    const post = postData[0]
+    const post = postData[0];
 
-    const tagsData = await db
+    const tagsData = await getDb()
       .select({ name: tagsSchema.name })
       .from(postTagsSchema)
       .innerJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
-      .where(eq(postTagsSchema.postId, post.id))
+      .where(eq(postTagsSchema.postId, post.id));
 
-    const tagNames = tagsData.map((t) => t.name).join(', ') || null
+    const tagNames = tagsData.map((t) => t.name).join(", ") || null;
 
-    let finalContent = post.content ?? ''
-    let restrictionCustomCode: string | undefined = undefined
+    let finalContent = post.content ?? "";
+    let restrictionCustomCode: string | undefined = undefined;
 
-    if (post.visibility === 'logged_in' || post.visibility === 'subscribers') {
-      const session = await getSession()
-      const user = session?.user
+    if (post.visibility === "logged_in" || post.visibility === "subscribers") {
+      const session = await getSession();
+      const user = session?.user;
       if (!user) {
-        finalContent = ''
-        restrictionCustomCode = 'unauthorized'
+        finalContent = "";
+        restrictionCustomCode = "unauthorized";
       } else {
-        if (post.visibility === 'subscribers') {
-          // --- TODO: [custom] check user subscription or custom logic --- 
-          const isSubscriber = await checkUserSubscription(user.id)
+        if (post.visibility === "subscribers") {
+          // --- TODO: [custom] check user subscription or custom logic ---
+          const isSubscriber = await checkUserSubscription(user.id);
           if (!isSubscriber) {
-            finalContent = ''
-            restrictionCustomCode = 'notSubscriber'
+            finalContent = "";
+            restrictionCustomCode = "notSubscriber";
           }
           // --- End: [custom] check user subscription or custom logic
         }
@@ -609,32 +659,35 @@ export async function getPublishedPostBySlugAction({
       ...post,
       content: finalContent,
       tags: tagNames,
-    }
+    };
 
     if (restrictionCustomCode) {
-      return actionResponse.success({ post: postResultData }, restrictionCustomCode)
+      return actionResponse.success(
+        { post: postResultData },
+        restrictionCustomCode,
+      );
     }
 
-    return actionResponse.success({ post: postResultData })
+    return actionResponse.success({ post: postResultData });
   } catch (error) {
     console.error(
       `Get Published Post By Slug Action Failed for slug ${slug}, locale ${locale}:`,
-      error
-    )
-    const errorMessage = getErrorMessage(error)
-    return actionResponse.error(errorMessage)
+      error,
+    );
+    const errorMessage = getErrorMessage(error);
+    return actionResponse.error(errorMessage);
   }
 }
 
 // --- TODO: [custom] check user subscription or custom logic ---
 async function checkUserSubscription(userId: string): Promise<boolean> {
   if (!userId) {
-    console.warn('checkUserSubscription called with no userId')
-    return false
+    console.warn("checkUserSubscription called with no userId");
+    return false;
   }
 
   try {
-    const data = await db
+    const data = await getDb()
       .select({
         status: subscriptionsSchema.status,
         currentPeriodEnd: subscriptionsSchema.currentPeriodEnd,
@@ -642,43 +695,45 @@ async function checkUserSubscription(userId: string): Promise<boolean> {
       .from(subscriptionsSchema)
       .where(eq(subscriptionsSchema.userId, userId))
       .orderBy(desc(subscriptionsSchema.createdAt))
-      .limit(1)
+      .limit(1);
 
     if (!data || data.length === 0) {
-      return false
+      return false;
     }
-    const latestSubscription = data[0]
+    const latestSubscription = data[0];
 
     const isActive =
-      latestSubscription.status === 'active' ||
-      latestSubscription.status === 'trialing'
+      latestSubscription.status === "active" ||
+      latestSubscription.status === "trialing";
     const isWithinPeriod =
       latestSubscription.currentPeriodEnd &&
-      new Date(latestSubscription.currentPeriodEnd) > new Date()
+      new Date(latestSubscription.currentPeriodEnd) > new Date();
 
-    return !!(isActive && isWithinPeriod)
-
+    return !!(isActive && isWithinPeriod);
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : String(err);
-    console.error(`Exception in checkUserSubscription for user ${userId}:`, errorMessage);
+    console.error(
+      `Exception in checkUserSubscription for user ${userId}:`,
+      errorMessage,
+    );
     return false;
   }
 }
 // --- End: [custom] check user subscription or custom logic
 
 interface GetRelatedPostsParams {
-  postId: string
-  postType: PostType
-  locale: string
-  limit?: number
+  postId: string;
+  postType: PostType;
+  locale: string;
+  limit?: number;
 }
 
 interface GetRelatedPostsResult {
-  success: boolean
+  success: boolean;
   data?: {
-    posts?: PublicPost[]
-  }
-  error?: string
+    posts?: PublicPost[];
+  };
+  error?: string;
 }
 
 /**
@@ -686,44 +741,48 @@ interface GetRelatedPostsResult {
  * No authentication required - only fetches public metadata
  */
 interface GetPostMetadataParams {
-  slug: string
-  postType: PostType
-  locale?: string
+  slug: string;
+  postType: PostType;
+  locale?: string;
 }
 
 interface PostMetadata {
-  title: string
-  description: string | null
-  featuredImageUrl: string | null
-  visibility: string
+  title: string;
+  description: string | null;
+  featuredImageUrl: string | null;
+  visibility: string;
 }
 
 interface GetPostMetadataResult {
-  success: boolean
+  success: boolean;
   data?: {
-    metadata?: PostMetadata
-  }
-  error?: string
+    metadata?: PostMetadata;
+  };
+  error?: string;
 }
 
 export async function getPostMetadataAction({
   slug,
   postType,
-  locale = 'en',
+  locale = "en",
 }: GetPostMetadataParams): Promise<GetPostMetadataResult> {
   if (!slug) {
-    return actionResponse.badRequest('Slug is required.')
+    return actionResponse.badRequest("Slug is required.");
+  }
+
+  if (!isDatabaseConfigured()) {
+    return actionResponse.notFound("Post not found.");
   }
 
   try {
     const conditions = [
       eq(postsSchema.slug, slug),
       eq(postsSchema.language, locale),
-      eq(postsSchema.status, 'published'),
-      eq(postsSchema.postType, postType)
-    ]
+      eq(postsSchema.status, "published"),
+      eq(postsSchema.postType, postType),
+    ];
 
-    const postData = await db
+    const postData = await getDb()
       .select({
         title: postsSchema.title,
         description: postsSchema.description,
@@ -732,10 +791,10 @@ export async function getPostMetadataAction({
       })
       .from(postsSchema)
       .where(and(...conditions))
-      .limit(1)
+      .limit(1);
 
     if (!postData || postData.length === 0) {
-      return actionResponse.notFound('Post not found.')
+      return actionResponse.notFound("Post not found.");
     }
 
     return actionResponse.success({
@@ -744,15 +803,15 @@ export async function getPostMetadataAction({
         description: postData[0].description,
         featuredImageUrl: postData[0].featuredImageUrl,
         visibility: postData[0].visibility,
-      }
-    })
+      },
+    });
   } catch (error) {
     console.error(
       `Get Post Metadata Action Failed for slug ${slug}, locale ${locale}:`,
-      error
-    )
-    const errorMessage = getErrorMessage(error)
-    return actionResponse.error(errorMessage)
+      error,
+    );
+    const errorMessage = getErrorMessage(error);
+    return actionResponse.error(errorMessage);
   }
 }
 
@@ -764,86 +823,87 @@ export async function getRelatedPostsAction({
 }: GetRelatedPostsParams): Promise<GetRelatedPostsResult> {
   try {
     // Get tags for the current post
-    const postTagsData = await db
+    const postTagsData = await getDb()
       .select({ tagId: postTagsSchema.tagId })
       .from(postTagsSchema)
       .where(eq(postTagsSchema.postId, postId))
-      .limit(1)
+      .limit(1);
 
     if (!postTagsData || postTagsData.length === 0) {
       // No tags, return empty array
-      return actionResponse.success({ posts: [] })
+      return actionResponse.success({ posts: [] });
     }
 
-    const tagId = postTagsData[0].tagId
+    const tagId = postTagsData[0].tagId;
 
     // Find other posts with the same tag
-    const relatedPostIds = await db
+    const relatedPostIds = await getDb()
       .select({ postId: postTagsSchema.postId })
       .from(postTagsSchema)
-      .where(eq(postTagsSchema.tagId, tagId))
+      .where(eq(postTagsSchema.tagId, tagId));
 
     const postIdsArray = relatedPostIds
       .map((r) => r.postId)
-      .filter((id) => id !== postId) // Exclude current post
+      .filter((id) => id !== postId); // Exclude current post
 
     if (postIdsArray.length === 0) {
-      return actionResponse.success({ posts: [] })
+      return actionResponse.success({ posts: [] });
     }
 
     // Get the related posts with tag names
-    const postsSubquery = db
-      .$with('posts_with_tags')
+    const postsSubquery = getDb()
+      .$with("posts_with_tags")
       .as(
-        db
+        getDb()
           .select({
             ...getTableColumns(postsSchema),
-            tag_ids: sql<string[]>`array_agg(${postTagsSchema.tagId})`.as('tag_ids'),
-            tag_names: sql<string[]>`array_agg(${tagsSchema.name})`.as('tag_names'),
+            tag_ids: sql<string[]>`array_agg(${postTagsSchema.tagId})`.as(
+              "tag_ids",
+            ),
+            tag_names: sql<string[]>`array_agg(${tagsSchema.name})`.as(
+              "tag_names",
+            ),
           })
           .from(postsSchema)
-          .leftJoin(
-            postTagsSchema,
-            eq(postsSchema.id, postTagsSchema.postId)
-          )
+          .leftJoin(postTagsSchema, eq(postsSchema.id, postTagsSchema.postId))
           .leftJoin(tagsSchema, eq(postTagsSchema.tagId, tagsSchema.id))
           .where(
             and(
               inArray(postsSchema.id, postIdsArray),
-              eq(postsSchema.status, 'published'),
+              eq(postsSchema.status, "published"),
               eq(postsSchema.postType, postType),
               eq(postsSchema.language, locale),
-            )
+            ),
           )
-          .groupBy(postsSchema.id)
-      )
+          .groupBy(postsSchema.id),
+      );
 
-    const data = await db
+    const data = await getDb()
       .with(postsSubquery)
       .select()
       .from(postsSubquery)
       .orderBy(
         desc(postsSubquery.isPinned),
         desc(postsSubquery.publishedAt),
-        desc(postsSubquery.createdAt)
+        desc(postsSubquery.createdAt),
       )
-      .limit(limit)
+      .limit(limit);
 
     const postsWithProcessedTags = (data || []).map((post) => {
-      const tagNames = post.tag_names?.filter(Boolean).join(', ') || null
-      const { tag_ids, tag_names, content, ...restOfPost } = post
+      const tagNames = post.tag_names?.filter(Boolean).join(", ") || null;
+      const { tag_ids, tag_names, content, ...restOfPost } = post;
       return {
         ...restOfPost,
         tags: tagNames,
-      }
-    })
+      };
+    });
 
     return actionResponse.success({
       posts: postsWithProcessedTags as unknown as PublicPost[],
-    })
+    });
   } catch (error) {
-    console.error('Get Related Posts Action Failed:', error)
-    const errorMessage = getErrorMessage(error)
-    return actionResponse.error(errorMessage)
+    console.error("Get Related Posts Action Failed:", error);
+    const errorMessage = getErrorMessage(error);
+    return actionResponse.error(errorMessage);
   }
 }

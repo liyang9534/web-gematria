@@ -2,12 +2,15 @@
  * Helper functions for database queries, validation, and response building
  */
 
-import { apiResponse } from '@/lib/api-response';
-import { db } from '@/lib/db';
-import { orders as ordersSchema, subscriptions as subscriptionsSchema } from '@/lib/db/schema';
-import { and, eq } from 'drizzle-orm';
-import { NextResponse } from 'next/server';
-import type { OrderData, Provider, SubscriptionData } from './types';
+import { apiResponse } from "@/lib/api-response";
+import { getDb } from "@/lib/db";
+import {
+  orders as ordersSchema,
+  subscriptions as subscriptionsSchema,
+} from "@/lib/db/schema";
+import { and, eq } from "drizzle-orm";
+import { NextResponse } from "next/server";
+import type { OrderData, Provider, SubscriptionData } from "./types";
 
 // ============================================================================
 // Database Queries
@@ -18,9 +21,9 @@ import type { OrderData, Provider, SubscriptionData } from './types';
  */
 export async function getSubscriptionByIdAndUser(
   subscriptionId: string,
-  userId: string
+  userId: string,
 ): Promise<SubscriptionData | null> {
-  const [subscription] = await db
+  const [subscription] = await getDb()
     .select({
       id: subscriptionsSchema.id,
       planId: subscriptionsSchema.planId,
@@ -31,8 +34,8 @@ export async function getSubscriptionByIdAndUser(
     .where(
       and(
         eq(subscriptionsSchema.subscriptionId, subscriptionId),
-        eq(subscriptionsSchema.userId, userId)
-      )
+        eq(subscriptionsSchema.userId, userId),
+      ),
     )
     .limit(1);
 
@@ -45,9 +48,9 @@ export async function getSubscriptionByIdAndUser(
 export async function getOrderByProviderAndUser(
   provider: Provider,
   providerOrderId: string,
-  userId: string
+  userId: string,
 ): Promise<OrderData | null> {
-  const [order] = await db
+  const [order] = await getDb()
     .select({
       id: ordersSchema.id,
       metadata: ordersSchema.metadata,
@@ -59,8 +62,8 @@ export async function getOrderByProviderAndUser(
         eq(ordersSchema.provider, provider),
         eq(ordersSchema.providerOrderId, providerOrderId),
         eq(ordersSchema.userId, userId),
-        eq(ordersSchema.orderType, 'one_time_purchase')
-      )
+        eq(ordersSchema.orderType, "one_time_purchase"),
+      ),
     )
     .limit(1);
 
@@ -78,14 +81,14 @@ export function validateUserIdMatch(
   metadataUserId: string | undefined,
   authenticatedUserId: string,
   sessionId: string,
-  provider: Provider
+  provider: Provider,
 ): NextResponse | null {
   if (metadataUserId && metadataUserId !== authenticatedUserId) {
     console.warn(
       `[Verify API] User ID mismatch for ${provider} session ${sessionId}. ` +
-      `Auth User: ${authenticatedUserId}, Meta User: ${metadataUserId}`
+        `Auth User: ${authenticatedUserId}, Meta User: ${metadataUserId}`,
     );
-    return apiResponse.forbidden('User ID mismatch.');
+    return apiResponse.forbidden("User ID mismatch.");
   }
   return null;
 }
@@ -97,28 +100,30 @@ export function validateUserIdMatch(
 /**
  * Builds a response based on subscription status
  */
-export function buildSubscriptionResponse(subscription: SubscriptionData): NextResponse {
+export function buildSubscriptionResponse(
+  subscription: SubscriptionData,
+): NextResponse {
   const metadata = subscription.metadata as any;
 
-  if (subscription.status === 'active' || subscription.status === 'trialing') {
+  if (subscription.status === "active" || subscription.status === "trialing") {
     return apiResponse.success({
       subscriptionId: subscription.id,
       planName: metadata?.planName,
       planId: subscription.planId,
       status: subscription.status,
-      message: 'Subscription verified and active.',
+      message: "Subscription verified and active.",
     });
   }
 
-  if (subscription.status === 'canceled') {
+  if (subscription.status === "canceled") {
     return apiResponse.serverError(
-      'Subscription was canceled. Maybe your charge was refunded. Please contact support.'
+      "Subscription was canceled. Maybe your charge was refunded. Please contact support.",
     );
   }
 
   return apiResponse.success({
     message:
-      'Subscription found but not active yet. Please allow a few moments and refresh, or contact support if the problem persists.',
+      "Subscription found but not active yet. Please allow a few moments and refresh, or contact support if the problem persists.",
   });
 }
 
@@ -128,24 +133,23 @@ export function buildSubscriptionResponse(subscription: SubscriptionData): NextR
 export function buildOrderResponse(order: OrderData): NextResponse {
   const metadata = order.metadata as any;
 
-  if (order.status === 'succeeded') {
+  if (order.status === "succeeded") {
     return apiResponse.success({
       orderId: order.id,
       planName: metadata?.planName,
       planId: metadata?.planId,
-      message: 'Payment verified and order confirmed.',
+      message: "Payment verified and order confirmed.",
     });
   }
 
-  if (order.status === 'refunded') {
+  if (order.status === "refunded") {
     return apiResponse.serverError(
-      'Payment was refunded. Maybe your charge was refunded. Please contact support.'
+      "Payment was refunded. Maybe your charge was refunded. Please contact support.",
     );
   }
 
   return apiResponse.success({
     message:
-      'Payment recorded but not finalized yet. Please refresh in a moment, or contact support if the problem persists.',
+      "Payment recorded but not finalized yet. Please refresh in a moment, or contact support if the problem persists.",
   });
 }
-

@@ -1,4 +1,5 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
 
@@ -74,7 +75,11 @@ const sentryConfig = {
   disableLogger: true,
 };
 
+if (process.env.NODE_ENV === "development") {
+  initOpenNextCloudflareForDev();
+}
+
 export default withSentryConfig(
   withBundleAnalyzerWrapper(withNextIntl(nextConfig)),
-  sentryConfig
+  sentryConfig,
 );

@@ -1,13 +1,11 @@
-'use server';
-import {
-  retrieveCreemSubscription
-} from '@/lib/creem/client';
-import { db } from '@/lib/db';
+"use server";
+import { retrieveCreemSubscription } from "@/lib/creem/client";
+import { getDb } from "@/lib/db";
 import {
   pricingPlans as pricingPlansSchema,
-  subscriptions as subscriptionsSchema
-} from '@/lib/db/schema';
-import { eq, InferInsertModel } from 'drizzle-orm';
+  subscriptions as subscriptionsSchema,
+} from "@/lib/db/schema";
+import { eq, InferInsertModel } from "drizzle-orm";
 
 function toDate(value?: string | null) {
   if (!value) {
@@ -19,9 +17,8 @@ function toDate(value?: string | null) {
 
 export async function syncCreemSubscriptionData(
   subscriptionId: string,
-  initialMetadata?: Record<string, any>
+  initialMetadata?: Record<string, any>,
 ): Promise<void> {
-
   const subscription = await retrieveCreemSubscription(subscriptionId);
 
   const metadata = {
@@ -35,19 +32,22 @@ export async function syncCreemSubscriptionData(
 
   if (!userId) {
     try {
-      const storeSubscription = await db
+      const storeSubscription = await getDb()
         .select({ userId: subscriptionsSchema.userId })
         .from(subscriptionsSchema)
         .where(eq(subscriptionsSchema.subscriptionId, subscriptionId))
         .limit(1);
       userId = storeSubscription[0]?.userId;
     } catch (err) {
-      console.error(`Error retrieving user for subscription ${subscription.id}:`, err);
+      console.error(
+        `Error retrieving user for subscription ${subscription.id}:`,
+        err,
+      );
     }
   }
 
   if (!planId) {
-    const [planRow] = await db
+    const [planRow] = await getDb()
       .select({ id: pricingPlansSchema.id })
       .from(pricingPlansSchema)
       .where(eq(pricingPlansSchema.creemProductId, productId))
@@ -60,17 +60,20 @@ export async function syncCreemSubscriptionData(
   const subscriptionData: InferInsertModel<typeof subscriptionsSchema> = {
     userId,
     planId: planId ?? null,
-    provider: 'creem',
+    provider: "creem",
     subscriptionId: subscription.id,
     customerId: subscription.customer.id,
-    priceId: subscription.items?.[0]?.price_id ?? '',
+    priceId: subscription.items?.[0]?.price_id ?? "",
     productId: productId,
     status: subscription.status,
     currentPeriodStart: toDate(subscription.current_period_start_date),
     currentPeriodEnd: toDate(subscription.current_period_end_date),
-    cancelAtPeriodEnd: subscription.status === 'scheduled_cancel',
+    cancelAtPeriodEnd: subscription.status === "scheduled_cancel",
     canceledAt: toDate(subscription.canceled_at),
-    endedAt: subscription.status === 'canceled' ? toDate(subscription.current_period_end_date) : null,
+    endedAt:
+      subscription.status === "canceled"
+        ? toDate(subscription.current_period_end_date)
+        : null,
     trialStart: null,
     trialEnd: null,
     metadata: {
@@ -83,7 +86,7 @@ export async function syncCreemSubscriptionData(
 
   const { ...updateData } = subscriptionData;
 
-  await db
+  await getDb()
     .insert(subscriptionsSchema)
     .values(subscriptionData)
     .onConflictDoUpdate({
@@ -91,4 +94,3 @@ export async function syncCreemSubscriptionData(
       set: updateData,
     });
 }
-

@@ -1,12 +1,16 @@
 "use server";
 
-import type { ActionResult } from '@/lib/action-response';
-import { actionResponse } from '@/lib/action-response';
-import { isAdmin } from '@/lib/auth/server';
-import { db } from '@/lib/db';
-import { session as sessionSchema, user as userSchema, userSource as userSourceSchema } from '@/lib/db/schema';
-import { getErrorMessage } from '@/lib/error-utils';
-import { count, desc, eq, ilike, or } from 'drizzle-orm';
+import type { ActionResult } from "@/lib/action-response";
+import { actionResponse } from "@/lib/action-response";
+import { isAdmin } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
+import {
+  session as sessionSchema,
+  user as userSchema,
+  userSource as userSourceSchema,
+} from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import { count, desc, eq, ilike, or } from "drizzle-orm";
 
 type UserType = typeof userSchema.$inferSelect;
 
@@ -49,7 +53,7 @@ export async function getUsers({
   filter?: string;
 }): Promise<GetUsersResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.');
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   try {
@@ -58,13 +62,13 @@ export async function getUsers({
       conditions.push(
         or(
           ilike(userSchema.email, `%${filter}%`),
-          ilike(userSchema.name, `%${filter}%`)
-        )
+          ilike(userSchema.name, `%${filter}%`),
+        ),
       );
     }
 
     // Query users with left join to userSource for source tracking fields
-    const usersQuery = db
+    const usersQuery = getDb()
       .select({
         // User fields
         id: userSchema.id,
@@ -104,7 +108,7 @@ export async function getUsers({
       .offset(pageIndex * pageSize)
       .limit(pageSize);
 
-    const totalCountQuery = db
+    const totalCountQuery = getDb()
       .select({ value: count() })
       .from(userSchema)
       .where(conditions.length > 0 ? or(...conditions) : undefined);
@@ -117,11 +121,11 @@ export async function getUsers({
     const totalCount = totalCountResult[0].value;
 
     return actionResponse.success({
-      users: results as UserWithSource[] || [],
+      users: (results as UserWithSource[]) || [],
       totalCount: totalCount,
     });
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error("Error fetching users:", error);
     return actionResponse.error(getErrorMessage(error));
   }
 }
@@ -134,31 +138,35 @@ export async function banUser({
   reason?: string;
 }): Promise<ActionResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.');
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   try {
-    const target = await db
+    const target = await getDb()
       .select({ id: userSchema.id, role: userSchema.role })
       .from(userSchema)
       .where(eq(userSchema.id, userId))
       .limit(1);
 
     if (target.length === 0) {
-      return actionResponse.notFound('User not found.');
+      return actionResponse.notFound("User not found.");
     }
 
-    if (target[0].role === 'admin') {
-      return actionResponse.forbidden('Cannot ban admin users.');
+    if (target[0].role === "admin") {
+      return actionResponse.forbidden("Cannot ban admin users.");
     }
 
-    await db
+    await getDb()
       .update(userSchema)
-      .set({ banned: true, banReason: reason ?? 'Banned by admin', banExpires: null })
+      .set({
+        banned: true,
+        banReason: reason ?? "Banned by admin",
+        banExpires: null,
+      })
       .where(eq(userSchema.id, userId));
 
     // Revoke all sessions for this user to enforce immediate logout
-    await db.delete(sessionSchema).where(eq(sessionSchema.userId, userId));
+    await getDb().delete(sessionSchema).where(eq(sessionSchema.userId, userId));
 
     return actionResponse.success();
   } catch (error: any) {
@@ -172,21 +180,21 @@ export async function unbanUser({
   userId: string;
 }): Promise<ActionResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.');
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   try {
-    const target = await db
+    const target = await getDb()
       .select({ id: userSchema.id })
       .from(userSchema)
       .where(eq(userSchema.id, userId))
       .limit(1);
 
     if (target.length === 0) {
-      return actionResponse.notFound('User not found.');
+      return actionResponse.notFound("User not found.");
     }
 
-    await db
+    await getDb()
       .update(userSchema)
       .set({ banned: false, banReason: null, banExpires: null })
       .where(eq(userSchema.id, userId));

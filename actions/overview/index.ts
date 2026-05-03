@@ -1,12 +1,19 @@
-'use server';
+"use server";
 
-import { actionResponse, ActionResult } from '@/lib/action-response';
-import { isAdmin } from '@/lib/auth/server';
-import { db } from '@/lib/db';
-import { orders as ordersSchema, pricingPlans as pricingPlansSchema, user as userSchema } from '@/lib/db/schema';
-import { getErrorMessage } from '@/lib/error-utils';
-import { ONE_TIME_ORDER_TYPES, SUBSCRIPTION_ORDER_TYPES } from '@/lib/payments/provider-utils';
-import { and, count, eq, gte, inArray, lt, sql } from 'drizzle-orm';
+import { actionResponse, ActionResult } from "@/lib/action-response";
+import { isAdmin } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
+import {
+  orders as ordersSchema,
+  pricingPlans as pricingPlansSchema,
+  user as userSchema,
+} from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import {
+  ONE_TIME_ORDER_TYPES,
+  SUBSCRIPTION_ORDER_TYPES,
+} from "@/lib/payments/provider-utils";
+import { and, count, eq, gte, inArray, lt, sql } from "drizzle-orm";
 
 interface IStats {
   today: number;
@@ -46,91 +53,98 @@ function calculateGrowthRate(today: number, yesterday: number): number {
   return ((today - yesterday) / yesterday) * 100;
 }
 
-export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> => {
+export const getOverviewStats = async (): Promise<
+  ActionResult<IOverviewStats>
+> => {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.');
+    return actionResponse.forbidden("Admin privileges required.");
   }
   try {
     const now = new Date();
     const todayStart = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate()
+      now.getDate(),
     );
     const yesterdayStart = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate() - 1
+      now.getDate() - 1,
     );
 
     // User stats
-    const totalUsersResult = await db.select({ value: count() }).from(userSchema);
+    const totalUsersResult = await getDb()
+      .select({ value: count() })
+      .from(userSchema);
     const totalUsers = totalUsersResult[0].value;
 
-    const todayUsersResult = await db
+    const todayUsersResult = await getDb()
       .select({ value: count() })
       .from(userSchema)
       .where(gte(userSchema.createdAt, todayStart));
     const todayUsers = todayUsersResult[0].value;
 
-    const yesterdayUsersResult = await db
+    const yesterdayUsersResult = await getDb()
       .select({ value: count() })
       .from(userSchema)
       .where(
         and(
           gte(userSchema.createdAt, yesterdayStart),
-          lt(userSchema.createdAt, todayStart)
-        )
+          lt(userSchema.createdAt, todayStart),
+        ),
       );
     const yesterdayUsers = yesterdayUsersResult[0].value;
 
     // Order stats
     const getOrderStatsForPeriod = async (
       startDate: Date,
-      endDate: Date
+      endDate: Date,
     ): Promise<IOrderStatsResult> => {
-      const result = await db
+      const result = await getDb()
         .select({
           oneTimeCount:
             sql`COUNT(*) FILTER (WHERE ${ordersSchema.orderType} = 'one_time_purchase')`.mapWith(
-              Number
+              Number,
             ),
           oneTimeRevenue:
             sql`COALESCE(SUM(${ordersSchema.amountTotal}) FILTER (WHERE ${ordersSchema.orderType} = 'one_time_purchase'), 0)`.mapWith(
-              Number
+              Number,
             ),
           // Note: Must hardcode in SQL FILTER clause (can't use JS variables in SQL)
           // Order types: subscription_initial, subscription_renewal (Stripe), recurring (Creem)
           // Intervals: month (Stripe), every-month (Creem)
           monthlyCount:
             sql`COUNT(*) FILTER (WHERE ${ordersSchema.orderType} IN ('subscription_initial', 'subscription_renewal', 'recurring') AND ${pricingPlansSchema.recurringInterval} IN ('month', 'every-month'))`.mapWith(
-              Number
+              Number,
             ),
           monthlyRevenue:
             sql`COALESCE(SUM(${ordersSchema.amountTotal}) FILTER (WHERE ${ordersSchema.orderType} IN ('subscription_initial', 'subscription_renewal', 'recurring') AND ${pricingPlansSchema.recurringInterval} IN ('month', 'every-month')), 0)`.mapWith(
-              Number
+              Number,
             ),
           // Note: Must hardcode in SQL FILTER clause (can't use JS variables in SQL)
           // Order types: subscription_initial, subscription_renewal (Stripe), recurring (Creem)
           // Intervals: year (Stripe), every-year (Creem)
           yearlyCount:
             sql`COUNT(*) FILTER (WHERE ${ordersSchema.orderType} IN ('subscription_initial', 'subscription_renewal', 'recurring') AND ${pricingPlansSchema.recurringInterval} IN ('year', 'every-year'))`.mapWith(
-              Number
+              Number,
             ),
           yearlyRevenue:
             sql`COALESCE(SUM(${ordersSchema.amountTotal}) FILTER (WHERE ${ordersSchema.orderType} IN ('subscription_initial', 'subscription_renewal', 'recurring') AND ${pricingPlansSchema.recurringInterval} IN ('year', 'every-year')), 0)`.mapWith(
-              Number
+              Number,
             ),
         })
         .from(ordersSchema)
-        .leftJoin(pricingPlansSchema, eq(ordersSchema.planId, pricingPlansSchema.id))
+        .leftJoin(
+          pricingPlansSchema,
+          eq(ordersSchema.planId, pricingPlansSchema.id),
+        )
         .where(
           and(
             gte(ordersSchema.createdAt, startDate),
             lt(ordersSchema.createdAt, endDate),
-            inArray(ordersSchema.status, ['succeeded', 'active'])
-          )
-        )
+            inArray(ordersSchema.status, ["succeeded", "active"]),
+          ),
+        );
 
       const stats = result[0];
       return {
@@ -152,7 +166,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
     const todayOrderStats = await getOrderStatsForPeriod(todayStart, now);
     const yesterdayOrderStats = await getOrderStatsForPeriod(
       yesterdayStart,
-      todayStart
+      todayStart,
     );
 
     const stats: IOverviewStats = {
@@ -168,7 +182,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
           yesterday: yesterdayOrderStats.oneTime.count,
           growthRate: calculateGrowthRate(
             todayOrderStats.oneTime.count,
-            yesterdayOrderStats.oneTime.count
+            yesterdayOrderStats.oneTime.count,
           ),
         },
         revenue: {
@@ -176,7 +190,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
           yesterday: yesterdayOrderStats.oneTime.revenue,
           growthRate: calculateGrowthRate(
             todayOrderStats.oneTime.revenue,
-            yesterdayOrderStats.oneTime.revenue
+            yesterdayOrderStats.oneTime.revenue,
           ),
         },
       },
@@ -186,7 +200,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
           yesterday: yesterdayOrderStats.monthly.count,
           growthRate: calculateGrowthRate(
             todayOrderStats.monthly.count,
-            yesterdayOrderStats.monthly.count
+            yesterdayOrderStats.monthly.count,
           ),
         },
         revenue: {
@@ -194,7 +208,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
           yesterday: yesterdayOrderStats.monthly.revenue,
           growthRate: calculateGrowthRate(
             todayOrderStats.monthly.revenue,
-            yesterdayOrderStats.monthly.revenue
+            yesterdayOrderStats.monthly.revenue,
           ),
         },
       },
@@ -204,7 +218,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
           yesterday: yesterdayOrderStats.yearly.count,
           growthRate: calculateGrowthRate(
             todayOrderStats.yearly.count,
-            yesterdayOrderStats.yearly.count
+            yesterdayOrderStats.yearly.count,
           ),
         },
         revenue: {
@@ -212,7 +226,7 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
           yesterday: yesterdayOrderStats.yearly.revenue,
           growthRate: calculateGrowthRate(
             todayOrderStats.yearly.revenue,
-            yesterdayOrderStats.yearly.revenue
+            yesterdayOrderStats.yearly.revenue,
           ),
         },
       },
@@ -224,43 +238,43 @@ export const getOverviewStats = async (): Promise<ActionResult<IOverviewStats>> 
 };
 
 export const getDailyGrowthStats = async (
-  period: '7d' | '30d' | '90d'
+  period: "7d" | "30d" | "90d",
 ): Promise<ActionResult<IDailyGrowthStats[]>> => {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.');
+    return actionResponse.forbidden("Admin privileges required.");
   }
   try {
     const now = new Date();
     let startDate: Date;
 
     switch (period) {
-      case '7d':
+      case "7d":
         startDate = new Date(new Date().setDate(now.getDate() - 7));
         break;
-      case '30d':
+      case "30d":
         startDate = new Date(new Date().setMonth(now.getMonth() - 1));
         break;
-      case '90d':
+      case "90d":
         startDate = new Date(new Date().setMonth(now.getMonth() - 3));
         break;
       default:
-        throw new Error('Invalid period specified.');
+        throw new Error("Invalid period specified.");
     }
 
-    const userDateTrunc = sql`date_trunc('day', ${userSchema.createdAt})`
+    const userDateTrunc = sql`date_trunc('day', ${userSchema.createdAt})`;
 
-    const dailyUsers = await db
+    const dailyUsers = await getDb()
       .select({
         date: userDateTrunc,
         count: count(userSchema.id),
       })
       .from(userSchema)
       .where(gte(userSchema.createdAt, startDate))
-      .groupBy(userDateTrunc)
+      .groupBy(userDateTrunc);
 
-    const orderDateTrunc = sql`date_trunc('day', ${ordersSchema.createdAt})`
+    const orderDateTrunc = sql`date_trunc('day', ${ordersSchema.createdAt})`;
 
-    const dailyOrders = await db
+    const dailyOrders = await getDb()
       .select({
         date: orderDateTrunc,
         count: count(ordersSchema.id),
@@ -269,42 +283,42 @@ export const getDailyGrowthStats = async (
       .where(
         and(
           gte(ordersSchema.createdAt, startDate),
-          inArray(ordersSchema.status, ['succeeded', 'active']),
+          inArray(ordersSchema.status, ["succeeded", "active"]),
           inArray(ordersSchema.orderType, [
             ...ONE_TIME_ORDER_TYPES,
             ...SUBSCRIPTION_ORDER_TYPES,
-          ])
-        )
+          ]),
+        ),
       )
-      .groupBy(orderDateTrunc)
+      .groupBy(orderDateTrunc);
 
     const dailyUsersMap = new Map(
       dailyUsers.map((r) => {
         let dateStr: string;
         if (r.date instanceof Date) {
-          dateStr = r.date.toISOString().split('T')[0];
+          dateStr = r.date.toISOString().split("T")[0];
         } else {
-          dateStr = new Date(r.date as string).toISOString().split('T')[0];
+          dateStr = new Date(r.date as string).toISOString().split("T")[0];
         }
         return [dateStr, r.count];
-      })
+      }),
     );
     const dailyOrdersMap = new Map(
       dailyOrders.map((r) => {
         let dateStr: string;
         if (r.date instanceof Date) {
-          dateStr = r.date.toISOString().split('T')[0];
+          dateStr = r.date.toISOString().split("T")[0];
         } else {
-          dateStr = new Date(r.date as string).toISOString().split('T')[0];
+          dateStr = new Date(r.date as string).toISOString().split("T")[0];
         }
         return [dateStr, r.count];
-      })
+      }),
     );
 
     const result: IDailyGrowthStats[] = [];
     const currentDate = new Date(startDate);
     while (currentDate <= now) {
-      const dateStr = currentDate.toISOString().split('T')[0];
+      const dateStr = currentDate.toISOString().split("T")[0];
       result.push({
         reportDate: dateStr,
         newUsersCount: dailyUsersMap.get(dateStr) || 0,

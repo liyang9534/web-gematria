@@ -1,32 +1,31 @@
-'use server';
+"use server";
 
-import { sendEmail } from '@/actions/resend';
-import { siteConfig } from '@/config/site';
-import { CreditUpgradeFailedEmail } from '@/emails/credit-upgrade-failed';
-import { FraudRefundUserEmail } from '@/emails/fraud-refund-user';
-import { FraudWarningAdminEmail } from '@/emails/fraud-warning-admin';
-import { InvoicePaymentFailedEmail } from '@/emails/invoice-payment-failed';
-import { getSession } from '@/lib/auth/server';
-import { db } from '@/lib/db';
+import { sendEmail } from "@/actions/resend";
+import { siteConfig } from "@/config/site";
+import { CreditUpgradeFailedEmail } from "@/emails/credit-upgrade-failed";
+import { FraudRefundUserEmail } from "@/emails/fraud-refund-user";
+import { FraudWarningAdminEmail } from "@/emails/fraud-warning-admin";
+import { InvoicePaymentFailedEmail } from "@/emails/invoice-payment-failed";
+import { getSession } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
 import {
   pricingPlans as pricingPlansSchema,
   subscriptions as subscriptionsSchema,
   user as userSchema,
-} from '@/lib/db/schema';
-import { getErrorMessage } from '@/lib/error-utils';
-import { isRecurringPaymentType } from '@/lib/payments/provider-utils';
-import { stripe } from '@/lib/stripe';
-import { getURL } from '@/lib/url';
-import { eq, InferInsertModel } from 'drizzle-orm';
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-import Stripe from 'stripe';
+} from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import { isRecurringPaymentType } from "@/lib/payments/provider-utils";
+import { stripe } from "@/lib/stripe";
+import { getURL } from "@/lib/url";
+import { eq, InferInsertModel } from "drizzle-orm";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
 export async function getOrCreateStripeCustomer(
-  userId: string
+  userId: string,
 ): Promise<string> {
-
-  const userData = await db
+  const userData = await getDb()
     .select({
       stripeCustomerId: userSchema.stripeCustomerId,
       email: userSchema.email,
@@ -41,18 +40,24 @@ export async function getOrCreateStripeCustomer(
   }
 
   if (!stripe) {
-    console.error('Stripe is not initialized. Please check your environment variables.');
-    throw new Error(`Stripe is not initialized. Please check your environment variables.`);
+    console.error(
+      "Stripe is not initialized. Please check your environment variables.",
+    );
+    throw new Error(
+      `Stripe is not initialized. Please check your environment variables.`,
+    );
   }
 
   if (userProfile?.stripeCustomerId) {
-    const customer = await stripe.customers.retrieve(userProfile.stripeCustomerId);
+    const customer = await stripe.customers.retrieve(
+      userProfile.stripeCustomerId,
+    );
     if (customer && !customer.deleted) {
       return userProfile.stripeCustomerId;
     }
   }
 
-  const userEmail = userProfile?.email
+  const userEmail = userProfile?.email;
   if (!userEmail) {
     throw new Error(`Could not retrieve email for user ${userId}`);
   }
@@ -66,20 +71,28 @@ export async function getOrCreateStripeCustomer(
     });
 
     try {
-      await db
+      await getDb()
         .update(userSchema)
         .set({ stripeCustomerId: customer.id })
         .where(eq(userSchema.id, userId));
     } catch (updateError) {
-      console.error('Error updating user profile with Stripe customer ID:', updateError);
+      console.error(
+        "Error updating user profile with Stripe customer ID:",
+        updateError,
+      );
       // cleanup in Stripe if this fails critically
       await stripe.customers.del(customer.id);
-      throw new Error(`Failed to update user ${userId} with Stripe customer ID ${customer.id}`);
+      throw new Error(
+        `Failed to update user ${userId} with Stripe customer ID ${customer.id}`,
+      );
     }
 
     return customer.id;
   } catch (error) {
-    console.error('Error creating Stripe customer or updating database:', error);
+    console.error(
+      "Error creating Stripe customer or updating database:",
+      error,
+    );
     const errorMessage = getErrorMessage(error);
     throw new Error(`Stripe customer creation/update failed: ${errorMessage}`);
   }
@@ -95,7 +108,7 @@ export async function createStripeCheckoutSession(params: {
 
   const customerId = await getOrCreateStripeCustomer(userId);
 
-  const results = await db
+  const results = await getDb()
     .select({
       id: pricingPlansSchema.id,
       cardTitle: pricingPlansSchema.cardTitle,
@@ -115,8 +128,8 @@ export async function createStripeCheckoutSession(params: {
 
   const isSubscription = isRecurringPaymentType(plan.paymentType);
   const mode: Stripe.Checkout.SessionCreateParams.Mode = isSubscription
-    ? 'subscription'
-    : 'payment';
+    ? "subscription"
+    : "payment";
 
   const sessionParams: Stripe.Checkout.SessionCreateParams = {
     customer: customerId,
@@ -128,7 +141,7 @@ export async function createStripeCheckoutSession(params: {
     ],
     mode,
     success_url: getURL(
-      `payment/success?session_id={CHECKOUT_SESSION_ID}&provider=stripe`
+      `payment/success?session_id={CHECKOUT_SESSION_ID}&provider=stripe`,
     ),
     cancel_url: getURL(process.env.NEXT_PUBLIC_PRICING_PATH!),
     metadata: {
@@ -169,29 +182,29 @@ export async function createStripeCheckoutSession(params: {
 
   if (!stripe) {
     throw new Error(
-      'Stripe is not initialized. Please check your environment variables.'
+      "Stripe is not initialized. Please check your environment variables.",
     );
   }
 
   const session = await stripe.checkout.sessions.create(sessionParams);
   if (!session.id) {
-    throw new Error('Stripe session creation failed (missing session ID)');
+    throw new Error("Stripe session creation failed (missing session ID)");
   }
 
   return { sessionId: session.id, url: session.url ?? undefined };
 }
 
 export async function createStripePortalSession(): Promise<void> {
-  const session = await getSession()
+  const session = await getSession();
   const user = session?.user;
 
   if (!user) {
-    redirect('/login');
+    redirect("/login");
   }
 
   let portalUrl: string | null = null;
   try {
-    const profileResults = await db
+    const profileResults = await getDb()
       .select({ stripeCustomerId: userSchema.stripeCustomerId })
       .from(userSchema)
       .where(eq(userSchema.id, user.id))
@@ -204,14 +217,23 @@ export async function createStripePortalSession(): Promise<void> {
     const customerId = profile.stripeCustomerId;
 
     const headersList = await headers();
-    const domain = headersList.get('x-forwarded-host') || headersList.get('host') || process.env.NEXT_PUBLIC_SITE_URL?.replace(/^https?:\/\//, '');
-    const protocol = headersList.get('x-forwarded-proto') || (process.env.NODE_ENV === 'production' ? 'https' : 'http');
+    const domain =
+      headersList.get("x-forwarded-host") ||
+      headersList.get("host") ||
+      process.env.NEXT_PUBLIC_SITE_URL?.replace(/^https?:\/\//, "");
+    const protocol =
+      headersList.get("x-forwarded-proto") ||
+      (process.env.NODE_ENV === "production" ? "https" : "http");
     if (!domain) throw new Error("Could not determine domain for return URL.");
     const returnUrl = `${protocol}://${domain}/${process.env.STRIPE_CUSTOMER_PORTAL_URL}`;
 
     if (!stripe) {
-      console.error('Stripe is not initialized. Please check your environment variables.');
-      throw new Error(`Stripe is not initialized. Please check your environment variables.`);
+      console.error(
+        "Stripe is not initialized. Please check your environment variables.",
+      );
+      throw new Error(
+        `Stripe is not initialized. Please check your environment variables.`,
+      );
     }
 
     const portalSession = await stripe.billingPortal.sessions.create({
@@ -220,20 +242,23 @@ export async function createStripePortalSession(): Promise<void> {
     });
 
     if (!portalSession.url) {
-      throw new Error('Failed to create Stripe portal session (URL missing).');
+      throw new Error("Failed to create Stripe portal session (URL missing).");
     }
     portalUrl = portalSession.url;
-
   } catch (error) {
-    console.error('Error preparing Stripe portal session:', error);
+    console.error("Error preparing Stripe portal session:", error);
     const errorMessage = getErrorMessage(error);
-    redirect(`/stripe-error?message=Failed to open subscription management: ${encodeURIComponent(errorMessage)}`);
+    redirect(
+      `/stripe-error?message=Failed to open subscription management: ${encodeURIComponent(errorMessage)}`,
+    );
   }
 
   if (portalUrl) {
     redirect(portalUrl);
   } else {
-    redirect(`/stripe-error?message=Failed to get portal URL after creation attempt.`);
+    redirect(
+      `/stripe-error?message=Failed to get portal URL after creation attempt.`,
+    );
   }
 }
 
@@ -248,18 +273,23 @@ export async function createStripePortalSession(): Promise<void> {
 export async function syncSubscriptionData(
   subscriptionId: string,
   customerId: string,
-  initialMetadata?: Record<string, any>
+  initialMetadata?: Record<string, any>,
 ): Promise<void> {
   try {
     const subscription = await stripe?.subscriptions.retrieve(subscriptionId, {
-      expand: ['default_payment_method', 'customer']
+      expand: ["default_payment_method", "customer"],
     });
 
     if (!subscription) {
       throw new Error(`Subscription ${subscriptionId} not found in Stripe.`);
     }
-    if (subscription.items.data.length === 0 || !subscription.items.data[0].price) {
-      throw new Error(`Subscription ${subscriptionId} is missing line items or price data.`);
+    if (
+      subscription.items.data.length === 0 ||
+      !subscription.items.data[0].price
+    ) {
+      throw new Error(
+        `Subscription ${subscriptionId} is missing line items or price data.`,
+      );
     }
 
     let userId = subscription.metadata?.userId;
@@ -279,16 +309,23 @@ export async function syncSubscriptionData(
         if (customer && !customer.deleted) {
           userId = customer.metadata?.userId;
         } else {
-          console.warn(`Stripe customer ${customerId} is deleted or not found.`);
+          console.warn(
+            `Stripe customer ${customerId} is deleted or not found.`,
+          );
         }
       } catch (customerError) {
-        console.error(`Error fetching Stripe customer ${customerId}:`, customerError);
+        console.error(
+          `Error fetching Stripe customer ${customerId}:`,
+          customerError,
+        );
       }
     }
 
     if (!userId) {
-      console.warn(`User ID still missing for sub ${subscriptionId}. Trying DB lookup via customer ID ${customerId}.`);
-      const userData = await db
+      console.warn(
+        `User ID still missing for sub ${subscriptionId}. Trying DB lookup via customer ID ${customerId}.`,
+      );
+      const userData = await getDb()
         .select({ id: userSchema.id })
         .from(userSchema)
         .where(eq(userSchema.stripeCustomerId, customerId))
@@ -297,14 +334,18 @@ export async function syncSubscriptionData(
 
       if (!userProfile) {
         console.error(`DB lookup failed for customer ${customerId}:`);
-        throw new Error(`Cannot determine userId for subscription ${subscriptionId}. Critical metadata missing and DB lookup failed.`);
+        throw new Error(
+          `Cannot determine userId for subscription ${subscriptionId}. Critical metadata missing and DB lookup failed.`,
+        );
       }
       userId = userProfile.id;
     }
     if (!planId) {
       const priceId = subscription.items.data[0].price.id;
-      console.warn(`Plan ID is missing for subscription ${subscriptionId}. Attempting lookup via price ${priceId}.`);
-      const planDataResults = await db
+      console.warn(
+        `Plan ID is missing for subscription ${subscriptionId}. Attempting lookup via price ${priceId}.`,
+      );
+      const planDataResults = await getDb()
         .select({ id: pricingPlansSchema.id })
         .from(pricingPlansSchema)
         .where(eq(pricingPlansSchema.stripePriceId, priceId))
@@ -314,8 +355,12 @@ export async function syncSubscriptionData(
       if (planData) {
         planId = planData.id;
       } else {
-        console.error(`FATAL: Cannot determine planId for subscription ${subscriptionId}. Metadata missing and DB lookup by price failed.`);
-        throw new Error(`Cannot determine planId for subscription ${subscriptionId}.`);
+        console.error(
+          `FATAL: Cannot determine planId for subscription ${subscriptionId}. Metadata missing and DB lookup by price failed.`,
+        );
+        throw new Error(
+          `Cannot determine planId for subscription ${subscriptionId}.`,
+        );
       }
     }
 
@@ -325,38 +370,56 @@ export async function syncSubscriptionData(
     const subscriptionData: SubscriptionInsert = {
       userId: userId,
       planId: planId,
-      provider: 'stripe',
+      provider: "stripe",
       subscriptionId: subscription.id,
-      customerId: typeof subscription.customer === 'string' ? subscription.customer : subscription.customer.id,
+      customerId:
+        typeof subscription.customer === "string"
+          ? subscription.customer
+          : subscription.customer.id,
       priceId: priceId,
       status: subscription.status,
-      currentPeriodStart: subscription.items.data[0].current_period_start ? new Date(subscription.items.data[0].current_period_start * 1000) : null,
-      currentPeriodEnd: subscription.items.data[0].current_period_end ? new Date(subscription.items.data[0].current_period_end * 1000) : null,
+      currentPeriodStart: subscription.items.data[0].current_period_start
+        ? new Date(subscription.items.data[0].current_period_start * 1000)
+        : null,
+      currentPeriodEnd: subscription.items.data[0].current_period_end
+        ? new Date(subscription.items.data[0].current_period_end * 1000)
+        : null,
       cancelAtPeriodEnd: subscription.cancel_at_period_end,
-      canceledAt: subscription.canceled_at ? new Date(subscription.canceled_at * 1000) : null,
-      endedAt: subscription.ended_at ? new Date(subscription.ended_at * 1000) : null,
-      trialStart: subscription.trial_start ? new Date(subscription.trial_start * 1000) : null,
-      trialEnd: subscription.trial_end ? new Date(subscription.trial_end * 1000) : null,
+      canceledAt: subscription.canceled_at
+        ? new Date(subscription.canceled_at * 1000)
+        : null,
+      endedAt: subscription.ended_at
+        ? new Date(subscription.ended_at * 1000)
+        : null,
+      trialStart: subscription.trial_start
+        ? new Date(subscription.trial_start * 1000)
+        : null,
+      trialEnd: subscription.trial_end
+        ? new Date(subscription.trial_end * 1000)
+        : null,
       metadata: {
         ...subscription.metadata,
-        ...(initialMetadata && { checkoutSessionMetadata: initialMetadata })
+        ...(initialMetadata && { checkoutSessionMetadata: initialMetadata }),
       },
     };
 
     const { ...updateData } = subscriptionData;
-    await db
+    await getDb()
       .insert(subscriptionsSchema)
       .values(subscriptionData)
       .onConflictDoUpdate({
         target: subscriptionsSchema.subscriptionId,
         set: updateData,
       });
-
-
   } catch (error) {
-    console.error(`Error in syncSubscriptionData for sub ${subscriptionId}, cust ${customerId}:`, error);
+    console.error(
+      `Error in syncSubscriptionData for sub ${subscriptionId}, cust ${customerId}:`,
+      error,
+    );
     const errorMessage = getErrorMessage(error);
-    throw new Error(`Subscription sync failed (${subscriptionId}): ${errorMessage}`);
+    throw new Error(
+      `Subscription sync failed (${subscriptionId}): ${errorMessage}`,
+    );
   }
 }
 
@@ -366,18 +429,21 @@ export async function sendCreditUpgradeFailedEmail({
   planId,
   error,
 }: {
-  userId: string,
-  orderId: string,
-  planId: string,
-  error: any,
+  userId: string;
+  orderId: string;
+  planId: string;
+  error: any;
 }) {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) {
-    console.warn('ADMIN_EMAIL is not set, skipping credit upgrade failure email.');
+    console.warn(
+      "ADMIN_EMAIL is not set, skipping credit upgrade failure email.",
+    );
     return;
   }
 
-  const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+  const errorMessage =
+    error instanceof Error ? error.message : "An unknown error occurred";
   const errorStack = error instanceof Error ? error.stack : undefined;
 
   try {
@@ -394,9 +460,14 @@ export async function sendCreditUpgradeFailedEmail({
         errorStack,
       }),
     });
-    console.log(`Sent credit upgrade failure email to ${adminEmail} for order ${orderId}`);
+    console.log(
+      `Sent credit upgrade failure email to ${adminEmail} for order ${orderId}`,
+    );
   } catch (emailError) {
-    console.error(`Failed to send credit upgrade failure email for order ${orderId}:`, emailError);
+    console.error(
+      `Failed to send credit upgrade failure email for order ${orderId}:`,
+      emailError,
+    );
   }
 }
 
@@ -407,29 +478,35 @@ export async function sendInvoicePaymentFailedEmail({
   invoice,
   subscriptionId,
   customerId,
-  invoiceId
+  invoiceId,
 }: {
   invoice: Stripe.Invoice;
   subscriptionId: string;
   customerId: string;
-  invoiceId: string
+  invoiceId: string;
 }): Promise<void> {
   if (!process.env.RESEND_API_KEY) {
-    console.error('Resend API Key is not configured. Skipping email send.');
+    console.error("Resend API Key is not configured. Skipping email send.");
     return;
   }
   if (!process.env.ADMIN_EMAIL) {
-    console.error('FROM_EMAIL environment variable is not set. Cannot send email.');
+    console.error(
+      "FROM_EMAIL environment variable is not set. Cannot send email.",
+    );
     return;
   }
 
   if (!stripe) {
-    console.error('Stripe is not initialized. Please check your environment variables.');
-    throw new Error(`Stripe is not initialized. Please check your environment variables.`);
+    console.error(
+      "Stripe is not initialized. Please check your environment variables.",
+    );
+    throw new Error(
+      `Stripe is not initialized. Please check your environment variables.`,
+    );
   }
 
   let userEmail: string | null = null;
-  let planName: string = 'Your Subscription Plan';
+  let planName: string = "Your Subscription Plan";
   let userId: string | null = null;
 
   try {
@@ -447,24 +524,23 @@ export async function sendInvoicePaymentFailedEmail({
       return;
     }
 
-    const userDataResults = await db
+    const userDataResults = await getDb()
       .select({ email: userSchema.email })
       .from(userSchema)
       .where(eq(userSchema.id, userId))
       .limit(1);
     const userData = userDataResults[0];
 
-
     if (!userData?.email) {
       console.error(`Error fetching email for user ${userId}:`);
-      return
+      return;
     }
 
     userEmail = userData.email;
 
     const planId = subscription.metadata?.planId;
     if (planId) {
-      const planDataResults = await db
+      const planDataResults = await getDb()
         .select({ cardTitle: pricingPlansSchema.cardTitle })
         .from(pricingPlansSchema)
         .where(eq(pricingPlansSchema.id, planId))
@@ -503,14 +579,20 @@ export async function sendInvoicePaymentFailedEmail({
           email: userEmail,
           subject,
           react: InvoicePaymentFailedEmail,
-          reactProps: emailProps
-        })
+          reactProps: emailProps,
+        });
       } catch (emailError) {
-        console.error(`Failed to send payment failed email for invoice ${invoiceId} to ${userEmail}:`, emailError);
+        console.error(
+          `Failed to send payment failed email for invoice ${invoiceId} to ${userEmail}:`,
+          emailError,
+        );
       }
     }
   } catch (exception) {
-    console.error(`Exception occurred while sending email to ${userEmail}:`, exception);
+    console.error(
+      `Exception occurred while sending email to ${userEmail}:`,
+      exception,
+    );
   }
 }
 
@@ -538,12 +620,12 @@ export async function sendFraudWarningAdminEmail({
 }): Promise<void> {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) {
-    console.warn('ADMIN_EMAIL is not set, skipping fraud warning admin email.');
+    console.warn("ADMIN_EMAIL is not set, skipping fraud warning admin email.");
     return;
   }
 
   if (!process.env.RESEND_API_KEY) {
-    console.error('Resend API Key is not configured. Skipping email send.');
+    console.error("Resend API Key is not configured. Skipping email send.");
     return;
   }
 
@@ -570,9 +652,14 @@ export async function sendFraudWarningAdminEmail({
       reactProps: emailProps,
     });
 
-    console.log(`Sent fraud warning admin email to ${adminEmail} for charge ${chargeId}`);
+    console.log(
+      `Sent fraud warning admin email to ${adminEmail} for charge ${chargeId}`,
+    );
   } catch (emailError) {
-    console.error(`Failed to send fraud warning admin email for charge ${chargeId}:`, emailError);
+    console.error(
+      `Failed to send fraud warning admin email for charge ${chargeId}:`,
+      emailError,
+    );
   }
 }
 
@@ -587,18 +674,23 @@ export async function sendFraudRefundUserEmail({
   refundAmount: number;
 }): Promise<void> {
   if (!process.env.RESEND_API_KEY) {
-    console.error('Resend API Key is not configured. Skipping email send.');
+    console.error("Resend API Key is not configured. Skipping email send.");
     return;
   }
 
   if (!stripe) {
-    console.error('Stripe is not initialized. Please check your environment variables.');
+    console.error(
+      "Stripe is not initialized. Please check your environment variables.",
+    );
     return;
   }
 
-  const customerId = typeof charge.customer === 'string' ? charge.customer : null;
+  const customerId =
+    typeof charge.customer === "string" ? charge.customer : null;
   if (!customerId) {
-    console.error(`Customer ID missing from charge: ${charge.id}. Cannot send refund email.`);
+    console.error(
+      `Customer ID missing from charge: ${charge.id}. Cannot send refund email.`,
+    );
     return;
   }
 
@@ -606,7 +698,9 @@ export async function sendFraudRefundUserEmail({
     // Get customer information
     const customer = await stripe.customers.retrieve(customerId);
     if (!customer || customer.deleted) {
-      console.error(`Customer ${customerId} not found or deleted. Cannot send refund email.`);
+      console.error(
+        `Customer ${customerId} not found or deleted. Cannot send refund email.`,
+      );
       return;
     }
 
@@ -614,7 +708,9 @@ export async function sendFraudRefundUserEmail({
     const userId = customer.metadata?.userId;
 
     if (!customerEmail) {
-      console.error(`Customer ${customerId} has no email address. Cannot send refund email.`);
+      console.error(
+        `Customer ${customerId} has no email address. Cannot send refund email.`,
+      );
       return;
     }
 
@@ -622,7 +718,7 @@ export async function sendFraudRefundUserEmail({
     let userName: string | undefined;
     if (userId) {
       try {
-        const userDataResults = await db
+        const userDataResults = await getDb()
           .select({ name: userSchema.name })
           .from(userSchema)
           .where(eq(userSchema.id, userId))
@@ -634,14 +730,18 @@ export async function sendFraudRefundUserEmail({
       }
     }
 
-    const refundDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    const refundDate = new Date().toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
 
-    const supportLink = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || `mailto:${siteConfig.socialLinks?.email}`;
-    const dashboardLink = userId ? `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/my-orders` : undefined;
+    const supportLink =
+      process.env.NEXT_PUBLIC_DISCORD_INVITE_URL ||
+      `mailto:${siteConfig.socialLinks?.email}`;
+    const dashboardLink = userId
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/my-orders`
+      : undefined;
 
     const emailProps = {
       userName,
@@ -664,9 +764,13 @@ export async function sendFraudRefundUserEmail({
       reactProps: emailProps,
     });
 
-    console.log(`Sent fraud refund notification email to ${customerEmail} for charge ${charge.id}`);
+    console.log(
+      `Sent fraud refund notification email to ${customerEmail} for charge ${charge.id}`,
+    );
   } catch (emailError) {
-    console.error(`Failed to send fraud refund user email for charge ${charge.id}:`, emailError);
+    console.error(
+      `Failed to send fraud refund user email for charge ${charge.id}:`,
+      emailError,
+    );
   }
 }
-

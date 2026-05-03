@@ -1,16 +1,16 @@
-'use server'
+"use server";
 
-import { DEFAULT_LOCALE } from '@/i18n/routing'
-import { actionResponse, ActionResult } from '@/lib/action-response'
-import { isAdmin } from '@/lib/auth/server'
-import { db } from '@/lib/db'
-import { pricingPlans as pricingPlansSchema } from '@/lib/db/schema'
-import { getErrorMessage } from '@/lib/error-utils'
-import { asc, eq } from 'drizzle-orm'
-import { getTranslations } from 'next-intl/server'
-import 'server-only'
+import { DEFAULT_LOCALE } from "@/i18n/routing";
+import { actionResponse, ActionResult } from "@/lib/action-response";
+import { isAdmin } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
+import { pricingPlans as pricingPlansSchema } from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import { asc, eq } from "drizzle-orm";
+import { getTranslations } from "next-intl/server";
+import "server-only";
 
-type PricingPlan = typeof pricingPlansSchema.$inferSelect
+type PricingPlan = typeof pricingPlansSchema.$inferSelect;
 
 /**
  * Admin List
@@ -19,19 +19,22 @@ export async function getAdminPricingPlans(): Promise<
   ActionResult<PricingPlan[]>
 > {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   try {
-    const plans = await db
+    const plans = await getDb()
       .select()
       .from(pricingPlansSchema)
-      .orderBy(asc(pricingPlansSchema.environment), asc(pricingPlansSchema.displayOrder))
+      .orderBy(
+        asc(pricingPlansSchema.environment),
+        asc(pricingPlansSchema.displayOrder),
+      );
 
-    return actionResponse.success((plans as unknown as PricingPlan[]) || [])
+    return actionResponse.success((plans as unknown as PricingPlan[]) || []);
   } catch (error) {
-    console.error('Unexpected error in getAdminPricingPlans:', error)
-    return actionResponse.error(getErrorMessage(error))
+    console.error("Unexpected error in getAdminPricingPlans:", error);
+    return actionResponse.error(getErrorMessage(error));
   }
 }
 
@@ -39,35 +42,37 @@ export async function getAdminPricingPlans(): Promise<
  * Admin Get By ID
  */
 export async function getPricingPlanById(
-  planId: string
+  planId: string,
 ): Promise<ActionResult<PricingPlan | null>> {
   if (!planId) {
-    return actionResponse.badRequest('Plan ID is required.')
+    return actionResponse.badRequest("Plan ID is required.");
   }
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   try {
-    const result = await db
+    const result = await getDb()
       .select()
       .from(pricingPlansSchema)
       .where(eq(pricingPlansSchema.id, planId))
-      .limit(1)
+      .limit(1);
 
-    const plan = result[0]
+    const plan = result[0];
 
     if (!plan) {
-      return actionResponse.notFound(`Pricing plan with ID ${planId} not found.`)
+      return actionResponse.notFound(
+        `Pricing plan with ID ${planId} not found.`,
+      );
     }
 
-    return actionResponse.success((plan as unknown as PricingPlan) || null)
+    return actionResponse.success((plan as unknown as PricingPlan) || null);
   } catch (error) {
     console.error(
       `Unexpected error in getPricingPlanById for ID ${planId}:`,
-      error
-    )
-    return actionResponse.error(getErrorMessage(error))
+      error,
+    );
+    return actionResponse.error(getErrorMessage(error));
   }
 }
 
@@ -75,8 +80,8 @@ export async function getPricingPlanById(
  * Admin Create
  */
 interface CreatePricingPlanParams {
-  planData: Partial<Omit<PricingPlan, 'id' | 'createdAt' | 'updatedAt'>>
-  locale?: string
+  planData: Partial<Omit<PricingPlan, "id" | "createdAt" | "updatedAt">>;
+  locale?: string;
 }
 
 export async function createPricingPlanAction({
@@ -84,68 +89,68 @@ export async function createPricingPlanAction({
   locale = DEFAULT_LOCALE,
 }: CreatePricingPlanParams) {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   const t = await getTranslations({
     locale,
-    namespace: 'Prices.API',
-  })
+    namespace: "Prices.API",
+  });
 
   if (!planData.environment || !planData.cardTitle) {
-    return actionResponse.badRequest(t('missingRequiredFields'))
+    return actionResponse.badRequest(t("missingRequiredFields"));
   }
 
-  if (planData.langJsonb && typeof planData.langJsonb !== 'object') {
+  if (planData.langJsonb && typeof planData.langJsonb !== "object") {
     try {
-      if (typeof planData.langJsonb === 'string') {
-        planData.langJsonb = JSON.parse(planData.langJsonb as string)
+      if (typeof planData.langJsonb === "string") {
+        planData.langJsonb = JSON.parse(planData.langJsonb as string);
       } else {
-        return actionResponse.badRequest(t('invalidLangJsonbFormat'))
+        return actionResponse.badRequest(t("invalidLangJsonbFormat"));
       }
     } catch (e) {
-      return actionResponse.badRequest(t('invalidJsonFormatInLangJsonbString'))
+      return actionResponse.badRequest(t("invalidJsonFormatInLangJsonbString"));
     }
   }
 
-  if (planData.benefitsJsonb && typeof planData.benefitsJsonb !== 'object') {
+  if (planData.benefitsJsonb && typeof planData.benefitsJsonb !== "object") {
     try {
-      if (typeof planData.benefitsJsonb === 'string') {
-        planData.benefitsJsonb = JSON.parse(planData.benefitsJsonb as string)
+      if (typeof planData.benefitsJsonb === "string") {
+        planData.benefitsJsonb = JSON.parse(planData.benefitsJsonb as string);
       } else {
-        return actionResponse.badRequest(t('invalidBenefitsJsonFormat'))
+        return actionResponse.badRequest(t("invalidBenefitsJsonFormat"));
       }
     } catch (e) {
-      return actionResponse.badRequest(t('invalidJsonFormatInBenefitsString'))
+      return actionResponse.badRequest(t("invalidJsonFormatInBenefitsString"));
     }
   }
 
   // Clean up fields based on provider
-  if (planData.provider === 'stripe') {
-    planData.creemProductId = null
-    planData.creemDiscountCode = null
-  } else if (planData.provider === 'creem') {
-    planData.stripePriceId = null
-    planData.stripeProductId = null
-    planData.stripeCouponId = null
-    planData.enableManualInputCoupon = false
-  } else if (planData.provider === 'none') {
-    planData.stripePriceId = null
-    planData.stripeProductId = null
-    planData.stripeCouponId = null
-    planData.creemProductId = null
-    planData.creemDiscountCode = null
-    planData.enableManualInputCoupon = false
-    planData.paymentType = null
-    planData.recurringInterval = null
+  if (planData.provider === "stripe") {
+    planData.creemProductId = null;
+    planData.creemDiscountCode = null;
+  } else if (planData.provider === "creem") {
+    planData.stripePriceId = null;
+    planData.stripeProductId = null;
+    planData.stripeCouponId = null;
+    planData.enableManualInputCoupon = false;
+  } else if (planData.provider === "none") {
+    planData.stripePriceId = null;
+    planData.stripeProductId = null;
+    planData.stripeCouponId = null;
+    planData.creemProductId = null;
+    planData.creemDiscountCode = null;
+    planData.enableManualInputCoupon = false;
+    planData.paymentType = null;
+    planData.recurringInterval = null;
   }
 
   try {
-    const [newPlan] = await db
+    const [newPlan] = await getDb()
       .insert(pricingPlansSchema)
       .values({
         environment: planData.environment,
-        groupSlug: planData.groupSlug || 'default',
+        groupSlug: planData.groupSlug || "default",
         cardTitle: planData.cardTitle,
         cardDescription: planData.cardDescription,
         provider: planData.provider,
@@ -154,8 +159,7 @@ export async function createPricingPlanAction({
         stripeCouponId: planData.stripeCouponId,
         creemProductId: planData.creemProductId,
         creemDiscountCode: planData.creemDiscountCode,
-        enableManualInputCoupon:
-          planData.enableManualInputCoupon ?? false,
+        enableManualInputCoupon: planData.enableManualInputCoupon ?? false,
         paymentType: planData.paymentType || null,
         recurringInterval: planData.recurringInterval || null,
         price: planData.price?.toString() || null,
@@ -169,22 +173,24 @@ export async function createPricingPlanAction({
         buttonLink: planData.buttonLink,
         displayOrder: planData.displayOrder ?? 0,
         isActive: planData.isActive ?? true,
-        features: (planData.features || []),
-        langJsonb: (planData.langJsonb || {}),
-        benefitsJsonb: (planData.benefitsJsonb || {}),
+        features: planData.features || [],
+        langJsonb: planData.langJsonb || {},
+        benefitsJsonb: planData.benefitsJsonb || {},
       })
-      .returning()
+      .returning();
 
-    return actionResponse.success(newPlan)
+    return actionResponse.success(newPlan);
   } catch (err) {
-    console.error('Unexpected error creating pricing plan:', err)
-    const errorMessage = getErrorMessage(err)
-    if (errorMessage.includes('duplicate key value violates unique constraint')) {
+    console.error("Unexpected error creating pricing plan:", err);
+    const errorMessage = getErrorMessage(err);
+    if (
+      errorMessage.includes("duplicate key value violates unique constraint")
+    ) {
       return actionResponse.conflict(
-        t('createPlanConflict', { message: errorMessage })
-      )
+        t("createPlanConflict", { message: errorMessage }),
+      );
     }
-    return actionResponse.error(errorMessage || t('createPlanServerError'))
+    return actionResponse.error(errorMessage || t("createPlanServerError"));
   }
 }
 
@@ -192,9 +198,9 @@ export async function createPricingPlanAction({
  * Admin Update
  */
 interface UpdatePricingPlanParams {
-  id: string
-  planData: Partial<PricingPlan>
-  locale?: string
+  id: string;
+  planData: Partial<PricingPlan>;
+  locale?: string;
 }
 export async function updatePricingPlanAction({
   id,
@@ -202,120 +208,118 @@ export async function updatePricingPlanAction({
   locale = DEFAULT_LOCALE,
 }: UpdatePricingPlanParams) {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   const t = await getTranslations({
     locale,
-    namespace: 'Prices.API',
-  })
+    namespace: "Prices.API",
+  });
 
   if (!id) {
-    return actionResponse.badRequest(t('missingPlanId'))
+    return actionResponse.badRequest(t("missingPlanId"));
   }
 
-  if (planData.langJsonb && typeof planData.langJsonb === 'string') {
+  if (planData.langJsonb && typeof planData.langJsonb === "string") {
     try {
-      planData.langJsonb = JSON.parse(planData.langJsonb as string)
+      planData.langJsonb = JSON.parse(planData.langJsonb as string);
     } catch (e) {
-      return actionResponse.badRequest(t('invalidJsonFormatInLangJsonbString'))
+      return actionResponse.badRequest(t("invalidJsonFormatInLangJsonbString"));
     }
   } else if (
     planData.langJsonb &&
-    typeof planData.langJsonb !== 'object' &&
+    typeof planData.langJsonb !== "object" &&
     planData.langJsonb !== null
   ) {
-    return actionResponse.badRequest(t('invalidLangJsonbFormat'))
+    return actionResponse.badRequest(t("invalidLangJsonbFormat"));
   }
 
-  if (planData.benefitsJsonb && typeof planData.benefitsJsonb === 'string') {
+  if (planData.benefitsJsonb && typeof planData.benefitsJsonb === "string") {
     try {
-      planData.benefitsJsonb = JSON.parse(planData.benefitsJsonb as string)
+      planData.benefitsJsonb = JSON.parse(planData.benefitsJsonb as string);
     } catch (e) {
-      return actionResponse.badRequest(t('invalidJsonFormatInBenefitsString'))
+      return actionResponse.badRequest(t("invalidJsonFormatInBenefitsString"));
     }
   } else if (
     planData.benefitsJsonb &&
-    typeof planData.benefitsJsonb !== 'object' &&
+    typeof planData.benefitsJsonb !== "object" &&
     planData.benefitsJsonb !== null
   ) {
-    return actionResponse.badRequest(t('invalidBenefitsJsonFormat'))
+    return actionResponse.badRequest(t("invalidBenefitsJsonFormat"));
   }
 
   // Clean up fields based on provider
-  if (planData.provider === 'stripe') {
-    planData.creemProductId = null
-    planData.creemDiscountCode = null
-  } else if (planData.provider === 'creem') {
-    planData.stripePriceId = null
-    planData.stripeProductId = null
-    planData.stripeCouponId = null
-    planData.enableManualInputCoupon = false
-  } else if (planData.provider === 'none') {
-    planData.stripePriceId = null
-    planData.stripeProductId = null
-    planData.stripeCouponId = null
-    planData.creemProductId = null
-    planData.creemDiscountCode = null
-    planData.enableManualInputCoupon = false
-    planData.paymentType = null
-    planData.recurringInterval = null
+  if (planData.provider === "stripe") {
+    planData.creemProductId = null;
+    planData.creemDiscountCode = null;
+  } else if (planData.provider === "creem") {
+    planData.stripePriceId = null;
+    planData.stripeProductId = null;
+    planData.stripeCouponId = null;
+    planData.enableManualInputCoupon = false;
+  } else if (planData.provider === "none") {
+    planData.stripePriceId = null;
+    planData.stripeProductId = null;
+    planData.stripeCouponId = null;
+    planData.creemProductId = null;
+    planData.creemDiscountCode = null;
+    planData.enableManualInputCoupon = false;
+    planData.paymentType = null;
+    planData.recurringInterval = null;
   }
 
   try {
-    delete planData.id
-    delete planData.createdAt
-    delete planData.updatedAt
+    delete planData.id;
+    delete planData.createdAt;
+    delete planData.updatedAt;
 
-    planData.currency = planData.currency?.toUpperCase() || null
+    planData.currency = planData.currency?.toUpperCase() || null;
 
     const dataToUpdate: { [key: string]: any } = {
       ...planData,
       paymentType: planData.paymentType || null,
       recurringInterval: planData.recurringInterval || null,
-    }
+    };
 
     if (dataToUpdate.price) {
-      dataToUpdate.price = dataToUpdate.price.toString()
+      dataToUpdate.price = dataToUpdate.price.toString();
     }
 
     if (planData.features !== undefined) {
-      dataToUpdate.features = (planData.features || [])
+      dataToUpdate.features = planData.features || [];
     }
     if (planData.creemProductId !== undefined) {
-      dataToUpdate.creemProductId = planData.creemProductId || null
+      dataToUpdate.creemProductId = planData.creemProductId || null;
     }
     if (planData.creemDiscountCode !== undefined) {
-      dataToUpdate.creemDiscountCode = planData.creemDiscountCode || null
+      dataToUpdate.creemDiscountCode = planData.creemDiscountCode || null;
     }
     if (planData.langJsonb !== undefined) {
-      dataToUpdate.langJsonb = (planData.langJsonb || {})
+      dataToUpdate.langJsonb = planData.langJsonb || {};
     }
     if (planData.benefitsJsonb !== undefined) {
-      dataToUpdate.benefitsJsonb =
-        (planData.benefitsJsonb || {})
+      dataToUpdate.benefitsJsonb = planData.benefitsJsonb || {};
     }
     if (planData.groupSlug !== undefined) {
-      dataToUpdate.groupSlug = planData.groupSlug || 'default'
+      dataToUpdate.groupSlug = planData.groupSlug || "default";
     }
 
-    const [updatedPlan] = await db
+    const [updatedPlan] = await getDb()
       .update(pricingPlansSchema)
       .set(dataToUpdate)
       .where(eq(pricingPlansSchema.id, id))
-      .returning()
+      .returning();
 
     if (!updatedPlan) {
-      return actionResponse.notFound(t('updatePlanNotFound', { id }))
+      return actionResponse.notFound(t("updatePlanNotFound", { id }));
     }
 
-
-    return actionResponse.success(updatedPlan)
+    return actionResponse.success(updatedPlan);
   } catch (err) {
-    console.error(`Unexpected error updating pricing plan ${id}:`, err)
+    console.error(`Unexpected error updating pricing plan ${id}:`, err);
     return actionResponse.error(
-      getErrorMessage(err) || t('updatePlanServerError')
-    )
+      getErrorMessage(err) || t("updatePlanServerError"),
+    );
   }
 }
 
@@ -323,8 +327,8 @@ export async function updatePricingPlanAction({
  * Admin Delete
  */
 interface DeletePricingPlanParams {
-  id: string
-  locale?: string
+  id: string;
+  locale?: string;
 }
 
 export async function deletePricingPlanAction({
@@ -332,35 +336,33 @@ export async function deletePricingPlanAction({
   locale = DEFAULT_LOCALE,
 }: DeletePricingPlanParams) {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.')
+    return actionResponse.forbidden("Admin privileges required.");
   }
 
   const t = await getTranslations({
     locale,
-    namespace: 'Prices.API',
-  })
+    namespace: "Prices.API",
+  });
 
   if (!id) {
-    return actionResponse.badRequest(t('missingPlanId'))
+    return actionResponse.badRequest(t("missingPlanId"));
   }
 
   try {
-    const result = await db
+    const result = await getDb()
       .delete(pricingPlansSchema)
       .where(eq(pricingPlansSchema.id, id))
-      .returning({ id: pricingPlansSchema.id })
+      .returning({ id: pricingPlansSchema.id });
 
     if (result.length === 0) {
-      return actionResponse.notFound(t('deletePlanNotFound', { id }))
+      return actionResponse.notFound(t("deletePlanNotFound", { id }));
     }
 
-
-    return actionResponse.success({ message: t('deletePlanSuccess', { id }) })
+    return actionResponse.success({ message: t("deletePlanSuccess", { id }) });
   } catch (err) {
-    console.error(`Unexpected error deleting pricing plan ${id}:`, err)
+    console.error(`Unexpected error deleting pricing plan ${id}:`, err);
     return actionResponse.error(
-      getErrorMessage(err) || t('deletePlanServerError')
-    )
+      getErrorMessage(err) || t("deletePlanServerError"),
+    );
   }
 }
-

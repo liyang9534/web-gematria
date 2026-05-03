@@ -2,7 +2,7 @@
 
 import { actionResponse, ActionResult } from "@/lib/action-response";
 import { getSession } from "@/lib/auth/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { orders as ordersSchema } from "@/lib/db/schema";
 import { getErrorMessage } from "@/lib/error-utils";
 import { and, count, desc, eq, ilike, or, sql, type SQL } from "drizzle-orm";
@@ -18,12 +18,12 @@ const FilterSchema = z.object({
 });
 
 export type GetMyOrdersResult = ActionResult<{
-  orders: typeof ordersSchema.$inferSelect[];
+  orders: (typeof ordersSchema.$inferSelect)[];
   totalCount: number;
 }>;
 
 export async function getMyOrders(
-  params: z.infer<typeof FilterSchema>
+  params: z.infer<typeof FilterSchema>,
 ): Promise<GetMyOrdersResult> {
   const session = await getSession();
   const user = session?.user;
@@ -48,15 +48,15 @@ export async function getMyOrders(
       optionalConditions.push(
         or(
           ilike(ordersSchema.providerOrderId, `%${filter}%`),
-          sql`CAST(${ordersSchema.id} AS TEXT) ILIKE ${`%${filter}%`}`
-        ) as SQL
+          sql`CAST(${ordersSchema.id} AS TEXT) ILIKE ${`%${filter}%`}`,
+        ) as SQL,
       );
     }
     const whereClause: SQL = optionalConditions.length
       ? (and(baseWhere, ...optionalConditions) as SQL)
       : baseWhere;
 
-    const ordersQuery = db
+    const ordersQuery = getDb()
       .select()
       .from(ordersSchema)
       .where(whereClause)
@@ -64,7 +64,7 @@ export async function getMyOrders(
       .offset(pageIndex * pageSize)
       .limit(pageSize);
 
-    const totalCountQuery = db
+    const totalCountQuery = getDb()
       .select({ value: count() })
       .from(ordersSchema)
       .where(whereClause);
@@ -82,5 +82,3 @@ export async function getMyOrders(
     return actionResponse.error(getErrorMessage(error));
   }
 }
-
-

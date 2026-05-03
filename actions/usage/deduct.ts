@@ -1,14 +1,14 @@
-'use server';
+"use server";
 
-import { actionResponse, ActionResult } from '@/lib/action-response';
-import { getSession } from '@/lib/auth/server';
-import { db } from '@/lib/db';
+import { actionResponse, ActionResult } from "@/lib/action-response";
+import { getSession } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
 import {
   creditLogs as creditLogsSchema,
   usage as usageSchema,
-} from '@/lib/db/schema';
-import { eq } from 'drizzle-orm';
-import { getUserBenefits, UserBenefits } from './benefits';
+} from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+import { getUserBenefits, UserBenefits } from "./benefits";
 
 export interface DeductCreditsData {
   message: string;
@@ -25,82 +25,91 @@ export async function deductCredits(
   amountToDeduct: number,
   notes: string,
 ): Promise<ActionResult<DeductCreditsData | null>> {
-  const session = await getSession()
+  const session = await getSession();
   const user = session?.user;
   if (!user) return actionResponse.unauthorized();
 
   if (amountToDeduct <= 0) {
-    return actionResponse.badRequest('Amount to deduct must be positive.');
+    return actionResponse.badRequest("Amount to deduct must be positive.");
   }
 
   if (!notes) {
-    return actionResponse.badRequest('Deduction notes are required.');
+    return actionResponse.badRequest("Deduction notes are required.");
   }
 
   try {
-    await db.transaction(async (tx) => {
+    await getDb().transaction(async (tx) => {
       // Lock the user's usage row for the duration of the transaction
-      const usageResults = await tx.select({
-        oneTimeCreditsBalance: usageSchema.oneTimeCreditsBalance,
-        subscriptionCreditsBalance: usageSchema.subscriptionCreditsBalance,
-      })
+      const usageResults = await tx
+        .select({
+          oneTimeCreditsBalance: usageSchema.oneTimeCreditsBalance,
+          subscriptionCreditsBalance: usageSchema.subscriptionCreditsBalance,
+        })
         .from(usageSchema)
         .where(eq(usageSchema.userId, user.id))
-        .for('update');
+        .for("update");
 
       const usage = usageResults[0];
 
       if (!usage) {
-        throw new Error('INSUFFICIENT_CREDITS');
+        throw new Error("INSUFFICIENT_CREDITS");
       }
 
-      const totalCredits = usage.oneTimeCreditsBalance + usage.subscriptionCreditsBalance;
+      const totalCredits =
+        usage.oneTimeCreditsBalance + usage.subscriptionCreditsBalance;
       if (totalCredits < amountToDeduct) {
-        throw new Error('INSUFFICIENT_CREDITS');
+        throw new Error("INSUFFICIENT_CREDITS");
       }
 
-      const deductedFromSub = Math.min(usage.subscriptionCreditsBalance, amountToDeduct);
+      const deductedFromSub = Math.min(
+        usage.subscriptionCreditsBalance,
+        amountToDeduct,
+      );
       const deductedFromOneTime = amountToDeduct - deductedFromSub;
 
       const newSubBalance = usage.subscriptionCreditsBalance - deductedFromSub;
-      const newOneTimeBalance = usage.oneTimeCreditsBalance - deductedFromOneTime;
+      const newOneTimeBalance =
+        usage.oneTimeCreditsBalance - deductedFromOneTime;
 
-      await tx.update(usageSchema)
+      await tx
+        .update(usageSchema)
         .set({
           subscriptionCreditsBalance: newSubBalance,
           oneTimeCreditsBalance: newOneTimeBalance,
         })
         .where(eq(usageSchema.userId, user.id));
 
-      await tx.insert(creditLogsSchema)
-        .values({
-          userId: user.id,
-          amount: -amountToDeduct,
-          oneTimeCreditsSnapshot: newOneTimeBalance,
-          subscriptionCreditsSnapshot: newSubBalance,
-          type: 'feature_usage',
-          notes: notes,
-        });
+      await tx.insert(creditLogsSchema).values({
+        userId: user.id,
+        amount: -amountToDeduct,
+        oneTimeCreditsSnapshot: newOneTimeBalance,
+        subscriptionCreditsSnapshot: newSubBalance,
+        type: "feature_usage",
+        notes: notes,
+      });
     });
 
     const updatedBenefits = await getUserBenefits(user.id);
 
     return actionResponse.success({
-      message: 'Credits deducted successfully.',
+      message: "Credits deducted successfully.",
       updatedBenefits,
     });
-
   } catch (e: any) {
-    if (e.message === 'INSUFFICIENT_CREDITS') {
-      return actionResponse.badRequest('Insufficient credits.');
+    if (e.message === "INSUFFICIENT_CREDITS") {
+      return actionResponse.badRequest("Insufficient credits.");
     }
     console.error(`Unexpected error in deductCredits:`, e);
-    return actionResponse.error(e.message || 'An unexpected server error occurred.');
+    return actionResponse.error(
+      e.message || "An unexpected server error occurred.",
+    );
   }
 }
 
-export async function getClientUserBenefits(): Promise<ActionResult<UserBenefits | null>> {
-  const session = await getSession()
+export async function getClientUserBenefits(): Promise<
+  ActionResult<UserBenefits | null>
+> {
+  const session = await getSession();
   const user = session?.user;
   if (!user) return actionResponse.unauthorized();
   try {
@@ -108,9 +117,11 @@ export async function getClientUserBenefits(): Promise<ActionResult<UserBenefits
     if (benefits) {
       return actionResponse.success(benefits);
     }
-    return actionResponse.notFound('User benefits not found.');
+    return actionResponse.notFound("User benefits not found.");
   } catch (error: any) {
-    console.error('Error fetching user benefits for client:', error);
-    return actionResponse.error(error.message || 'Failed to fetch user benefits.');
+    console.error("Error fetching user benefits for client:", error);
+    return actionResponse.error(
+      error.message || "Failed to fetch user benefits.",
+    );
   }
 }

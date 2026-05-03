@@ -1,4 +1,4 @@
-import { syncCreemSubscriptionData } from '@/actions/creem';
+import { syncCreemSubscriptionData } from "@/actions/creem";
 import {
   CreemCheckoutCompletedEvent,
   CreemRefundCreatedEvent,
@@ -7,60 +7,61 @@ import {
   CreemSubscriptionExpiredEvent,
   CreemSubscriptionPaidEvent,
   CreemSubscriptionUpdateEvent,
-  CreemTransaction
-} from '@/lib/creem/types';
-import { db } from '@/lib/db';
+  CreemTransaction,
+} from "@/lib/creem/types";
+import { getDb } from "@/lib/db";
 import {
   orders as ordersSchema,
-  pricingPlans as pricingPlansSchema, subscriptions as subscriptionsSchema
-} from '@/lib/db/schema';
+  pricingPlans as pricingPlansSchema,
+  subscriptions as subscriptionsSchema,
+} from "@/lib/db/schema";
 import {
   revokeOneTimeCredits,
   revokeRemainingSubscriptionCreditsOnEnd,
   revokeSubscriptionCredits,
   upgradeOneTimeCredits,
   upgradeSubscriptionCredits,
-} from '@/lib/payments/credit-manager';
+} from "@/lib/payments/credit-manager";
 import {
   createOrderWithIdempotency,
   findOriginalOrderForRefund,
   refundOrderExists,
   toCurrencyAmount,
   updateOrderStatusAfterRefund,
-} from '@/lib/payments/webhook-helpers';
-import { eq, InferInsertModel } from 'drizzle-orm';
+} from "@/lib/payments/webhook-helpers";
+import { eq, InferInsertModel } from "drizzle-orm";
 
 export async function handleCreemPaymentSucceeded(
-  payload: CreemCheckoutCompletedEvent
+  payload: CreemCheckoutCompletedEvent,
 ) {
   const payment = payload.object;
 
   const metadata = payment.metadata ?? {};
   const order = payment.order;
 
-  const userId = metadata.userId
-  const planId = metadata.planId
-  const productId = metadata.productId || payment.product?.id
+  const userId = metadata.userId;
+  const planId = metadata.planId;
+  const productId = metadata.productId || payment.product?.id;
 
   if (!userId || !planId) {
     console.error(
       `[Creem webhook] Missing critical metadata on payment.succeeded ${payment.id}`,
-      metadata
+      metadata,
     );
     return;
   }
 
-  if (order.type !== 'onetime') {
+  if (order.type !== "onetime") {
     // subscription payments are handled via invoice.paid
     return;
   }
 
   const orderData: InferInsertModel<typeof ordersSchema> = {
     userId,
-    provider: 'creem',
+    provider: "creem",
     providerOrderId: order.id,
-    status: payment.status === 'completed' ? 'succeeded' : payment.status,
-    orderType: 'one_time_purchase', // onetime order
+    status: payment.status === "completed" ? "succeeded" : payment.status,
+    orderType: "one_time_purchase", // onetime order
     planId: planId ?? null,
     priceId: null,
     productId: productId ?? null,
@@ -80,9 +81,9 @@ export async function handleCreemPaymentSucceeded(
   };
 
   const { order: insertedOrder, existed } = await createOrderWithIdempotency(
-    'creem',
+    "creem",
     orderData,
-    order.id
+    order.id,
   );
 
   if (existed) {
@@ -90,7 +91,7 @@ export async function handleCreemPaymentSucceeded(
   }
 
   if (!insertedOrder) {
-    throw new Error('Failed to insert Creem payment order');
+    throw new Error("Failed to insert Creem payment order");
   }
 
   try {
@@ -100,14 +101,14 @@ export async function handleCreemPaymentSucceeded(
   } catch (error) {
     console.error(
       `[Creem webhook] Failed to upgrade credits for user ${userId}, order ${insertedOrder.id}`,
-      error
+      error,
     );
     throw error;
   }
 }
 
 export async function handleCreemInvoicePaid(
-  payload: CreemSubscriptionPaidEvent
+  payload: CreemSubscriptionPaidEvent,
 ) {
   const subscription = payload.object;
   const metadata = subscription.metadata ?? {};
@@ -118,15 +119,15 @@ export async function handleCreemInvoicePaid(
   const lastTransaction = subscription.last_transaction as CreemTransaction;
   const orderId = lastTransaction.order;
 
-  let userId = metadata.userId
-  let planId = metadata.planId
+  let userId = metadata.userId;
+  let planId = metadata.planId;
 
   if (!userId) {
     throw new Error("User ID is required for subscription payment");
   }
 
   if (!planId) {
-    const [plan] = await db
+    const [plan] = await getDb()
       .select({ id: pricingPlansSchema.id })
       .from(pricingPlansSchema)
       .where(eq(pricingPlansSchema.creemProductId, productId))
@@ -136,15 +137,16 @@ export async function handleCreemInvoicePaid(
 
   if (!planId) {
     throw new Error(
-      `Unable to determine plan for Creem subscription ${subscription.id}`
+      `Unable to determine plan for Creem subscription ${subscription.id}`,
     );
   }
 
   const orderData: InferInsertModel<typeof ordersSchema> = {
     userId,
-    provider: 'creem',
+    provider: "creem",
     providerOrderId: orderId,
-    status: lastTransaction.status === 'paid' ? 'succeeded' : lastTransaction.status,
+    status:
+      lastTransaction.status === "paid" ? "succeeded" : lastTransaction.status,
     orderType: subscription.product.billing_type, // recurring
     planId: planId,
     priceId: productId,
@@ -164,9 +166,9 @@ export async function handleCreemInvoicePaid(
   };
 
   const { order: insertedOrder, existed } = await createOrderWithIdempotency(
-    'creem',
+    "creem",
     orderData,
-    orderId
+    orderId,
   );
 
   if (existed) {
@@ -175,13 +177,12 @@ export async function handleCreemInvoicePaid(
 
   if (!insertedOrder) {
     console.warn(
-      `[Creem webhook] Skipping credit grant for subscription ${subscriptionId}`
+      `[Creem webhook] Skipping credit grant for subscription ${subscriptionId}`,
     );
     throw new Error(
-      `[Creem webhook] Failed to insert order for subscription ${subscriptionId}`
+      `[Creem webhook] Failed to insert order for subscription ${subscriptionId}`,
     );
   }
-
 
   try {
     // [custom] Upgrade the user's benefits
@@ -189,13 +190,13 @@ export async function handleCreemInvoicePaid(
       userId,
       planId,
       insertedOrder.id,
-      lastTransaction.period_start
+      lastTransaction.period_start,
     );
     // --- End: [custom] Upgrade the user's benefits ---
   } catch (error) {
     console.error(
       `[Creem webhook] Failed to upgrade subscription credits for user ${userId}, order ${insertedOrder.id}`,
-      error
+      error,
     );
     throw error;
   }
@@ -205,17 +206,21 @@ export async function handleCreemInvoicePaid(
   } catch (error) {
     console.error(
       `[Creem webhook] Failed to sync subscription ${subscriptionId}`,
-      error
+      error,
     );
     throw error;
   }
 }
 
 export async function handleCreemSubscriptionUpdated(
-  payload: CreemSubscriptionUpdateEvent | CreemSubscriptionActiveEvent | CreemSubscriptionExpiredEvent | CreemSubscriptionCanceledEvent,
-  isDeleted: boolean = false
+  payload:
+    | CreemSubscriptionUpdateEvent
+    | CreemSubscriptionActiveEvent
+    | CreemSubscriptionExpiredEvent
+    | CreemSubscriptionCanceledEvent,
+  isDeleted: boolean = false,
 ) {
-  const subscription = payload.object
+  const subscription = payload.object;
   const subscriptionId = subscription?.id;
   const customerId = subscription?.customer?.id;
 
@@ -226,47 +231,55 @@ export async function handleCreemSubscriptionUpdated(
       let userId = subscription.metadata?.userId as string;
       if (!userId) {
         try {
-          const storeSubscription = await db
+          const storeSubscription = await getDb()
             .select({ userId: subscriptionsSchema.userId })
             .from(subscriptionsSchema)
             .where(eq(subscriptionsSchema.subscriptionId, subscriptionId))
             .limit(1);
           userId = storeSubscription[0]?.userId;
         } catch (err) {
-          console.error(`Error retrieving user for subscription ${subscription.id}:`, err);
+          console.error(
+            `Error retrieving user for subscription ${subscription.id}:`,
+            err,
+          );
         }
       }
 
-      revokeRemainingSubscriptionCreditsOnEnd('creem', subscriptionId, userId, subscription.metadata);
+      revokeRemainingSubscriptionCreditsOnEnd(
+        "creem",
+        subscriptionId,
+        userId,
+        subscription.metadata,
+      );
       // --- End: [custom] Revoke the user's benefits ---
     }
   } catch (error) {
     console.error(
       `[Creem webhook] Failed to sync subscription ${subscriptionId}`,
-      error
+      error,
     );
     throw error;
   }
 }
 
 export async function handleCreemPaymentRefunded(
-  payload: CreemRefundCreatedEvent
+  payload: CreemRefundCreatedEvent,
 ) {
   const refund = payload.object;
   const refundId = refund.id;
   const orderId = refund.order.id;
 
   // Check if refund already processed
-  const refundExists = await refundOrderExists('creem', refundId);
+  const refundExists = await refundOrderExists("creem", refundId);
   if (refundExists) {
     return;
   }
 
-  const originalOrder = await findOriginalOrderForRefund('creem', orderId);
+  const originalOrder = await findOriginalOrderForRefund("creem", orderId);
 
   if (!originalOrder) {
     console.error(
-      `[Creem webhook] Refund received for unknown order ${orderId}`
+      `[Creem webhook] Refund received for unknown order ${orderId}`,
     );
     return;
   }
@@ -278,15 +291,15 @@ export async function handleCreemPaymentRefunded(
   await updateOrderStatusAfterRefund(
     originalOrder.id,
     refundAmountCents,
-    paidAmountCents
+    paidAmountCents,
   );
 
   const refundData: InferInsertModel<typeof ordersSchema> = {
     userId: originalOrder.userId,
-    provider: 'creem',
+    provider: "creem",
     providerOrderId: `${refundId}`,
     status: refund.status,
-    orderType: 'refund',
+    orderType: "refund",
     planId: originalOrder.planId,
     productId: originalOrder.productId,
     amountTotal: (-refundAmountCents / 100).toString(),
@@ -298,27 +311,36 @@ export async function handleCreemPaymentRefunded(
     },
   };
 
-  const [refundOrder] = await db
+  const [refundOrder] = await getDb()
     .insert(ordersSchema)
     .values(refundData)
     .returning({ id: ordersSchema.id });
 
   if (!refundOrder) {
     throw new Error(
-      `[Creem webhook] Failed to insert refund order for payment ${refundId}`
+      `[Creem webhook] Failed to insert refund order for payment ${refundId}`,
     );
   }
 
+  const originalAmountCents = Math.round(
+    parseFloat(originalOrder.amountTotal!) * 100,
+  );
+
   if (originalOrder.subscriptionId) {
     // [custom] Revoke the user's benefits
-    await revokeSubscriptionCredits(originalOrder);
+    await revokeSubscriptionCredits(
+      originalOrder,
+      refundAmountCents,
+      originalAmountCents,
+    );
     // --- End: [custom] Revoke the user's benefits ---
   } else {
     // [custom] Revoke the user's benefits
     await revokeOneTimeCredits(
       refundAmountCents,
       originalOrder,
-      refundOrder.id
+      refundOrder.id,
+      originalAmountCents,
     );
     // --- End: [custom] Revoke the user's benefits ---
   }

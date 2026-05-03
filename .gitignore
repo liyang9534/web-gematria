@@ -79,6 +79,8 @@ web_modules/
 .env
 .env.local
 .env.test
+.env.cf
+.dev.vars
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -87,6 +89,15 @@ web_modules/
 # Next.js build output
 .next
 out
+
+# Cloudflare / OpenNext build output
+.open-next
+.wrangler
+cloudflare-env.d.ts
+
+# Generated CMS data
+lib/cms/blog-data.ts
+lib/cms/blog-data.json
 
 # Nuxt.js build / generate output
 .nuxt

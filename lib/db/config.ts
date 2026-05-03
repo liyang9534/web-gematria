@@ -1,30 +1,35 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
-import * as schema from './schema';
+import { neon } from "@neondatabase/serverless";
+import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
+import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import * as schema from "./schema";
+
+export type DB = PostgresJsDatabase<typeof schema>;
 
 interface DBConfig {
   connectionString: string;
   maxConnections?: number;
   enablePrepare?: boolean;
-  enableSSL?: boolean | 'require';
+  enableSSL?: boolean | "require";
   debug?: boolean;
 }
 
 // detect deployment platform
 function detectPlatform() {
-  if (process.env.VERCEL_ENV) return 'vercel';
-  if (process.env.NETLIFY) return 'netlify';
-  if (process.env.AWS_LAMBDA_FUNCTION_NAME) return 'lambda';
-  return 'server';
+  if (process.env.DEPLOYMENT_PLATFORM === "cloudflare") return "cloudflare";
+  if (process.env.VERCEL_ENV) return "vercel";
+  if (process.env.NETLIFY) return "netlify";
+  if (process.env.AWS_LAMBDA_FUNCTION_NAME) return "lambda";
+  return "server";
 }
 
 // detect database provider
 function detectDatabase(connectionString: string) {
-  if (connectionString.includes('supabase')) return 'supabase';
-  if (connectionString.includes('neon')) return 'neon';
-  if (connectionString.includes('amazonaws.com')) return 'aws-rds';
-  if (connectionString.includes('googleapis.com')) return 'gcp-sql';
-  return 'self-hosted';
+  if (connectionString.includes("supabase")) return "supabase";
+  if (connectionString.includes("neon")) return "neon";
+  if (connectionString.includes("amazonaws.com")) return "aws-rds";
+  if (connectionString.includes("googleapis.com")) return "gcp-sql";
+  return "self-hosted";
 }
 
 // generate database configuration
@@ -56,6 +61,14 @@ export function createDatabaseConfig(config: DBConfig) {
       max_lifetime: 60 * 30,
       connect_timeout: 30,
     },
+    cloudflare: {
+      max: 1,
+      prepare: false,
+      idle_timeout: 20,
+      max_lifetime: 60 * 30,
+      connect_timeout: 15,
+      fetch_types: false,
+    },
     // long running server
     server: {
       max: 30,
@@ -69,8 +82,8 @@ export function createDatabaseConfig(config: DBConfig) {
   // database specific configuration
   const databaseConfigs = {
     supabase: {
-      ssl: 'require' as const,
-      application_name: 'drizzle-supabase',
+      ssl: "require" as const,
+      application_name: "drizzle-supabase",
       // CRITICAL: Supabase pooled connections go through PgBouncer (transaction mode).
       // PgBouncer does NOT support prepared statements — using prepare: true causes
       // silent transaction failures where COMMIT succeeds but data is rolled back.
@@ -83,25 +96,25 @@ export function createDatabaseConfig(config: DBConfig) {
       },
     },
     neon: {
-      ssl: 'require' as const,
-      application_name: 'drizzle-neon',
+      ssl: "require" as const,
+      application_name: "drizzle-neon",
       prepare: false,
       connect_timeout: 20,
     },
-    'aws-rds': {
-      ssl: 'require' as const,
-      application_name: 'drizzle-aws',
+    "aws-rds": {
+      ssl: "require" as const,
+      application_name: "drizzle-aws",
       keepalive: true,
       idle_timeout: 60,
     },
-    'gcp-sql': {
-      ssl: 'require' as const,
-      application_name: 'drizzle-gcp',
+    "gcp-sql": {
+      ssl: "require" as const,
+      application_name: "drizzle-gcp",
       keepalive: true,
     },
-    'self-hosted': {
+    "self-hosted": {
       ssl: false,
-      application_name: 'drizzle-app',
+      application_name: "drizzle-app",
     },
   };
 
@@ -113,7 +126,9 @@ export function createDatabaseConfig(config: DBConfig) {
     ...databaseConfig,
 
     ...(config.maxConnections && { max: config.maxConnections }),
-    ...(config.enablePrepare !== undefined && { prepare: config.enablePrepare }),
+    ...(config.enablePrepare !== undefined && {
+      prepare: config.enablePrepare,
+    }),
     ...(config.enableSSL !== undefined && { ssl: config.enableSSL }),
 
     transform: {
@@ -121,15 +136,51 @@ export function createDatabaseConfig(config: DBConfig) {
       date: true,
     },
 
-    debug: config.debug ?? (process.env.NODE_ENV === 'development'),
-    onnotice: process.env.NODE_ENV === 'development' ? console.log : undefined,
+    debug: config.debug ?? process.env.NODE_ENV === "development",
+    onnotice: process.env.NODE_ENV === "development" ? console.log : undefined,
   };
 
   return finalConfig;
 }
 
+export function createPoolerDatabase(
+  connectionString: string,
+  ssl: boolean | "require" = false,
+  max = 1,
+): DB {
+  const client = postgres(connectionString, {
+    max,
+    prepare: false,
+    ssl,
+    fetch_types: false,
+    idle_timeout: 20,
+    max_lifetime: 60 * 30,
+    connect_timeout: 15,
+    transform: { undefined: null },
+  });
+
+  return drizzle(client, { schema });
+}
+
 // create database connection
-export function createDatabase(config: DBConfig) {
+export function createDatabase(config: DBConfig): DB {
+  const platform = detectPlatform();
+  const database = detectDatabase(config.connectionString);
+
+  if (platform === "cloudflare" && database === "neon") {
+    const sql = neon(config.connectionString);
+    return drizzleNeon(sql, { schema }) as unknown as DB;
+  }
+
+  if (platform === "cloudflare") {
+    const ssl = database === "self-hosted" ? false : "require";
+    return createPoolerDatabase(
+      config.connectionString,
+      ssl,
+      config.maxConnections ?? 1,
+    );
+  }
+
   const connectionConfig = createDatabaseConfig(config);
   const client = postgres(config.connectionString, connectionConfig);
 
@@ -153,10 +204,12 @@ export function previewConfig(config: DBConfig) {
     database,
     config: finalConfig,
     summary: {
-      isServerless: ['vercel', 'netlify', 'lambda'].includes(platform),
+      isServerless: ["vercel", "netlify", "lambda", "cloudflare"].includes(
+        platform,
+      ),
       requiresSSL: finalConfig.ssl !== false,
       connectionPooling: finalConfig.max > 1,
       preparedStatements: finalConfig.prepare,
-    }
+    },
   };
 }

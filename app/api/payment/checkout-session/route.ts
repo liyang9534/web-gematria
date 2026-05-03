@@ -1,14 +1,12 @@
-import { createStripeCheckoutSession } from '@/actions/stripe';
-import { apiResponse } from '@/lib/api-response';
-import { getSession } from '@/lib/auth/server';
-import {
-  createCreemCheckoutSession
-} from '@/lib/creem/client';
-import { db } from '@/lib/db';
-import { pricingPlans as pricingPlansSchema } from '@/lib/db/schema';
-import { getErrorMessage } from '@/lib/error-utils';
-import { getURL } from '@/lib/url';
-import { eq } from 'drizzle-orm';
+import { createStripeCheckoutSession } from "@/actions/stripe";
+import { apiResponse } from "@/lib/api-response";
+import { getSession } from "@/lib/auth/server";
+import { createCreemCheckoutSession } from "@/lib/creem/client";
+import { getDb } from "@/lib/db";
+import { pricingPlans as pricingPlansSchema } from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import { getURL } from "@/lib/url";
+import { eq } from "drizzle-orm";
 
 type RequestData = {
   provider?: string;
@@ -29,17 +27,17 @@ export async function POST(req: Request) {
   try {
     requestData = await req.json();
   } catch (error) {
-    console.error('Invalid request body:', error);
+    console.error("Invalid request body:", error);
     return apiResponse.badRequest();
   }
 
   const provider = requestData.provider;
 
   try {
-    if (provider === 'stripe') {
+    if (provider === "stripe") {
       const { stripePriceId } = requestData;
       if (!stripePriceId) {
-        return apiResponse.badRequest('Missing stripePriceId');
+        return apiResponse.badRequest("Missing stripePriceId");
       }
       const result = await createStripeCheckoutSession({
         userId: user.id,
@@ -50,13 +48,13 @@ export async function POST(req: Request) {
       return apiResponse.success(result);
     }
 
-    if (provider === 'creem') {
+    if (provider === "creem") {
       const { creemProductId, couponCode } = requestData;
       if (!creemProductId) {
-        return apiResponse.badRequest('Missing creemProductId');
+        return apiResponse.badRequest("Missing creemProductId");
       }
 
-      const results = await db
+      const results = await getDb()
         .select({
           id: pricingPlansSchema.id,
           cardTitle: pricingPlansSchema.cardTitle,
@@ -71,7 +69,7 @@ export async function POST(req: Request) {
       const plan = results[0];
 
       if (!plan) {
-        return apiResponse.notFound('Plan not found for Creem product ID');
+        return apiResponse.notFound("Plan not found for Creem product ID");
       }
 
       const sessionParams = {
@@ -82,9 +80,7 @@ export async function POST(req: Request) {
           // id: customerId,
           email: user.email,
         },
-        success_url: getURL(
-          'payment/success?provider=creem'
-        ),
+        success_url: getURL("payment/success?provider=creem"),
         metadata: {
           userId: user.id,
           userEmail: user.email,
@@ -92,12 +88,12 @@ export async function POST(req: Request) {
           planName: plan.cardTitle,
           productId: plan.creemProductId,
         },
-      }
+      };
 
       const sessionPayload = await createCreemCheckoutSession(sessionParams);
 
       if (!sessionPayload?.id) {
-        throw new Error('Creem session creation failed (missing session ID)');
+        throw new Error("Creem session creation failed (missing session ID)");
       }
 
       return apiResponse.success({
@@ -106,16 +102,10 @@ export async function POST(req: Request) {
       });
     }
 
-    return apiResponse.badRequest(
-      `Unsupported payment provider: ${provider}`
-    );
+    return apiResponse.badRequest(`Unsupported payment provider: ${provider}`);
   } catch (error) {
-    console.error(
-      `Error creating ${provider} checkout session:`,
-      error
-    );
+    console.error(`Error creating ${provider} checkout session:`, error);
     const errorMessage = getErrorMessage(error);
     return apiResponse.serverError(errorMessage);
   }
 }
-

@@ -1,13 +1,13 @@
-'use server';
+"use server";
 
-import { ActionResult, actionResponse } from '@/lib/action-response';
-import { isAdmin } from '@/lib/auth/server';
-import { db } from '@/lib/db';
-import { orders as ordersSchema, user as userSchema } from '@/lib/db/schema';
-import { getErrorMessage } from '@/lib/error-utils';
-import { OrderWithUser } from '@/types/admin/orders';
-import { and, count, desc, eq, ilike, or, sql } from 'drizzle-orm';
-import { z } from 'zod';
+import { ActionResult, actionResponse } from "@/lib/action-response";
+import { isAdmin } from "@/lib/auth/server";
+import { getDb } from "@/lib/db";
+import { orders as ordersSchema, user as userSchema } from "@/lib/db/schema";
+import { getErrorMessage } from "@/lib/error-utils";
+import { OrderWithUser } from "@/types/admin/orders";
+import { and, count, desc, eq, ilike, or, sql } from "drizzle-orm";
+import { z } from "zod";
 
 const FilterSchema = z.object({
   pageIndex: z.coerce.number().default(0),
@@ -24,10 +24,10 @@ export type GetOrdersResult = ActionResult<{
 }>;
 
 export async function getOrders(
-  params: z.infer<typeof FilterSchema>
+  params: z.infer<typeof FilterSchema>,
 ): Promise<GetOrdersResult> {
   if (!(await isAdmin())) {
-    return actionResponse.forbidden('Admin privileges required.');
+    return actionResponse.forbidden("Admin privileges required.");
   }
   try {
     const { pageIndex, pageSize, filter, provider, orderType, status } =
@@ -48,14 +48,14 @@ export async function getOrders(
         or(
           ilike(userSchema.email, `%${filter}%`),
           ilike(ordersSchema.providerOrderId, `%${filter}%`),
-          sql`CAST(${ordersSchema.id} AS TEXT) ILIKE ${`%${filter}%`}`
-        )
+          sql`CAST(${ordersSchema.id} AS TEXT) ILIKE ${`%${filter}%`}`,
+        ),
       );
     }
 
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
-    const ordersQuery = db
+    const ordersQuery = getDb()
       .select({
         order: ordersSchema,
         user: { email: userSchema.email, name: userSchema.name },
@@ -67,7 +67,7 @@ export async function getOrders(
       .offset(pageIndex * pageSize)
       .limit(pageSize);
 
-    const totalCountQuery = db
+    const totalCountQuery = getDb()
       .select({ value: count() })
       .from(ordersSchema)
       .leftJoin(userSchema, eq(ordersSchema.userId, userSchema.id))
@@ -90,7 +90,7 @@ export async function getOrders(
       totalCount: totalCount,
     });
   } catch (error) {
-    console.error('Error getting orders', error);
+    console.error("Error getting orders", error);
     return actionResponse.error(getErrorMessage(error));
   }
-} 
+}
