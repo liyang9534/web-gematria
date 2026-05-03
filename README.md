@@ -44,7 +44,7 @@ Please refer to the [Documentation](https://nexty.dev/docs) for instructions on 
 
 ```bash
 corepack pnpm install
-corepack pnpm test:db-config
+corepack pnpm test
 corepack pnpm exec tsc --noEmit
 corepack pnpm build
 PORT=3100 corepack pnpm start
@@ -55,6 +55,8 @@ PORT=3100 corepack pnpm start
 ```bash
 curl -I http://127.0.0.1:3100/
 ```
+
+`pnpm test` 会执行数据库配置检查和本地 D1 自动化测试。D1 测试通过 `wrangler d1 execute DB --local` 在临时目录里应用 `lib/db/migrations-d1`，不需要 Cloudflare 登录态或远程数据库，主要验证迁移、核心表/索引、用户、订单、套餐、用量 JSON、文章标签查询和唯一约束。
 
 本地 `next dev` / `next start` 没有 Cloudflare D1 binding 时，公共页面会按未登录状态渲染；登录、Dashboard、支付、CMS 等数据库功能需要 D1 binding。需要验证完整 Workers 运行时可使用 `pnpm cf:preview`。
 
@@ -276,6 +278,7 @@ npx wrangler versions upload
 - `wrangler.jsonc` 没有残留 `<YOUR_...>` 占位符。
 - Worker 项目名和 `WORKER_SELF_REFERENCE.service` 一致。
 - R2 bucket、业务 D1、Tag Cache D1 都显示已绑定。
+- `pnpm test`、`pnpm exec tsc --noEmit`、`pnpm build`、`pnpm cf:build` 均已通过。
 - `pnpm exec wrangler d1 migrations apply DB --remote` 已成功执行。
 - 首页、登录、Dashboard、支付回调、CMS、R2 上传按实际启用功能逐一验证。
 - Cloudflare Workers 日志没有 `Business database is not configured` 或 D1 SQL 错误。
