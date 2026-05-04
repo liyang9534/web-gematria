@@ -1,6 +1,7 @@
 import { listPublishedPostsAction } from '@/actions/posts/posts'
 import { siteConfig } from '@/config/site'
 import { DEFAULT_LOCALE, LOCALES } from '@/i18n/routing'
+import { getAllAngelNumbers } from '@/lib/angel-numbers'
 import { blogCms } from '@/lib/cms'
 import { MetadataRoute } from 'next'
 
@@ -22,6 +23,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: page === '' ? 1.0 : 0.8,
     }))
   })
+
+  const seoStaticPages = [
+    '/angel-number',
+    '/calculator',
+    '/calculator/gematria',
+    '/calculator/numerology',
+    '/calculator/life-path',
+  ].map(page => ({
+    url: `${siteUrl}${page}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as ChangeFrequency,
+    priority: page === '/angel-number' ? 0.9 : 0.8,
+  }))
+
+  const angelNumberPages = getAllAngelNumbers().map((angelNumber) => ({
+    url: `${siteUrl}/angel-number/${angelNumber.slug}`,
+    lastModified: new Date(angelNumber.lastUpdated),
+    changeFrequency: 'monthly' as ChangeFrequency,
+    priority: angelNumber.isPriority ? 0.9 : 0.7,
+  }))
 
   const allBlogSitemapEntries: MetadataRoute.Sitemap = [];
 
@@ -110,6 +131,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...pages,
+    ...seoStaticPages,
+    ...angelNumberPages,
     ...uniqueBlogPostEntries,
     ...uniqueGlossaryEntries
   ]

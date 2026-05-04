@@ -1,8 +1,8 @@
 {
   "Home": {
-    "title": "NEXTY.DEV",
-    "tagLine": "A Modern Next.js Full-Stack SaaS Template",
-    "description": "A production-ready Next.js and Cloudflare D1 starter template for building modern SaaS applications. Launch your content, AI, or subscription service faster."
+    "title": "Angel Number Decoder",
+    "tagLine": "Decode repeating numbers with numerology and gematria",
+    "description": "A modern angel number guide and calculator hub for decoding repeating numbers, names, birthdays and symbolic numeric patterns."
   },
   "Login": {
     "title": "Welcome back",
@@ -327,48 +327,16 @@
   "Header": {
     "links": [
       {
-        "name": "Features",
-        "href": "/#features"
+        "name": "Angel Numbers",
+        "href": "/angel-number"
       },
       {
-        "id": "pricing",
-        "name": "Pricing",
-        "href": "/#pricing"
-      },
-      {
-        "name": "AI Demo",
-        "href": "/ai-demo"
+        "name": "Calculators",
+        "href": "/calculator"
       },
       {
         "name": "Blog",
         "href": "/blog"
-      },
-      {
-        "name": "Demo",
-        "href": "#",
-        "items": [
-          {
-            "name": "Nexty Demo",
-            "href": "https://demo.nexty.dev/",
-            "target": "_blank",
-            "rel": "noopener noreferrer nofollow",
-            "description": "Next.js SaaS Boilerplate"
-          },
-          {
-            "name": "AI Image Generator Demo",
-            "href": "https://flux-kontext.nexty.dev/",
-            "target": "_blank",
-            "rel": "noopener noreferrer nofollow",
-            "description": "AI Image Generator Demo Based on NEXTY.DEV"
-          },
-          {
-            "name": "Directory Boilerplate Demo",
-            "href": "https://dofollow.tools/",
-            "target": "_blank",
-            "rel": "noopener noreferrer nofollow",
-            "description": "Directory Boilerplate Demo Based on NEXTY.DEV"
-          }
-        ]
       }
     ]
   },
@@ -412,16 +380,19 @@
     "Links": {
       "groups": [
         {
-          "title": "Products",
+          "title": "Explore",
           "links": [
             {
-              "href": "/#features",
-              "name": "Features"
+              "href": "/angel-number",
+              "name": "Angel Numbers"
             },
             {
-              "id": "pricing",
-              "href": "/#pricing",
-              "name": "Pricing"
+              "href": "/calculator",
+              "name": "Calculators"
+            },
+            {
+              "href": "/calculator/gematria",
+              "name": "Gematria"
             },
             {
               "href": "/blog",

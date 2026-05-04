@@ -1,8 +1,8 @@
 {
   "Home": {
-    "title": "NEXTY.DEV",
-    "tagLine": "最新の Next.js フルスタック SaaS テンプレート",
-    "description": "Next.js と Cloudflare D1 を活用した本格的な SaaS 開発キット。コンテンツ配信、AI ツール、サブスクリプションサービスを迅速に構築できます。"
+    "title": "Angel Number Decoder",
+    "tagLine": "数秘術とゲマトリアで繰り返し現れる数字を読み解く",
+    "description": "繰り返し現れる数字、名前、誕生日、象徴的な数字パターンを読み解くためのモダンな Angel Number ガイドです。"
   },
   "Login": {
     "title": "おかえりなさい",

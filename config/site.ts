@@ -1,6 +1,6 @@
 import { SiteConfig } from "@/types/siteConfig";
 
-export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://nexty.dev";
+export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://angel-number-decoder.com";
 
 const GITHUB_URL = ''
 const TWITTER_URL = ''
@@ -11,15 +11,15 @@ const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL
 const EMAIL_URL = ''
 
 export const siteConfig: SiteConfig = {
-  name: "NEXTY.DEV",
+  name: "Angel Number Decoder",
   url: BASE_URL,
   authors: [
     {
-      name: "your-name",
+      name: "Angel Number Decoder",
       url: BASE_URL,
     }
   ],
-  creator: '@your-handle',
+  creator: '@angelnumberdecoder',
   socialLinks: {
     github: GITHUB_URL,
     twitter: TWITTER_URL,
@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' },
   ],
-  defaultNextTheme: 'light', // next-theme option: system | dark | light
+  defaultNextTheme: 'dark', // next-theme option: system | dark | light
   icons: {
     icon: "/favicon.ico",
     shortcut: "/logo.png",
