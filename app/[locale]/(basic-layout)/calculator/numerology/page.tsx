@@ -1,6 +1,7 @@
 import { NumerologyCalculator } from "@/components/calculator/NumerologyCalculator";
 import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
+import { siteConfig } from "@/config/site";
 import { constructMetadata } from "@/lib/metadata";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -33,7 +34,7 @@ export default function NumerologyCalculatorPage() {
       title="Decode your name and birthday numbers."
       description="Enter a full name and birthday to calculate the four core numerology signals."
     >
-      <NumerologyCalculator />
+      <NumerologyCalculator baseUrl={`${siteConfig.url}/calculator/numerology`} />
     </CalculatorLayout>
   );
 }

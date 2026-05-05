@@ -17,4 +17,5 @@ export interface NumerologyProfile {
   expression: NumerologyCalculation;
   soulUrge: NumerologyCalculation;
   personality: NumerologyCalculation;
+  birthdayNumber: NumerologyCalculation;
 }

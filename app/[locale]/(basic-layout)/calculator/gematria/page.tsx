@@ -1,13 +1,14 @@
 import { GematriaCalculator } from "@/components/calculator/GematriaCalculator";
 import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
+import { siteConfig } from "@/config/site";
 import { constructMetadata } from "@/lib/metadata";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 type Params = Promise<{ locale: string }>;
-type SearchParams = Promise<{ input?: string; q?: string }>;
+type SearchParams = Promise<{ input?: string; q?: string; value?: string }>;
 
 export async function generateMetadata({
   params,
@@ -32,7 +33,7 @@ export default async function GematriaCalculatorPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const { input, q } = await searchParams;
+  const { input, q, value } = await searchParams;
   const initialInput = input ?? q ?? "Angel";
 
   return (
@@ -41,7 +42,11 @@ export default async function GematriaCalculatorPage({
       title="The flagship cipher surface."
       description="Type an English or Hebrew word and compare the calculation before opening optional interpretive layers."
     >
-      <GematriaCalculator initialInput={initialInput} />
+      <GematriaCalculator
+        initialInput={initialInput}
+        targetValue={value}
+        baseUrl={`${siteConfig.url}/calculator/gematria`}
+      />
     </CalculatorLayout>
   );
 }

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  calculateBirthdayNumber,
   calculateExpressionNumber,
   calculateLifePathNumber,
   calculateNumerologyProfile,
@@ -24,6 +25,13 @@ test("calculates life path number from an ISO birthday", () => {
   assert.match(result.meaning, /freedom/i);
 });
 
+test("calculates birthday number from the birthday day", () => {
+  const result = calculateBirthdayNumber("1990-07-24");
+
+  assert.equal(result.value, 6);
+  assert.equal(result.calculation, "Birthday: 2+4 = 6");
+});
+
 test("calculates name numerology values", () => {
   assert.equal(calculateExpressionNumber("Ada Lovelace").value, 9);
   assert.equal(calculateSoulUrgeNumber("Ada Lovelace").value, 1);
@@ -40,4 +48,6 @@ test("builds a complete numerology profile", () => {
   assert.equal(profile.expression.value, 9);
   assert.equal(profile.soulUrge.value, 1);
   assert.equal(profile.personality.value, 8);
+  assert.equal(profile.birthday, "1815-12-10");
+  assert.equal(profile.birthdayNumber.value, 1);
 });

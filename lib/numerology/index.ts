@@ -3,25 +3,10 @@ import type {
   NumerologyProfile,
   NumerologyProfileInput,
 } from "@/types/numerology";
+import { getNumerologyDescription } from "@/lib/number-meanings";
 
 const MASTER_NUMBERS = new Set([11, 22, 33, 44]);
 const VOWELS = new Set(["A", "E", "I", "O", "U", "Y"]);
-
-const MEANINGS: Record<number, string> = {
-  1: "Leadership, independence, initiative, and the courage to begin.",
-  2: "Partnership, sensitivity, patience, and emotional intelligence.",
-  3: "Creativity, expression, optimism, and communication.",
-  4: "Structure, discipline, stability, and steady foundations.",
-  5: "Freedom, change, adaptability, and lived experience.",
-  6: "Care, responsibility, harmony, and service to home or community.",
-  7: "Insight, study, intuition, and spiritual depth.",
-  8: "Power, ambition, stewardship, and material mastery.",
-  9: "Compassion, completion, wisdom, and higher purpose.",
-  11: "Inspired intuition, sensitivity, and visionary awareness.",
-  22: "Master building, practical vision, and large-scale manifestation.",
-  33: "Master teaching, compassion, and healing service.",
-  44: "Master structure, endurance, and disciplined leadership.",
-};
 
 export function reduceNumerologyNumber(value: number): number {
   let currentValue = Math.abs(Math.trunc(value));
@@ -46,6 +31,20 @@ export function calculateLifePathNumber(birthday: string): NumerologyCalculation
   };
 }
 
+export function calculateBirthdayNumber(birthday: string): NumerologyCalculation {
+  const day = birthday.split("-")[2] ?? "";
+  const digits = day.replace(/\D/g, "").split("").map(Number);
+  const rawValue = digits.reduce((sum, digit) => sum + digit, 0);
+  const value = reduceNumerologyNumber(rawValue);
+
+  return {
+    value,
+    rawValue,
+    calculation: `Birthday: ${digits.join("+") || "0"} = ${rawValue}${formatReduction(rawValue, value)}`,
+    meaning: getNumerologyMeaning(value),
+  };
+}
+
 export function calculateExpressionNumber(fullName: string): NumerologyCalculation {
   return calculateNameNumber(fullName, () => true, "Expression");
 }
@@ -61,6 +60,8 @@ export function calculatePersonalityNumber(fullName: string): NumerologyCalculat
 export function calculateNumerologyProfile(
   input: NumerologyProfileInput,
 ): NumerologyProfile {
+  const birthdayNumber = calculateBirthdayNumber(input.birthday);
+
   return {
     fullName: input.fullName,
     birthday: input.birthday,
@@ -68,11 +69,12 @@ export function calculateNumerologyProfile(
     expression: calculateExpressionNumber(input.fullName),
     soulUrge: calculateSoulUrgeNumber(input.fullName),
     personality: calculatePersonalityNumber(input.fullName),
+    birthdayNumber,
   };
 }
 
 export function getNumerologyMeaning(value: number): string {
-  return MEANINGS[value] ?? "A blended numerology influence that invites personal reflection.";
+  return getNumerologyDescription(value);
 }
 
 function calculateNameNumber(

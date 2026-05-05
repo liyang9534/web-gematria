@@ -9,6 +9,8 @@ import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
 import { PullQuote } from "@/components/mystic/PullQuote";
 import { SourceBadge } from "@/components/mystic/SourceBadge";
+import { ShareCardActions } from "@/components/shared/ShareCardActions";
+import { Button } from "@/components/ui/button";
 import { AICtaBanner } from "@/components/number-ai/AICtaBanner";
 import {
   Breadcrumb,
@@ -36,6 +38,7 @@ import {
   createFAQJsonLd,
   JsonLd,
 } from "@/lib/seo/json-ld";
+import { buildAngelToGematriaUrl } from "@/lib/tool-bridges";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -145,7 +148,14 @@ export default async function AngelNumberPage({
           </BreadcrumbList>
         </Breadcrumb>
 
-        <NumberHero reading={reading} />
+        <NumberHero
+          reading={reading}
+          shareInput={{
+            tool: "angel",
+            number: reading.number,
+            resultUrl: canonicalUrl,
+          }}
+        />
 
         <PullQuote>
           {`${reading.number} · ${reading.shortMeaning}`}
@@ -195,6 +205,38 @@ export default async function AngelNumberPage({
           </Section>
 
           <AffirmationCard text={reading.affirmation} />
+          <MysticSurface className="p-5 md:p-6">
+            <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
+              <div className="space-y-3">
+                <SourceBadge tone="gematria">Gematria · Cross-system</SourceBadge>
+                <h2 className="observatory-display text-3xl text-[var(--ink-pure)]">
+                  Curious which words equal {reading.number} in Gematria?
+                </h2>
+                <p className="text-sm leading-6 text-[var(--ink-secondary)]">
+                  Keep the systems separate, but use the same number as a bridge
+                  into the calculator.
+                </p>
+              </div>
+              <Button asChild variant="outline" className="observatory-button">
+                <Link href={buildAngelToGematriaUrl(reading.number)}>
+                  Try the Gematria Calculator
+                </Link>
+              </Button>
+            </div>
+          </MysticSurface>
+          <MysticSurface className="p-5 md:p-6">
+            <SourceBadge tone="angel">Shareable card</SourceBadge>
+            <div className="mt-5">
+              <ShareCardActions
+                input={{
+                  tool: "angel",
+                  number: reading.number,
+                  resultUrl: canonicalUrl,
+                }}
+                variant="compact"
+              />
+            </div>
+          </MysticSurface>
           <MysticSurface className="p-5 md:p-6">
             <SourceBadge tone={reading.seo.shouldIndex ? "angel" : "numerology"}>
               {reading.seo.shouldIndex ? "Canonical Guide" : "Instant Reading"}

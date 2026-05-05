@@ -1,13 +1,16 @@
 import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
 import { RitualDivider } from "@/components/mystic/RitualDivider";
 import { SourceBadge } from "@/components/mystic/SourceBadge";
+import { ShareCardActions } from "@/components/shared/ShareCardActions";
+import type { ShareCardInput } from "@/lib/share-cards";
 import type { AngelNumberReading } from "@/types/angel-number";
 
 interface NumberHeroProps {
   reading: AngelNumberReading;
+  shareInput?: ShareCardInput;
 }
 
-export function NumberHero({ reading }: NumberHeroProps) {
+export function NumberHero({ reading, shareInput }: NumberHeroProps) {
   return (
     <section className="number-hero observatory-card relative min-h-[520px] overflow-hidden px-5 py-20 text-center md:px-10 md:py-28">
       <MysticBackdrop />
@@ -47,6 +50,12 @@ export function NumberHero({ reading }: NumberHeroProps) {
             </span>
           )}
         </div>
+        {shareInput && (
+          <ShareCardActions
+            input={shareInput}
+            className="mt-8"
+          />
+        )}
       </div>
     </section>
   );
