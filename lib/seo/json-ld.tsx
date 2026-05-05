@@ -1,3 +1,5 @@
+import "server-only";
+
 interface JsonLdProps {
   id: string;
   data: Record<string, unknown>;

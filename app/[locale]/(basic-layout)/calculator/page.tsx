@@ -32,14 +32,14 @@ export default function CalculatorPage() {
         <div className="container mx-auto space-y-8 px-5 py-20 md:px-16 md:py-28">
           <div className="max-w-3xl space-y-4">
             <p className="observatory-eyebrow">
-              Calculator center
+              Calculation tools
             </p>
             <h1 className="observatory-display text-5xl leading-[1.05] text-[var(--ink-pure)] md:text-7xl">
-              Gematria first. Numerology close behind.
+              Calculate the numeric signal behind words, names, and birthdays.
             </h1>
             <p className="text-lg leading-8 text-[var(--ink-secondary)]">
-              The flagship calculator is Gematria: type a word, phrase, name or
-              Hebrew term and watch the numeric systems align in real time.
+              Start with precise Gematria values, then use numerology and life
+              path tools when a name, date, or angel number needs more context.
             </p>
           </div>
         </div>
