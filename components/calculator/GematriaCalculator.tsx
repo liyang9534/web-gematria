@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SourceBadge } from "@/components/mystic/SourceBadge";
 import {
   calculateGematria,
   createGematriaShareText,
@@ -24,10 +25,14 @@ const systems: Array<{ key: GematriaSystem; label: string }> = [
 
 interface GematriaCalculatorProps {
   compact?: boolean;
+  initialInput?: string;
 }
 
-export function GematriaCalculator({ compact = false }: GematriaCalculatorProps) {
-  const [input, setInput] = useState("Angel");
+export function GematriaCalculator({
+  compact = false,
+  initialInput = "Angel",
+}: GematriaCalculatorProps) {
+  const [input, setInput] = useState(initialInput);
   const [copied, setCopied] = useState<"text" | "link" | null>(null);
   const result = useMemo(() => calculateGematria(input), [input]);
   const matches = useMemo(
@@ -51,9 +56,13 @@ export function GematriaCalculator({ compact = false }: GematriaCalculatorProps)
 
   return (
     <div className="min-w-0 space-y-6">
-      <div className="min-w-0 rounded-lg border border-amber-200/15 bg-zinc-950/70 p-5 shadow-[0_0_42px_rgba(245,158,11,0.08)]">
+      <div className="observatory-card min-w-0 p-5">
         <div className="space-y-4">
-          <label htmlFor="gematria-input" className="text-sm font-medium text-zinc-100">
+          <SourceBadge tone="gematria">Gematria · Calculation</SourceBadge>
+          <label
+            htmlFor="gematria-input"
+            className="block text-sm font-medium text-[var(--ink-pure)]"
+          >
             Text or Hebrew word
           </label>
           <Input
@@ -61,9 +70,9 @@ export function GematriaCalculator({ compact = false }: GematriaCalculatorProps)
             value={input}
             onChange={(event) => setInput(event.target.value)}
             placeholder="Type a word or phrase"
-            className="h-14 border-white/10 bg-white/[0.055] text-lg text-white placeholder:text-zinc-500"
+            className="observatory-mono h-14 rounded-[4px] border-[var(--stroke-default)] bg-[var(--void-elevated)] text-lg text-[var(--ink-pure)] placeholder:italic placeholder:text-[var(--ink-muted)] focus-visible:ring-[var(--vellum-500)]"
           />
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-[var(--ink-secondary)]">
             Normalized: {result.normalizedInput || "None"}
           </p>
         </div>
@@ -71,11 +80,14 @@ export function GematriaCalculator({ compact = false }: GematriaCalculatorProps)
 
       <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {systems.map((system) => (
-          <div key={system.key} className="min-w-0 rounded-lg border border-white/10 bg-white/[0.055] p-4 shadow-sm">
-            <div className="text-xs uppercase tracking-[0.18em] text-zinc-400">
+          <div
+            key={system.key}
+            className="observatory-card min-w-0 p-4"
+          >
+            <div className="observatory-eyebrow text-[var(--ink-muted)]">
               {system.label}
             </div>
-            <div className="mt-2 font-mono text-3xl font-semibold text-amber-200">
+            <div className="observatory-mono mt-3 text-4xl font-light text-[var(--vellum-300)]">
               {result.values[system.key]}
             </div>
           </div>
@@ -83,24 +95,34 @@ export function GematriaCalculator({ compact = false }: GematriaCalculatorProps)
       </div>
 
       <div className="flex min-w-0 flex-wrap gap-2">
-        <Button type="button" onClick={copyText} variant="outline" className="rounded-md border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white">
+        <Button
+          type="button"
+          onClick={copyText}
+          variant="outline"
+          className="observatory-button"
+        >
           {copied === "text" ? <Check className="size-4" /> : <Copy className="size-4" />}
           Copy result
         </Button>
-        <Button type="button" onClick={copyLink} variant="outline" className="rounded-md border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white">
+        <Button
+          type="button"
+          onClick={copyLink}
+          variant="outline"
+          className="observatory-button"
+        >
           {copied === "link" ? <Check className="size-4" /> : <Link2 className="size-4" />}
           Copy link
         </Button>
       </div>
 
       {!compact && (
-      <div className="min-w-0 rounded-lg border border-white/10 bg-white/[0.055] p-4 shadow-sm md:p-6">
+      <div className="observatory-card min-w-0 p-4 md:p-6">
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold tracking-normal text-white">Letter breakdown</h2>
+          <h2 className="observatory-display text-3xl text-[var(--ink-pure)]">Letter breakdown</h2>
           <div className="max-w-full overflow-x-auto">
             <table className="w-full min-w-[640px] text-sm">
-              <thead className="text-left text-zinc-400">
-                <tr className="border-b">
+              <thead className="text-left text-[var(--ink-secondary)]">
+                <tr className="border-b border-[var(--stroke-hairline)]">
                   <th className="py-3 pr-4">Letter</th>
                   <th className="py-3 pr-4">Ordinal</th>
                   <th className="py-3 pr-4">Hebrew</th>
@@ -110,8 +132,8 @@ export function GematriaCalculator({ compact = false }: GematriaCalculatorProps)
               </thead>
               <tbody>
                 {result.letterBreakdown.map((letter, index) => (
-                  <tr key={`${letter.letter}-${index}`} className="border-b border-white/10 text-zinc-200 last:border-0">
-                    <td className="py-3 pr-4 font-mono text-base text-amber-200">{letter.letter}</td>
+                  <tr key={`${letter.letter}-${index}`} className="border-b border-[var(--stroke-hairline)] text-[var(--ink-primary)] last:border-0">
+                    <td className="observatory-mono py-3 pr-4 text-base text-[var(--vellum-300)]">{letter.letter}</td>
                     <td className="py-3 pr-4">{letter.values.englishOrdinal}</td>
                     <td className="py-3 pr-4">{letter.values.hebrewStandard}</td>
                     <td className="py-3 pr-4">{letter.values.reverseOrdinal}</td>
@@ -126,12 +148,16 @@ export function GematriaCalculator({ compact = false }: GematriaCalculatorProps)
       )}
 
       {matches.length > 0 && (
-        <div className="min-w-0 rounded-lg border border-white/10 bg-white/[0.055] p-4 md:p-6">
+        <div className="observatory-card min-w-0 p-4 md:p-6">
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold tracking-normal text-white">Same-value matches</h2>
+            <h2 className="observatory-display text-3xl text-[var(--ink-pure)]">Same-value matches</h2>
             <div className="flex flex-wrap gap-2">
               {matches.map((match) => (
-                <Badge key={match.term} variant="secondary" className="rounded-md bg-teal-200/10 text-teal-100">
+                <Badge
+                  key={match.term}
+                  variant="secondary"
+                  className="rounded-[2px] border border-[var(--stroke-default)] bg-[rgba(107,91,149,0.14)] text-[var(--cloister-100)]"
+                >
                   {match.term} = {match.value}
                 </Badge>
               ))}

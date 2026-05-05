@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 
 interface RelatedNumbersProps {
@@ -9,14 +8,13 @@ export function RelatedNumbers({ numbers }: RelatedNumbersProps) {
   return (
     <div className="flex flex-wrap gap-2">
       {numbers.map((number) => (
-        <Button
+        <Link
           key={number}
-          asChild
-          variant="outline"
-          className="rounded-md border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+          href={`/angel-number/${number}`}
+          className="observatory-mono flex min-h-11 min-w-11 items-center justify-center rounded-[2px] border border-[var(--stroke-default)] px-4 py-2.5 text-sm text-[var(--vellum-300)] transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[rgba(201,169,97,0.06)]"
         >
-          <Link href={`/angel-number/${number}`}>{number}</Link>
-        </Button>
+          {number}
+        </Link>
       ))}
     </div>
   );

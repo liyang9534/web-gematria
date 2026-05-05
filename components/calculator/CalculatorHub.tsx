@@ -2,7 +2,7 @@ import { GematriaCalculator } from "@/components/calculator/GematriaCalculator";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, Calculator, Hash, Sparkles } from "lucide-react";
+import { Calculator, Hash, Sparkles } from "lucide-react";
 
 const tools = [
   {
@@ -33,12 +33,16 @@ export function CalculatorHub() {
           <MysticSectionTitle
             eyebrow="Flagship tool"
             title="Gematria Calculator"
-            description="The primary calculator gets the largest surface area: real-time values, system matrix, letter breakdown, matches and sharing."
+            description="A calculation-first surface for comparing words, names and Hebrew terms across multiple numeric systems."
           />
-          <Button asChild className="w-fit rounded-md bg-amber-300 text-zinc-950 hover:bg-amber-200">
+          <Button
+            asChild
+            variant="outline"
+            className="observatory-button w-fit"
+          >
             <Link href="/calculator/gematria">
               Full page
-              <ArrowRight className="size-4" />
+              <span aria-hidden="true">→</span>
             </Link>
           </Button>
         </div>
@@ -50,16 +54,16 @@ export function CalculatorHub() {
 
           return (
             <Link key={tool.href} href={tool.href} className="group block">
-              <MysticSurface className="h-full p-5 transition hover:-translate-y-0.5 hover:border-teal-300/40">
+              <MysticSurface className="h-full p-5 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]">
                 <div className="space-y-5">
-                  <div className="flex size-11 items-center justify-center rounded-lg border border-teal-200/15 bg-teal-200/10 text-teal-100">
+                  <div className="flex size-11 items-center justify-center rounded-[4px] border border-[var(--stroke-default)] bg-[rgba(107,91,149,0.12)] text-[var(--cloister-100)]">
                     <Icon className="size-5" />
                   </div>
                   <div className="space-y-2">
-                    <h2 className="text-xl font-semibold tracking-normal text-white">
+                    <h2 className="observatory-display text-2xl text-[var(--ink-pure)]">
                       {tool.title}
                     </h2>
-                    <p className="text-sm leading-6 text-zinc-300">
+                    <p className="text-sm leading-6 text-[var(--ink-secondary)]">
                       {tool.description}
                     </p>
                   </div>

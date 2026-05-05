@@ -50,9 +50,9 @@ function CalculatorLayout({
   children: ReactNode;
 }) {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#08080d] text-white">
+    <main className="observatory-theme relative min-h-screen w-full overflow-hidden">
       <MysticBackdrop variant="quiet" />
-      <div className="container relative mx-auto space-y-8 px-4 py-12">
+      <div className="container relative mx-auto space-y-10 px-5 py-16 md:px-16 md:py-24">
         <MysticSectionTitle eyebrow={eyebrow} title={title} description={description} />
         <MysticSurface className="p-5 md:p-7">{children}</MysticSurface>
       </div>

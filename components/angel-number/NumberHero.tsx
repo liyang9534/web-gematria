@@ -1,4 +1,6 @@
 import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
+import { RitualDivider } from "@/components/mystic/RitualDivider";
+import { SourceBadge } from "@/components/mystic/SourceBadge";
 import type { AngelNumberReading } from "@/types/angel-number";
 
 interface NumberHeroProps {
@@ -7,44 +9,43 @@ interface NumberHeroProps {
 
 export function NumberHero({ reading }: NumberHeroProps) {
   return (
-    <section className="relative overflow-hidden rounded-lg border border-white/10 bg-zinc-950 text-white">
+    <section className="number-hero observatory-card relative min-h-[520px] overflow-hidden px-5 py-20 text-center md:px-10 md:py-28">
       <MysticBackdrop />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent" />
-      <div className="relative grid gap-8 px-6 py-12 md:grid-cols-[0.8fr_1.2fr] md:px-10 lg:px-12">
-        <div className="flex items-center justify-center">
-          <div className="relative">
-            <div className="absolute inset-0 blur-3xl bg-amber-300/20" />
-            <div className="relative font-mono text-8xl font-semibold tracking-normal text-amber-300 drop-shadow-[0_0_36px_rgba(245,158,11,0.34)] md:text-9xl">
-              {reading.number}
-            </div>
-          </div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,rgba(201,169,97,0.04)_0%,transparent_60%)]" />
+      <div className="relative mx-auto flex max-w-4xl flex-col items-center">
+        <SourceBadge tone="angel">
+          {reading.source === "curated"
+            ? "Angel Number · Interpretation"
+            : "Angel Number · Instant Reading"}
+        </SourceBadge>
+        <div
+          aria-label={`Angel Number ${reading.number}`}
+          className="observatory-mono mt-10 text-[7rem] font-light leading-none tracking-[-0.04em] text-[var(--vellum-300)] [text-shadow:var(--glow-vellum)] md:text-[12rem]"
+        >
+          {reading.number}
         </div>
-        <div className="flex flex-col justify-center gap-5">
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.32em] text-teal-200">
-              {reading.source === "curated" ? "Curated angel number guide" : "Instant angel number reading"}
-            </p>
-            <h1 className="max-w-3xl font-serif text-4xl font-semibold tracking-normal md:text-6xl">
-              {reading.title}
-            </h1>
-            <p className="text-xl text-amber-100">{reading.shortMeaning}</p>
-          </div>
-          <p className="max-w-3xl text-base leading-8 text-zinc-300 md:text-lg">
-            {reading.summary}
-          </p>
-          <div className="flex flex-wrap gap-2 text-xs">
-            <span className="rounded-md border border-white/10 bg-white/5 px-3 py-1 text-zinc-300">
-              {reading.pattern.label}
+        <RitualDivider className="my-7" />
+        <h1 className="observatory-display max-w-3xl text-4xl italic text-[var(--ink-pure)] md:text-6xl">
+          {reading.title}
+        </h1>
+        <p className="mt-5 text-xl text-[var(--vellum-300)] md:text-2xl">
+          {reading.shortMeaning}
+        </p>
+        <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-[var(--ink-secondary)] md:text-lg">
+          {reading.summary}
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-2 text-xs">
+          <span className="rounded-full border border-[var(--stroke-default)] px-3 py-1 text-[var(--ink-secondary)]">
+            {reading.pattern.label}
+          </span>
+          <span className="rounded-full border border-[rgba(201,169,97,0.38)] px-3 py-1 text-[var(--vellum-300)]">
+            Root {reading.numerology.rootNumber}
+          </span>
+          {!reading.seo.shouldIndex && (
+            <span className="rounded-full border border-[rgba(155,143,191,0.4)] px-3 py-1 text-[var(--cloister-300)]">
+              Shareable noindex reading
             </span>
-            <span className="rounded-md border border-amber-200/15 bg-amber-200/10 px-3 py-1 text-amber-100">
-              Root {reading.numerology.rootNumber}
-            </span>
-            {!reading.seo.shouldIndex && (
-              <span className="rounded-md border border-teal-200/15 bg-teal-200/10 px-3 py-1 text-teal-100">
-                Shareable noindex reading
-              </span>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </section>

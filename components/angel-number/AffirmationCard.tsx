@@ -4,8 +4,13 @@ interface AffirmationCardProps {
 
 export function AffirmationCard({ text }: AffirmationCardProps) {
   return (
-    <figure className="rounded-lg border border-amber-300/30 bg-amber-300/10 p-6 text-amber-50 shadow-[0_0_42px_rgba(245,158,11,0.08)]">
-      <blockquote className="font-serif text-xl font-medium leading-9">"{text}"</blockquote>
+    <figure className="observatory-card p-7 text-center md:p-10">
+      <div className="mb-5 text-[var(--vellum-500)]" aria-hidden="true">
+        ❋
+      </div>
+      <blockquote className="observatory-display text-3xl italic leading-tight text-[var(--ink-pure)] md:text-4xl">
+        “{text}”
+      </blockquote>
     </figure>
   );
 }

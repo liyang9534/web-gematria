@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 type Params = Promise<{ locale: string }>;
+type SearchParams = Promise<{ input?: string; q?: string }>;
 
 export async function generateMetadata({
   params,
@@ -26,14 +27,21 @@ export async function generateMetadata({
   });
 }
 
-export default function GematriaCalculatorPage() {
+export default async function GematriaCalculatorPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const { input, q } = await searchParams;
+  const initialInput = input ?? q ?? "Angel";
+
   return (
     <CalculatorLayout
       eyebrow="Gematria calculator"
       title="The flagship cipher surface."
-      description="Type an English or Hebrew word and compare Hebrew, ordinal, reverse, x6 and reduction systems instantly."
+      description="Type an English or Hebrew word and compare the calculation before opening optional interpretive layers."
     >
-      <GematriaCalculator />
+      <GematriaCalculator initialInput={initialInput} />
     </CalculatorLayout>
   );
 }
@@ -50,9 +58,9 @@ function CalculatorLayout({
   children: ReactNode;
 }) {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#08080d] text-white">
+    <main className="observatory-theme relative min-h-screen w-full overflow-hidden">
       <MysticBackdrop />
-      <div className="container relative mx-auto w-full max-w-7xl space-y-8 overflow-hidden px-4 py-12">
+      <div className="container relative mx-auto w-full max-w-7xl space-y-10 overflow-hidden px-5 py-16 md:px-16 md:py-24">
         <MysticSectionTitle eyebrow={eyebrow} title={title} description={description} />
         <MysticSurface className="min-w-0 p-4 md:p-7">{children}</MysticSurface>
       </div>

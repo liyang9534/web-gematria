@@ -15,7 +15,7 @@ export function MysticSurface({
   return (
     <Component
       className={cn(
-        "rounded-lg border border-white/10 bg-white/[0.055] shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl",
+        "observatory-card",
         className,
       )}
     >
@@ -35,14 +35,14 @@ export function MysticSectionTitle({
 }) {
   return (
     <div className="space-y-3">
-      <p className="text-xs uppercase tracking-[0.28em] text-teal-200/80">
+      <p className="observatory-eyebrow">
         {eyebrow}
       </p>
-      <h2 className="font-serif text-3xl font-semibold tracking-normal text-white md:text-4xl">
+      <h2 className="observatory-display text-3xl text-[var(--ink-pure)] md:text-5xl">
         {title}
       </h2>
       {description && (
-        <p className="max-w-3xl text-sm leading-7 text-zinc-300 md:text-base">
+        <p className="max-w-3xl text-sm leading-7 text-[var(--ink-secondary)] md:text-base">
           {description}
         </p>
       )}

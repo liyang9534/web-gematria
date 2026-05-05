@@ -12,13 +12,17 @@ interface FAQSectionProps {
 
 export function FAQSection({ faqs }: FAQSectionProps) {
   return (
-    <Accordion type="single" collapsible className="rounded-lg border border-white/10 bg-white/[0.055] px-4">
+    <Accordion
+      type="single"
+      collapsible
+      className="observatory-card px-4 md:px-6"
+    >
       {faqs.map((faq, index) => (
         <AccordionItem key={faq.question} value={`faq-${index}`}>
-          <AccordionTrigger className="text-left text-base">
+          <AccordionTrigger className="text-left text-base text-[var(--ink-pure)] hover:text-[var(--vellum-300)]">
             {faq.question}
           </AccordionTrigger>
-          <AccordionContent className="text-base leading-7 text-zinc-300">
+          <AccordionContent className="text-base leading-7 text-[var(--ink-secondary)]">
             {faq.answer}
           </AccordionContent>
         </AccordionItem>

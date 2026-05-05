@@ -1,57 +1,52 @@
-import { NumberSearch } from "@/components/angel-number/NumberSearch";
 import { PopularNumberGrid } from "@/components/angel-number/PopularNumberGrid";
+import { SmartSearchBar } from "@/components/decoder/SmartSearchBar";
 import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import { getFeaturedAngelNumbers } from "@/lib/angel-numbers";
-import { ArrowRight, BookOpenText, Hash, MessageSquareText, Sparkles } from "lucide-react";
 import type { ReactNode } from "react";
 
 export default async function HomeComponent() {
   const featuredNumbers = getFeaturedAngelNumbers();
 
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#08080d] text-white">
+    <main className="observatory-theme relative min-h-screen w-full overflow-hidden">
       <MysticBackdrop />
       <section className="relative">
-        <div className="container mx-auto grid min-h-[calc(100vh-5rem)] gap-12 px-4 py-16 md:grid-cols-[1.08fr_0.92fr] md:items-center">
-          <div className="space-y-8">
-            <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.32em] text-teal-200">
-                Angel Number Decoder
-              </p>
-              <h1 className="max-w-4xl font-serif text-5xl font-semibold tracking-normal md:text-7xl">
-                Decode Any Number's Hidden Meaning
+        <div className="container mx-auto grid min-h-[calc(100vh-5rem)] gap-14 px-5 py-20 md:grid-cols-[1.04fr_0.96fr] md:items-center md:px-16 lg:py-28">
+          <div className="space-y-9">
+            <div className="space-y-6">
+              <p className="observatory-eyebrow">Angel Number Decoder</p>
+              <h1 className="observatory-display max-w-4xl text-5xl leading-[1.05] text-[var(--ink-pure)] md:text-7xl">
+                Decode the number or word in front of you.
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-zinc-300">
-                Enter any number and move from a strange coincidence to a structured
-                reading across angel number symbolism, numerology roots and gematria.
+              <p className="max-w-2xl text-lg leading-8 text-[var(--ink-secondary)]">
+                Enter a number for an angel number reading, or a word for a
+                precise gematria calculation. The systems stay distinct; the
+                exploration stays open.
               </p>
             </div>
-            <NumberSearch
-              popularNumbers={["111", "222", "333", "444", "555"]}
-            />
+            <SmartSearchBar popularNumbers={["111", "222", "333", "444", "555"]} />
           </div>
 
-          <MysticSurface className="relative min-h-[430px] overflow-hidden p-6">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(20,184,166,0.2),transparent_32%),linear-gradient(315deg,rgba(245,158,11,0.2),transparent_36%)]" />
+          <MysticSurface className="relative min-h-[460px] overflow-hidden p-6 md:p-8">
             <div className="relative grid h-full grid-cols-3 content-center gap-3">
               {featuredNumbers.map((angelNumber, index) => (
                 <Link
                   key={angelNumber.slug}
                   href={`/angel-number/${angelNumber.slug}`}
-                  className="group flex aspect-square flex-col justify-between rounded-lg border border-white/10 bg-zinc-950/55 p-4 transition hover:-translate-y-1 hover:border-amber-300/70 hover:bg-zinc-950/75"
+                  className="group flex aspect-square flex-col justify-between rounded-[4px] border border-[var(--stroke-hairline)] bg-[rgba(12,12,20,0.64)] p-4 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]"
                 >
-                  <span className="font-mono text-3xl font-semibold text-amber-300 md:text-4xl">
+                  <span className="observatory-mono text-3xl font-light tracking-[-0.04em] text-[var(--vellum-300)] md:text-4xl">
                     {angelNumber.number}
                   </span>
-                  <span className="text-xs leading-5 text-zinc-300">
+                  <span className="text-xs leading-5 text-[var(--ink-secondary)]">
                     {index % 3 === 0
-                      ? "Awaken"
+                      ? "Foundation"
                       : index % 3 === 1
-                        ? "Balance"
-                        : "Shift"}
+                        ? "Pattern"
+                        : "Signal"}
                   </span>
                 </Link>
               ))}
@@ -60,16 +55,15 @@ export default async function HomeComponent() {
         </div>
       </section>
 
-      <section className="relative container mx-auto space-y-8 px-4 py-14">
+      <section className="relative container mx-auto space-y-8 px-5 py-24 md:px-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <MysticSectionTitle
-            eyebrow="High-frequency portals"
+            eyebrow="High-frequency readings"
             title="The core angel number readings"
-            description="These curated pages stay in the SEO index. Every other number still has an instant reading, but remains noindex by default."
+            description="These curated pages stay in the SEO index. Any other valid number can still be read as an instant, shareable noindex page."
           />
-          <Button asChild variant="outline" className="w-fit rounded-md">
+          <Button asChild variant="outline" className="observatory-button w-fit">
             <Link href="/angel-number">
-              <BookOpenText className="size-4" />
               View all readings
             </Link>
           </Button>
@@ -77,36 +71,36 @@ export default async function HomeComponent() {
         <PopularNumberGrid numbers={featuredNumbers} />
       </section>
 
-      <section className="relative border-y border-white/10 bg-white/[0.025]">
-        <div className="container mx-auto grid gap-5 px-4 py-14 lg:grid-cols-[1.45fr_0.55fr]">
+      <section className="relative border-y border-[var(--stroke-hairline)] bg-[rgba(18,18,28,0.36)]">
+        <div className="container mx-auto grid gap-5 px-5 py-24 md:px-16 lg:grid-cols-[1.45fr_0.55fr]">
           <MysticSurface className="p-7">
             <div className="grid gap-8 md:grid-cols-[0.72fr_0.28fr] md:items-center">
               <div className="space-y-4">
-                <div className="flex size-11 items-center justify-center rounded-lg border border-amber-200/20 bg-amber-300/10 text-amber-200">
-                  <Hash className="size-5" />
+                <div className="flex size-11 items-center justify-center rounded-[4px] border border-[var(--stroke-default)] text-[var(--vellum-500)]">
+                  <span aria-hidden="true">◈</span>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-teal-200/80">
+                  <p className="observatory-eyebrow">
                     Primary tool
                   </p>
-                  <h2 className="mt-3 font-serif text-4xl font-semibold tracking-normal">
+                  <h2 className="observatory-display mt-3 text-5xl text-[var(--ink-pure)]">
                     Gematria Calculator
                   </h2>
                 </div>
-                <p className="max-w-2xl text-base leading-7 text-zinc-300">
-                  Calculate Hebrew, English ordinal, reverse ordinal, x6 and reduction
-                  values. This is the main calculator behind the decoder experience.
+                <p className="max-w-2xl text-base leading-7 text-[var(--ink-secondary)]">
+                  Calculate Hebrew, English ordinal, reverse, x6 and reduction
+                  values before opening any interpretive layer.
                 </p>
-                <Button asChild className="rounded-md bg-amber-300 text-zinc-950 hover:bg-amber-200">
+                <Button asChild variant="outline" className="observatory-button">
                   <Link href="/calculator/gematria">
                     Open Gematria
-                    <ArrowRight className="size-4" />
+                    <span aria-hidden="true">→</span>
                   </Link>
                 </Button>
               </div>
-              <div className="rounded-lg border border-white/10 bg-zinc-950/70 p-5">
-                <div className="font-mono text-5xl font-semibold text-amber-300">39</div>
-                <p className="mt-2 text-xs uppercase tracking-[0.22em] text-zinc-500">
+              <div className="rounded-[4px] border border-[var(--stroke-hairline)] bg-[var(--void-deep)] p-5">
+                <div className="observatory-mono text-6xl font-light text-[var(--vellum-300)]">39</div>
+                <p className="observatory-eyebrow mt-3 text-[var(--ink-muted)]">
                   ANGEL / Ordinal
                 </p>
               </div>
@@ -115,13 +109,13 @@ export default async function HomeComponent() {
           <div className="grid gap-4">
             <ToolCard
               href="/calculator/numerology"
-              icon={<Sparkles className="size-5" />}
+              icon={<span aria-hidden="true">✧</span>}
               title="Numerology"
               description="Name and birthday profile."
             />
             <ToolCard
               href="/calculator/life-path"
-              icon={<MessageSquareText className="size-5" />}
+              icon={<span aria-hidden="true">◇</span>}
               title="Life Path"
               description="Birthday root number."
             />
@@ -145,14 +139,14 @@ function ToolCard({
 }) {
   return (
     <Link href={href} className="group block">
-      <MysticSurface className="h-full p-5 transition hover:-translate-y-0.5 hover:border-teal-300/40">
+      <MysticSurface className="h-full p-5 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]">
         <div className="space-y-4">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-teal-200/15 bg-teal-200/10 text-teal-100">
+          <div className="flex size-10 items-center justify-center rounded-[4px] border border-[var(--stroke-default)] text-[var(--cloister-300)]">
             {icon}
           </div>
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold tracking-normal text-white">{title}</h3>
-            <p className="text-sm leading-6 text-zinc-300">
+            <h3 className="observatory-display text-2xl text-[var(--ink-pure)]">{title}</h3>
+            <p className="text-sm leading-6 text-[var(--ink-secondary)]">
               {description}
             </p>
           </div>

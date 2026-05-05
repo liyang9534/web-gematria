@@ -11,7 +11,7 @@ export function LifePathCalculator() {
 
   return (
     <div className="grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
-      <div className="rounded-lg border border-white/10 bg-white/[0.055] p-6">
+      <div className="observatory-card p-6">
         <div className="space-y-3">
           <Label htmlFor="life-path-birthday">Birthday</Label>
           <Input
@@ -19,19 +19,19 @@ export function LifePathCalculator() {
             type="date"
             value={birthday}
             onChange={(event) => setBirthday(event.target.value)}
-            className="h-12 border-white/10 bg-zinc-950/70 text-white"
+            className="h-12 rounded-[4px] border-[var(--stroke-default)] bg-[var(--void-elevated)] text-[var(--ink-pure)]"
           />
         </div>
       </div>
-      <div className="rounded-lg border border-white/10 bg-white/[0.055] p-6">
+      <div className="observatory-card p-6">
         <div className="flex gap-5">
-          <div className="flex size-20 shrink-0 items-center justify-center rounded-lg border border-teal-200/20 bg-teal-200/10 font-mono text-4xl font-semibold text-teal-100">
+          <div className="observatory-mono flex size-20 shrink-0 items-center justify-center rounded-[4px] border border-[rgba(123,111,168,0.44)] bg-[rgba(107,91,149,0.12)] text-4xl font-light text-[var(--cloister-100)]">
             {result.value}
           </div>
           <div className="space-y-3">
-            <h2 className="text-2xl font-semibold tracking-normal text-white">Life Path {result.value}</h2>
-            <p className="font-mono text-sm text-zinc-400">{result.calculation}</p>
-            <p className="leading-7 text-zinc-300">{result.meaning}</p>
+            <h2 className="observatory-display text-3xl text-[var(--ink-pure)]">Life Path {result.value}</h2>
+            <p className="observatory-mono text-sm text-[var(--ink-secondary)]">{result.calculation}</p>
+            <p className="leading-7 text-[var(--ink-secondary)]">{result.meaning}</p>
           </div>
         </div>
       </div>

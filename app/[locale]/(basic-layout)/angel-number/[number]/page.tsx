@@ -7,6 +7,8 @@ import { NumerologySummary } from "@/components/angel-number/NumerologySummary";
 import { RelatedNumbers } from "@/components/angel-number/RelatedNumbers";
 import { MysticBackdrop } from "@/components/mystic/MysticBackdrop";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
+import { PullQuote } from "@/components/mystic/PullQuote";
+import { SourceBadge } from "@/components/mystic/SourceBadge";
 import { AICtaBanner } from "@/components/number-ai/AICtaBanner";
 import {
   Breadcrumb,
@@ -35,7 +37,6 @@ import {
   JsonLd,
 } from "@/lib/seo/json-ld";
 import type { Locale } from "@/i18n/routing";
-import { BookOpen, Cross, Link2 } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
@@ -103,7 +104,7 @@ export default async function AngelNumberPage({
   const faqJsonLd = createFAQJsonLd(reading.faqs);
 
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#08080d] text-white">
+    <main className="observatory-theme relative min-h-screen w-full overflow-hidden">
       <MysticBackdrop variant="quiet" />
       {reading.source === "curated" && (
         <JsonLd id={`angel-number-${reading.slug}-faq`} data={faqJsonLd} />
@@ -113,32 +114,45 @@ export default async function AngelNumberPage({
         data={breadcrumbJsonLd}
       />
 
-      <div className="container relative mx-auto space-y-10 px-4 py-8">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/">Home</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/angel-number">Angel Numbers</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{reading.number}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="container relative mx-auto space-y-24 px-5 py-10 md:px-16">
+        <Breadcrumb className="text-[var(--ink-secondary)]">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link
+                  href="/"
+                  className="inline-flex min-h-11 min-w-11 items-center hover:text-[var(--vellum-300)]"
+                >
+                  Home
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link
+                  href="/angel-number"
+                  className="inline-flex min-h-11 min-w-11 items-center hover:text-[var(--vellum-300)]"
+                >
+                  Angel Numbers
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="text-[var(--ink-pure)]">{reading.number}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-      <NumberHero reading={reading} />
+        <NumberHero reading={reading} />
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <div className="space-y-8">
-          <Section eyebrow="Interpretation" title="Meaning by life area">
+        <PullQuote>
+          {`${reading.number} · ${reading.shortMeaning}`}
+        </PullQuote>
+
+        <section className="mx-auto max-w-5xl space-y-16">
+          <Section eyebrow="Angel Number" title="Meaning by life area">
             <MeaningTabs meanings={reading.meanings} />
           </Section>
 
@@ -152,21 +166,28 @@ export default async function AngelNumberPage({
 
           <AICtaBanner number={reading.number} />
 
-          <Section eyebrow="References" title="Biblical and symbolic notes" icon={<Cross className="size-5" />}>
+          <Section eyebrow="References" title="Biblical and symbolic notes">
             <div className="space-y-4">
               {reading.biblicalReferences.map((reference) => (
                 <article
                   key={reference.verse}
-                  className="rounded-lg border border-white/10 bg-white/[0.055] p-5 shadow-sm"
+                  className="observatory-card p-5 md:p-6"
                 >
-                  <div className="font-medium">{reference.verse}</div>
-                  <p className="mt-2 text-sm leading-6 text-zinc-300">
+                  <SourceBadge tone="biblical">Biblical · Cross-reference</SourceBadge>
+                  <div className="observatory-display mt-4 text-2xl text-[var(--ink-pure)]">{reference.verse}</div>
+                  <p className="mt-2 text-sm leading-6 text-[var(--ink-secondary)]">
                     {reference.text}
                   </p>
-                  <p className="mt-3 text-sm leading-6">{reference.relevance}</p>
+                  <p className="mt-3 text-sm leading-6 text-[var(--ink-primary)]">{reference.relevance}</p>
                 </article>
               ))}
             </div>
+          </Section>
+
+          <Section eyebrow="Constellation" title="Related numbers">
+            <MysticSurface className="p-5 md:p-6">
+              <RelatedNumbers numbers={reading.relatedNumbers} />
+            </MysticSurface>
           </Section>
 
           <Section eyebrow="Questions" title="FAQ">
@@ -174,29 +195,15 @@ export default async function AngelNumberPage({
           </Section>
 
           <AffirmationCard text={reading.affirmation} />
-        </div>
-
-        <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-          <MysticSurface className="p-5">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Link2 className="size-4 text-amber-500" />
-              Related numbers
-            </div>
-            <div className="mt-4">
-              <RelatedNumbers numbers={reading.relatedNumbers} />
-            </div>
-          </MysticSurface>
-          <MysticSurface className="p-5">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <BookOpen className="size-4 text-teal-600" />
-              {reading.seo.shouldIndex ? "Canonical guide" : "Instant reading"}
-            </div>
-            <p className="mt-3 text-sm leading-6 text-zinc-300">
+          <MysticSurface className="p-5 md:p-6">
+            <SourceBadge tone={reading.seo.shouldIndex ? "angel" : "numerology"}>
+              {reading.seo.shouldIndex ? "Canonical Guide" : "Instant Reading"}
+            </SourceBadge>
+            <p className="mt-4 text-sm leading-6 text-[var(--ink-secondary)]">
               {reading.seo.reason}
             </p>
           </MysticSurface>
-        </aside>
-      </section>
+        </section>
       </div>
     </main>
   );
@@ -205,12 +212,10 @@ export default async function AngelNumberPage({
 function Section({
   eyebrow,
   title,
-  icon,
   children,
 }: {
   eyebrow: string;
   title: string;
-  icon?: ReactNode;
   children: ReactNode;
 }) {
   return (

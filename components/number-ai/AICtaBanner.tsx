@@ -1,5 +1,5 @@
+import { SourceBadge } from "@/components/mystic/SourceBadge";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
 
 interface AICtaBannerProps {
   number?: string;
@@ -7,21 +7,19 @@ interface AICtaBannerProps {
 
 export function AICtaBanner({ number }: AICtaBannerProps) {
   return (
-    <section className="rounded-lg border border-teal-300/30 bg-teal-300/10 p-6 text-white">
+    <section className="observatory-card p-6 md:p-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-2">
-          <p className="text-sm uppercase tracking-[0.18em] text-teal-200">
-            AI reading
-          </p>
-          <h2 className="text-2xl font-semibold tracking-normal">
-            Want a personalized interpretation{number ? ` for ${number}` : ""}?
+          <SourceBadge tone="ai">AI Reading · Planned</SourceBadge>
+          <h2 className="observatory-display pt-3 text-3xl text-[var(--ink-pure)]">
+            A more personal reading{number ? ` for ${number}` : ""}
           </h2>
-          <p className="max-w-2xl text-sm leading-6 text-zinc-300">
-            The AI interpreter is planned for the freemium phase. This entry point is ready for the next rollout.
+          <p className="max-w-2xl text-sm leading-6 text-[var(--ink-secondary)]">
+            The AI interpreter will combine the calculation, symbolic reading and context in a later freemium phase.
           </p>
         </div>
-        <Button className="rounded-md" disabled>
-          <Sparkles className="size-4" />
+        <Button variant="outline" className="observatory-button w-fit" disabled>
+          <span aria-hidden="true">✦</span>
           Coming soon
         </Button>
       </div>

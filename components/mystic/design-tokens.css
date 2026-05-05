@@ -1,0 +1,160 @@
+@layer components {
+  .observatory-theme {
+    --void-absolute: #07070c;
+    --void-deep: #0c0c14;
+    --void-rise: #12121c;
+    --void-elevated: #1a1a26;
+    --void-membrane: #232332;
+    --vellum-100: #fbf6e9;
+    --vellum-300: #e8d9a8;
+    --vellum-500: #c9a961;
+    --vellum-700: #8c7340;
+    --cloister-100: #d8cfe8;
+    --cloister-300: #9b8fbf;
+    --cloister-500: #6b5b95;
+    --cloister-700: #463a6a;
+    --ink-pure: #f4f1e8;
+    --ink-primary: #e8e4d6;
+    --ink-secondary: #a8a394;
+    --ink-muted: #6b6759;
+    --ink-whisper: #3d3a33;
+    --hue-rose: #b85450;
+    --hue-jade: #5c8c7a;
+    --hue-amber: #c4923d;
+    --hue-iris: #7b6fa8;
+    --stroke-hairline: rgba(232, 217, 168, 0.06);
+    --stroke-default: rgba(232, 217, 168, 0.12);
+    --stroke-emphasis: rgba(232, 217, 168, 0.28);
+    --stroke-active: rgba(201, 169, 97, 0.55);
+    --glow-vellum: 0 0 24px rgba(201, 169, 97, 0.18),
+      0 0 48px rgba(201, 169, 97, 0.08);
+    --glow-cloister: 0 0 32px rgba(107, 91, 149, 0.22);
+    --shadow-card: 0 24px 48px -16px rgba(0, 0, 0, 0.5),
+      0 0 0 1px var(--stroke-hairline);
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-reveal: cubic-bezier(0.32, 0.72, 0, 1);
+    --font-observatory-display: "Cormorant Garamond", Georgia, serif;
+    --font-observatory-body: "IBM Plex Sans", var(--font-sans), system-ui,
+      sans-serif;
+    --font-observatory-mono: "JetBrains Mono", ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, monospace;
+
+    position: relative;
+    isolation: isolate;
+    background: var(--void-absolute);
+    color: var(--ink-primary);
+    font-family: var(--font-observatory-body);
+  }
+
+  .observatory-theme::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image:
+      radial-gradient(circle at 17px 23px, rgba(244, 241, 232, 0.62) 0 0.6px, transparent 0.8px),
+      radial-gradient(circle at 71px 113px, rgba(201, 169, 97, 0.48) 0 0.45px, transparent 0.7px);
+    background-size: 128px 128px, 192px 192px;
+  }
+
+  .observatory-display {
+    font-family: var(--font-observatory-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .observatory-mono {
+    font-family: var(--font-observatory-mono);
+    font-feature-settings: "tnum", "lnum";
+  }
+
+  .observatory-eyebrow {
+    color: var(--vellum-500);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .observatory-link {
+    position: relative;
+    color: var(--vellum-300);
+    text-decoration: none;
+  }
+
+  .observatory-link::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    left: 0;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--vellum-500);
+    transition: transform 250ms var(--ease-standard);
+  }
+
+  .observatory-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .observatory-button {
+    min-height: 44px;
+    border: 1px solid var(--stroke-emphasis);
+    border-radius: 2px;
+    background: rgba(201, 169, 97, 0.045);
+    color: var(--vellum-300);
+    transition:
+      background-color 200ms var(--ease-standard),
+      border-color 200ms var(--ease-standard),
+      color 200ms var(--ease-standard);
+  }
+
+  .observatory-button:hover {
+    border-color: var(--stroke-active);
+    background: rgba(201, 169, 97, 0.085);
+    color: var(--vellum-100);
+  }
+
+  .observatory-card {
+    border: 1px solid var(--stroke-default);
+    border-radius: 4px;
+    background: rgba(18, 18, 28, 0.82);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(18px);
+  }
+
+  .observatory-divider {
+    height: 1px;
+    background: var(--stroke-default);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .observatory-theme *,
+    .observatory-theme *::before,
+    .observatory-theme *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

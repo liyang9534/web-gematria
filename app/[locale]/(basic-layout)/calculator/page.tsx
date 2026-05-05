@@ -26,25 +26,25 @@ export async function generateMetadata({
 
 export default function CalculatorPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#08080d] text-white">
+    <main className="observatory-theme relative min-h-screen w-full overflow-hidden">
       <MysticBackdrop />
       <section className="relative">
-        <div className="container mx-auto space-y-8 px-4 py-16">
+        <div className="container mx-auto space-y-8 px-5 py-20 md:px-16 md:py-28">
           <div className="max-w-3xl space-y-4">
-            <p className="text-xs uppercase tracking-[0.32em] text-teal-200">
+            <p className="observatory-eyebrow">
               Calculator center
             </p>
-            <h1 className="font-serif text-5xl font-semibold tracking-normal md:text-7xl">
+            <h1 className="observatory-display text-5xl leading-[1.05] text-[var(--ink-pure)] md:text-7xl">
               Gematria first. Numerology close behind.
             </h1>
-            <p className="text-lg leading-8 text-zinc-300">
+            <p className="text-lg leading-8 text-[var(--ink-secondary)]">
               The flagship calculator is Gematria: type a word, phrase, name or
               Hebrew term and watch the numeric systems align in real time.
             </p>
           </div>
         </div>
       </section>
-      <section className="relative container mx-auto px-4 py-6 pb-14">
+      <section className="relative container mx-auto px-5 py-6 pb-24 md:px-16">
         <CalculatorHub />
       </section>
     </main>

@@ -7,7 +7,6 @@ import { getFeaturedAngelNumbers } from "@/lib/angel-numbers";
 import { constructMetadata } from "@/lib/metadata";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
-import { Calculator, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 
 type Params = Promise<{ locale: string }>;
@@ -34,21 +33,22 @@ export default function AngelNumberHubPage() {
   const featuredNumbers = getFeaturedAngelNumbers();
 
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#08080d] text-white">
+    <main className="observatory-theme relative min-h-screen w-full overflow-hidden">
       <MysticBackdrop />
       <section className="relative">
-        <div className="container mx-auto grid gap-10 px-4 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-24">
+        <div className="container mx-auto grid gap-12 px-5 py-20 md:grid-cols-[1.1fr_0.9fr] md:px-16 md:py-28">
           <div className="space-y-8">
             <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.32em] text-teal-200">
+              <p className="observatory-eyebrow">
                 Angel number database
               </p>
-              <h1 className="max-w-4xl font-serif text-5xl font-semibold tracking-normal md:text-7xl">
+              <h1 className="observatory-display max-w-4xl text-5xl leading-[1.05] text-[var(--ink-pure)] md:text-7xl">
                 Decode the number that keeps finding you.
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-zinc-300">
-                Start with the core repeating numbers and read their meaning across love,
-                career, money, spiritual growth, numerology and gematria.
+              <p className="max-w-2xl text-lg leading-8 text-[var(--ink-secondary)]">
+                Start with the core repeating numbers, then move into love,
+                career, money, spiritual perspective, numerology and gematria
+                as separate layers.
               </p>
             </div>
             <NumberSearch
@@ -61,18 +61,20 @@ export default function AngelNumberHubPage() {
               <Link
                 key={angelNumber.slug}
                 href={`/angel-number/${angelNumber.slug}`}
-                className="group rounded-lg border border-white/10 bg-white/[0.06] p-5 transition hover:border-amber-300/60 hover:bg-white/[0.09] hover:shadow-[0_0_40px_rgba(245,158,11,0.12)]"
+                className="group observatory-card p-5 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <div className="font-mono text-4xl font-semibold text-amber-300">
+                    <div className="observatory-mono text-5xl font-light tracking-[-0.04em] text-[var(--vellum-300)]">
                       {angelNumber.number}
                     </div>
-                    <p className="mt-1 text-sm text-zinc-300">
+                    <p className="mt-2 text-sm text-[var(--ink-secondary)]">
                       {angelNumber.shortMeaning}
                     </p>
                   </div>
-                  <Sparkles className="size-5 text-teal-200 transition group-hover:text-amber-200" />
+                  <span className="text-[var(--vellum-500)]" aria-hidden="true">
+                    ✦
+                  </span>
                 </div>
               </Link>
             ))}
@@ -80,23 +82,22 @@ export default function AngelNumberHubPage() {
         </div>
       </section>
 
-      <section className="relative container mx-auto space-y-8 px-4 py-14">
+      <section className="relative container mx-auto space-y-8 px-5 py-24 md:px-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <MysticSectionTitle
             eyebrow="Indexed guides"
             title="High-frequency angel number entrances"
-            description="These are curated SEO pages. You can still enter any other number above for an instant noindex reading."
+            description="These are curated SEO pages. Any other valid number remains available as an instant reading, but does not enter the search index by default."
           />
-          <Button asChild variant="outline" className="w-fit rounded-md">
+          <Button asChild variant="outline" className="observatory-button w-fit">
             <Link href="/calculator">
-              <Calculator className="size-4" />
               Open calculators
             </Link>
           </Button>
         </div>
         <PopularNumberGrid numbers={featuredNumbers} />
         <MysticSurface className="p-6">
-          <p className="text-sm leading-7 text-zinc-300">
+          <p className="text-sm leading-7 text-[var(--ink-secondary)]">
             The database is no longer limited to repeating numbers. Use the search box for
             dates, clock times, receipts, addresses or any number sequence up to 12 digits.
             Curated high-frequency pages remain indexed; generated readings stay noindex.

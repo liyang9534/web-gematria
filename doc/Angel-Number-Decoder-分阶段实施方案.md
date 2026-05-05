@@ -1,10 +1,10 @@
 # Angel Number Decoder 分阶段实施方案
 
-> 基于 `doc/产品设计方案.md` 与当前 NEXTY.DEV Cloudflare 版本代码库制定。
+> 基于 `doc/产品设计方案v2.md`、`DESIGN.md` 与当前 NEXTY.DEV Cloudflare 版本代码库制定。
 >
 > **目标**: 先以 Angel Number 程序化 SEO 页面和免费计算器建立自然流量，再接入 AI 解读、会员与报告变现。
 >
-> **实施原则**: 复用现有 Next.js App Router、next-intl、shadcn/ui、Drizzle D1、Cloudflare Workers、AI SDK、Better Auth、支付与 CMS 能力；不引入 Prisma、Contentlayer、Vercel-only 能力。
+> **实施原则**: 复用现有 Next.js App Router、next-intl、shadcn/ui、Drizzle D1、Cloudflare Workers、AI SDK、Better Auth、支付与 CMS 能力；不引入 Prisma、Contentlayer、Vercel-only 能力。产品结构、信息架构、SEO 和阶段优先级以 `doc/产品设计方案v2.md` 为准；页面样式、组件语言、动效、响应式和页面文案语气以 `DESIGN.md` 为准。
 
 ---
 
@@ -16,7 +16,7 @@
 - Angel Number 是主入口：首页、hub、详情页都以“输入任意数字并解码”为首要路径。
 - 采用混合 SEO：精选高频数字使用手写内容、允许 index、进入 sitemap；任意纯数字都可访问并即时生成解读，但默认 `noindex, follow`，不进入 sitemap。
 - Calculator 信息架构以 Gematria Calculator 为主：`/calculator` 首屏给 Gematria 65-75% 视觉权重，Numerology 和 Life Path 作为辅助入口。
-- 视觉方向统一为 Mystical Modern：深黑/靛蓝背景、金色数字、青色辅助、数字星图纹理、微光边框、分层玻璃面板；不影响 dashboard、auth、payment、CMS 后台。
+- 视觉方向统一为 `DESIGN.md` 的 dark observatory：Void 深空底、Vellum 金、Cloister 紫、旧纸白文字、细描边、低噪点和极淡星图；不影响 dashboard、auth、payment、CMS 后台。
 - AI 解读本阶段只保留 CTA 与接入点，不做真实 provider 调用。
 
 ---
@@ -64,7 +64,8 @@
 
 5. **UI 修订**
    - 原产品方案要求神秘、精致、数字仪式感，不能退化为普通 dashboard card 拼接。
-   - 新增 feature-level mystic 组件，在 Angel Number 与 Calculator 专区局部使用深色 surface、金色数字、青色状态点、数字星图背景和微光边框。
+   - 新增 feature-level observatory 组件，在 Angel Number 与 Calculator 专区局部使用 Void 深空底、Vellum 金色数字、Cloister 紫交互、数字星图背景和细描边。
+   - 页面文案按 `DESIGN.md` 的“博物馆策展人，不像占卜师”语气执行：克制、精确、保留怀疑空间，不使用 emoji、clickbait 或夸张占卜式表达。
    - 不整体替换 dashboard、auth、payment、CMS 的主题，降低对模板其他 SaaS 能力的影响。
 
 ---
@@ -161,7 +162,8 @@ tests/
 - 明确 MVP 只发布英文 SEO 页面，中文/日文进入后续本地化阶段。
 
 **涉及路径**
-- `doc/产品设计方案.md`
+- `doc/产品设计方案v2.md`
+- `DESIGN.md`
 - `doc/Angel-Number-Decoder-分阶段实施方案.md`
 - `config/site.ts`
 - `i18n/routing.ts`
@@ -336,6 +338,66 @@ corepack pnpm build
 
 ---
 
+### Phase 3.5: 页面体验与设计系统返工
+
+**目标**: 按 `DESIGN.md` 将公开页面从普通 SaaS/card 拼接返工为 dark observatory 体验，同时保持 v2 文档定义的 Gematria 与 Angel Number 并列关系。
+
+**主要工作**
+- 设计 token：
+  - 新增 observatory 主题 token，承载 Void、Vellum、Cloister、Ink、stroke、glow、motion 和字体栈。
+  - Angel Number 与 Calculator 公开页面使用 observatory 主题；dashboard、auth、payment、CMS 后台不切换。
+- 搜索入口：
+  - 首页使用 SmartSearchBar，placeholder 为 `Enter a number or word to decode...`。
+  - 纯数字输入跳转 `/angel-number/[number]`；含文字输入跳转 `/calculator/gematria?input=...`。
+  - `/angel-number` hub 继续使用数字专用 NumberSearch。
+- 页面重排：
+  - 首页强调双入口搜索、Top 9 数字星图和 Gematria 主工具，不做普通营销 landing。
+  - Angel Number 详情页按 Hero、Pull Quote、Tabs、Gematria、Numerology、AI CTA、Biblical、Related Numbers、FAQ、Affirmation 的阅读节奏排列。
+  - Calculator hub 保持 Gematria 65-75% 视觉权重，Numerology 与 Life Path 作为辅助入口。
+- 来源诚信：
+  - 每个内容块使用来源 Badge 区分 `GEMATRIA · CALCULATION`、`ANGEL NUMBER · INTERPRETATION`、`NUMEROLOGY · PERSPECTIVE`、`BIBLICAL · CROSS-REFERENCE`。
+  - Gematria 客观计算与 Angel Number 主观解读不混写、不强制互跳，只做可选发现式推荐。
+- 文案与动效：
+  - 页面文案采用“博物馆策展人”语气，避免 emoji、感叹号堆叠、clickbait 和绝对化承诺。
+  - 卡片 hover 只改变边框和背景，不做上浮；按钮使用描边 + 微弱底色，不使用实色填充。
+
+**涉及路径**
+- `DESIGN.md`
+- `doc/Angel-Number-Decoder-分阶段实施方案.md`
+- `components/mystic/*`
+- `components/decoder/SmartSearchBar.tsx`
+- `components/home/index.tsx`
+- `components/angel-number/*`
+- `components/calculator/*`
+- `app/[locale]/(basic-layout)/angel-number/*`
+- `app/[locale]/(basic-layout)/calculator/*`
+- `lib/decoder-search.ts`
+- `tests/decoder-search.test.ts`
+
+**阶段产物**
+- dark observatory token 与共享组件。
+- 首页数字/文字双分流搜索。
+- 详情页仪式化阅读结构与来源标注。
+- Calculator 页面与 Gematria 输入参数联动。
+- 设计返工说明写入本实施方案。
+
+**验收标准**
+- 3 秒内能识别产品为 Angel Number Decoder，而非通用 SaaS。
+- 数字始终是 Angel Number 页面视觉中心，375px 移动端仍成立。
+- 页面不用 emoji 图标、紫粉渐变、实色主 CTA、上浮卡片 hover。
+- 客观计算、主观解读、数字命理、圣经引用的来源可辨。
+- SmartSearchBar 的空输入、纯数字、时钟格式、英文词、混合短语均有测试覆盖。
+
+**验证命令**
+```bash
+corepack pnpm test
+corepack pnpm exec tsc --noEmit
+corepack pnpm build
+corepack pnpm cf:build
+```
+
+---
+
 ### Phase 4: 内容规模化与 SEO 运营
 
 **目标**: 从 9 个核心页扩展到 80-100 个高质量 pSEO 页面，并补齐 SEO 运营基础设施。
@@ -496,6 +558,7 @@ corepack pnpm cf:build
 | Phase 1 | 2-3 天 | 数据 schema、核心 9 页数据、生成脚本、测试 | 否 |
 | Phase 2 | 4-6 天 | 首页入口、hub、9 个详情页、OG、schema、sitemap | 是，SEO MVP |
 | Phase 3 | 4-5 天 | Gematria、Numerology、Life Path、工具中心 | 是，工具 MVP |
+| Phase 3.5 | 2-3 天 | DESIGN.md 设计系统返工、双分流搜索、详情页阅读节奏、来源 Badge | 是，体验返工版 |
 | Phase 4 | 1-2 周 | 80-100 pSEO 页、博客、内容质量脚本、内链 | 是，增长版 |
 | Phase 5 | 1-2 周 | AI 解读、额度、登录转化、Pro 支付 | 是，商业化 MVP |
 | Phase 6 | 2-4 周 | PDF 报告、API、后台运营、分析体系 | 是，商业化增强 |
@@ -525,6 +588,7 @@ corepack pnpm cf:build
 | 批量模板页内容重复 | SEO 收录和排名受损 | 核心 20 页手写，模板页必须有唯一 FAQ、related、root meaning、场景描述 |
 | 运行期读文件不兼容 Workers | Cloudflare 部署失败 | 构建期生成 TS 数据，页面静态 import |
 | 全站主题一次性重构 | 影响现有 dashboard/payment/CMS | Angel Number 专区局部视觉升级，后续再统一品牌 |
+| 设计返工偏离 `DESIGN.md` | 产品退化为普通 SaaS 或廉价灵性站 | 使用 observatory token、来源 Badge、设计禁区清单和移动端截图作为验收 |
 | AI 成本失控 | 毛利不稳定 | 先做 daily quota、登录门槛、rate limit、日志，再开放 Pro |
 | i18n 低质批量翻译 | 多语言 SEO 风险 | MVP 只索引英文内容，多语言内容经人工/质量脚本后再开放 |
 | D1 迁移误操作 | 生产数据风险 | migration 生成后人工 review，远程 apply 不自动执行 |
@@ -542,6 +606,14 @@ Phase 2 完成时，产品应具备：
 - 项目可通过 `corepack pnpm build` 与 `corepack pnpm cf:build`。
 - 不新增数据库依赖，不破坏现有登录、支付、dashboard、CMS。
 
+Phase 3.5 完成时，产品应具备：
+
+- 首页 SmartSearchBar 可把纯数字分流到 Angel Number，把文字分流到 Gematria。
+- Angel Number 详情页按 `DESIGN.md` 的阅读节奏呈现，并且每个体系有来源 Badge。
+- 公开页面使用 dark observatory 视觉系统，避免 emoji 图标、紫粉渐变、实色主 CTA 和上浮卡片 hover。
+- Calculator hub 明确突出 Gematria，Gematria 页面可从 `?input=` 带入初始输入。
+- desktop 与 375px mobile 截图均通过设计 QA：数字是视觉中心、文字不溢出、触摸目标可用。
+
 Phase 5 完成时，产品应具备：
 
 - 免费内容和工具形成 AI CTA 漏斗。
@@ -551,4 +623,4 @@ Phase 5 完成时，产品应具备：
 
 ---
 
-*文档版本: v1.0 | 创建日期: 2026-05-04 | 来源: `doc/产品设计方案.md` 与当前代码库*
+*文档版本: v1.1 | 更新日期: 2026-05-05 | 来源: `doc/产品设计方案v2.md`、`DESIGN.md` 与当前代码库*

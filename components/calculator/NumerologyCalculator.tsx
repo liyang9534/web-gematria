@@ -15,7 +15,7 @@ export function NumerologyCalculator() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg border border-white/10 bg-white/[0.055] p-6">
+      <div className="observatory-card p-6">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="numerology-name">Full name</Label>
@@ -23,7 +23,7 @@ export function NumerologyCalculator() {
               id="numerology-name"
               value={fullName}
               onChange={(event) => setFullName(event.target.value)}
-              className="h-12 border-white/10 bg-zinc-950/70 text-white"
+              className="h-12 rounded-[4px] border-[var(--stroke-default)] bg-[var(--void-elevated)] text-[var(--ink-pure)]"
             />
           </div>
           <div className="space-y-2">
@@ -33,7 +33,7 @@ export function NumerologyCalculator() {
               type="date"
               value={birthday}
               onChange={(event) => setBirthday(event.target.value)}
-              className="h-12 border-white/10 bg-zinc-950/70 text-white"
+              className="h-12 rounded-[4px] border-[var(--stroke-default)] bg-[var(--void-elevated)] text-[var(--ink-pure)]"
             />
           </div>
         </div>
@@ -61,15 +61,15 @@ function NumberResult({
   detail: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-white/[0.055] p-5">
+    <div className="observatory-card p-5">
       <div className="flex gap-4">
-        <div className="flex size-16 shrink-0 items-center justify-center rounded-lg border border-amber-200/20 bg-amber-300/10 font-mono text-3xl font-semibold text-amber-200">
+        <div className="observatory-mono flex size-16 shrink-0 items-center justify-center rounded-[4px] border border-[rgba(201,169,97,0.36)] bg-[rgba(201,169,97,0.08)] text-3xl font-light text-[var(--vellum-300)]">
           {value}
         </div>
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold tracking-normal text-white">{title}</h2>
-          <p className="font-mono text-xs text-zinc-400">{detail}</p>
-          <p className="text-sm leading-6 text-zinc-300">{text}</p>
+          <h2 className="observatory-display text-2xl text-[var(--ink-pure)]">{title}</h2>
+          <p className="observatory-mono text-xs text-[var(--ink-secondary)]">{detail}</p>
+          <p className="text-sm leading-6 text-[var(--ink-secondary)]">{text}</p>
         </div>
       </div>
     </div>
