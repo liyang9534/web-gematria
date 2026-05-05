@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This pnpm-managed Next.js 16 / React 19 SaaS app targets Cloudflare Workers through OpenNext. Route handlers and pages live in `app/`, including localized routes under `app/[locale]/`. Shared UI lives in `components/`, with shadcn-style primitives in `components/ui/`. Server actions are in `actions/`; reusable business logic, integrations, auth, logging, database access, and AI adapters are in `lib/`. Locale messages are stored in `i18n/messages/{en,zh,ja}/`. Static assets belong in `public/`; MDX blog content is in `blogs/` and `content/`. Tests live in `tests/`. Drizzle schema is in `lib/db/schema.ts`; current Cloudflare D1 migrations are in `lib/db/migrations-d1/`, while `lib/db/migrations/` is legacy Postgres history.
+This pnpm-managed Next.js 16 / React 19 SaaS app targets Cloudflare Workers through OpenNext. Route handlers and pages live in `app/`, including localized routes under `app/[locale]/`. Shared UI lives in `components/`, with shadcn-style primitives in `components/ui/`. Server actions are in `actions/`; reusable business logic, integrations, auth, logging, database access, and AI adapters are in `lib/`. Locale messages are stored in `i18n/messages/{en,zh,ja}/`. Static assets belong in `public/`; MDX blog content is in `blogs/` and `content/`. Tests live in `tests/`. Drizzle schema is in `lib/db/schema.ts`; current Cloudflare D1 migrations are in `lib/db/migrations-d1/`, while `lib/db/migrations/` is legacy Postgres history. When you need to reference historical feature implementations, look for the relevant docs in `doc/` first.
 
 ## Build, Test, and Development Commands
 
