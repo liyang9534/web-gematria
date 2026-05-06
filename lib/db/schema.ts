@@ -89,6 +89,20 @@ export const verification = sqliteTable("verification", {
     .notNull(),
 });
 
+export const numberBaseMeanings = sqliteTable('number_base_meanings', {
+  number: text('number', { length: 20 }).primaryKey(),
+  keywords: json<string[]>('keywords').default(sql`'[]'`).notNull(),
+  numerologyDesc: text('numerology_desc').notNull(),
+  angelDesc: text('angel_desc').notNull(),
+  createdAt: timestamp('created_at')
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp('updated_at')
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+})
+
 // User source/attribution tracking
 export const userSource = sqliteTable(
   'user_source',

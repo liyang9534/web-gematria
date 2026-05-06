@@ -32,7 +32,7 @@
       // Business SQLite database used by Drizzle and Better Auth.
       "binding": "DB",
       "database_name": "nexty-business",
-      "database_id": "<YOUR_BUSINESS_D1_DATABASE_ID>",
+      "database_id": "48378240-bfa2-41bc-8877-119b1fd45b73",
       "migrations_dir": "lib/db/migrations-d1",
       // next dev defaults to local D1. Set NEXTY_DEV_DB=remote to opt into this remote binding.
       "remote": true,

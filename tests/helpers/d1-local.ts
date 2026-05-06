@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, rmSync } from "node:fs";
+import { mkdtempSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,10 +28,7 @@ type WranglerRun = {
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(currentDir, "../..");
-const migrationFile = resolve(
-  projectRoot,
-  "lib/db/migrations-d1/0000_large_wong.sql"
-);
+const migrationsDir = resolve(projectRoot, "lib/db/migrations-d1");
 const wranglerBin = resolve(
   projectRoot,
   "node_modules/.bin",
@@ -113,9 +110,17 @@ export function createLocalD1() {
     "--json",
   ];
 
-  runWrangler([...commonArgs, "--file", migrationFile]);
+  const migrationFiles = readdirSync(migrationsDir)
+    .filter((file) => file.endsWith(".sql"))
+    .sort()
+    .map((file) => resolve(migrationsDir, file));
+
+  for (const migrationFile of migrationFiles) {
+    runWrangler([...commonArgs, "--file", migrationFile]);
+  }
 
   return {
+    persistTo,
     cleanup() {
       rmSync(persistTo, { recursive: true, force: true });
     },

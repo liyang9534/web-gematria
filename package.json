@@ -33,6 +33,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "db:seed:number-meanings:local": "tsx scripts/seed-number-base-meanings.ts --local",
+    "db:seed:number-meanings:remote": "tsx scripts/seed-number-base-meanings.ts --remote",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx lib/db/seed/index.ts",

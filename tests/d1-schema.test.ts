@@ -15,6 +15,7 @@ test("applies the D1 migration and creates core business tables", { timeout: 60_
       "account",
       "credit_logs",
       "orders",
+      "number_base_meanings",
       "post_tags",
       "posts",
       "pricing_plan_groups",

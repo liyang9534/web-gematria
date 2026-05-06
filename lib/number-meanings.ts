@@ -42,7 +42,9 @@ const FALLBACK_MEANING: NumberBaseMeaning = {
     "This number is a personal signal rather than a fixed omen. Notice the pattern, then test its meaning against your real context.",
 };
 
-const NUMBER_MEANINGS = meanings as Record<string, NumberBaseMeaning>;
+export const NUMBER_MEANINGS = meanings as Record<string, NumberBaseMeaning>;
+
+export const FALLBACK_NUMBER_MEANING = FALLBACK_MEANING;
 
 export function normalizeMeaningNumber(number: number | string): string {
   return String(number).replace(/\D/g, "");

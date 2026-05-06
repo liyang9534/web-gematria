@@ -1,9 +1,9 @@
 import { siteConfig } from "@/config/site";
 import { getReadingForNumber } from "@/lib/angel-numbers";
 import {
-  getAngelDescription,
-  getNumerologyDescription,
-} from "@/lib/number-meanings";
+  getAngelDescriptionFromD1,
+  getNumerologyDescriptionFromD1,
+} from "@/lib/number-meanings-db";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { createElement } from "react";
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
     return new Response("Invalid OG card parameters", { status: 400 });
   }
 
-  const content = getCardContent(parsed);
+  const content = await getCardContent(parsed);
   const style = TOOL_STYLES[parsed.tool];
 
   return new ImageResponse(renderShareCard(parsed, content, style), CARD_SIZE);
@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
 
 function renderShareCard(
   params: OgCardParams,
-  content: ReturnType<typeof getCardContent>,
+  content: CardContent,
   style: (typeof TOOL_STYLES)[OgTool],
 ) {
   return createElement(
@@ -200,13 +200,20 @@ function isOgTool(tool: string | null): tool is OgTool {
   return tool === "angel" || tool === "numerology" || tool === "gematria";
 }
 
-function getCardContent(params: OgCardParams) {
+interface CardContent {
+  badge: string;
+  title: string;
+  description: string;
+  footer: string;
+}
+
+async function getCardContent(params: OgCardParams): Promise<CardContent> {
   if (params.tool === "angel") {
     const reading = getReadingForNumber(params.number);
     return {
       badge: "ANGEL NUMBER",
       title: reading.shortMeaning,
-      description: getAngelDescription(params.number),
+      description: await getAngelDescriptionFromD1(params.number),
       footer: "Decode the number",
     };
   }
@@ -216,7 +223,7 @@ function getCardContent(params: OgCardParams) {
     return {
       badge: `${label.toUpperCase()} NUMBER`,
       title: `${label} Number ${params.number}`,
-      description: getNumerologyDescription(params.number),
+      description: await getNumerologyDescriptionFromD1(params.number),
       footer: "Calculate your profile",
     };
   }
