@@ -1,6 +1,5 @@
 "use client";
 
-import LoginButton from "@/components/header/LoginButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -13,9 +12,9 @@ import { UserInfo } from "./UserInfo";
 
 type User = typeof userSchema.$inferSelect;
 
-export function UserAvatar({ user }: { user: User }) {
+export function UserAvatar({ user }: { user?: User | null }) {
   if (!user) {
-    return <LoginButton />;
+    return null;
   }
 
   const fallbackLetter = user.email[0].toUpperCase();

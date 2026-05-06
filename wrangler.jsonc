@@ -1,11 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "nexty",
+  "name": "web-gematria",
   "minify": true,
   "keep_names": false,
   "compatibility_date": "2026-05-03",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "account_id": "57a19c41dcdd5199e9c4a41b2f986eeb",
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
@@ -17,14 +18,14 @@
     {
       // Self-reference service binding. Keep service equal to the worker name.
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "nexty",
+      "service": "web-gematria",
     },
   ],
   "r2_buckets": [
     {
       // OpenNext incremental cache.
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "nexty-opennext-cache",
+      "bucket_name": "web-gematria-opennext-cache",
     },
   ],
   "d1_databases": [
@@ -40,8 +41,8 @@
     {
       // OpenNext tag cache for revalidateTag/revalidatePath.
       "binding": "NEXT_TAG_CACHE_D1",
-      "database_name": "nexty-opennext-tag-cache",
-      "database_id": "<YOUR_TAG_CACHE_D1_DATABASE_ID>",
+      "database_name": "web-gematria-opennext-tag-cache",
+      "database_id": "96ac69e1-8d68-4a5e-a88c-bea8b9eee9e4",
     },
   ],
   "durable_objects": {
