@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/i18n/routing";
 import { calculateLifePathNumber } from "@/lib/numerology";
+import { buildPublicUrl } from "@/lib/site-url";
 import { useMemo, useState } from "react";
 
 export function LifePathCalculator({
-  baseUrl = "https://angel-number-decoder.com/calculator/life-path",
+  baseUrl = buildPublicUrl("/calculator/life-path"),
 }: {
   baseUrl?: string;
 }) {

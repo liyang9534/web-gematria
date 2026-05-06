@@ -11,6 +11,7 @@ import {
   createGematriaShareUrl,
   getGematriaMatches,
 } from "@/lib/gematria";
+import { buildPublicUrl } from "@/lib/site-url";
 import { getGematriaAngelNumberMatches } from "@/lib/tool-bridges";
 import { Link } from "@/i18n/routing";
 import type { GematriaSystem } from "@/types/gematria";
@@ -37,7 +38,7 @@ export function GematriaCalculator({
   compact = false,
   initialInput = "Angel",
   targetValue,
-  baseUrl = "https://angel-number-decoder.com/calculator/gematria",
+  baseUrl = buildPublicUrl("/calculator/gematria"),
 }: GematriaCalculatorProps) {
   const [input, setInput] = useState(initialInput);
   const [copied, setCopied] = useState<"text" | "link" | null>(null);

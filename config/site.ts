@@ -1,6 +1,7 @@
+import { getPublicSiteUrl } from "@/lib/site-url";
 import { SiteConfig } from "@/types/siteConfig";
 
-export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://angel-number-decoder.com";
+export const BASE_URL = getPublicSiteUrl();
 
 const GITHUB_URL = ''
 const TWITTER_URL = ''

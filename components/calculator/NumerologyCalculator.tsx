@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/i18n/routing";
 import { calculateNumerologyProfile } from "@/lib/numerology";
+import { buildPublicUrl } from "@/lib/site-url";
 import { useMemo, useState } from "react";
 
 export function NumerologyCalculator({
-  baseUrl = "https://angel-number-decoder.com/calculator/numerology",
+  baseUrl = buildPublicUrl("/calculator/numerology"),
 }: {
   baseUrl?: string;
 }) {

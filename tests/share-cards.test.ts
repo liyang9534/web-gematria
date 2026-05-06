@@ -9,13 +9,14 @@ import {
   createShareLinkText,
   createXIntentUrl,
 } from "../lib/share-cards";
+import { buildPublicUrl } from "../lib/site-url";
 
 test("builds share-card image URLs for the OG route", () => {
   assert.equal(
     buildShareCardUrl({
       tool: "angel",
       number: "444",
-      resultUrl: "https://angel-number-decoder.com/angel-number/444",
+      resultUrl: buildPublicUrl("/angel-number/444"),
     }),
     "/api/og?tool=angel&number=444",
   );
@@ -25,7 +26,7 @@ test("builds share-card image URLs for the OG route", () => {
       tool: "gematria",
       number: "444",
       word: "Jesus",
-      resultUrl: "https://angel-number-decoder.com/calculator/gematria?q=Jesus",
+      resultUrl: `${buildPublicUrl("/calculator/gematria")}?q=Jesus`,
     }),
     "/api/og?tool=gematria&number=444&word=Jesus",
   );
@@ -42,7 +43,7 @@ test("creates encoded social share and copy payloads", () => {
   const input = {
     tool: "angel" as const,
     number: "444",
-    resultUrl: "https://angel-number-decoder.com/angel-number/444",
+    resultUrl: buildPublicUrl("/angel-number/444"),
   };
   const intent = createXIntentUrl(input);
 
@@ -59,7 +60,7 @@ test("creates additional social platform share URLs without API keys", () => {
     tool: "gematria" as const,
     number: "444",
     word: "Jesus",
-    resultUrl: "https://angel-number-decoder.com/calculator/gematria?q=Jesus",
+    resultUrl: `${buildPublicUrl("/calculator/gematria")}?q=Jesus`,
   };
   const urls = createSocialShareUrls(input);
 

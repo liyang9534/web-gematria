@@ -1,15 +1,25 @@
 import { listPublishedPostsAction } from '@/actions/posts/posts'
-import { siteConfig } from '@/config/site'
 import { DEFAULT_LOCALE, LOCALES } from '@/i18n/routing'
 import { getAllAngelNumbers } from '@/lib/angel-numbers'
 import { blogCms } from '@/lib/cms'
 import { MetadataRoute } from 'next'
 
-const siteUrl = siteConfig.url
-
 type ChangeFrequency = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' | undefined
 
+function getSitemapSiteUrl() {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL
+
+  if (!configuredSiteUrl) {
+    throw new Error('NEXT_PUBLIC_SITE_URL is required to generate sitemap.xml')
+  }
+
+  const siteUrl = configuredSiteUrl.startsWith('http') ? configuredSiteUrl : `https://${configuredSiteUrl}`
+  return siteUrl.replace(/\/+$/, '')
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = getSitemapSiteUrl()
+
   // Static pages
   const staticPages = [
     '',
