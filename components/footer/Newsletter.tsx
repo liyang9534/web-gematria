@@ -71,19 +71,19 @@ export function Newsletter() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
             required
-            className="bg-gray-800 text-white px-4 py-2 rounded-l-lg w-full focus:outline-hidden focus:ring-1 focus:ring-primary"
+            className="w-full rounded-l-lg border border-[var(--stroke-default)] bg-[var(--void-elevated)] px-4 py-2 text-[var(--ink-pure)] placeholder:text-[var(--ink-muted)] focus:outline-hidden focus:ring-1 focus:ring-[var(--vellum-500)]"
             disabled={subscribeStatus === "loading"}
           />
           <button
             type="submit"
             disabled={subscribeStatus === "loading"}
             className={cn(
-              "bg-primary px-4 py-2 rounded-r-lg hover:bg-primary/90",
+              "rounded-r-lg border border-[var(--stroke-emphasis)] bg-[var(--vellum-wash-strong)] px-4 py-2 text-[var(--vellum-300)] hover:bg-[var(--vellum-wash)]",
               subscribeStatus === "loading"
             )}
             aria-label="Subscribe to newsletter"
           >
-            <Send className="w-3.5 h-3.5 text-white" />
+            <Send className="w-3.5 h-3.5" />
           </button>
         </div>
         {subscribeStatus === "success" && (

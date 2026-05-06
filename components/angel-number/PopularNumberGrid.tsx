@@ -28,7 +28,7 @@ export function PopularNumberGrid({ numbers }: PopularNumberGridProps) {
                 </span>
               </div>
               <div className="space-y-3">
-                <div className="inline-flex rounded-full border border-[rgba(155,143,191,0.4)] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--cloister-300)]">
+                <div className="inline-flex rounded-full border border-[var(--cloister-border)] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--cloister-300)]">
                   {angelNumber.shortMeaning}
                 </div>
                 <p className="line-clamp-3 text-sm leading-6 text-[var(--ink-secondary)]">

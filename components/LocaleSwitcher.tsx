@@ -46,15 +46,22 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="w-fit border-none bg-transparent dark:bg-transparent shadow-none p-0 focus:outline-none"
+        className="w-fit border-none bg-transparent p-0 text-[var(--ink-secondary)] shadow-none hover:text-[var(--vellum-100)] focus:outline-none dark:bg-transparent"
         aria-label="Select language"
       >
         <Languages className="w-4 h-4" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent
+        align="end"
+        className="observatory-chrome border-[var(--stroke-default)] bg-[var(--void-rise)] text-[var(--ink-primary)]"
+      >
         <DropdownMenuRadioGroup value={locale} onValueChange={onSelectChange}>
           {routing.locales.map((cur) => (
-            <DropdownMenuRadioItem key={cur} value={cur}>
+            <DropdownMenuRadioItem
+              key={cur}
+              value={cur}
+              className="focus:bg-[var(--vellum-wash)] focus:text-[var(--vellum-100)]"
+            >
               {LOCALE_NAMES[cur]}
             </DropdownMenuRadioItem>
           ))}

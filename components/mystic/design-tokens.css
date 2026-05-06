@@ -1,5 +1,6 @@
 @layer components {
-  .observatory-theme {
+  .observatory-theme,
+  .observatory-chrome {
     --void-absolute: #07070c;
     --void-deep: #0c0c14;
     --void-rise: #12121c;
@@ -9,10 +10,12 @@
     --vellum-300: #e8d9a8;
     --vellum-500: #c9a961;
     --vellum-700: #8c7340;
+    --vellum-900: #4a3d22;
     --cloister-100: #d8cfe8;
     --cloister-300: #9b8fbf;
     --cloister-500: #6b5b95;
     --cloister-700: #463a6a;
+    --cloister-900: #2a2240;
     --ink-pure: #f4f1e8;
     --ink-primary: #e8e4d6;
     --ink-secondary: #a8a394;
@@ -29,8 +32,34 @@
     --glow-vellum: 0 0 24px rgba(201, 169, 97, 0.18),
       0 0 48px rgba(201, 169, 97, 0.08);
     --glow-cloister: 0 0 32px rgba(107, 91, 149, 0.22);
+    --glow-text-soft: 0 0 16px rgba(232, 217, 168, 0.12);
+    --shadow-page: 0 1px 0 rgba(232, 217, 168, 0.04) inset;
     --shadow-card: 0 24px 48px -16px rgba(0, 0, 0, 0.5),
       0 0 0 1px var(--stroke-hairline);
+    --shadow-modal: 0 48px 96px -24px rgba(0, 0, 0, 0.7),
+      0 0 0 1px var(--stroke-default);
+    --surface-card: rgba(18, 18, 28, 0.82);
+    --surface-inset: rgba(26, 26, 38, 0.62);
+    --surface-quiet: rgba(18, 18, 28, 0.36);
+    --surface-tile: rgba(12, 12, 20, 0.64);
+    --vellum-wash: rgba(201, 169, 97, 0.06);
+    --vellum-wash-strong: rgba(201, 169, 97, 0.12);
+    --cloister-wash: rgba(107, 91, 149, 0.12);
+    --cloister-wash-strong: rgba(107, 91, 149, 0.14);
+    --vellum-border: rgba(201, 169, 97, 0.38);
+    --cloister-border: rgba(155, 143, 191, 0.4);
+    --iris-border: rgba(123, 111, 168, 0.44);
+    --biblical-border: rgba(140, 115, 64, 0.46);
+    --ai-border: rgba(232, 217, 168, 0.36);
+    --on-cloister-solid: #f4f1e8;
+    --constellation-grid: rgba(232, 217, 168, 0.045);
+    --constellation-grid-cross: rgba(232, 217, 168, 0.035);
+    --constellation-dot: rgba(232, 217, 168, 0.5);
+    --hero-radial: radial-gradient(
+      ellipse at center top,
+      rgba(201, 169, 97, 0.04) 0%,
+      transparent 60%
+    );
     --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-reveal: cubic-bezier(0.32, 0.72, 0, 1);
     --font-observatory-display: "Cormorant Garamond", Georgia, serif;
@@ -46,6 +75,10 @@
     font-family: var(--font-observatory-body);
   }
 
+  .observatory-chrome {
+    background: var(--void-absolute);
+  }
+
   .observatory-theme::after {
     content: "";
     position: fixed;
@@ -58,6 +91,81 @@
       radial-gradient(circle at 17px 23px, rgba(244, 241, 232, 0.62) 0 0.6px, transparent 0.8px),
       radial-gradient(circle at 71px 113px, rgba(201, 169, 97, 0.48) 0 0.45px, transparent 0.7px);
     background-size: 128px 128px, 192px 192px;
+  }
+
+  .light .observatory-theme,
+  .light .observatory-chrome {
+    --void-absolute: #f7f1e3;
+    --void-deep: #f2e7cf;
+    --void-rise: #fff8e8;
+    --void-elevated: #efe0bc;
+    --void-membrane: #e5d0a8;
+    --vellum-100: #3f3216;
+    --vellum-300: #6b5420;
+    --vellum-500: #7f5f25;
+    --vellum-700: #b08a3a;
+    --vellum-900: #e7d7a9;
+    --cloister-100: #352a53;
+    --cloister-300: #594a82;
+    --cloister-500: #6b5b95;
+    --cloister-700: #9b8fbf;
+    --cloister-900: #efe8f7;
+    --ink-pure: #18150f;
+    --ink-primary: #252016;
+    --ink-secondary: #5b5141;
+    --ink-muted: #71634f;
+    --ink-whisper: #b9a988;
+    --hue-rose: #9d4f50;
+    --hue-jade: #3f7463;
+    --hue-amber: #8a672a;
+    --hue-iris: #594a82;
+    --stroke-hairline: rgba(81, 64, 34, 0.1);
+    --stroke-default: rgba(81, 64, 34, 0.16);
+    --stroke-emphasis: rgba(107, 84, 32, 0.28);
+    --stroke-active: rgba(107, 84, 32, 0.55);
+    --glow-vellum: 0 0 0 3px rgba(138, 101, 35, 0.1),
+      0 16px 36px -24px rgba(107, 84, 32, 0.55);
+    --glow-cloister: 0 0 0 3px rgba(89, 74, 130, 0.1),
+      0 16px 36px -24px rgba(53, 42, 83, 0.45);
+    --glow-text-soft: none;
+    --shadow-page: 0 1px 0 rgba(255, 255, 255, 0.55) inset;
+    --shadow-card: 0 18px 38px -26px rgba(54, 42, 21, 0.32),
+      0 1px 0 rgba(255, 255, 255, 0.68) inset,
+      0 0 0 1px var(--stroke-hairline);
+    --shadow-modal: 0 34px 72px -28px rgba(54, 42, 21, 0.42),
+      0 0 0 1px var(--stroke-default);
+    --surface-card: rgba(255, 248, 232, 0.84);
+    --surface-inset: rgba(239, 224, 188, 0.54);
+    --surface-quiet: rgba(239, 224, 188, 0.38);
+    --surface-tile: rgba(255, 248, 232, 0.58);
+    --vellum-wash: rgba(176, 138, 58, 0.1);
+    --vellum-wash-strong: rgba(176, 138, 58, 0.16);
+    --cloister-wash: rgba(89, 74, 130, 0.1);
+    --cloister-wash-strong: rgba(89, 74, 130, 0.14);
+    --vellum-border: rgba(127, 95, 37, 0.34);
+    --cloister-border: rgba(89, 74, 130, 0.28);
+    --iris-border: rgba(89, 74, 130, 0.3);
+    --biblical-border: rgba(127, 95, 37, 0.32);
+    --ai-border: rgba(107, 84, 32, 0.24);
+    --on-cloister-solid: #fff8e8;
+    --constellation-grid: rgba(81, 64, 34, 0.08);
+    --constellation-grid-cross: rgba(81, 64, 34, 0.06);
+    --constellation-dot: rgba(176, 138, 58, 0.24);
+    --hero-radial: radial-gradient(
+      ellipse at center top,
+      rgba(176, 138, 58, 0.12) 0%,
+      transparent 62%
+    );
+
+    color-scheme: light;
+  }
+
+  .light .observatory-theme::after {
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image:
+      radial-gradient(circle at 17px 23px, rgba(81, 64, 34, 0.24) 0 0.55px, transparent 0.8px),
+      radial-gradient(circle at 71px 113px, rgba(176, 138, 58, 0.18) 0 0.45px, transparent 0.7px);
   }
 
   .observatory-display {
@@ -106,7 +214,7 @@
     min-height: 44px;
     border: 1px solid var(--stroke-emphasis);
     border-radius: 2px;
-    background: rgba(201, 169, 97, 0.045);
+    background: var(--vellum-wash);
     color: var(--vellum-300);
     transition:
       background-color 200ms var(--ease-standard),
@@ -116,14 +224,14 @@
 
   .observatory-button:hover {
     border-color: var(--stroke-active);
-    background: rgba(201, 169, 97, 0.085);
+    background: var(--vellum-wash-strong);
     color: var(--vellum-100);
   }
 
   .observatory-card {
     border: 1px solid var(--stroke-default);
     border-radius: 4px;
-    background: rgba(18, 18, 28, 0.82);
+    background: var(--surface-card);
     box-shadow: var(--shadow-card);
     backdrop-filter: blur(18px);
   }

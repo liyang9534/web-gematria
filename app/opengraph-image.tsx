@@ -1,57 +1,14 @@
 import { siteConfig } from "@/config/site";
-import { blogCms } from "@/lib/cms";
 import { ImageResponse } from "next/og";
 
-export const alt = "Blog Post";
+export const alt = "Angel Number Decoder";
 export const contentType = "image/png";
 export const size = {
   width: 1200,
   height: 630,
 };
 
-type Props = {
-  params: Promise<{
-    locale: string;
-    slug: string;
-  }>;
-};
-
-export default async function Image({ params }: Props) {
-  const { locale, slug } = await params;
-  const { metadata } = await blogCms.getPostMetadata(slug, locale);
-
-  if (!metadata) {
-    // Return a default image if post not found
-    return new ImageResponse(
-      (
-        <div
-          style={{
-            fontSize: 60,
-            backgroundColor: "#fafafa",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "black",
-          }}
-        >
-          <div>{siteConfig.name}</div>
-        </div>
-      ),
-      {
-        ...size,
-      }
-    );
-  }
-
-  // Truncate title if too long (max 2 lines)
-  const title =
-    metadata.title.length > 60
-      ? metadata.title.substring(0, 60) + "..."
-      : metadata.title;
-
+export default function Image() {
   return new ImageResponse(
     (
       <div
@@ -62,7 +19,7 @@ export default async function Image({ params }: Props) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg, #17110b 0%, #101422 50%, #251735 100%)",
+          background: "linear-gradient(135deg, #17110b 0%, #101422 48%, #241638 100%)",
           color: "#fbf6e9",
           fontFamily: "Georgia, serif",
           position: "relative",
@@ -80,10 +37,10 @@ export default async function Image({ params }: Props) {
           style={{
             position: "absolute",
             left: 72,
+            right: 72,
             top: 186,
-            width: 520,
             height: 1,
-            background: "linear-gradient(90deg, rgba(201,169,97,0.72), rgba(251,246,233,0.04))",
+            background: "linear-gradient(90deg, rgba(201,169,97,0.75), rgba(251,246,233,0.05))",
           }}
         />
         <div
@@ -91,7 +48,7 @@ export default async function Image({ params }: Props) {
             position: "relative",
             display: "flex",
             flexDirection: "column",
-            gap: 32,
+            gap: 30,
           }}
         >
           <div
@@ -108,51 +65,55 @@ export default async function Image({ params }: Props) {
               textTransform: "uppercase",
             }}
           >
-            Blog
+            {siteConfig.name}
           </div>
           <div
             style={{
-              fontSize: title.length > 40 ? 56 : 68,
-              fontWeight: 700,
-              lineHeight: 1.2,
-              maxWidth: 980,
+              display: "flex",
+              flexDirection: "column",
+              gap: 18,
+              maxWidth: 900,
             }}
           >
-            {title}
-          </div>
-          {metadata.description && (
             <div
               style={{
-                fontFamily: "Arial, sans-serif",
-                fontSize: 28,
-                lineHeight: 1.36,
-                color: "rgba(251, 246, 233, 0.72)",
-                maxWidth: 840,
+                fontSize: 84,
+                lineHeight: 0.98,
+                fontWeight: 700,
+                letterSpacing: -1,
               }}
             >
-              {metadata.description.length > 150
-                ? metadata.description.substring(0, 150) + "..."
-                : metadata.description}
+              Decode the signal behind every number.
             </div>
-          )}
+            <div
+              style={{
+                color: "rgba(251, 246, 233, 0.74)",
+                fontFamily: "Arial, sans-serif",
+                fontSize: 30,
+                lineHeight: 1.35,
+                maxWidth: 760,
+              }}
+            >
+              Angel numbers, numerology, and gematria tools for patterns that keep finding you.
+            </div>
+          </div>
         </div>
         <div
           style={{
             position: "relative",
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
             color: "rgba(251, 246, 233, 0.68)",
             fontFamily: "Arial, sans-serif",
             fontSize: 24,
           }}
         >
-          <span>{siteConfig.name}</span>
           <span>{new URL(siteConfig.url).hostname}</span>
+          <span>Angel Numbers · Numerology · Gematria</span>
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    size,
   );
 }

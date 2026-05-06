@@ -39,3 +39,23 @@ test("tracked project files do not hard-code the production domain", async () =>
     },
   );
 });
+
+test("share-card OG route renders the request host instead of the site config fallback", async () => {
+  const source = await readFile("app/api/og/route.ts", "utf8");
+
+  assert.match(source, /request\.nextUrl\.host/);
+  assert.doesNotMatch(source, /siteConfig/);
+});
+
+test("page previews use generated OG images instead of static public image assets", async () => {
+  const metadataSource = await readFile("lib/metadata.ts", "utf8");
+  const defaultOgSource = await readFile("app/opengraph-image.tsx", "utf8");
+  const blogOgSource = await readFile("app/[locale]/(basic-layout)/blog/[slug]/opengraph-image.tsx", "utf8");
+  const glossaryOgSource = await readFile("app/[locale]/(basic-layout)/glossary/[slug]/opengraph-image.tsx", "utf8");
+
+  assert.match(metadataSource, /\/opengraph-image/);
+  assert.doesNotMatch(metadataSource, /\/og(?:_\$?\{[^}]+\})?\.png/);
+  assert.match(defaultOgSource, /ImageResponse/);
+  assert.doesNotMatch(blogOgSource, /logo\.png|<img/);
+  assert.doesNotMatch(glossaryOgSource, /logo\.png|<img/);
+});

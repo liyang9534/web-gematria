@@ -56,7 +56,7 @@ export function CalculatorHub() {
             <Link key={tool.href} href={tool.href} className="group block">
               <MysticSurface className="h-full p-5 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]">
                 <div className="space-y-5">
-                  <div className="flex size-11 items-center justify-center rounded-[4px] border border-[var(--stroke-default)] bg-[rgba(107,91,149,0.12)] text-[var(--cloister-100)]">
+                  <div className="flex size-11 items-center justify-center rounded-[4px] border border-[var(--stroke-default)] bg-[var(--cloister-wash)] text-[var(--cloister-100)]">
                     <Icon className="size-5" />
                   </div>
                   <div className="space-y-2">

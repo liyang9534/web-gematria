@@ -61,8 +61,8 @@ export async function constructMetadata({
 
   // Open Graph
   // If images is explicitly provided and not empty, use them
-  // If images is undefined/not provided and useDefaultOgImage is false, return undefined to let Next.js use opengraph-image.tsx
-  // If images is undefined/not provided and useDefaultOgImage is true, use default static OG image
+  // If images is undefined/not provided and useDefaultOgImage is false, return undefined to let Next.js use opengraph-image.tsx.
+  // If images is undefined/not provided and useDefaultOgImage is true, use the generated default OG image.
   const imageUrls = images && images.length > 0
     ? images.map(img => ({
       url: img.startsWith('http') ? img : `${siteConfig.url}/${img}`,
@@ -70,7 +70,7 @@ export async function constructMetadata({
     }))
     : useDefaultOgImage
       ? [{
-        url: `${siteConfig.url}/og${locale === DEFAULT_LOCALE ? '' : '_' + locale}.png`,
+        url: `${siteConfig.url}/opengraph-image`,
         alt: pageTitle,
       }]
       : undefined

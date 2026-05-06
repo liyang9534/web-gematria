@@ -95,7 +95,7 @@ Astronomical · Editorial · Monastic · Refined · Quietly Luminous
   /* ━━━━━━━━ Ink 文字色阶 ━━━━━━━━ */
   --ink-pure:        #F4F1E8;  /* 旧纸白，避免刺眼纯白 */
   --ink-primary:     #E8E4D6;  /* 正文主色 */
-  --ink-secondary:   #A8A3947; /* 副文字 */
+  --ink-secondary:   #A8A394;  /* 副文字 */
   --ink-muted:       #6B6759;  /* 弱化文字、占位符 */
   --ink-whisper:     #3D3A33;  /* 极弱文字，仅装饰 */
 
@@ -126,16 +126,64 @@ Astronomical · Editorial · Monastic · Refined · Quietly Luminous
                      0 0 0 1px var(--stroke-default);
 }
 
-/* ━━━━━━━━ Light Mode（罕用，保留备用）━━━━━━━━ */
-/* 即使在浅色模式下也保持仪式感，用"羊皮纸"而非纯白 */
-[data-theme="parchment"] {
-  --void-absolute:   #F4EFE0;  /* 羊皮纸底 */
-  --void-deep:       #EFE9D6;
-  --void-rise:       #EAE2CB;
-  --void-elevated:   #E2D8B8;
-  --ink-primary:     #1F1B12;
-  --ink-secondary:   #5C5447;
-  --vellum-300:      #6B5420;  /* 羊皮纸上的金需调暗 */
+/* ━━━━━━━━ Light Mode — Parchment Observatory ━━━━━━━━ */
+/* 浅色不是白底 SaaS，而是自然光下的古籍研究桌。 */
+/* 变量名继续沿用 Void/Vellum/Cloister，保证现有组件无需改类名。 */
+.light .observatory-theme {
+  /* Parchment 羊皮纸表面系 */
+  --void-absolute:   #F7F1E3;  /* 页面最底层，温润旧纸 */
+  --void-deep:       #F2E7CF;  /* 主背景 */
+  --void-rise:       #FFF8E8;  /* 卡片表面 */
+  --void-elevated:   #EFE0BC;  /* 输入框 / 浮起元素 */
+  --void-membrane:   #E5D0A8;  /* 悬浮 / hover 态 */
+
+  /* Antique Gold 古籍墨金 */
+  --vellum-100:      #3F3216;  /* 最强金墨，用于 hover 文字 */
+  --vellum-300:      #6B5420;  /* 数字主色，浅底上需压暗 */
+  --vellum-500:      #7F5F25;  /* 标准强调、eyebrow、分隔线 */
+  --vellum-700:      #B08A3A;  /* 柔和金边 */
+  --vellum-900:      #E7D7A9;  /* 金色淡底 */
+
+  /* Cloister 修道紫 — 在纸面上更像批注墨水 */
+  --cloister-100:    #352A53;  /* 紫色区域文字 */
+  --cloister-300:    #594A82;  /* 主交互紫 */
+  --cloister-500:    #6B5B95;
+  --cloister-700:    #9B8FBF;
+  --cloister-900:    #EFE8F7;  /* 紫色淡底 */
+
+  /* Ink 纸面墨色 */
+  --ink-pure:        #18150F;  /* 标题 / 主导航 */
+  --ink-primary:     #252016;  /* 正文主色 */
+  --ink-secondary:   #5B5141;  /* 副文字 */
+  --ink-muted:       #71634F;  /* 占位符 / 元信息 */
+  --ink-whisper:     #B9A988;  /* 极弱装饰 */
+
+  /* Semantic 语义色 — 保持低饱和、可读 */
+  --hue-rose:        #9D4F50;
+  --hue-jade:        #3F7463;
+  --hue-amber:       #8A672A;
+  --hue-iris:        #594A82;
+
+  /* Stroke 描边 — 用纸面压痕感替代夜色光边 */
+  --stroke-hairline: rgba(81, 64, 34, 0.10);
+  --stroke-default:  rgba(81, 64, 34, 0.16);
+  --stroke-emphasis: rgba(107, 84, 32, 0.28);
+  --stroke-active:   rgba(107, 84, 32, 0.55);
+
+  /* Glow 光晕 — 浅色下必须像纸面压力，不像霓虹 */
+  --glow-vellum:     0 0 0 3px rgba(138, 101, 35, 0.10),
+                     0 16px 36px -24px rgba(107, 84, 32, 0.55);
+  --glow-cloister:   0 0 0 3px rgba(89, 74, 130, 0.10),
+                     0 16px 36px -24px rgba(53, 42, 83, 0.45);
+  --glow-text-soft:  none;
+
+  /* Shadow 投影 — 避免浮夸卡片，模拟厚纸边缘 */
+  --shadow-page:     0 1px 0 rgba(255, 255, 255, 0.55) inset;
+  --shadow-card:     0 18px 38px -26px rgba(54, 42, 21, 0.32),
+                     0 1px 0 rgba(255, 255, 255, 0.68) inset,
+                     0 0 0 1px var(--stroke-hairline);
+  --shadow-modal:    0 34px 72px -28px rgba(54, 42, 21, 0.42),
+                     0 0 0 1px var(--stroke-default);
 }
 ```
 
@@ -154,6 +202,14 @@ Astronomical · Editorial · Monastic · Refined · Quietly Luminous
 - ✅ 页面里 1-2 个真正重要的强调点
 - ❌ 不用于大段文字（疲劳眼睛）
 - ❌ 不用于次要装饰
+
+**Light Mode 纪律：**
+- 浅色模式命名为 **Parchment Observatory**：古籍纸面 + 研究仪器，不是纯白仪表盘。
+- Void 变量在浅色下代表纸张层级：底纸、版心、卡片、输入框、hover 压痕。
+- Vellum 金必须整体压暗，数字使用 `--vellum-300`，小号标签使用 `--vellum-500`；禁止浅金文字直接放在浅底上。
+- Cloister 紫在浅色下更像批注墨水，只用于交互、来源徽章、AI CTA 和少量状态提示。
+- 卡片靠细描边、纸面内阴影和轻微层级区分，不使用大面积白色浮卡或强烈投影。
+- 浅色模式的目标是提升阅读舒适度，但不能削弱“天文台 × 古籍 × 数字仪器”的品牌记忆。
 
 ---
 
@@ -633,14 +689,30 @@ body::after {
 }
 ```
 
+浅色模式下噪点依然保留，但从“深空胶片颗粒”切换为“纸张纤维”。混合模式用 `multiply`，透明度略高但颜色更暖，避免把页面压成灰色。
+
+```css
+.light .observatory-theme::after {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 17px 23px, rgba(81, 64, 34, 0.24) 0 0.55px, transparent 0.8px),
+    radial-gradient(circle at 71px 113px, rgba(176, 138, 58, 0.18) 0 0.45px, transparent 0.7px);
+  background-size: 128px 128px, 192px 192px;
+}
+```
+
 ### 8.2 星图背景（仅首页 Hero）
 
 首页顶部使用一张**极淡的星图 SVG**作为背景，颗粒状 0.5-1.5px 圆点，不规则分布，opacity 0.15-0.4 渐变。
+
+浅色模式的星图不应模拟夜空，而应像古籍边注或天文学手稿上的细线：使用 `--stroke-hairline`、`--ink-whisper` 和极淡 `--vellum-700`，opacity 控制在 0.08-0.18。线条可见即可，不做发光。
 
 绝对禁止：
 - 视频星空（性能差，且俗气）
 - 闪烁动画（廉价感）
 - 流星划过特效
+- 浅色模式下使用蓝紫渐变星空背景（会破坏古籍纸面气质）
 
 ### 8.3 分隔元素
 

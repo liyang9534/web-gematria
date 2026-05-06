@@ -32,16 +32,22 @@ export default function MobileMenu() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="p-2" aria-label="Open menu">
+      <DropdownMenuTrigger
+        className="p-2 text-[var(--ink-secondary)] hover:text-[var(--vellum-100)]"
+        aria-label="Open menu"
+      >
         <Menu className="h-5 w-5" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-40">
+      <DropdownMenuContent
+        align="end"
+        className="observatory-chrome w-40 border-[var(--stroke-default)] bg-[var(--void-rise)] text-[var(--ink-primary)]"
+      >
         <DropdownMenuLabel>
           <I18nLink
             href="/"
             title={t("title")}
             prefetch={true}
-            className="flex items-center space-x-1 font-bold"
+            className="flex items-center space-x-1 font-bold text-[var(--vellum-500)]"
           >
             <Image
               alt={t("title")}
@@ -58,12 +64,15 @@ export default function MobileMenu() {
           {headerLinks.map((link) =>
             link.items ? (
               <DropdownMenuSub key={link.name}>
-                <DropdownMenuSubTrigger className="px-2 py-1.5">
+                <DropdownMenuSubTrigger className="px-2 py-1.5 focus:bg-[var(--vellum-wash)] focus:text-[var(--vellum-100)]">
                   {link.name}
                 </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="w-40">
+                <DropdownMenuSubContent className="observatory-chrome w-40 border-[var(--stroke-default)] bg-[var(--void-rise)] text-[var(--ink-primary)]">
                   {link.items.map((child) => (
-                    <DropdownMenuItem key={child.name}>
+                    <DropdownMenuItem
+                      key={child.name}
+                      className="focus:bg-[var(--vellum-wash)] focus:text-[var(--vellum-100)]"
+                    >
                       <I18nLink
                         href={child.href}
                         title={child.name}
@@ -78,7 +87,7 @@ export default function MobileMenu() {
                       >
                         <span>{child.name}</span>
                         {child.description && (
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs text-[var(--ink-muted)]">
                             {child.description}
                           </span>
                         )}
@@ -88,7 +97,10 @@ export default function MobileMenu() {
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
             ) : (
-              <DropdownMenuItem key={link.name}>
+              <DropdownMenuItem
+                key={link.name}
+                className="focus:bg-[var(--vellum-wash)] focus:text-[var(--vellum-100)]"
+              >
                 <I18nLink
                   href={link.href}
                   title={link.name}

@@ -14,7 +14,7 @@ export function NumberHero({ reading, shareInput }: NumberHeroProps) {
   return (
     <section className="number-hero observatory-card relative min-h-[520px] overflow-hidden px-5 py-20 text-center md:px-10 md:py-28">
       <MysticBackdrop />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,rgba(201,169,97,0.04)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 [background-image:var(--hero-radial)]" />
       <div className="relative mx-auto flex max-w-4xl flex-col items-center">
         <SourceBadge tone="angel">
           {reading.source === "curated"
@@ -41,11 +41,11 @@ export function NumberHero({ reading, shareInput }: NumberHeroProps) {
           <span className="rounded-full border border-[var(--stroke-default)] px-3 py-1 text-[var(--ink-secondary)]">
             {reading.pattern.label}
           </span>
-          <span className="rounded-full border border-[rgba(201,169,97,0.38)] px-3 py-1 text-[var(--vellum-300)]">
+          <span className="rounded-full border border-[var(--vellum-border)] px-3 py-1 text-[var(--vellum-300)]">
             Root {reading.numerology.rootNumber}
           </span>
           {!reading.seo.shouldIndex && (
-            <span className="rounded-full border border-[rgba(155,143,191,0.4)] px-3 py-1 text-[var(--cloister-300)]">
+            <span className="rounded-full border border-[var(--cloister-border)] px-3 py-1 text-[var(--cloister-300)]">
               Shareable noindex reading
             </span>
           )}

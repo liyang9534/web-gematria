@@ -88,7 +88,7 @@ export function ShareCardActions({
         type="button"
         onClick={downloadImage}
         className={cn(
-          "min-h-11 w-full rounded-[3px] border border-[rgba(216,207,232,0.35)] bg-[var(--cloister-500)] text-[var(--ink-pure)] shadow-[0_0_24px_rgba(107,91,149,0.22)] hover:bg-[var(--cloister-700)]",
+          "min-h-11 w-full rounded-[3px] border border-[var(--cloister-border)] bg-[var(--cloister-500)] text-[var(--on-cloister-solid)] shadow-[var(--glow-cloister)] hover:bg-[var(--cloister-300)]",
           isCompact && "text-xs",
         )}
       >

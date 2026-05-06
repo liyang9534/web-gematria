@@ -1,4 +1,3 @@
-import { siteConfig } from "@/config/site";
 import { getReadingForNumber } from "@/lib/angel-numbers";
 import {
   getAngelDescriptionFromD1,
@@ -57,13 +56,17 @@ export async function GET(request: NextRequest) {
   const content = await getCardContent(parsed);
   const style = TOOL_STYLES[parsed.tool];
 
-  return new ImageResponse(renderShareCard(parsed, content, style), CARD_SIZE);
+  return new ImageResponse(
+    renderShareCard(parsed, content, style, request.nextUrl.host),
+    CARD_SIZE,
+  );
 }
 
 function renderShareCard(
   params: OgCardParams,
   content: CardContent,
   style: (typeof TOOL_STYLES)[OgTool],
+  host: string,
 ) {
   return createElement(
     "div",
@@ -174,7 +177,7 @@ function renderShareCard(
           fontFamily: "Arial, sans-serif",
         },
       },
-      createElement("span", null, new URL(siteConfig.url).hostname),
+      createElement("span", null, host),
       createElement("span", null, content.footer),
     ),
   );

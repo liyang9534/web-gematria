@@ -33,7 +33,7 @@ export function LifePathCalculator({
       </div>
       <div className="observatory-card p-6">
         <div className="flex gap-5">
-          <div className="observatory-mono flex size-20 shrink-0 items-center justify-center rounded-[4px] border border-[rgba(123,111,168,0.44)] bg-[rgba(107,91,149,0.12)] text-4xl font-light text-[var(--cloister-100)]">
+          <div className="observatory-mono flex size-20 shrink-0 items-center justify-center rounded-[4px] border border-[var(--iris-border)] bg-[var(--cloister-wash)] text-4xl font-light text-[var(--cloister-100)]">
             {result.value}
           </div>
           <div className="space-y-3">

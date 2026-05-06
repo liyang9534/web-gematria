@@ -1,4 +1,3 @@
-import BuiltWithButton from "@/components/BuiltWithButton";
 import { Newsletter } from "@/components/footer/Newsletter";
 import { TwitterX } from "@/components/social-icons/icons";
 import { siteConfig } from "@/config/site";
@@ -25,14 +24,14 @@ export default async function Footer() {
   });
 
   return (
-    <div className="bg-gray-900 text-gray-300 border-t border-gray-700">
+    <div className="observatory-chrome border-t border-[var(--stroke-default)] bg-[var(--void-deep)] text-[var(--ink-secondary)]">
       <footer className="py-2 container max-w-8xl mx-auto">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 py-12 lg:grid-cols-6">
             <div className="w-full flex flex-col sm:flex-row lg:flex-col gap-4 col-span-full md:col-span-2">
               <div className="space-y-4 flex-1">
                 <div className="items-center space-x-2 flex">
-                  <div className="text-gray-50 text-xl font-medium flex items-center gap-2">
+                  <div className="text-[var(--ink-pure)] text-xl font-medium flex items-center gap-2">
                     <Image
                       src="/logo.png"
                       alt={t("title")}
@@ -54,7 +53,7 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="GitHub"
                       title="View on GitHub"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <GithubIcon className="size-4" aria-hidden="true" />
                     </Link>
@@ -67,7 +66,7 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="Twitter"
                       title="View on Twitter"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <TwitterX className="w-4 h-4" aria-hidden="true" />
                     </Link>
@@ -80,7 +79,7 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="YouTube"
                       title="View on YouTube"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <Youtube className="w-4 h-4" aria-hidden="true" />
                     </Link>
@@ -93,7 +92,7 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="Instagram"
                       title="View on Instagram"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <InstagramIcon className="w-4 h-4" aria-hidden="true" />
                     </Link>
@@ -106,7 +105,7 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="TikTok"
                       title="View on TikTok"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <SiTiktok className="w-4 h-4" aria-hidden="true" />
                     </Link>
@@ -119,7 +118,7 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="Discord"
                       title="Join Discord"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <SiDiscord className="w-4 h-4" aria-hidden="true" />
                     </Link>
@@ -132,20 +131,18 @@ export default async function Footer() {
                       rel="noreferrer nofollow noopener"
                       aria-label="Email"
                       title="Email"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]"
                     >
                       <MailIcon className="w-4 h-4" />
                     </Link>
                   )}
                 </div>
-
-                <BuiltWithButton />
               </div>
             </div>
 
             {footerLinks.map((section) => (
               <div key={section.title} className="flex-1">
-                <div className="text-white text-lg font-semibold mb-4">
+                <div className="text-[var(--ink-pure)] text-lg font-semibold mb-4">
                   {section.title}
                 </div>
                 <ul className="space-y-2 text-sm">
@@ -159,7 +156,7 @@ export default async function Footer() {
                             href={href}
                             title={link.name}
                             prefetch={false}
-                            className="hover:text-white transition-colors"
+                            className="hover:text-[var(--vellum-100)] transition-colors"
                             target={link.target || ""}
                             rel={link.rel || ""}
                           >
@@ -170,7 +167,7 @@ export default async function Footer() {
                             href={href}
                             title={link.name}
                             prefetch={false}
-                            className="hover:text-white transition-colors"
+                            className="hover:text-[var(--vellum-100)] transition-colors"
                             target={link.target || ""}
                             rel={link.rel || ""}
                           >
@@ -191,8 +188,8 @@ export default async function Footer() {
             )}
           </div>
 
-          <div className="border-t border-gray-800 py-6 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+          <div className="border-t border-[var(--stroke-hairline)] py-6 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-[var(--ink-muted)] text-sm">
               {tFooter("Copyright", {
                 year: new Date().getFullYear(),
                 name: siteConfig.name,
@@ -203,7 +200,7 @@ export default async function Footer() {
                 href="/about"
                 title={tFooter("About")}
                 prefetch={false}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-[var(--ink-muted)] hover:text-[var(--vellum-100)] text-sm"
               >
                 {tFooter("About")}
               </I18nLink>
@@ -211,7 +208,7 @@ export default async function Footer() {
                 href="/privacy-policy"
                 title={tFooter("PrivacyPolicy")}
                 prefetch={false}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-[var(--ink-muted)] hover:text-[var(--vellum-100)] text-sm"
               >
                 {tFooter("PrivacyPolicy")}
               </Link>
@@ -219,7 +216,7 @@ export default async function Footer() {
                 href="/terms-of-service"
                 title={tFooter("TermsOfService")}
                 prefetch={false}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-[var(--ink-muted)] hover:text-[var(--vellum-100)] text-sm"
               >
                 {tFooter("TermsOfService")}
               </Link>
@@ -227,7 +224,7 @@ export default async function Footer() {
                 href="/refund-policy"
                 title={tFooter("RefundPolicy")}
                 prefetch={false}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-[var(--ink-muted)] hover:text-[var(--vellum-100)] text-sm"
               >
                 {tFooter("RefundPolicy")}
               </Link>

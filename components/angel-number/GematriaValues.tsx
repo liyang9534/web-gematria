@@ -21,7 +21,7 @@ export function GematriaValues({ values }: GematriaValuesProps) {
         {labels.map(([key, label]) => (
           <div
             key={key}
-            className="rounded-[4px] border border-[var(--stroke-hairline)] bg-[rgba(26,26,38,0.62)] p-4"
+            className="rounded-[4px] border border-[var(--stroke-hairline)] bg-[var(--surface-inset)] p-4"
           >
             <div className="observatory-eyebrow text-[var(--ink-muted)]">
               {label}

@@ -10,7 +10,7 @@ export function NumerologySummary({ numerology }: NumerologySummaryProps) {
     <div className="observatory-card p-5 md:p-7">
       <SourceBadge tone="numerology">Numerology · Perspective</SourceBadge>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <div className="observatory-mono mt-5 flex size-20 shrink-0 items-center justify-center rounded-[4px] border border-[rgba(123,111,168,0.44)] bg-[rgba(107,91,149,0.12)] text-4xl font-light text-[var(--cloister-100)] sm:mt-0">
+        <div className="observatory-mono mt-5 flex size-20 shrink-0 items-center justify-center rounded-[4px] border border-[var(--iris-border)] bg-[var(--cloister-wash)] text-4xl font-light text-[var(--cloister-100)] sm:mt-0">
           {numerology.rootNumber}
         </div>
         <div className="space-y-3">

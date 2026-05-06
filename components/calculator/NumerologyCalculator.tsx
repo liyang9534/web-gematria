@@ -74,7 +74,7 @@ function NumberResult({
   return (
     <div className="observatory-card min-w-0 p-5">
       <div className="flex min-w-0 gap-4">
-        <div className="observatory-mono flex size-16 shrink-0 items-center justify-center rounded-[4px] border border-[rgba(201,169,97,0.36)] bg-[rgba(201,169,97,0.08)] text-3xl font-light text-[var(--vellum-300)]">
+        <div className="observatory-mono flex size-16 shrink-0 items-center justify-center rounded-[4px] border border-[var(--vellum-border)] bg-[var(--vellum-wash)] text-3xl font-light text-[var(--vellum-300)]">
           {value}
         </div>
         <div className="min-w-0 space-y-3">

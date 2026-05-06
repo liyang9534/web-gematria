@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils";
 type SourceBadgeTone = "angel" | "gematria" | "numerology" | "biblical" | "ai";
 
 const toneClasses: Record<SourceBadgeTone, string> = {
-  angel: "border-[color:rgba(155,143,191,0.4)] text-[var(--cloister-300)]",
-  gematria: "border-[color:rgba(201,169,97,0.42)] text-[var(--vellum-500)]",
-  numerology: "border-[color:rgba(123,111,168,0.44)] text-[var(--hue-iris)]",
-  biblical: "border-[color:rgba(140,115,64,0.46)] text-[var(--vellum-700)]",
-  ai: "border-[color:rgba(232,217,168,0.36)] text-[var(--vellum-300)]",
+  angel: "border-[color:var(--cloister-border)] text-[var(--cloister-300)]",
+  gematria: "border-[color:var(--vellum-border)] text-[var(--vellum-500)]",
+  numerology: "border-[color:var(--iris-border)] text-[var(--hue-iris)]",
+  biblical: "border-[color:var(--biblical-border)] text-[var(--vellum-700)]",
+  ai: "border-[color:var(--ai-border)] text-[var(--vellum-300)]",
 };
 
 export function SourceBadge({

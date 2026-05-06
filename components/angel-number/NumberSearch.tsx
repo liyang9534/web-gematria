@@ -81,7 +81,7 @@ export function NumberSearch({
           <Link
             key={number}
             href={`/angel-number/${number}`}
-            className="observatory-mono flex min-h-11 items-center rounded-[2px] border border-[var(--stroke-default)] px-3 py-2 text-sm text-[var(--vellum-300)] transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[rgba(201,169,97,0.06)]"
+            className="observatory-mono flex min-h-11 items-center rounded-[2px] border border-[var(--stroke-default)] px-3 py-2 text-sm text-[var(--vellum-300)] transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--vellum-wash)]"
           >
             {number}
           </Link>

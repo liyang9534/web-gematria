@@ -36,7 +36,7 @@ export default async function HomeComponent() {
                 <Link
                   key={angelNumber.slug}
                   href={`/angel-number/${angelNumber.slug}`}
-                  className="group flex aspect-square flex-col justify-between rounded-[4px] border border-[var(--stroke-hairline)] bg-[rgba(12,12,20,0.64)] p-4 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]"
+                  className="group flex aspect-square flex-col justify-between rounded-[4px] border border-[var(--stroke-hairline)] bg-[var(--surface-tile)] p-4 transition duration-200 hover:border-[var(--stroke-active)] hover:bg-[var(--void-membrane)]"
                 >
                   <span className="observatory-mono text-3xl font-light tracking-[-0.04em] text-[var(--vellum-300)] md:text-4xl">
                     {angelNumber.number}
@@ -71,7 +71,7 @@ export default async function HomeComponent() {
         <PopularNumberGrid numbers={featuredNumbers} />
       </section>
 
-      <section className="relative border-y border-[var(--stroke-hairline)] bg-[rgba(18,18,28,0.36)]">
+      <section className="relative border-y border-[var(--stroke-hairline)] bg-[var(--surface-quiet)]">
         <div className="container mx-auto grid gap-5 px-5 py-24 md:px-16 lg:grid-cols-[1.45fr_0.55fr]">
           <MysticSurface className="p-7">
             <div className="grid gap-8 md:grid-cols-[0.72fr_0.28fr] md:items-center">

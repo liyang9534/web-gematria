@@ -17,7 +17,7 @@ const Header = async () => {
   const user = session?.user;
 
   return (
-    <header className="py-2 backdrop-blur-md sticky top-0 z-50">
+    <header className="observatory-chrome sticky top-0 z-50 border-b border-[var(--stroke-hairline)] py-2 backdrop-blur-md">
       <nav className="flex justify-between items-center container max-w-8xl mx-auto">
         <div className="flex items-center space-x-6 md:space-x-12">
           <I18nLink
@@ -29,7 +29,7 @@ const Header = async () => {
             <Image src="/logo.png" alt="Logo" width={28} height={28} />
             <span
               className={cn(
-                "text-xl font-semibold text-primary font-science-gothic"
+                "text-xl font-semibold text-[var(--vellum-500)] font-science-gothic"
               )}
             >
               {t("title")}

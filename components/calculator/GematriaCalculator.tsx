@@ -129,7 +129,7 @@ export function GematriaCalculator({
                 <Badge
                   key={match.term}
                   variant="secondary"
-                  className="rounded-[2px] border border-[var(--stroke-default)] bg-[rgba(201,169,97,0.12)] text-[var(--vellum-300)]"
+                  className="rounded-[2px] border border-[var(--stroke-default)] bg-[var(--vellum-wash-strong)] text-[var(--vellum-300)]"
                 >
                   {match.term} = {match.value}
                 </Badge>
@@ -256,7 +256,7 @@ export function GematriaCalculator({
                 <Badge
                   key={match.term}
                   variant="secondary"
-                  className="rounded-[2px] border border-[var(--stroke-default)] bg-[rgba(107,91,149,0.14)] text-[var(--cloister-100)]"
+                  className="rounded-[2px] border border-[var(--stroke-default)] bg-[var(--cloister-wash-strong)] text-[var(--cloister-100)]"
                 >
                   {match.term} = {match.value}
                 </Badge>

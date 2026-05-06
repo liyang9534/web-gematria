@@ -31,15 +31,15 @@ const HeaderLinks = () => {
           <NavigationMenuItem key={link.name}>
             {link.items ? (
               <>
-                <NavigationMenuTrigger className="bg-transparent rounded-xl px-4 py-2 flex items-center gap-x-1 hover:bg-accent-foreground/10 hover:text-accent-foreground text-sm font-normal text-muted-foreground">
+                <NavigationMenuTrigger className="bg-transparent rounded-xl px-4 py-2 flex items-center gap-x-1 hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)] text-sm font-normal text-[var(--ink-secondary)]">
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
+                <NavigationMenuContent className="observatory-chrome border-[var(--stroke-default)] bg-[var(--void-rise)] text-[var(--ink-primary)]">
                   <ul className="w-[250px] gap-1">
                     {link.items.map((child) => (
                       <li
                         key={child.name}
-                        className="hover:bg-accent-foreground/10"
+                        className="hover:bg-[var(--vellum-wash)]"
                       >
                         <NavigationMenuLink asChild>
                           <I18nLink
@@ -53,7 +53,7 @@ const HeaderLinks = () => {
                             target={child.target || "_self"}
                             rel={child.rel || undefined}
                             className={cn(
-                              "flex flex-col gap-y-1 text-sm text-muted-foreground hover:text-accent-foreground"
+                              "flex flex-col gap-y-1 text-sm text-[var(--ink-secondary)] hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)] focus:bg-[var(--vellum-wash)] focus:text-[var(--vellum-100)]"
                             )}
                           >
                             <div className="flex items-center gap-x-1">
@@ -65,7 +65,7 @@ const HeaderLinks = () => {
                               )}
                             </div>
                             {child.description && (
-                              <div className="text-xs text-muted-foreground">
+                              <div className="text-xs text-[var(--ink-muted)]">
                                 {child.description}
                               </div>
                             )}
@@ -87,8 +87,8 @@ const HeaderLinks = () => {
                 target={link.target || "_self"}
                 rel={link.rel || undefined}
                 className={cn(
-                  "bg-transparent rounded-xl px-4 py-2 flex items-center gap-x-1 text-sm font-normal text-muted-foreground hover:bg-accent-foreground/10 hover:text-accent-foreground",
-                  pathname === link.href && "font-medium text-accent-foreground"
+                  "bg-transparent rounded-xl px-4 py-2 flex items-center gap-x-1 text-sm font-normal text-[var(--ink-secondary)] hover:bg-[var(--vellum-wash)] hover:text-[var(--vellum-100)]",
+                  pathname === link.href && "font-medium text-[var(--vellum-500)]"
                 )}
               >
                 {link.name}

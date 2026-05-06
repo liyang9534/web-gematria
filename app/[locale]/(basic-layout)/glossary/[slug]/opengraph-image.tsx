@@ -46,10 +46,6 @@ export default async function Image({ params }: Props) {
     );
   }
 
-  // Load logo
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const logoUrl = `${baseUrl}/logo.png`;
-
   // Truncate title if too long (max 2 lines)
   const title =
     metadata.title.length > 60
@@ -60,57 +56,98 @@ export default async function Image({ params }: Props) {
     (
       <div
         style={{
-          fontSize: 60,
-          background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "black",
+          justifyContent: "space-between",
+          padding: 72,
+          background: "linear-gradient(135deg, #101422 0%, #151c2d 48%, #2b220f 100%)",
+          color: "#fbf6e9",
+          fontFamily: "Georgia, serif",
           position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
           style={{
+            position: "absolute",
+            inset: 36,
+            border: "1px solid rgba(251, 246, 233, 0.18)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: 72,
+            top: 186,
+            width: 520,
+            height: 1,
+            background: "linear-gradient(90deg, rgba(125,211,252,0.64), rgba(251,246,233,0.04))",
+          }}
+        />
+        <div
+          style={{
+            position: "relative",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "0 80px",
+            gap: 32,
           }}
         >
-          <img
-            src={logoUrl}
-            alt="Logo"
-            width="120"
-            height="120"
-            style={{
-              marginBottom: "40px",
-            }}
-          />
           <div
             style={{
-              fontSize: title.length > 40 ? 48 : 56,
-              fontWeight: "bold",
-              textAlign: "center",
+              display: "flex",
+              alignSelf: "flex-start",
+              border: "1px solid rgba(125,211,252,0.38)",
+              color: "#bae6fd",
+              padding: "12px 18px",
+              fontFamily: "Arial, sans-serif",
+              fontSize: 22,
+              fontWeight: 700,
+              letterSpacing: 4,
+              textTransform: "uppercase",
+            }}
+          >
+            Glossary
+          </div>
+          <div
+            style={{
+              fontSize: title.length > 40 ? 56 : 68,
+              fontWeight: 700,
               lineHeight: 1.2,
-              maxWidth: "1000px",
+              maxWidth: 980,
             }}
           >
             {title}
           </div>
+          {metadata.description && (
+            <div
+              style={{
+                fontFamily: "Arial, sans-serif",
+                fontSize: 28,
+                lineHeight: 1.36,
+                color: "rgba(251, 246, 233, 0.72)",
+                maxWidth: 840,
+              }}
+            >
+              {metadata.description.length > 150
+                ? metadata.description.substring(0, 150) + "..."
+                : metadata.description}
+            </div>
+          )}
         </div>
         <div
           style={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "space-between",
+            color: "rgba(251, 246, 233, 0.68)",
+            fontFamily: "Arial, sans-serif",
             fontSize: 24,
-            opacity: 0.9,
-            position: "absolute",
-            bottom: 60,
           }}
         >
-          {siteConfig.name}
+          <span>{siteConfig.name}</span>
+          <span>{new URL(siteConfig.url).hostname}</span>
         </div>
       </div>
     ),
