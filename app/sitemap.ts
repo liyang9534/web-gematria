@@ -2,13 +2,34 @@ import { listPublishedPostsAction } from '@/actions/posts/posts'
 import { DEFAULT_LOCALE, LOCALES } from '@/i18n/routing'
 import { getAllAngelNumbers } from '@/lib/angel-numbers'
 import { blogCms } from '@/lib/cms'
-import { getPublicSiteUrl } from '@/lib/site-url'
+import { getConfiguredPublicSiteUrl, normalizePublicSiteUrl } from '@/lib/site-url'
 import { MetadataRoute } from 'next'
+import { headers } from 'next/headers'
+
+export const dynamic = 'force-dynamic'
 
 type ChangeFrequency = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' | undefined
 
+async function getSitemapSiteUrl() {
+  const configuredSiteUrl = getConfiguredPublicSiteUrl()
+
+  if (configuredSiteUrl) {
+    return configuredSiteUrl
+  }
+
+  const requestHeaders = await headers()
+  const host = requestHeaders.get('x-forwarded-host') || requestHeaders.get('host')
+
+  if (host) {
+    const protocol = requestHeaders.get('x-forwarded-proto') || (host.startsWith('localhost') ? 'http' : 'https')
+    return normalizePublicSiteUrl(`${protocol}://${host}`)
+  }
+
+  return 'http://localhost:3000'
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = getPublicSiteUrl()
+  const siteUrl = await getSitemapSiteUrl()
 
   // Static pages
   const staticPages = [

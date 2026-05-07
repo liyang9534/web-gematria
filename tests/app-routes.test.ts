@@ -3,7 +3,7 @@ import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { promisify } from "node:util";
-import { buildPublicUrl, getPublicSiteUrl } from "../lib/site-url";
+import { buildPublicUrl, getConfiguredPublicSiteUrl, getPublicSiteUrl } from "../lib/site-url";
 
 const execFileAsync = promisify(execFile);
 
@@ -21,12 +21,15 @@ test("header hides the unauthenticated login button", async () => {
   assert.match(source, /if\s*\(\s*!user\s*\)\s*{[\s\S]*?return\s+null\s*;/);
 });
 
-test("sitemap uses the shared public site URL helper instead of the site config fallback domain", async () => {
+test("sitemap derives URLs from runtime request host instead of static localhost fallback", async () => {
   const source = await readFile("app/sitemap.ts", "utf8");
 
-  assert.match(source, /getPublicSiteUrl/);
+  assert.match(source, /from\s+["']next\/headers["']/);
+  assert.match(source, /dynamic\s*=\s*["']force-dynamic["']/);
+  assert.match(source, /getConfiguredPublicSiteUrl/);
   assert.doesNotMatch(source, /siteConfig/);
   assert.doesNotMatch(source, /angel-number-decoder\.com/);
+  assert.doesNotMatch(source, /getPublicSiteUrl\(\)/);
   assert.doesNotMatch(source, /NEXT_PUBLIC_SITE_URL is required/);
 });
 
@@ -72,6 +75,33 @@ test("public site URL falls back to Cloudflare deployment URL during builds", ()
   try {
     assert.equal(getPublicSiteUrl(), "https://preview.example.pages.dev");
     assert.equal(buildPublicUrl("/sitemap.xml"), "https://preview.example.pages.dev/sitemap.xml");
+  } finally {
+    if (originalPublicSiteUrl === undefined) {
+      delete process.env.NEXT_PUBLIC_SITE_URL;
+    } else {
+      process.env.NEXT_PUBLIC_SITE_URL = originalPublicSiteUrl;
+    }
+
+    if (originalCloudflarePagesUrl === undefined) {
+      delete process.env.CF_PAGES_URL;
+    } else {
+      process.env.CF_PAGES_URL = originalCloudflarePagesUrl;
+    }
+  }
+});
+
+test("configured public site URL excludes local development fallback", () => {
+  const originalPublicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const originalCloudflarePagesUrl = process.env.CF_PAGES_URL;
+
+  delete process.env.NEXT_PUBLIC_SITE_URL;
+  delete process.env.CF_PAGES_URL;
+
+  try {
+    assert.equal(getConfiguredPublicSiteUrl(), undefined);
+
+    process.env.NEXT_PUBLIC_SITE_URL = "example.com/";
+    assert.equal(getConfiguredPublicSiteUrl(), "https://example.com");
   } finally {
     if (originalPublicSiteUrl === undefined) {
       delete process.env.NEXT_PUBLIC_SITE_URL;
