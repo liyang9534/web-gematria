@@ -3,6 +3,7 @@ import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { promisify } from "node:util";
+import { buildPublicUrl, getPublicSiteUrl } from "../lib/site-url";
 
 const execFileAsync = promisify(execFile);
 
@@ -20,12 +21,13 @@ test("header hides the unauthenticated login button", async () => {
   assert.match(source, /if\s*\(\s*!user\s*\)\s*{[\s\S]*?return\s+null\s*;/);
 });
 
-test("sitemap uses NEXT_PUBLIC_SITE_URL instead of the site config fallback domain", async () => {
+test("sitemap uses the shared public site URL helper instead of the site config fallback domain", async () => {
   const source = await readFile("app/sitemap.ts", "utf8");
 
-  assert.match(source, /process\.env\.NEXT_PUBLIC_SITE_URL/);
+  assert.match(source, /getPublicSiteUrl/);
   assert.doesNotMatch(source, /siteConfig/);
   assert.doesNotMatch(source, /angel-number-decoder\.com/);
+  assert.doesNotMatch(source, /NEXT_PUBLIC_SITE_URL is required/);
 });
 
 test("tracked project files do not hard-code the production domain", async () => {
@@ -58,4 +60,29 @@ test("page previews use generated OG images instead of static public image asset
   assert.match(defaultOgSource, /ImageResponse/);
   assert.doesNotMatch(blogOgSource, /logo\.png|<img/);
   assert.doesNotMatch(glossaryOgSource, /logo\.png|<img/);
+});
+
+test("public site URL falls back to Cloudflare deployment URL during builds", () => {
+  const originalPublicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const originalCloudflarePagesUrl = process.env.CF_PAGES_URL;
+
+  delete process.env.NEXT_PUBLIC_SITE_URL;
+  process.env.CF_PAGES_URL = "https://preview.example.pages.dev/";
+
+  try {
+    assert.equal(getPublicSiteUrl(), "https://preview.example.pages.dev");
+    assert.equal(buildPublicUrl("/sitemap.xml"), "https://preview.example.pages.dev/sitemap.xml");
+  } finally {
+    if (originalPublicSiteUrl === undefined) {
+      delete process.env.NEXT_PUBLIC_SITE_URL;
+    } else {
+      process.env.NEXT_PUBLIC_SITE_URL = originalPublicSiteUrl;
+    }
+
+    if (originalCloudflarePagesUrl === undefined) {
+      delete process.env.CF_PAGES_URL;
+    } else {
+      process.env.CF_PAGES_URL = originalCloudflarePagesUrl;
+    }
+  }
 });
