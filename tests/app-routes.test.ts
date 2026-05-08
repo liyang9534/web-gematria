@@ -33,6 +33,38 @@ test("sitemap derives URLs from runtime request host instead of static localhost
   assert.doesNotMatch(source, /NEXT_PUBLIC_SITE_URL is required/);
 });
 
+test("sitemap includes Phase 4 SEO pages without generated angel-number URLs", async () => {
+  const source = await readFile("app/sitemap.ts", "utf8");
+
+  assert.match(source, /\/calculator\/gematria/);
+  assert.match(source, /\/calculator\/numerology/);
+  assert.match(source, /\/calculator\/life-path/);
+  assert.match(source, /\/ai/);
+  assert.match(source, /getAllAngelNumbers\(\)/);
+  assert.match(source, /dedupeSitemapEntries/);
+  assert.doesNotMatch(source, /interpretAnyNumber/);
+  assert.doesNotMatch(source, /\/angel-number\/12345/);
+});
+
+test("AI landing page is separate from the developer AI demo", async () => {
+  const source = await readFile("app/[locale]/(basic-layout)/ai/page.tsx", "utf8");
+
+  assert.match(source, /path:\s*["'`]\/ai["'`]/);
+  assert.match(source, /AI Number Interpreter/);
+  assert.doesNotMatch(source, /ai-demo/);
+});
+
+test("package exposes a content quality script", async () => {
+  const packageJson = JSON.parse(await readFile("package.json", "utf8"));
+
+  assert.equal(
+    packageJson.scripts["angel:check-content"],
+    "node --import tsx scripts/check-angel-number-content.ts",
+  );
+  assert.match(packageJson.scripts.build, /angel:check-content/);
+  assert.match(packageJson.scripts["cf:build"], /angel:check-content/);
+});
+
 test("tracked project files do not hard-code the production domain", async () => {
   const domain = ["angel", "number", "decoder"].join("-") + ".com";
 

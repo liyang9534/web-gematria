@@ -23,7 +23,6 @@ import {
 import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/routing";
 import {
-  getAllAngelNumbers,
   getReadingForNumber,
 } from "@/lib/angel-numbers";
 import {
@@ -32,6 +31,7 @@ import {
   getAngelNumberPath,
   getAngelNumberRobotsPolicy,
 } from "@/lib/angel-numbers/seo";
+import { getAngelNumberStaticParams } from "@/lib/angel-numbers/static-params";
 import { constructMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbJsonLd,
@@ -47,9 +47,7 @@ import type { ReactNode } from "react";
 type Params = Promise<{ locale: string; number: string }>;
 
 export function generateStaticParams() {
-  return getAllAngelNumbers().map((angelNumber) => ({
-    number: angelNumber.slug,
-  }));
+  return getAngelNumberStaticParams();
 }
 
 export async function generateMetadata({

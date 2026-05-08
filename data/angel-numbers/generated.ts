@@ -3,6 +3,1842 @@ import type { AngelNumber } from "@/types/angel-number";
 
 export const ANGEL_NUMBERS: AngelNumber[] = [
   {
+    "number": "0",
+    "slug": "0",
+    "title": "Angel Number 0 Meaning",
+    "shortMeaning": "Potential, Stillness And The Open Field Before A New Cycle Through A Single-Digit Root Signal",
+    "summary": "Angel number 0 is a single-digit root signal shaped by root number 0. Its core message is potential, stillness and the open field before a new cycle: a reminder to pause long enough to hear what wants to begin while noticing where this exact number keeps appearing. Use 0 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 0 highlights space, renewal and the possibility of a cleaner pattern. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to pause long enough to hear what wants to begin, especially before turning a sign into a story about someone else.",
+      "career": "For career, 0 points toward a reset point before direction becomes visible. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 0 speaks to clearing noise before choosing the next commitment. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid treating emptiness as failure instead of fertile space, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 0 blends single-digit root signal with root number 0, which carries potential, stillness and the open field before a new cycle. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 0 encourages rest, breath and the permission to begin again gently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 0 emphasizes the space between cycles where both people return to themselves. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 0,
+      "english": 0,
+      "simple": 0,
+      "jewish": 0,
+      "reduction": 0
+    },
+    "numerology": {
+      "rootNumber": 0,
+      "rootMeaning": "Root number 0 brings potential, stillness and the open field before a new cycle.",
+      "calculation": "0 = 0"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 1:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "0 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 0 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "00",
+      "000",
+      "0000"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 0 mean?",
+        "answer": "Angel number 0 means potential, stillness and the open field before a new cycle, expressed through single-digit root signal. Its practical message is to pause long enough to hear what wants to begin."
+      },
+      {
+        "question": "Why do I keep seeing 0?",
+        "answer": "You may keep seeing 0 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 0."
+      },
+      {
+        "question": "What should I do after seeing 0?",
+        "answer": "Pause, write down where 0 appeared, then choose one concrete action that supports potential, stillness and the open field before a new cycle instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 0 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 0 meaning for love, career, money, twin flames and spiritual growth. Learn why 0 appears and what to do next.",
+      "keywords": [
+        "angel number 0",
+        "0 meaning",
+        "0 spiritual meaning",
+        "0 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1",
+    "slug": "1",
+    "title": "Angel Number 1 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Single-Digit Root Signal",
+    "summary": "Angel number 1 is a single-digit root signal shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 1 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1 highlights clear desire and direct communication. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1 blends single-digit root signal with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1,
+      "english": 6,
+      "simple": 1,
+      "jewish": 3,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "1 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 2:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "1 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 1 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "11",
+      "111",
+      "1111"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1 mean?",
+        "answer": "Angel number 1 means initiative, self-trust and fresh intention, expressed through single-digit root signal. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 1?",
+        "answer": "You may keep seeing 1 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 1?",
+        "answer": "Pause, write down where 1 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1 meaning for love, career, money, twin flames and spiritual growth. Learn why 1 appears and what to do next.",
+      "keywords": [
+        "angel number 1",
+        "1 meaning",
+        "1 spiritual meaning",
+        "1 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2",
+    "slug": "2",
+    "title": "Angel Number 2 Meaning",
+    "shortMeaning": "Balance, Partnership And Emotional Timing Through A Single-Digit Root Signal",
+    "summary": "Angel number 2 is a single-digit root signal shaped by root number 2. Its core message is balance, partnership and emotional timing: a reminder to restore balance before making the next move while noticing where this exact number keeps appearing. Use 2 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2 highlights patience, listening and mutual care. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to restore balance before making the next move, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2 points toward collaboration and tactful timing. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2 speaks to steady planning instead of reactive spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid mistaking waiting for wisdom, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2 blends single-digit root signal with root number 2, which carries balance, partnership and emotional timing. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2 encourages rhythms that calm the nervous system. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2 emphasizes maturity in the space between closeness and distance. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2,
+      "english": 12,
+      "simple": 2,
+      "jewish": 6,
+      "reduction": 2
+    },
+    "numerology": {
+      "rootNumber": 2,
+      "rootMeaning": "Root number 2 brings balance, partnership and emotional timing.",
+      "calculation": "2 = 2"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 3:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "2 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 2 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "22",
+      "222",
+      "2222"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2 mean?",
+        "answer": "Angel number 2 means balance, partnership and emotional timing, expressed through single-digit root signal. Its practical message is to restore balance before making the next move."
+      },
+      {
+        "question": "Why do I keep seeing 2?",
+        "answer": "You may keep seeing 2 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 2."
+      },
+      {
+        "question": "What should I do after seeing 2?",
+        "answer": "Pause, write down where 2 appeared, then choose one concrete action that supports balance, partnership and emotional timing instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2 meaning for love, career, money, twin flames and spiritual growth. Learn why 2 appears and what to do next.",
+      "keywords": [
+        "angel number 2",
+        "2 meaning",
+        "2 spiritual meaning",
+        "2 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "3",
+    "slug": "3",
+    "title": "Angel Number 3 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Single-Digit Root Signal",
+    "summary": "Angel number 3 is a single-digit root signal shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 3 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 3 highlights warm honesty and playful repair. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 3 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 3 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 3 blends single-digit root signal with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 3 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 3 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 3,
+      "english": 18,
+      "simple": 3,
+      "jewish": 9,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "3 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 4:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "3 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 3 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "33",
+      "333",
+      "3333"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 3 mean?",
+        "answer": "Angel number 3 means expression, creativity and truthful communication, expressed through single-digit root signal. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 3?",
+        "answer": "You may keep seeing 3 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 3?",
+        "answer": "Pause, write down where 3 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 3 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 3 meaning for love, career, money, twin flames and spiritual growth. Learn why 3 appears and what to do next.",
+      "keywords": [
+        "angel number 3",
+        "3 meaning",
+        "3 spiritual meaning",
+        "3 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "4",
+    "slug": "4",
+    "title": "Angel Number 4 Meaning",
+    "shortMeaning": "Foundation, Protection And Disciplined Progress Through A Single-Digit Root Signal",
+    "summary": "Angel number 4 is a single-digit root signal shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 4 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 4 highlights trust built through consistent behavior. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 4 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 4 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 4 blends single-digit root signal with root number 4, which carries foundation, protection and disciplined progress. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 4 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 4 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 4,
+      "english": 24,
+      "simple": 4,
+      "jewish": 12,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "4 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 5:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "4 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 4 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "44",
+      "444",
+      "4444"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 4 mean?",
+        "answer": "Angel number 4 means foundation, protection and disciplined progress, expressed through single-digit root signal. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 4?",
+        "answer": "You may keep seeing 4 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 4?",
+        "answer": "Pause, write down where 4 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 4 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 4 meaning for love, career, money, twin flames and spiritual growth. Learn why 4 appears and what to do next.",
+      "keywords": [
+        "angel number 4",
+        "4 meaning",
+        "4 spiritual meaning",
+        "4 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "5",
+    "slug": "5",
+    "title": "Angel Number 5 Meaning",
+    "shortMeaning": "Change, Freedom And Adaptive Movement Through A Single-Digit Root Signal",
+    "summary": "Angel number 5 is a single-digit root signal shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 5 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 5 highlights space, honesty and a livelier pattern. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 5 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 5 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 5 blends single-digit root signal with root number 5, which carries change, freedom and adaptive movement. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 5 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 5 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 5,
+      "english": 30,
+      "simple": 5,
+      "jewish": 15,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "5 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 6:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "5 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 5 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "55",
+      "555",
+      "5555"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 5 mean?",
+        "answer": "Angel number 5 means change, freedom and adaptive movement, expressed through single-digit root signal. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 5?",
+        "answer": "You may keep seeing 5 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 5?",
+        "answer": "Pause, write down where 5 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 5 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 5 meaning for love, career, money, twin flames and spiritual growth. Learn why 5 appears and what to do next.",
+      "keywords": [
+        "angel number 5",
+        "5 meaning",
+        "5 spiritual meaning",
+        "5 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "6",
+    "slug": "6",
+    "title": "Angel Number 6 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Single-Digit Root Signal",
+    "summary": "Angel number 6 is a single-digit root signal shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 6 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 6 highlights repair, devotion and healthy responsibility. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 6 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 6 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 6 blends single-digit root signal with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 6 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 6 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 6,
+      "english": 36,
+      "simple": 6,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "6 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 7:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "6 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 6 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "66",
+      "666",
+      "6666"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 6 mean?",
+        "answer": "Angel number 6 means care, responsibility and material harmony, expressed through single-digit root signal. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 6?",
+        "answer": "You may keep seeing 6 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 6?",
+        "answer": "Pause, write down where 6 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 6 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 6 meaning for love, career, money, twin flames and spiritual growth. Learn why 6 appears and what to do next.",
+      "keywords": [
+        "angel number 6",
+        "6 meaning",
+        "6 spiritual meaning",
+        "6 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "7",
+    "slug": "7",
+    "title": "Angel Number 7 Meaning",
+    "shortMeaning": "Insight, Study And Spiritual Depth Through A Single-Digit Root Signal",
+    "summary": "Angel number 7 is a single-digit root signal shaped by root number 7. Its core message is insight, study and spiritual depth: a reminder to listen inwardly, then test the insight in life while noticing where this exact number keeps appearing. Use 7 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 7 highlights quiet truth and deeper emotional discernment. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to listen inwardly, then test the insight in life, especially before turning a sign into a story about someone else.",
+      "career": "For career, 7 points toward research, strategy and specialized mastery. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 7 speaks to patient evaluation before commitment. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid isolating until guidance cannot become action, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 7 blends single-digit root signal with root number 7, which carries insight, study and spiritual depth. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 7 encourages stillness, recovery and attention to signals. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 7 emphasizes inner work that matters more than chasing proof. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 7,
+      "english": 42,
+      "simple": 7,
+      "jewish": 21,
+      "reduction": 7
+    },
+    "numerology": {
+      "rootNumber": 7,
+      "rootMeaning": "Root number 7 brings insight, study and spiritual depth.",
+      "calculation": "7 = 7"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 8:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "7 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 7 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "77",
+      "777",
+      "7777"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 7 mean?",
+        "answer": "Angel number 7 means insight, study and spiritual depth, expressed through single-digit root signal. Its practical message is to listen inwardly, then test the insight in life."
+      },
+      {
+        "question": "Why do I keep seeing 7?",
+        "answer": "You may keep seeing 7 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 7."
+      },
+      {
+        "question": "What should I do after seeing 7?",
+        "answer": "Pause, write down where 7 appeared, then choose one concrete action that supports insight, study and spiritual depth instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 7 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 7 meaning for love, career, money, twin flames and spiritual growth. Learn why 7 appears and what to do next.",
+      "keywords": [
+        "angel number 7",
+        "7 meaning",
+        "7 spiritual meaning",
+        "7 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "8",
+    "slug": "8",
+    "title": "Angel Number 8 Meaning",
+    "shortMeaning": "Abundance, Power And Wise Stewardship Through A Single-Digit Root Signal",
+    "summary": "Angel number 8 is a single-digit root signal shaped by root number 8. Its core message is abundance, power and wise stewardship: a reminder to receive value and steward it responsibly while noticing where this exact number keeps appearing. Use 8 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 8 highlights balanced exchange and mature commitment. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to receive value and steward it responsibly, especially before turning a sign into a story about someone else.",
+      "career": "For career, 8 points toward leadership, negotiation and material outcomes. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 8 speaks to wealth building, repayment and wise authority. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid measuring worth only through results, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 8 blends single-digit root signal with root number 8, which carries abundance, power and wise stewardship. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 8 encourages strength, endurance and sustainable ambition. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 8 emphasizes karmic balance and equal energetic exchange. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 8,
+      "english": 48,
+      "simple": 8,
+      "jewish": 24,
+      "reduction": 8
+    },
+    "numerology": {
+      "rootNumber": 8,
+      "rootMeaning": "Root number 8 brings abundance, power and wise stewardship.",
+      "calculation": "8 = 8"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 9:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "8 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 8 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "88",
+      "888",
+      "8888"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 8 mean?",
+        "answer": "Angel number 8 means abundance, power and wise stewardship, expressed through single-digit root signal. Its practical message is to receive value and steward it responsibly."
+      },
+      {
+        "question": "Why do I keep seeing 8?",
+        "answer": "You may keep seeing 8 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 8."
+      },
+      {
+        "question": "What should I do after seeing 8?",
+        "answer": "Pause, write down where 8 appeared, then choose one concrete action that supports abundance, power and wise stewardship instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 8 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 8 meaning for love, career, money, twin flames and spiritual growth. Learn why 8 appears and what to do next.",
+      "keywords": [
+        "angel number 8",
+        "8 meaning",
+        "8 spiritual meaning",
+        "8 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "9",
+    "slug": "9",
+    "title": "Angel Number 9 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Single-Digit Root Signal",
+    "summary": "Angel number 9 is a single-digit root signal shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 9 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 9 highlights forgiveness, closure and larger-hearted truth. The single-digit root signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 9 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 9 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 9 blends single-digit root signal with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 9 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 9 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 9,
+      "english": 54,
+      "simple": 9,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "9 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 10:1",
+        "text": "Single-digit angel numbers are read through root-number symbolism and personal reflection.",
+        "relevance": "9 keeps the message close to a primary numerology archetype."
+      }
+    ],
+    "affirmation": "I receive the message of 9 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "99",
+      "999",
+      "9999"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 9 mean?",
+        "answer": "Angel number 9 means completion, compassion and higher purpose, expressed through single-digit root signal. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 9?",
+        "answer": "You may keep seeing 9 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 9?",
+        "answer": "Pause, write down where 9 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 9 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 9 meaning for love, career, money, twin flames and spiritual growth. Learn why 9 appears and what to do next.",
+      "keywords": [
+        "angel number 9",
+        "9 meaning",
+        "9 spiritual meaning",
+        "9 love meaning"
+      ]
+    },
+    "category": "single",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "11",
+    "slug": "11",
+    "title": "Angel Number 11 Meaning",
+    "shortMeaning": "Balance, Partnership And Emotional Timing Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 11 is a two-digit repeating signal shaped by root number 2. Its core message is balance, partnership and emotional timing: a reminder to restore balance before making the next move while noticing where this exact number keeps appearing. Use 11 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 11 highlights patience, listening and mutual care. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to restore balance before making the next move, especially before turning a sign into a story about someone else.",
+      "career": "For career, 11 points toward collaboration and tactful timing. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 11 speaks to steady planning instead of reactive spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid mistaking waiting for wisdom, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 11 blends two-digit repeating signal with root number 2, which carries balance, partnership and emotional timing. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 11 encourages rhythms that calm the nervous system. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 11 emphasizes maturity in the space between closeness and distance. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 11,
+      "english": 12,
+      "simple": 11,
+      "jewish": 6,
+      "reduction": 2
+    },
+    "numerology": {
+      "rootNumber": 2,
+      "rootMeaning": "Root number 2 brings balance, partnership and emotional timing.",
+      "calculation": "1+1 = 2"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "11 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 11 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "2",
+      "1",
+      "111",
+      "1111"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 11 mean?",
+        "answer": "Angel number 11 means balance, partnership and emotional timing, expressed through two-digit repeating signal. Its practical message is to restore balance before making the next move."
+      },
+      {
+        "question": "Why do I keep seeing 11?",
+        "answer": "You may keep seeing 11 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 2."
+      },
+      {
+        "question": "What should I do after seeing 11?",
+        "answer": "Pause, write down where 11 appeared, then choose one concrete action that supports balance, partnership and emotional timing instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 11 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 11 meaning for love, career, money, twin flames and spiritual growth. Learn why 11 appears and what to do next.",
+      "keywords": [
+        "angel number 11",
+        "11 meaning",
+        "11 spiritual meaning",
+        "11 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "12",
+    "slug": "12",
+    "title": "Angel Number 12 Meaning",
+    "shortMeaning": "Sacred Order And Complete Cycles",
+    "summary": "Angel number 12 is a sacred order and complete cycles shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 12 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 12 highlights warm honesty and playful repair. The sacred order and complete cycles asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 12 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 12 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 12 blends sacred order and complete cycles with root number 3, which carries expression, creativity and truthful communication. Its symbolic background also points to often associated with tribes, apostles, months and structured wholeness. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 12 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 12 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 12,
+      "english": 18,
+      "simple": 12,
+      "jewish": 9,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Revelation 21:12",
+        "text": "12 is treated here as a symbolic number connected with sacred order and complete cycles.",
+        "relevance": "This reference gives 12 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 12 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "1",
+      "2",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 12 mean?",
+        "answer": "Angel number 12 means expression, creativity and truthful communication, expressed through sacred order and complete cycles. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 12?",
+        "answer": "You may keep seeing 12 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 12?",
+        "answer": "Pause, write down where 12 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 12 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 12 meaning for love, career, money, twin flames and spiritual growth. Learn why 12 appears and what to do next.",
+      "keywords": [
+        "angel number 12",
+        "12 meaning",
+        "12 spiritual meaning",
+        "12 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "22",
+    "slug": "22",
+    "title": "Angel Number 22 Meaning",
+    "shortMeaning": "Foundation, Protection And Disciplined Progress Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 22 is a two-digit repeating signal shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 22 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 22 highlights trust built through consistent behavior. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 22 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 22 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 22 blends two-digit repeating signal with root number 4, which carries foundation, protection and disciplined progress. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 22 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 22 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 22,
+      "english": 24,
+      "simple": 22,
+      "jewish": 12,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "2+2 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "22 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 22 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "2",
+      "222",
+      "2222"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 22 mean?",
+        "answer": "Angel number 22 means foundation, protection and disciplined progress, expressed through two-digit repeating signal. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 22?",
+        "answer": "You may keep seeing 22 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 22?",
+        "answer": "Pause, write down where 22 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 22 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 22 meaning for love, career, money, twin flames and spiritual growth. Learn why 22 appears and what to do next.",
+      "keywords": [
+        "angel number 22",
+        "22 meaning",
+        "22 spiritual meaning",
+        "22 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "24",
+    "slug": "24",
+    "title": "Angel Number 24 Meaning",
+    "shortMeaning": "Devotional Service And Ordered Worship",
+    "summary": "Angel number 24 is a devotional service and ordered worship shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 24 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 24 highlights repair, devotion and healthy responsibility. The devotional service and ordered worship asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 24 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 24 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 24 blends devotional service and ordered worship with root number 6, which carries care, responsibility and material harmony. Its symbolic background also points to linked with priestly divisions and a rhythm of service. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 24 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 24 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 24,
+      "english": 36,
+      "simple": 24,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "2+4 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "1 Chronicles 24:4",
+        "text": "24 is treated here as a symbolic number connected with devotional service and ordered worship.",
+        "relevance": "This reference gives 24 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 24 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "2",
+      "4",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 24 mean?",
+        "answer": "Angel number 24 means care, responsibility and material harmony, expressed through devotional service and ordered worship. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 24?",
+        "answer": "You may keep seeing 24 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 24?",
+        "answer": "Pause, write down where 24 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 24 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 24 meaning for love, career, money, twin flames and spiritual growth. Learn why 24 appears and what to do next.",
+      "keywords": [
+        "angel number 24",
+        "24 meaning",
+        "24 spiritual meaning",
+        "24 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "33",
+    "slug": "33",
+    "title": "Angel Number 33 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 33 is a two-digit repeating signal shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 33 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 33 highlights repair, devotion and healthy responsibility. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 33 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 33 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 33 blends two-digit repeating signal with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 33 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 33 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 33,
+      "english": 36,
+      "simple": 33,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "3+3 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "33 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 33 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "3",
+      "333",
+      "3333"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 33 mean?",
+        "answer": "Angel number 33 means care, responsibility and material harmony, expressed through two-digit repeating signal. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 33?",
+        "answer": "You may keep seeing 33 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 33?",
+        "answer": "Pause, write down where 33 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 33 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 33 meaning for love, career, money, twin flames and spiritual growth. Learn why 33 appears and what to do next.",
+      "keywords": [
+        "angel number 33",
+        "33 meaning",
+        "33 spiritual meaning",
+        "33 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "40",
+    "slug": "40",
+    "title": "Angel Number 40 Meaning",
+    "shortMeaning": "Testing, Preparation And Transformation",
+    "summary": "Angel number 40 is a testing, preparation and transformation shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 40 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 40 highlights trust built through consistent behavior. The testing, preparation and transformation asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 40 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 40 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 40 blends testing, preparation and transformation with root number 4, which carries foundation, protection and disciplined progress. Its symbolic background also points to frequently appears around wilderness, fasting and preparation periods. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 40 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 40 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 40,
+      "english": 24,
+      "simple": 40,
+      "jewish": 12,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "4+0 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Matthew 4:2",
+        "text": "40 is treated here as a symbolic number connected with testing, preparation and transformation.",
+        "relevance": "This reference gives 40 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 40 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 40 mean?",
+        "answer": "Angel number 40 means foundation, protection and disciplined progress, expressed through testing, preparation and transformation. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 40?",
+        "answer": "You may keep seeing 40 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 40?",
+        "answer": "Pause, write down where 40 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 40 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 40 meaning for love, career, money, twin flames and spiritual growth. Learn why 40 appears and what to do next.",
+      "keywords": [
+        "angel number 40",
+        "40 meaning",
+        "40 spiritual meaning",
+        "40 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "44",
+    "slug": "44",
+    "title": "Angel Number 44 Meaning",
+    "shortMeaning": "Abundance, Power And Wise Stewardship Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 44 is a two-digit repeating signal shaped by root number 8. Its core message is abundance, power and wise stewardship: a reminder to receive value and steward it responsibly while noticing where this exact number keeps appearing. Use 44 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 44 highlights balanced exchange and mature commitment. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to receive value and steward it responsibly, especially before turning a sign into a story about someone else.",
+      "career": "For career, 44 points toward leadership, negotiation and material outcomes. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 44 speaks to wealth building, repayment and wise authority. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid measuring worth only through results, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 44 blends two-digit repeating signal with root number 8, which carries abundance, power and wise stewardship. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 44 encourages strength, endurance and sustainable ambition. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 44 emphasizes karmic balance and equal energetic exchange. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 44,
+      "english": 48,
+      "simple": 44,
+      "jewish": 24,
+      "reduction": 8
+    },
+    "numerology": {
+      "rootNumber": 8,
+      "rootMeaning": "Root number 8 brings abundance, power and wise stewardship.",
+      "calculation": "4+4 = 8"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "44 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 44 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "8",
+      "4",
+      "444",
+      "4444"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 44 mean?",
+        "answer": "Angel number 44 means abundance, power and wise stewardship, expressed through two-digit repeating signal. Its practical message is to receive value and steward it responsibly."
+      },
+      {
+        "question": "Why do I keep seeing 44?",
+        "answer": "You may keep seeing 44 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 8."
+      },
+      {
+        "question": "What should I do after seeing 44?",
+        "answer": "Pause, write down where 44 appeared, then choose one concrete action that supports abundance, power and wise stewardship instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 44 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 44 meaning for love, career, money, twin flames and spiritual growth. Learn why 44 appears and what to do next.",
+      "keywords": [
+        "angel number 44",
+        "44 meaning",
+        "44 spiritual meaning",
+        "44 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "50",
+    "slug": "50",
+    "title": "Angel Number 50 Meaning",
+    "shortMeaning": "Release, Renewal And Jubilee",
+    "summary": "Angel number 50 is a release, renewal and jubilee shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 50 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 50 highlights space, honesty and a livelier pattern. The release, renewal and jubilee asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 50 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 50 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 50 blends release, renewal and jubilee with root number 5, which carries change, freedom and adaptive movement. Its symbolic background also points to evokes restoration, freedom and a reset of burdens. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 50 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 50 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 50,
+      "english": 30,
+      "simple": 50,
+      "jewish": 15,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "5+0 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Leviticus 25:10",
+        "text": "50 is treated here as a symbolic number connected with release, renewal and jubilee.",
+        "relevance": "This reference gives 50 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 50 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "5",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 50 mean?",
+        "answer": "Angel number 50 means change, freedom and adaptive movement, expressed through release, renewal and jubilee. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 50?",
+        "answer": "You may keep seeing 50 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 50?",
+        "answer": "Pause, write down where 50 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 50 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 50 meaning for love, career, money, twin flames and spiritual growth. Learn why 50 appears and what to do next.",
+      "keywords": [
+        "angel number 50",
+        "50 meaning",
+        "50 spiritual meaning",
+        "50 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "55",
+    "slug": "55",
+    "title": "Angel Number 55 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 55 is a two-digit repeating signal shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 55 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 55 highlights clear desire and direct communication. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 55 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 55 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 55 blends two-digit repeating signal with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 55 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 55 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 55,
+      "english": 60,
+      "simple": 55,
+      "jewish": 30,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "5+5 = 10 -> 1+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "55 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 55 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "5",
+      "555",
+      "5555"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 55 mean?",
+        "answer": "Angel number 55 means initiative, self-trust and fresh intention, expressed through two-digit repeating signal. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 55?",
+        "answer": "You may keep seeing 55 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 55?",
+        "answer": "Pause, write down where 55 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 55 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 55 meaning for love, career, money, twin flames and spiritual growth. Learn why 55 appears and what to do next.",
+      "keywords": [
+        "angel number 55",
+        "55 meaning",
+        "55 spiritual meaning",
+        "55 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "66",
+    "slug": "66",
+    "title": "Angel Number 66 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 66 is a two-digit repeating signal shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 66 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 66 highlights warm honesty and playful repair. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 66 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 66 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 66 blends two-digit repeating signal with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 66 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 66 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 66,
+      "english": 72,
+      "simple": 66,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "6+6 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "66 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 66 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "6",
+      "666",
+      "6666"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 66 mean?",
+        "answer": "Angel number 66 means expression, creativity and truthful communication, expressed through two-digit repeating signal. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 66?",
+        "answer": "You may keep seeing 66 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 66?",
+        "answer": "Pause, write down where 66 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 66 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 66 meaning for love, career, money, twin flames and spiritual growth. Learn why 66 appears and what to do next.",
+      "keywords": [
+        "angel number 66",
+        "66 meaning",
+        "66 spiritual meaning",
+        "66 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "70",
+    "slug": "70",
+    "title": "Angel Number 70 Meaning",
+    "shortMeaning": "Restoration, Nations And Fulfilled Counsel",
+    "summary": "Angel number 70 is a restoration, nations and fulfilled counsel shaped by root number 7. Its core message is insight, study and spiritual depth: a reminder to listen inwardly, then test the insight in life while noticing where this exact number keeps appearing. Use 70 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 70 highlights quiet truth and deeper emotional discernment. The restoration, nations and fulfilled counsel asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to listen inwardly, then test the insight in life, especially before turning a sign into a story about someone else.",
+      "career": "For career, 70 points toward research, strategy and specialized mastery. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 70 speaks to patient evaluation before commitment. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid isolating until guidance cannot become action, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 70 blends restoration, nations and fulfilled counsel with root number 7, which carries insight, study and spiritual depth. Its symbolic background also points to often marks appointed elders, years and wider community order. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 70 encourages stillness, recovery and attention to signals. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 70 emphasizes inner work that matters more than chasing proof. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 70,
+      "english": 42,
+      "simple": 70,
+      "jewish": 21,
+      "reduction": 7
+    },
+    "numerology": {
+      "rootNumber": 7,
+      "rootMeaning": "Root number 7 brings insight, study and spiritual depth.",
+      "calculation": "7+0 = 7"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Numbers 11:16",
+        "text": "70 is treated here as a symbolic number connected with restoration, nations and fulfilled counsel.",
+        "relevance": "This reference gives 70 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 70 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "7",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 70 mean?",
+        "answer": "Angel number 70 means insight, study and spiritual depth, expressed through restoration, nations and fulfilled counsel. Its practical message is to listen inwardly, then test the insight in life."
+      },
+      {
+        "question": "Why do I keep seeing 70?",
+        "answer": "You may keep seeing 70 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 7."
+      },
+      {
+        "question": "What should I do after seeing 70?",
+        "answer": "Pause, write down where 70 appeared, then choose one concrete action that supports insight, study and spiritual depth instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 70 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 70 meaning for love, career, money, twin flames and spiritual growth. Learn why 70 appears and what to do next.",
+      "keywords": [
+        "angel number 70",
+        "70 meaning",
+        "70 spiritual meaning",
+        "70 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "72",
+    "slug": "72",
+    "title": "Angel Number 72 Meaning",
+    "shortMeaning": "Messenger Work And Expanded Mission",
+    "summary": "Angel number 72 is a messenger work and expanded mission shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 72 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 72 highlights forgiveness, closure and larger-hearted truth. The messenger work and expanded mission asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 72 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 72 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 72 blends messenger work and expanded mission with root number 9, which carries completion, compassion and higher purpose. Its symbolic background also points to points to a message carried beyond the private self. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 72 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 72 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 72,
+      "english": 54,
+      "simple": 72,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "7+2 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Luke 10:1",
+        "text": "72 is treated here as a symbolic number connected with messenger work and expanded mission.",
+        "relevance": "This reference gives 72 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 72 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "7",
+      "2",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 72 mean?",
+        "answer": "Angel number 72 means completion, compassion and higher purpose, expressed through messenger work and expanded mission. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 72?",
+        "answer": "You may keep seeing 72 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 72?",
+        "answer": "Pause, write down where 72 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 72 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 72 meaning for love, career, money, twin flames and spiritual growth. Learn why 72 appears and what to do next.",
+      "keywords": [
+        "angel number 72",
+        "72 meaning",
+        "72 spiritual meaning",
+        "72 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "77",
+    "slug": "77",
+    "title": "Angel Number 77 Meaning",
+    "shortMeaning": "Change, Freedom And Adaptive Movement Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 77 is a two-digit repeating signal shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 77 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 77 highlights space, honesty and a livelier pattern. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 77 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 77 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 77 blends two-digit repeating signal with root number 5, which carries change, freedom and adaptive movement. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 77 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 77 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 77,
+      "english": 84,
+      "simple": 77,
+      "jewish": 42,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "7+7 = 14 -> 1+4 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "77 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 77 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "5",
+      "7",
+      "777",
+      "7777"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 77 mean?",
+        "answer": "Angel number 77 means change, freedom and adaptive movement, expressed through two-digit repeating signal. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 77?",
+        "answer": "You may keep seeing 77 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 77?",
+        "answer": "Pause, write down where 77 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 77 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 77 meaning for love, career, money, twin flames and spiritual growth. Learn why 77 appears and what to do next.",
+      "keywords": [
+        "angel number 77",
+        "77 meaning",
+        "77 spiritual meaning",
+        "77 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "88",
+    "slug": "88",
+    "title": "Angel Number 88 Meaning",
+    "shortMeaning": "Insight, Study And Spiritual Depth Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 88 is a two-digit repeating signal shaped by root number 7. Its core message is insight, study and spiritual depth: a reminder to listen inwardly, then test the insight in life while noticing where this exact number keeps appearing. Use 88 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 88 highlights quiet truth and deeper emotional discernment. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to listen inwardly, then test the insight in life, especially before turning a sign into a story about someone else.",
+      "career": "For career, 88 points toward research, strategy and specialized mastery. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 88 speaks to patient evaluation before commitment. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid isolating until guidance cannot become action, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 88 blends two-digit repeating signal with root number 7, which carries insight, study and spiritual depth. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 88 encourages stillness, recovery and attention to signals. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 88 emphasizes inner work that matters more than chasing proof. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 88,
+      "english": 96,
+      "simple": 88,
+      "jewish": 48,
+      "reduction": 7
+    },
+    "numerology": {
+      "rootNumber": 7,
+      "rootMeaning": "Root number 7 brings insight, study and spiritual depth.",
+      "calculation": "8+8 = 16 -> 1+6 = 7"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "88 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 88 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "7",
+      "8",
+      "888",
+      "8888"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 88 mean?",
+        "answer": "Angel number 88 means insight, study and spiritual depth, expressed through two-digit repeating signal. Its practical message is to listen inwardly, then test the insight in life."
+      },
+      {
+        "question": "Why do I keep seeing 88?",
+        "answer": "You may keep seeing 88 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 7."
+      },
+      {
+        "question": "What should I do after seeing 88?",
+        "answer": "Pause, write down where 88 appeared, then choose one concrete action that supports insight, study and spiritual depth instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 88 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 88 meaning for love, career, money, twin flames and spiritual growth. Learn why 88 appears and what to do next.",
+      "keywords": [
+        "angel number 88",
+        "88 meaning",
+        "88 spiritual meaning",
+        "88 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "99",
+    "slug": "99",
+    "title": "Angel Number 99 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Two-Digit Repeating Signal",
+    "summary": "Angel number 99 is a two-digit repeating signal shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 99 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 99 highlights forgiveness, closure and larger-hearted truth. The two-digit repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 99 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 99 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 99 blends two-digit repeating signal with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 99 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 99 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 99,
+      "english": 108,
+      "simple": 99,
+      "jewish": 54,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "9+9 = 18 -> 1+8 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "99 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The two-digit repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 99 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "999",
+      "9999"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 99 mean?",
+        "answer": "Angel number 99 means completion, compassion and higher purpose, expressed through two-digit repeating signal. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 99?",
+        "answer": "You may keep seeing 99 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 99?",
+        "answer": "Pause, write down where 99 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 99 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 99 meaning for love, career, money, twin flames and spiritual growth. Learn why 99 appears and what to do next.",
+      "keywords": [
+        "angel number 99",
+        "99 meaning",
+        "99 spiritual meaning",
+        "99 love meaning"
+      ]
+    },
+    "category": "double",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "101",
+    "slug": "101",
+    "title": "Angel Number 101 Meaning",
+    "shortMeaning": "Balance, Partnership And Emotional Timing Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 101 is a mirror number for reflection and alignment shaped by root number 2. Its core message is balance, partnership and emotional timing: a reminder to restore balance before making the next move while noticing where this exact number keeps appearing. Use 101 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 101 highlights patience, listening and mutual care. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to restore balance before making the next move, especially before turning a sign into a story about someone else.",
+      "career": "For career, 101 points toward collaboration and tactful timing. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 101 speaks to steady planning instead of reactive spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid mistaking waiting for wisdom, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 101 blends mirror number for reflection and alignment with root number 2, which carries balance, partnership and emotional timing. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 101 encourages rhythms that calm the nervous system. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 101 emphasizes maturity in the space between closeness and distance. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 101,
+      "english": 12,
+      "simple": 101,
+      "jewish": 6,
+      "reduction": 2
+    },
+    "numerology": {
+      "rootNumber": 2,
+      "rootMeaning": "Root number 2 brings balance, partnership and emotional timing.",
+      "calculation": "1+0+1 = 2"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "101 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 101 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "2",
+      "1",
+      "10",
+      "11",
+      "22"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 101 mean?",
+        "answer": "Angel number 101 means balance, partnership and emotional timing, expressed through mirror number for reflection and alignment. Its practical message is to restore balance before making the next move."
+      },
+      {
+        "question": "Why do I keep seeing 101?",
+        "answer": "You may keep seeing 101 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 2."
+      },
+      {
+        "question": "What should I do after seeing 101?",
+        "answer": "Pause, write down where 101 appeared, then choose one concrete action that supports balance, partnership and emotional timing instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 101 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 101 meaning for love, career, money, twin flames and spiritual growth. Learn why 101 appears and what to do next.",
+      "keywords": [
+        "angel number 101",
+        "101 meaning",
+        "101 spiritual meaning",
+        "101 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "108",
+    "slug": "108",
+    "title": "Angel Number 108 Meaning",
+    "shortMeaning": "Sacred Wholeness And Devotional Practice",
+    "summary": "Angel number 108 is a sacred wholeness and devotional practice shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 108 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 108 highlights forgiveness, closure and larger-hearted truth. The sacred wholeness and devotional practice asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 108 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 108 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 108 blends sacred wholeness and devotional practice with root number 9, which carries completion, compassion and higher purpose. Its symbolic background also points to used across contemplative traditions as a count of prayerful repetition. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 108 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 108 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 108,
+      "english": 54,
+      "simple": 108,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "1+0+8 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 108:1",
+        "text": "108 is treated here as a symbolic number connected with sacred wholeness and devotional practice.",
+        "relevance": "This reference gives 108 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 108 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "1",
+      "8",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 108 mean?",
+        "answer": "Angel number 108 means completion, compassion and higher purpose, expressed through sacred wholeness and devotional practice. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 108?",
+        "answer": "You may keep seeing 108 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 108?",
+        "answer": "Pause, write down where 108 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 108 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 108 meaning for love, career, money, twin flames and spiritual growth. Learn why 108 appears and what to do next.",
+      "keywords": [
+        "angel number 108",
+        "108 meaning",
+        "108 spiritual meaning",
+        "108 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
     "number": "111",
     "slug": "111",
     "title": "Angel Number 111 Meaning",
@@ -70,6 +1906,354 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "category": "triple",
     "isPriority": true,
     "lastUpdated": "2026-05-04"
+  },
+  {
+    "number": "120",
+    "slug": "120",
+    "title": "Angel Number 120 Meaning",
+    "shortMeaning": "Appointed Completion And Gathered Readiness",
+    "summary": "Angel number 120 is a appointed completion and gathered readiness shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 120 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 120 highlights warm honesty and playful repair. The appointed completion and gathered readiness asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 120 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 120 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 120 blends appointed completion and gathered readiness with root number 3, which carries expression, creativity and truthful communication. Its symbolic background also points to suggests a threshold where preparation becomes collective movement. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 120 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 120 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 120,
+      "english": 18,
+      "simple": 120,
+      "jewish": 9,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "1+2+0 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Acts 1:15",
+        "text": "120 is treated here as a symbolic number connected with appointed completion and gathered readiness.",
+        "relevance": "This reference gives 120 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 120 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "1",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 120 mean?",
+        "answer": "Angel number 120 means expression, creativity and truthful communication, expressed through appointed completion and gathered readiness. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 120?",
+        "answer": "You may keep seeing 120 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 120?",
+        "answer": "Pause, write down where 120 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 120 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 120 meaning for love, career, money, twin flames and spiritual growth. Learn why 120 appears and what to do next.",
+      "keywords": [
+        "angel number 120",
+        "120 meaning",
+        "120 spiritual meaning",
+        "120 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "123",
+    "slug": "123",
+    "title": "Angel Number 123 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 123 is a sequence number for movement and progression shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 123 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 123 highlights repair, devotion and healthy responsibility. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 123 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 123 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 123 blends sequence number for movement and progression with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 123 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 123 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 123,
+      "english": 36,
+      "simple": 123,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "1+2+3 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "123 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 123 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "1",
+      "3",
+      "12",
+      "23",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 123 mean?",
+        "answer": "Angel number 123 means care, responsibility and material harmony, expressed through sequence number for movement and progression. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 123?",
+        "answer": "You may keep seeing 123 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 123?",
+        "answer": "Pause, write down where 123 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 123 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 123 meaning for love, career, money, twin flames and spiritual growth. Learn why 123 appears and what to do next.",
+      "keywords": [
+        "angel number 123",
+        "123 meaning",
+        "123 spiritual meaning",
+        "123 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "144",
+    "slug": "144",
+    "title": "Angel Number 144 Meaning",
+    "shortMeaning": "Protection, Chosen Focus And Spiritual Structure",
+    "summary": "Angel number 144 is a protection, chosen focus and spiritual structure shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 144 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 144 highlights forgiveness, closure and larger-hearted truth. The protection, chosen focus and spiritual structure asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 144 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 144 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 144 blends protection, chosen focus and spiritual structure with root number 9, which carries completion, compassion and higher purpose. Its symbolic background also points to combines twelve-fold order with completion and protection. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 144 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 144 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 144,
+      "english": 54,
+      "simple": 144,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "1+4+4 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Revelation 7:4",
+        "text": "144 is treated here as a symbolic number connected with protection, chosen focus and spiritual structure.",
+        "relevance": "This reference gives 144 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 144 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "1",
+      "4",
+      "12",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 144 mean?",
+        "answer": "Angel number 144 means completion, compassion and higher purpose, expressed through protection, chosen focus and spiritual structure. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 144?",
+        "answer": "You may keep seeing 144 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 144?",
+        "answer": "Pause, write down where 144 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 144 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 144 meaning for love, career, money, twin flames and spiritual growth. Learn why 144 appears and what to do next.",
+      "keywords": [
+        "angel number 144",
+        "144 meaning",
+        "144 spiritual meaning",
+        "144 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "153",
+    "slug": "153",
+    "title": "Angel Number 153 Meaning",
+    "shortMeaning": "Abundance, Recognition And Gathered Blessing",
+    "summary": "Angel number 153 is a abundance, recognition and gathered blessing shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 153 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 153 highlights forgiveness, closure and larger-hearted truth. The abundance, recognition and gathered blessing asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 153 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 153 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 153 blends abundance, recognition and gathered blessing with root number 9, which carries completion, compassion and higher purpose. Its symbolic background also points to the number of fish in a resurrection sign of provision. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 153 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 153 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 153,
+      "english": 54,
+      "simple": 153,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "1+5+3 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "John 21:11",
+        "text": "153 is treated here as a symbolic number connected with abundance, recognition and gathered blessing.",
+        "relevance": "This reference gives 153 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 153 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "1",
+      "3",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 153 mean?",
+        "answer": "Angel number 153 means completion, compassion and higher purpose, expressed through abundance, recognition and gathered blessing. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 153?",
+        "answer": "You may keep seeing 153 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 153?",
+        "answer": "Pause, write down where 153 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 153 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 153 meaning for love, career, money, twin flames and spiritual growth. Learn why 153 appears and what to do next.",
+      "keywords": [
+        "angel number 153",
+        "153 meaning",
+        "153 spiritual meaning",
+        "153 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "202",
+    "slug": "202",
+    "title": "Angel Number 202 Meaning",
+    "shortMeaning": "Foundation, Protection And Disciplined Progress Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 202 is a mirror number for reflection and alignment shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 202 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 202 highlights trust built through consistent behavior. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 202 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 202 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 202 blends mirror number for reflection and alignment with root number 4, which carries foundation, protection and disciplined progress. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 202 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 202 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 202,
+      "english": 24,
+      "simple": 202,
+      "jewish": 12,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "2+0+2 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "202 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 202 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "2",
+      "20",
+      "22",
+      "44"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 202 mean?",
+        "answer": "Angel number 202 means foundation, protection and disciplined progress, expressed through mirror number for reflection and alignment. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 202?",
+        "answer": "You may keep seeing 202 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 202?",
+        "answer": "Pause, write down where 202 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 202 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 202 meaning for love, career, money, twin flames and spiritual growth. Learn why 202 appears and what to do next.",
+      "keywords": [
+        "angel number 202",
+        "202 meaning",
+        "202 spiritual meaning",
+        "202 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
   },
   {
     "number": "222",
@@ -141,6 +2325,214 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "lastUpdated": "2026-05-04"
   },
   {
+    "number": "234",
+    "slug": "234",
+    "title": "Angel Number 234 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 234 is a sequence number for movement and progression shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 234 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 234 highlights forgiveness, closure and larger-hearted truth. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 234 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 234 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 234 blends sequence number for movement and progression with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 234 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 234 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 234,
+      "english": 54,
+      "simple": 234,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "2+3+4 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "234 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 234 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "2",
+      "4",
+      "23",
+      "34",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 234 mean?",
+        "answer": "Angel number 234 means completion, compassion and higher purpose, expressed through sequence number for movement and progression. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 234?",
+        "answer": "You may keep seeing 234 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 234?",
+        "answer": "Pause, write down where 234 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 234 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 234 meaning for love, career, money, twin flames and spiritual growth. Learn why 234 appears and what to do next.",
+      "keywords": [
+        "angel number 234",
+        "234 meaning",
+        "234 spiritual meaning",
+        "234 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "303",
+    "slug": "303",
+    "title": "Angel Number 303 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 303 is a mirror number for reflection and alignment shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 303 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 303 highlights repair, devotion and healthy responsibility. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 303 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 303 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 303 blends mirror number for reflection and alignment with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 303 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 303 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 303,
+      "english": 36,
+      "simple": 303,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "3+0+3 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "303 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 303 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "3",
+      "30",
+      "33",
+      "66"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 303 mean?",
+        "answer": "Angel number 303 means care, responsibility and material harmony, expressed through mirror number for reflection and alignment. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 303?",
+        "answer": "You may keep seeing 303 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 303?",
+        "answer": "Pause, write down where 303 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 303 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 303 meaning for love, career, money, twin flames and spiritual growth. Learn why 303 appears and what to do next.",
+      "keywords": [
+        "angel number 303",
+        "303 meaning",
+        "303 spiritual meaning",
+        "303 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "318",
+    "slug": "318",
+    "title": "Angel Number 318 Meaning",
+    "shortMeaning": "Rescue, Covenant And Decisive Action",
+    "summary": "Angel number 318 is a rescue, covenant and decisive action shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 318 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 318 highlights warm honesty and playful repair. The rescue, covenant and decisive action asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 318 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 318 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 318 blends rescue, covenant and decisive action with root number 3, which carries expression, creativity and truthful communication. Its symbolic background also points to associated with Abram's household force in a rescue story. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 318 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 318 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 318,
+      "english": 72,
+      "simple": 318,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "3+1+8 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Genesis 14:14",
+        "text": "318 is treated here as a symbolic number connected with rescue, covenant and decisive action.",
+        "relevance": "This reference gives 318 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 318 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "8",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 318 mean?",
+        "answer": "Angel number 318 means expression, creativity and truthful communication, expressed through rescue, covenant and decisive action. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 318?",
+        "answer": "You may keep seeing 318 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 318?",
+        "answer": "Pause, write down where 318 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 318 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 318 meaning for love, career, money, twin flames and spiritual growth. Learn why 318 appears and what to do next.",
+      "keywords": [
+        "angel number 318",
+        "318 meaning",
+        "318 spiritual meaning",
+        "318 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
     "number": "333",
     "slug": "333",
     "title": "Angel Number 333 Meaning",
@@ -208,6 +2600,282 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "category": "triple",
     "isPriority": true,
     "lastUpdated": "2026-05-04"
+  },
+  {
+    "number": "345",
+    "slug": "345",
+    "title": "Angel Number 345 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 345 is a sequence number for movement and progression shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 345 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 345 highlights warm honesty and playful repair. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 345 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 345 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 345 blends sequence number for movement and progression with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 345 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 345 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 345,
+      "english": 72,
+      "simple": 345,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "3+4+5 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "345 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 345 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "5",
+      "34",
+      "45",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 345 mean?",
+        "answer": "Angel number 345 means expression, creativity and truthful communication, expressed through sequence number for movement and progression. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 345?",
+        "answer": "You may keep seeing 345 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 345?",
+        "answer": "Pause, write down where 345 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 345 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 345 meaning for love, career, money, twin flames and spiritual growth. Learn why 345 appears and what to do next.",
+      "keywords": [
+        "angel number 345",
+        "345 meaning",
+        "345 spiritual meaning",
+        "345 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "365",
+    "slug": "365",
+    "title": "Angel Number 365 Meaning",
+    "shortMeaning": "Daily Devotion And Whole-Year Practice",
+    "summary": "Angel number 365 is a daily devotion and whole-year practice shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 365 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 365 highlights space, honesty and a livelier pattern. The daily devotion and whole-year practice asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 365 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 365 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 365 blends daily devotion and whole-year practice with root number 5, which carries change, freedom and adaptive movement. Its symbolic background also points to a reminder that guidance becomes real through everyday repetition. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 365 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 365 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 365,
+      "english": 84,
+      "simple": 365,
+      "jewish": 42,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "3+6+5 = 14 -> 1+4 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Deuteronomy 31:8",
+        "text": "365 is treated here as a symbolic number connected with daily devotion and whole-year practice.",
+        "relevance": "This reference gives 365 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 365 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "5",
+      "3",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 365 mean?",
+        "answer": "Angel number 365 means change, freedom and adaptive movement, expressed through daily devotion and whole-year practice. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 365?",
+        "answer": "You may keep seeing 365 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 365?",
+        "answer": "Pause, write down where 365 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 365 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 365 meaning for love, career, money, twin flames and spiritual growth. Learn why 365 appears and what to do next.",
+      "keywords": [
+        "angel number 365",
+        "365 meaning",
+        "365 spiritual meaning",
+        "365 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "390",
+    "slug": "390",
+    "title": "Angel Number 390 Meaning",
+    "shortMeaning": "Accountability, Endurance And Prophetic Weight",
+    "summary": "Angel number 390 is a accountability, endurance and prophetic weight shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 390 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 390 highlights warm honesty and playful repair. The accountability, endurance and prophetic weight asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 390 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 390 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 390 blends accountability, endurance and prophetic weight with root number 3, which carries expression, creativity and truthful communication. Its symbolic background also points to appears in a prophetic sign of carried consequence. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 390 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 390 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 390,
+      "english": 72,
+      "simple": 390,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "3+9+0 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Ezekiel 4:5",
+        "text": "390 is treated here as a symbolic number connected with accountability, endurance and prophetic weight.",
+        "relevance": "This reference gives 390 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 390 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 390 mean?",
+        "answer": "Angel number 390 means expression, creativity and truthful communication, expressed through accountability, endurance and prophetic weight. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 390?",
+        "answer": "You may keep seeing 390 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 390?",
+        "answer": "Pause, write down where 390 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 390 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 390 meaning for love, career, money, twin flames and spiritual growth. Learn why 390 appears and what to do next.",
+      "keywords": [
+        "angel number 390",
+        "390 meaning",
+        "390 spiritual meaning",
+        "390 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "404",
+    "slug": "404",
+    "title": "Angel Number 404 Meaning",
+    "shortMeaning": "Abundance, Power And Wise Stewardship Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 404 is a mirror number for reflection and alignment shaped by root number 8. Its core message is abundance, power and wise stewardship: a reminder to receive value and steward it responsibly while noticing where this exact number keeps appearing. Use 404 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 404 highlights balanced exchange and mature commitment. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to receive value and steward it responsibly, especially before turning a sign into a story about someone else.",
+      "career": "For career, 404 points toward leadership, negotiation and material outcomes. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 404 speaks to wealth building, repayment and wise authority. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid measuring worth only through results, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 404 blends mirror number for reflection and alignment with root number 8, which carries abundance, power and wise stewardship. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 404 encourages strength, endurance and sustainable ambition. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 404 emphasizes karmic balance and equal energetic exchange. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 404,
+      "english": 48,
+      "simple": 404,
+      "jewish": 24,
+      "reduction": 8
+    },
+    "numerology": {
+      "rootNumber": 8,
+      "rootMeaning": "Root number 8 brings abundance, power and wise stewardship.",
+      "calculation": "4+0+4 = 8"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "404 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 404 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "8",
+      "4",
+      "40",
+      "44",
+      "88"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 404 mean?",
+        "answer": "Angel number 404 means abundance, power and wise stewardship, expressed through mirror number for reflection and alignment. Its practical message is to receive value and steward it responsibly."
+      },
+      {
+        "question": "Why do I keep seeing 404?",
+        "answer": "You may keep seeing 404 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 8."
+      },
+      {
+        "question": "What should I do after seeing 404?",
+        "answer": "Pause, write down where 404 appeared, then choose one concrete action that supports abundance, power and wise stewardship instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 404 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 404 meaning for love, career, money, twin flames and spiritual growth. Learn why 404 appears and what to do next.",
+      "keywords": [
+        "angel number 404",
+        "404 meaning",
+        "404 spiritual meaning",
+        "404 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
   },
   {
     "number": "444",
@@ -279,6 +2947,213 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "lastUpdated": "2026-05-04"
   },
   {
+    "number": "456",
+    "slug": "456",
+    "title": "Angel Number 456 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 456 is a sequence number for movement and progression shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 456 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 456 highlights repair, devotion and healthy responsibility. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 456 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 456 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 456 blends sequence number for movement and progression with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 456 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 456 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 456,
+      "english": 90,
+      "simple": 456,
+      "jewish": 45,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "4+5+6 = 15 -> 1+5 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "456 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 456 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "4",
+      "45",
+      "56",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 456 mean?",
+        "answer": "Angel number 456 means care, responsibility and material harmony, expressed through sequence number for movement and progression. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 456?",
+        "answer": "You may keep seeing 456 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 456?",
+        "answer": "Pause, write down where 456 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 456 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 456 meaning for love, career, money, twin flames and spiritual growth. Learn why 456 appears and what to do next.",
+      "keywords": [
+        "angel number 456",
+        "456 meaning",
+        "456 spiritual meaning",
+        "456 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "490",
+    "slug": "490",
+    "title": "Angel Number 490 Meaning",
+    "shortMeaning": "Forgiveness Beyond Ordinary Counting",
+    "summary": "Angel number 490 is a forgiveness beyond ordinary counting shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 490 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 490 highlights trust built through consistent behavior. The forgiveness beyond ordinary counting asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 490 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 490 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 490 blends forgiveness beyond ordinary counting with root number 4, which carries foundation, protection and disciplined progress. Its symbolic background also points to draws from the seventy-times-seven teaching about mercy. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 490 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 490 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 490,
+      "english": 78,
+      "simple": 490,
+      "jewish": 39,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "4+9+0 = 13 -> 1+3 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Matthew 18:22",
+        "text": "490 is treated here as a symbolic number connected with forgiveness beyond ordinary counting.",
+        "relevance": "This reference gives 490 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 490 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 490 mean?",
+        "answer": "Angel number 490 means foundation, protection and disciplined progress, expressed through forgiveness beyond ordinary counting. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 490?",
+        "answer": "You may keep seeing 490 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 490?",
+        "answer": "Pause, write down where 490 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 490 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 490 meaning for love, career, money, twin flames and spiritual growth. Learn why 490 appears and what to do next.",
+      "keywords": [
+        "angel number 490",
+        "490 meaning",
+        "490 spiritual meaning",
+        "490 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "505",
+    "slug": "505",
+    "title": "Angel Number 505 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 505 is a mirror number for reflection and alignment shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 505 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 505 highlights clear desire and direct communication. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 505 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 505 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 505 blends mirror number for reflection and alignment with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 505 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 505 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 505,
+      "english": 60,
+      "simple": 505,
+      "jewish": 30,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "5+0+5 = 10 -> 1+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "505 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 505 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "5",
+      "50",
+      "55",
+      "11"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 505 mean?",
+        "answer": "Angel number 505 means initiative, self-trust and fresh intention, expressed through mirror number for reflection and alignment. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 505?",
+        "answer": "You may keep seeing 505 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 505?",
+        "answer": "Pause, write down where 505 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 505 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 505 meaning for love, career, money, twin flames and spiritual growth. Learn why 505 appears and what to do next.",
+      "keywords": [
+        "angel number 505",
+        "505 meaning",
+        "505 spiritual meaning",
+        "505 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
     "number": "555",
     "slug": "555",
     "title": "Angel Number 555 Meaning",
@@ -346,6 +3221,284 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "category": "triple",
     "isPriority": true,
     "lastUpdated": "2026-05-04"
+  },
+  {
+    "number": "567",
+    "slug": "567",
+    "title": "Angel Number 567 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 567 is a sequence number for movement and progression shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 567 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 567 highlights forgiveness, closure and larger-hearted truth. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 567 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 567 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 567 blends sequence number for movement and progression with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 567 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 567 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 567,
+      "english": 108,
+      "simple": 567,
+      "jewish": 54,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "5+6+7 = 18 -> 1+8 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "567 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 567 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "5",
+      "7",
+      "56",
+      "67",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 567 mean?",
+        "answer": "Angel number 567 means completion, compassion and higher purpose, expressed through sequence number for movement and progression. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 567?",
+        "answer": "You may keep seeing 567 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 567?",
+        "answer": "Pause, write down where 567 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 567 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 567 meaning for love, career, money, twin flames and spiritual growth. Learn why 567 appears and what to do next.",
+      "keywords": [
+        "angel number 567",
+        "567 meaning",
+        "567 spiritual meaning",
+        "567 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "606",
+    "slug": "606",
+    "title": "Angel Number 606 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 606 is a mirror number for reflection and alignment shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 606 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 606 highlights warm honesty and playful repair. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 606 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 606 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 606 blends mirror number for reflection and alignment with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 606 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 606 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 606,
+      "english": 72,
+      "simple": 606,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "6+0+6 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "606 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 606 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "6",
+      "60",
+      "66",
+      "33"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 606 mean?",
+        "answer": "Angel number 606 means expression, creativity and truthful communication, expressed through mirror number for reflection and alignment. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 606?",
+        "answer": "You may keep seeing 606 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 606?",
+        "answer": "Pause, write down where 606 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 606 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 606 meaning for love, career, money, twin flames and spiritual growth. Learn why 606 appears and what to do next.",
+      "keywords": [
+        "angel number 606",
+        "606 meaning",
+        "606 spiritual meaning",
+        "606 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "613",
+    "slug": "613",
+    "title": "Angel Number 613 Meaning",
+    "shortMeaning": "Commandments, Discipline And Sacred Practice",
+    "summary": "Angel number 613 is a commandments, discipline and sacred practice shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 613 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 613 highlights clear desire and direct communication. The commandments, discipline and sacred practice asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 613 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 613 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 613 blends commandments, discipline and sacred practice with root number 1, which carries initiative, self-trust and fresh intention. Its symbolic background also points to traditionally associated with the count of Torah commandments. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 613 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 613 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 613,
+      "english": 60,
+      "simple": 613,
+      "jewish": 30,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "6+1+3 = 10 -> 1+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Deuteronomy 6:4",
+        "text": "613 is treated here as a symbolic number connected with commandments, discipline and sacred practice.",
+        "relevance": "This reference gives 613 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 613 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "6",
+      "3",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 613 mean?",
+        "answer": "Angel number 613 means initiative, self-trust and fresh intention, expressed through commandments, discipline and sacred practice. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 613?",
+        "answer": "You may keep seeing 613 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 613?",
+        "answer": "Pause, write down where 613 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 613 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 613 meaning for love, career, money, twin flames and spiritual growth. Learn why 613 appears and what to do next.",
+      "keywords": [
+        "angel number 613",
+        "613 meaning",
+        "613 spiritual meaning",
+        "613 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "616",
+    "slug": "616",
+    "title": "Angel Number 616 Meaning",
+    "shortMeaning": "Discernment, Correction And Material Caution",
+    "summary": "Angel number 616 is a discernment, correction and material caution shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 616 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 616 highlights trust built through consistent behavior. The discernment, correction and material caution asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 616 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 616 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 616 blends discernment, correction and material caution with root number 4, which carries foundation, protection and disciplined progress. Its symbolic background also points to a textual variant that invites careful discernment rather than fear. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 616 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 616 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 616,
+      "english": 78,
+      "simple": 616,
+      "jewish": 39,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "6+1+6 = 13 -> 1+3 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Revelation 13:18",
+        "text": "616 is treated here as a symbolic number connected with discernment, correction and material caution.",
+        "relevance": "This reference gives 616 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 616 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "6",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 616 mean?",
+        "answer": "Angel number 616 means foundation, protection and disciplined progress, expressed through discernment, correction and material caution. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 616?",
+        "answer": "You may keep seeing 616 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 616?",
+        "answer": "Pause, write down where 616 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 616 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 616 meaning for love, career, money, twin flames and spiritual growth. Learn why 616 appears and what to do next.",
+      "keywords": [
+        "angel number 616",
+        "616 meaning",
+        "616 spiritual meaning",
+        "616 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
   },
   {
     "number": "666",
@@ -417,6 +3570,145 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "lastUpdated": "2026-05-04"
   },
   {
+    "number": "678",
+    "slug": "678",
+    "title": "Angel Number 678 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 678 is a sequence number for movement and progression shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 678 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 678 highlights warm honesty and playful repair. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 678 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 678 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 678 blends sequence number for movement and progression with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 678 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 678 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 678,
+      "english": 126,
+      "simple": 678,
+      "jewish": 63,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "6+7+8 = 21 -> 2+1 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "678 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 678 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "6",
+      "8",
+      "67",
+      "78",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 678 mean?",
+        "answer": "Angel number 678 means expression, creativity and truthful communication, expressed through sequence number for movement and progression. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 678?",
+        "answer": "You may keep seeing 678 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 678?",
+        "answer": "Pause, write down where 678 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 678 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 678 meaning for love, career, money, twin flames and spiritual growth. Learn why 678 appears and what to do next.",
+      "keywords": [
+        "angel number 678",
+        "678 meaning",
+        "678 spiritual meaning",
+        "678 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "707",
+    "slug": "707",
+    "title": "Angel Number 707 Meaning",
+    "shortMeaning": "Change, Freedom And Adaptive Movement Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 707 is a mirror number for reflection and alignment shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 707 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 707 highlights space, honesty and a livelier pattern. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 707 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 707 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 707 blends mirror number for reflection and alignment with root number 5, which carries change, freedom and adaptive movement. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 707 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 707 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 707,
+      "english": 84,
+      "simple": 707,
+      "jewish": 42,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "7+0+7 = 14 -> 1+4 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "707 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 707 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "5",
+      "7",
+      "70",
+      "77",
+      "55"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 707 mean?",
+        "answer": "Angel number 707 means change, freedom and adaptive movement, expressed through mirror number for reflection and alignment. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 707?",
+        "answer": "You may keep seeing 707 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 707?",
+        "answer": "Pause, write down where 707 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 707 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 707 meaning for love, career, money, twin flames and spiritual growth. Learn why 707 appears and what to do next.",
+      "keywords": [
+        "angel number 707",
+        "707 meaning",
+        "707 spiritual meaning",
+        "707 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
     "number": "777",
     "slug": "777",
     "title": "Angel Number 777 Meaning",
@@ -484,6 +3776,145 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "category": "triple",
     "isPriority": true,
     "lastUpdated": "2026-05-04"
+  },
+  {
+    "number": "789",
+    "slug": "789",
+    "title": "Angel Number 789 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 789 is a sequence number for movement and progression shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 789 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 789 highlights repair, devotion and healthy responsibility. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 789 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 789 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 789 blends sequence number for movement and progression with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 789 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 789 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 789,
+      "english": 144,
+      "simple": 789,
+      "jewish": 72,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "7+8+9 = 24 -> 2+4 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "789 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 789 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "7",
+      "9",
+      "78",
+      "89",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 789 mean?",
+        "answer": "Angel number 789 means care, responsibility and material harmony, expressed through sequence number for movement and progression. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 789?",
+        "answer": "You may keep seeing 789 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 789?",
+        "answer": "Pause, write down where 789 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 789 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 789 meaning for love, career, money, twin flames and spiritual growth. Learn why 789 appears and what to do next.",
+      "keywords": [
+        "angel number 789",
+        "789 meaning",
+        "789 spiritual meaning",
+        "789 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "808",
+    "slug": "808",
+    "title": "Angel Number 808 Meaning",
+    "shortMeaning": "Insight, Study And Spiritual Depth Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 808 is a mirror number for reflection and alignment shaped by root number 7. Its core message is insight, study and spiritual depth: a reminder to listen inwardly, then test the insight in life while noticing where this exact number keeps appearing. Use 808 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 808 highlights quiet truth and deeper emotional discernment. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to listen inwardly, then test the insight in life, especially before turning a sign into a story about someone else.",
+      "career": "For career, 808 points toward research, strategy and specialized mastery. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 808 speaks to patient evaluation before commitment. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid isolating until guidance cannot become action, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 808 blends mirror number for reflection and alignment with root number 7, which carries insight, study and spiritual depth. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 808 encourages stillness, recovery and attention to signals. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 808 emphasizes inner work that matters more than chasing proof. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 808,
+      "english": 96,
+      "simple": 808,
+      "jewish": 48,
+      "reduction": 7
+    },
+    "numerology": {
+      "rootNumber": 7,
+      "rootMeaning": "Root number 7 brings insight, study and spiritual depth.",
+      "calculation": "8+0+8 = 16 -> 1+6 = 7"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "808 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 808 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "7",
+      "8",
+      "80",
+      "88",
+      "77"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 808 mean?",
+        "answer": "Angel number 808 means insight, study and spiritual depth, expressed through mirror number for reflection and alignment. Its practical message is to listen inwardly, then test the insight in life."
+      },
+      {
+        "question": "Why do I keep seeing 808?",
+        "answer": "You may keep seeing 808 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 7."
+      },
+      {
+        "question": "What should I do after seeing 808?",
+        "answer": "Pause, write down where 808 appeared, then choose one concrete action that supports insight, study and spiritual depth instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 808 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 808 meaning for love, career, money, twin flames and spiritual growth. Learn why 808 appears and what to do next.",
+      "keywords": [
+        "angel number 808",
+        "808 meaning",
+        "808 spiritual meaning",
+        "808 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
   },
   {
     "number": "888",
@@ -555,6 +3986,73 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "lastUpdated": "2026-05-04"
   },
   {
+    "number": "909",
+    "slug": "909",
+    "title": "Angel Number 909 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 909 is a mirror number for reflection and alignment shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 909 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 909 highlights forgiveness, closure and larger-hearted truth. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 909 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 909 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 909 blends mirror number for reflection and alignment with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 909 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 909 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 909,
+      "english": 108,
+      "simple": 909,
+      "jewish": 54,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "9+0+9 = 18 -> 1+8 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "909 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 909 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "90",
+      "99"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 909 mean?",
+        "answer": "Angel number 909 means completion, compassion and higher purpose, expressed through mirror number for reflection and alignment. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 909?",
+        "answer": "You may keep seeing 909 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 909?",
+        "answer": "Pause, write down where 909 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 909 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 909 meaning for love, career, money, twin flames and spiritual growth. Learn why 909 appears and what to do next.",
+      "keywords": [
+        "angel number 909",
+        "909 meaning",
+        "909 spiritual meaning",
+        "909 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
     "number": "999",
     "slug": "999",
     "title": "Angel Number 999 Meaning",
@@ -622,5 +4120,1856 @@ export const ANGEL_NUMBERS: AngelNumber[] = [
     "category": "triple",
     "isPriority": true,
     "lastUpdated": "2026-05-04"
+  },
+  {
+    "number": "1000",
+    "slug": "1000",
+    "title": "Angel Number 1000 Meaning",
+    "shortMeaning": "Fullness, Abundance And Divine Scale",
+    "summary": "Angel number 1000 is a fullness, abundance and divine scale shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 1000 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1000 highlights clear desire and direct communication. The fullness, abundance and divine scale asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1000 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1000 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1000 blends fullness, abundance and divine scale with root number 1, which carries initiative, self-trust and fresh intention. Its symbolic background also points to often signals a magnitude beyond ordinary counting. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1000 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1000 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1000,
+      "english": 6,
+      "simple": 1000,
+      "jewish": 3,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "1+0+0+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Psalm 50:10",
+        "text": "1000 is treated here as a symbolic number connected with fullness, abundance and divine scale.",
+        "relevance": "This reference gives 1000 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 1000 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1000 mean?",
+        "answer": "Angel number 1000 means initiative, self-trust and fresh intention, expressed through fullness, abundance and divine scale. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 1000?",
+        "answer": "You may keep seeing 1000 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 1000?",
+        "answer": "Pause, write down where 1000 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1000 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1000 meaning for love, career, money, twin flames and spiritual growth. Learn why 1000 appears and what to do next.",
+      "keywords": [
+        "angel number 1000",
+        "1000 meaning",
+        "1000 spiritual meaning",
+        "1000 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1001",
+    "slug": "1001",
+    "title": "Angel Number 1001 Meaning",
+    "shortMeaning": "Balance, Partnership And Emotional Timing Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 1001 is a mirror number for reflection and alignment shaped by root number 2. Its core message is balance, partnership and emotional timing: a reminder to restore balance before making the next move while noticing where this exact number keeps appearing. Use 1001 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1001 highlights patience, listening and mutual care. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to restore balance before making the next move, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1001 points toward collaboration and tactful timing. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1001 speaks to steady planning instead of reactive spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid mistaking waiting for wisdom, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1001 blends mirror number for reflection and alignment with root number 2, which carries balance, partnership and emotional timing. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1001 encourages rhythms that calm the nervous system. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1001 emphasizes maturity in the space between closeness and distance. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1001,
+      "english": 12,
+      "simple": 1001,
+      "jewish": 6,
+      "reduction": 2
+    },
+    "numerology": {
+      "rootNumber": 2,
+      "rootMeaning": "Root number 2 brings balance, partnership and emotional timing.",
+      "calculation": "1+0+0+1 = 2"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1001 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1001 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "2",
+      "1",
+      "10",
+      "11",
+      "22"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1001 mean?",
+        "answer": "Angel number 1001 means balance, partnership and emotional timing, expressed through mirror number for reflection and alignment. Its practical message is to restore balance before making the next move."
+      },
+      {
+        "question": "Why do I keep seeing 1001?",
+        "answer": "You may keep seeing 1001 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 2."
+      },
+      {
+        "question": "What should I do after seeing 1001?",
+        "answer": "Pause, write down where 1001 appeared, then choose one concrete action that supports balance, partnership and emotional timing instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1001 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1001 meaning for love, career, money, twin flames and spiritual growth. Learn why 1001 appears and what to do next.",
+      "keywords": [
+        "angel number 1001",
+        "1001 meaning",
+        "1001 spiritual meaning",
+        "1001 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1111",
+    "slug": "1111",
+    "title": "Angel Number 1111 Meaning",
+    "shortMeaning": "Foundation, Protection And Disciplined Progress Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 1111 is a four-digit amplified repeating signal shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 1111 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1111 highlights trust built through consistent behavior. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1111 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1111 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1111 blends four-digit amplified repeating signal with root number 4, which carries foundation, protection and disciplined progress. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1111 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1111 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1111,
+      "english": 24,
+      "simple": 1111,
+      "jewish": 12,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "1+1+1+1 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1111 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1111 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "1",
+      "111",
+      "11"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1111 mean?",
+        "answer": "Angel number 1111 means foundation, protection and disciplined progress, expressed through four-digit amplified repeating signal. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 1111?",
+        "answer": "You may keep seeing 1111 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 1111?",
+        "answer": "Pause, write down where 1111 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1111 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1111 meaning for love, career, money, twin flames and spiritual growth. Learn why 1111 appears and what to do next.",
+      "keywords": [
+        "angel number 1111",
+        "1111 meaning",
+        "1111 spiritual meaning",
+        "1111 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1212",
+    "slug": "1212",
+    "title": "Angel Number 1212 Meaning",
+    "shortMeaning": "Alignment, Mirrored Order And Fresh Spiritual Structure",
+    "summary": "Angel number 1212 is a alignment, mirrored order and fresh spiritual structure shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 1212 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1212 highlights repair, devotion and healthy responsibility. The alignment, mirrored order and fresh spiritual structure asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1212 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1212 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1212 blends alignment, mirrored order and fresh spiritual structure with root number 6, which carries care, responsibility and material harmony. Its symbolic background also points to blends twelve-fold order with a mirrored call to realign. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1212 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1212 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1212,
+      "english": 36,
+      "simple": 1212,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "1+2+1+2 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Romans 12:12",
+        "text": "1212 is treated here as a symbolic number connected with alignment, mirrored order and fresh spiritual structure.",
+        "relevance": "This reference gives 1212 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 1212 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "1",
+      "2",
+      "12",
+      "144"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1212 mean?",
+        "answer": "Angel number 1212 means care, responsibility and material harmony, expressed through alignment, mirrored order and fresh spiritual structure. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 1212?",
+        "answer": "You may keep seeing 1212 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 1212?",
+        "answer": "Pause, write down where 1212 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1212 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1212 meaning for love, career, money, twin flames and spiritual growth. Learn why 1212 appears and what to do next.",
+      "keywords": [
+        "angel number 1212",
+        "1212 meaning",
+        "1212 spiritual meaning",
+        "1212 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": true,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1221",
+    "slug": "1221",
+    "title": "Angel Number 1221 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 1221 is a mirror number for reflection and alignment shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 1221 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1221 highlights repair, devotion and healthy responsibility. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1221 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1221 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1221 blends mirror number for reflection and alignment with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1221 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1221 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1221,
+      "english": 36,
+      "simple": 1221,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "1+2+2+1 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1221 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1221 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "1",
+      "12",
+      "11",
+      "66"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1221 mean?",
+        "answer": "Angel number 1221 means care, responsibility and material harmony, expressed through mirror number for reflection and alignment. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 1221?",
+        "answer": "You may keep seeing 1221 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 1221?",
+        "answer": "Pause, write down where 1221 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1221 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1221 meaning for love, career, money, twin flames and spiritual growth. Learn why 1221 appears and what to do next.",
+      "keywords": [
+        "angel number 1221",
+        "1221 meaning",
+        "1221 spiritual meaning",
+        "1221 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1234",
+    "slug": "1234",
+    "title": "Angel Number 1234 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 1234 is a sequence number for movement and progression shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 1234 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1234 highlights clear desire and direct communication. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1234 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1234 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1234 blends sequence number for movement and progression with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1234 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1234 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1234,
+      "english": 60,
+      "simple": 1234,
+      "jewish": 30,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "1+2+3+4 = 10 -> 1+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1234 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1234 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "4",
+      "123",
+      "234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1234 mean?",
+        "answer": "Angel number 1234 means initiative, self-trust and fresh intention, expressed through sequence number for movement and progression. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 1234?",
+        "answer": "You may keep seeing 1234 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 1234?",
+        "answer": "Pause, write down where 1234 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1234 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1234 meaning for love, career, money, twin flames and spiritual growth. Learn why 1234 appears and what to do next.",
+      "keywords": [
+        "angel number 1234",
+        "1234 meaning",
+        "1234 spiritual meaning",
+        "1234 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1260",
+    "slug": "1260",
+    "title": "Angel Number 1260 Meaning",
+    "shortMeaning": "Endurance, Appointed Time And Protected Witness",
+    "summary": "Angel number 1260 is a endurance, appointed time and protected witness shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 1260 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1260 highlights forgiveness, closure and larger-hearted truth. The endurance, appointed time and protected witness asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1260 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1260 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1260 blends endurance, appointed time and protected witness with root number 9, which carries completion, compassion and higher purpose. Its symbolic background also points to appears in apocalyptic timing as a symbol of perseverance. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1260 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1260 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1260,
+      "english": 54,
+      "simple": 1260,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "1+2+6+0 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Revelation 12:6",
+        "text": "1260 is treated here as a symbolic number connected with endurance, appointed time and protected witness.",
+        "relevance": "This reference gives 1260 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 1260 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "1",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1260 mean?",
+        "answer": "Angel number 1260 means completion, compassion and higher purpose, expressed through endurance, appointed time and protected witness. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 1260?",
+        "answer": "You may keep seeing 1260 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 1260?",
+        "answer": "Pause, write down where 1260 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1260 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1260 meaning for love, career, money, twin flames and spiritual growth. Learn why 1260 appears and what to do next.",
+      "keywords": [
+        "angel number 1260",
+        "1260 meaning",
+        "1260 spiritual meaning",
+        "1260 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1331",
+    "slug": "1331",
+    "title": "Angel Number 1331 Meaning",
+    "shortMeaning": "Abundance, Power And Wise Stewardship Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 1331 is a mirror number for reflection and alignment shaped by root number 8. Its core message is abundance, power and wise stewardship: a reminder to receive value and steward it responsibly while noticing where this exact number keeps appearing. Use 1331 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1331 highlights balanced exchange and mature commitment. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to receive value and steward it responsibly, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1331 points toward leadership, negotiation and material outcomes. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1331 speaks to wealth building, repayment and wise authority. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid measuring worth only through results, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1331 blends mirror number for reflection and alignment with root number 8, which carries abundance, power and wise stewardship. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1331 encourages strength, endurance and sustainable ambition. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1331 emphasizes karmic balance and equal energetic exchange. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1331,
+      "english": 48,
+      "simple": 1331,
+      "jewish": 24,
+      "reduction": 8
+    },
+    "numerology": {
+      "rootNumber": 8,
+      "rootMeaning": "Root number 8 brings abundance, power and wise stewardship.",
+      "calculation": "1+3+3+1 = 8"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1331 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1331 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "8",
+      "1",
+      "13",
+      "11",
+      "88"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1331 mean?",
+        "answer": "Angel number 1331 means abundance, power and wise stewardship, expressed through mirror number for reflection and alignment. Its practical message is to receive value and steward it responsibly."
+      },
+      {
+        "question": "Why do I keep seeing 1331?",
+        "answer": "You may keep seeing 1331 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 8."
+      },
+      {
+        "question": "What should I do after seeing 1331?",
+        "answer": "Pause, write down where 1331 appeared, then choose one concrete action that supports abundance, power and wise stewardship instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1331 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1331 meaning for love, career, money, twin flames and spiritual growth. Learn why 1331 appears and what to do next.",
+      "keywords": [
+        "angel number 1331",
+        "1331 meaning",
+        "1331 spiritual meaning",
+        "1331 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1441",
+    "slug": "1441",
+    "title": "Angel Number 1441 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 1441 is a mirror number for reflection and alignment shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 1441 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1441 highlights clear desire and direct communication. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1441 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1441 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1441 blends mirror number for reflection and alignment with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1441 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1441 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1441,
+      "english": 60,
+      "simple": 1441,
+      "jewish": 30,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "1+4+4+1 = 10 -> 1+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1441 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1441 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "14",
+      "11"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1441 mean?",
+        "answer": "Angel number 1441 means initiative, self-trust and fresh intention, expressed through mirror number for reflection and alignment. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 1441?",
+        "answer": "You may keep seeing 1441 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 1441?",
+        "answer": "Pause, write down where 1441 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1441 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1441 meaning for love, career, money, twin flames and spiritual growth. Learn why 1441 appears and what to do next.",
+      "keywords": [
+        "angel number 1441",
+        "1441 meaning",
+        "1441 spiritual meaning",
+        "1441 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "1551",
+    "slug": "1551",
+    "title": "Angel Number 1551 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 1551 is a mirror number for reflection and alignment shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 1551 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 1551 highlights warm honesty and playful repair. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 1551 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 1551 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 1551 blends mirror number for reflection and alignment with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 1551 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 1551 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 1551,
+      "english": 72,
+      "simple": 1551,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "1+5+5+1 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "1551 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 1551 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "1",
+      "15",
+      "11",
+      "33"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 1551 mean?",
+        "answer": "Angel number 1551 means expression, creativity and truthful communication, expressed through mirror number for reflection and alignment. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 1551?",
+        "answer": "You may keep seeing 1551 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 1551?",
+        "answer": "Pause, write down where 1551 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 1551 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 1551 meaning for love, career, money, twin flames and spiritual growth. Learn why 1551 appears and what to do next.",
+      "keywords": [
+        "angel number 1551",
+        "1551 meaning",
+        "1551 spiritual meaning",
+        "1551 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2002",
+    "slug": "2002",
+    "title": "Angel Number 2002 Meaning",
+    "shortMeaning": "Foundation, Protection And Disciplined Progress Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 2002 is a mirror number for reflection and alignment shaped by root number 4. Its core message is foundation, protection and disciplined progress: a reminder to strengthen the structure that supports you while noticing where this exact number keeps appearing. Use 2002 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2002 highlights trust built through consistent behavior. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to strengthen the structure that supports you, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2002 points toward systems, craft and reliable execution. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2002 speaks to budgets, reserves and long-range stability. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid turning safety into rigidity, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2002 blends mirror number for reflection and alignment with root number 4, which carries foundation, protection and disciplined progress. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2002 encourages sleep, posture, nutrition and follow-through. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2002 emphasizes a bond tested by boundaries and steadiness. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2002,
+      "english": 24,
+      "simple": 2002,
+      "jewish": 12,
+      "reduction": 4
+    },
+    "numerology": {
+      "rootNumber": 4,
+      "rootMeaning": "Root number 4 brings foundation, protection and disciplined progress.",
+      "calculation": "2+0+0+2 = 4"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "2002 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 2002 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "4",
+      "2",
+      "20",
+      "22",
+      "44"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2002 mean?",
+        "answer": "Angel number 2002 means foundation, protection and disciplined progress, expressed through mirror number for reflection and alignment. Its practical message is to strengthen the structure that supports you."
+      },
+      {
+        "question": "Why do I keep seeing 2002?",
+        "answer": "You may keep seeing 2002 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 4."
+      },
+      {
+        "question": "What should I do after seeing 2002?",
+        "answer": "Pause, write down where 2002 appeared, then choose one concrete action that supports foundation, protection and disciplined progress instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2002 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2002 meaning for love, career, money, twin flames and spiritual growth. Learn why 2002 appears and what to do next.",
+      "keywords": [
+        "angel number 2002",
+        "2002 meaning",
+        "2002 spiritual meaning",
+        "2002 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2112",
+    "slug": "2112",
+    "title": "Angel Number 2112 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 2112 is a mirror number for reflection and alignment shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 2112 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2112 highlights repair, devotion and healthy responsibility. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2112 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2112 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2112 blends mirror number for reflection and alignment with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2112 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2112 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2112,
+      "english": 36,
+      "simple": 2112,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "2+1+1+2 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "2112 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 2112 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "2",
+      "21",
+      "22",
+      "66"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2112 mean?",
+        "answer": "Angel number 2112 means care, responsibility and material harmony, expressed through mirror number for reflection and alignment. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 2112?",
+        "answer": "You may keep seeing 2112 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 2112?",
+        "answer": "Pause, write down where 2112 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2112 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2112 meaning for love, career, money, twin flames and spiritual growth. Learn why 2112 appears and what to do next.",
+      "keywords": [
+        "angel number 2112",
+        "2112 meaning",
+        "2112 spiritual meaning",
+        "2112 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2222",
+    "slug": "2222",
+    "title": "Angel Number 2222 Meaning",
+    "shortMeaning": "Abundance, Power And Wise Stewardship Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 2222 is a four-digit amplified repeating signal shaped by root number 8. Its core message is abundance, power and wise stewardship: a reminder to receive value and steward it responsibly while noticing where this exact number keeps appearing. Use 2222 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2222 highlights balanced exchange and mature commitment. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to receive value and steward it responsibly, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2222 points toward leadership, negotiation and material outcomes. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2222 speaks to wealth building, repayment and wise authority. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid measuring worth only through results, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2222 blends four-digit amplified repeating signal with root number 8, which carries abundance, power and wise stewardship. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2222 encourages strength, endurance and sustainable ambition. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2222 emphasizes karmic balance and equal energetic exchange. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2222,
+      "english": 48,
+      "simple": 2222,
+      "jewish": 24,
+      "reduction": 8
+    },
+    "numerology": {
+      "rootNumber": 8,
+      "rootMeaning": "Root number 8 brings abundance, power and wise stewardship.",
+      "calculation": "2+2+2+2 = 8"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "2222 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 2222 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "8",
+      "2",
+      "222",
+      "22"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2222 mean?",
+        "answer": "Angel number 2222 means abundance, power and wise stewardship, expressed through four-digit amplified repeating signal. Its practical message is to receive value and steward it responsibly."
+      },
+      {
+        "question": "Why do I keep seeing 2222?",
+        "answer": "You may keep seeing 2222 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 8."
+      },
+      {
+        "question": "What should I do after seeing 2222?",
+        "answer": "Pause, write down where 2222 appeared, then choose one concrete action that supports abundance, power and wise stewardship instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2222 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2222 meaning for love, career, money, twin flames and spiritual growth. Learn why 2222 appears and what to do next.",
+      "keywords": [
+        "angel number 2222",
+        "2222 meaning",
+        "2222 spiritual meaning",
+        "2222 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2332",
+    "slug": "2332",
+    "title": "Angel Number 2332 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 2332 is a mirror number for reflection and alignment shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 2332 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2332 highlights clear desire and direct communication. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2332 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2332 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2332 blends mirror number for reflection and alignment with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2332 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2332 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2332,
+      "english": 60,
+      "simple": 2332,
+      "jewish": 30,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "2+3+3+2 = 10 -> 1+0 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "2332 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 2332 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "2",
+      "23",
+      "22",
+      "11"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2332 mean?",
+        "answer": "Angel number 2332 means initiative, self-trust and fresh intention, expressed through mirror number for reflection and alignment. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 2332?",
+        "answer": "You may keep seeing 2332 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 2332?",
+        "answer": "Pause, write down where 2332 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2332 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2332 meaning for love, career, money, twin flames and spiritual growth. Learn why 2332 appears and what to do next.",
+      "keywords": [
+        "angel number 2332",
+        "2332 meaning",
+        "2332 spiritual meaning",
+        "2332 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2345",
+    "slug": "2345",
+    "title": "Angel Number 2345 Meaning",
+    "shortMeaning": "Change, Freedom And Adaptive Movement Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 2345 is a sequence number for movement and progression shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 2345 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2345 highlights space, honesty and a livelier pattern. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2345 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2345 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2345 blends sequence number for movement and progression with root number 5, which carries change, freedom and adaptive movement. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2345 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2345 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2345,
+      "english": 84,
+      "simple": 2345,
+      "jewish": 42,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "2+3+4+5 = 14 -> 1+4 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "2345 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 2345 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "5",
+      "2",
+      "234",
+      "345",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2345 mean?",
+        "answer": "Angel number 2345 means change, freedom and adaptive movement, expressed through sequence number for movement and progression. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 2345?",
+        "answer": "You may keep seeing 2345 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 2345?",
+        "answer": "Pause, write down where 2345 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2345 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2345 meaning for love, career, money, twin flames and spiritual growth. Learn why 2345 appears and what to do next.",
+      "keywords": [
+        "angel number 2345",
+        "2345 meaning",
+        "2345 spiritual meaning",
+        "2345 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "2442",
+    "slug": "2442",
+    "title": "Angel Number 2442 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 2442 is a mirror number for reflection and alignment shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 2442 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 2442 highlights warm honesty and playful repair. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 2442 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 2442 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 2442 blends mirror number for reflection and alignment with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 2442 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 2442 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 2442,
+      "english": 72,
+      "simple": 2442,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "2+4+4+2 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "2442 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 2442 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "2",
+      "24",
+      "22",
+      "33"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 2442 mean?",
+        "answer": "Angel number 2442 means expression, creativity and truthful communication, expressed through mirror number for reflection and alignment. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 2442?",
+        "answer": "You may keep seeing 2442 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 2442?",
+        "answer": "Pause, write down where 2442 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 2442 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 2442 meaning for love, career, money, twin flames and spiritual growth. Learn why 2442 appears and what to do next.",
+      "keywords": [
+        "angel number 2442",
+        "2442 meaning",
+        "2442 spiritual meaning",
+        "2442 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "3003",
+    "slug": "3003",
+    "title": "Angel Number 3003 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 3003 is a mirror number for reflection and alignment shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 3003 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 3003 highlights repair, devotion and healthy responsibility. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 3003 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 3003 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 3003 blends mirror number for reflection and alignment with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 3003 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 3003 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 3003,
+      "english": 36,
+      "simple": 3003,
+      "jewish": 18,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "3+0+0+3 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "3003 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 3003 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "3",
+      "30",
+      "33",
+      "66"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 3003 mean?",
+        "answer": "Angel number 3003 means care, responsibility and material harmony, expressed through mirror number for reflection and alignment. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 3003?",
+        "answer": "You may keep seeing 3003 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 3003?",
+        "answer": "Pause, write down where 3003 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 3003 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 3003 meaning for love, career, money, twin flames and spiritual growth. Learn why 3003 appears and what to do next.",
+      "keywords": [
+        "angel number 3003",
+        "3003 meaning",
+        "3003 spiritual meaning",
+        "3003 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "3113",
+    "slug": "3113",
+    "title": "Angel Number 3113 Meaning",
+    "shortMeaning": "Abundance, Power And Wise Stewardship Through A Mirror Number For Reflection And Alignment",
+    "summary": "Angel number 3113 is a mirror number for reflection and alignment shaped by root number 8. Its core message is abundance, power and wise stewardship: a reminder to receive value and steward it responsibly while noticing where this exact number keeps appearing. Use 3113 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 3113 highlights balanced exchange and mature commitment. The mirror number for reflection and alignment asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to receive value and steward it responsibly, especially before turning a sign into a story about someone else.",
+      "career": "For career, 3113 points toward leadership, negotiation and material outcomes. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 3113 speaks to wealth building, repayment and wise authority. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid measuring worth only through results, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 3113 blends mirror number for reflection and alignment with root number 8, which carries abundance, power and wise stewardship. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 3113 encourages strength, endurance and sustainable ambition. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 3113 emphasizes karmic balance and equal energetic exchange. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 3113,
+      "english": 48,
+      "simple": 3113,
+      "jewish": 24,
+      "reduction": 8
+    },
+    "numerology": {
+      "rootNumber": 8,
+      "rootMeaning": "Root number 8 brings abundance, power and wise stewardship.",
+      "calculation": "3+1+1+3 = 8"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "3113 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The mirror number for reflection and alignment shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 3113 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "8",
+      "3",
+      "31",
+      "33",
+      "88"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 3113 mean?",
+        "answer": "Angel number 3113 means abundance, power and wise stewardship, expressed through mirror number for reflection and alignment. Its practical message is to receive value and steward it responsibly."
+      },
+      {
+        "question": "Why do I keep seeing 3113?",
+        "answer": "You may keep seeing 3113 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 8."
+      },
+      {
+        "question": "What should I do after seeing 3113?",
+        "answer": "Pause, write down where 3113 appeared, then choose one concrete action that supports abundance, power and wise stewardship instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 3113 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 3113 meaning for love, career, money, twin flames and spiritual growth. Learn why 3113 appears and what to do next.",
+      "keywords": [
+        "angel number 3113",
+        "3113 meaning",
+        "3113 spiritual meaning",
+        "3113 love meaning"
+      ]
+    },
+    "category": "mirror",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "3333",
+    "slug": "3333",
+    "title": "Angel Number 3333 Meaning",
+    "shortMeaning": "Expression, Creativity And Truthful Communication Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 3333 is a four-digit amplified repeating signal shaped by root number 3. Its core message is expression, creativity and truthful communication: a reminder to say the true thing in a useful way while noticing where this exact number keeps appearing. Use 3333 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 3333 highlights warm honesty and playful repair. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to say the true thing in a useful way, especially before turning a sign into a story about someone else.",
+      "career": "For career, 3333 points toward creative presentation and clearer messaging. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 3333 speaks to turning talent into practical value. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid scattering energy across too many signals, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 3333 blends four-digit amplified repeating signal with root number 3, which carries expression, creativity and truthful communication. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 3333 encourages movement, breath and emotional release. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 3333 emphasizes growth through dialogue rather than silence. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 3333,
+      "english": 72,
+      "simple": 3333,
+      "jewish": 36,
+      "reduction": 3
+    },
+    "numerology": {
+      "rootNumber": 3,
+      "rootMeaning": "Root number 3 brings expression, creativity and truthful communication.",
+      "calculation": "3+3+3+3 = 12 -> 1+2 = 3"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "3333 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 3333 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "3",
+      "333",
+      "33"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 3333 mean?",
+        "answer": "Angel number 3333 means expression, creativity and truthful communication, expressed through four-digit amplified repeating signal. Its practical message is to say the true thing in a useful way."
+      },
+      {
+        "question": "Why do I keep seeing 3333?",
+        "answer": "You may keep seeing 3333 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 3."
+      },
+      {
+        "question": "What should I do after seeing 3333?",
+        "answer": "Pause, write down where 3333 appeared, then choose one concrete action that supports expression, creativity and truthful communication instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 3333 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 3333 meaning for love, career, money, twin flames and spiritual growth. Learn why 3333 appears and what to do next.",
+      "keywords": [
+        "angel number 3333",
+        "3333 meaning",
+        "3333 spiritual meaning",
+        "3333 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "3456",
+    "slug": "3456",
+    "title": "Angel Number 3456 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Sequence Number For Movement And Progression",
+    "summary": "Angel number 3456 is a sequence number for movement and progression shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 3456 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 3456 highlights forgiveness, closure and larger-hearted truth. The sequence number for movement and progression asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 3456 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 3456 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 3456 blends sequence number for movement and progression with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 3456 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 3456 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 3456,
+      "english": 108,
+      "simple": 3456,
+      "jewish": 54,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "3+4+5+6 = 18 -> 1+8 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "3456 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The sequence number for movement and progression shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 3456 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "3",
+      "6",
+      "345",
+      "456",
+      "1234"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 3456 mean?",
+        "answer": "Angel number 3456 means completion, compassion and higher purpose, expressed through sequence number for movement and progression. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 3456?",
+        "answer": "You may keep seeing 3456 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 3456?",
+        "answer": "Pause, write down where 3456 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 3456 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 3456 meaning for love, career, money, twin flames and spiritual growth. Learn why 3456 appears and what to do next.",
+      "keywords": [
+        "angel number 3456",
+        "3456 meaning",
+        "3456 spiritual meaning",
+        "3456 love meaning"
+      ]
+    },
+    "category": "sequence",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "4444",
+    "slug": "4444",
+    "title": "Angel Number 4444 Meaning",
+    "shortMeaning": "Insight, Study And Spiritual Depth Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 4444 is a four-digit amplified repeating signal shaped by root number 7. Its core message is insight, study and spiritual depth: a reminder to listen inwardly, then test the insight in life while noticing where this exact number keeps appearing. Use 4444 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 4444 highlights quiet truth and deeper emotional discernment. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to listen inwardly, then test the insight in life, especially before turning a sign into a story about someone else.",
+      "career": "For career, 4444 points toward research, strategy and specialized mastery. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 4444 speaks to patient evaluation before commitment. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid isolating until guidance cannot become action, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 4444 blends four-digit amplified repeating signal with root number 7, which carries insight, study and spiritual depth. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 4444 encourages stillness, recovery and attention to signals. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 4444 emphasizes inner work that matters more than chasing proof. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 4444,
+      "english": 96,
+      "simple": 4444,
+      "jewish": 48,
+      "reduction": 7
+    },
+    "numerology": {
+      "rootNumber": 7,
+      "rootMeaning": "Root number 7 brings insight, study and spiritual depth.",
+      "calculation": "4+4+4+4 = 16 -> 1+6 = 7"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "4444 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 4444 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "7",
+      "4",
+      "444",
+      "44"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 4444 mean?",
+        "answer": "Angel number 4444 means insight, study and spiritual depth, expressed through four-digit amplified repeating signal. Its practical message is to listen inwardly, then test the insight in life."
+      },
+      {
+        "question": "Why do I keep seeing 4444?",
+        "answer": "You may keep seeing 4444 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 7."
+      },
+      {
+        "question": "What should I do after seeing 4444?",
+        "answer": "Pause, write down where 4444 appeared, then choose one concrete action that supports insight, study and spiritual depth instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 4444 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 4444 meaning for love, career, money, twin flames and spiritual growth. Learn why 4444 appears and what to do next.",
+      "keywords": [
+        "angel number 4444",
+        "4444 meaning",
+        "4444 spiritual meaning",
+        "4444 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "5555",
+    "slug": "5555",
+    "title": "Angel Number 5555 Meaning",
+    "shortMeaning": "Balance, Partnership And Emotional Timing Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 5555 is a four-digit amplified repeating signal shaped by root number 2. Its core message is balance, partnership and emotional timing: a reminder to restore balance before making the next move while noticing where this exact number keeps appearing. Use 5555 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 5555 highlights patience, listening and mutual care. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to restore balance before making the next move, especially before turning a sign into a story about someone else.",
+      "career": "For career, 5555 points toward collaboration and tactful timing. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 5555 speaks to steady planning instead of reactive spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid mistaking waiting for wisdom, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 5555 blends four-digit amplified repeating signal with root number 2, which carries balance, partnership and emotional timing. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 5555 encourages rhythms that calm the nervous system. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 5555 emphasizes maturity in the space between closeness and distance. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 5555,
+      "english": 120,
+      "simple": 5555,
+      "jewish": 60,
+      "reduction": 2
+    },
+    "numerology": {
+      "rootNumber": 2,
+      "rootMeaning": "Root number 2 brings balance, partnership and emotional timing.",
+      "calculation": "5+5+5+5 = 20 -> 2+0 = 2"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "5555 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 5555 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "2",
+      "5",
+      "555",
+      "55"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 5555 mean?",
+        "answer": "Angel number 5555 means balance, partnership and emotional timing, expressed through four-digit amplified repeating signal. Its practical message is to restore balance before making the next move."
+      },
+      {
+        "question": "Why do I keep seeing 5555?",
+        "answer": "You may keep seeing 5555 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 2."
+      },
+      {
+        "question": "What should I do after seeing 5555?",
+        "answer": "Pause, write down where 5555 appeared, then choose one concrete action that supports balance, partnership and emotional timing instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 5555 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 5555 meaning for love, career, money, twin flames and spiritual growth. Learn why 5555 appears and what to do next.",
+      "keywords": [
+        "angel number 5555",
+        "5555 meaning",
+        "5555 spiritual meaning",
+        "5555 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "6666",
+    "slug": "6666",
+    "title": "Angel Number 6666 Meaning",
+    "shortMeaning": "Care, Responsibility And Material Harmony Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 6666 is a four-digit amplified repeating signal shaped by root number 6. Its core message is care, responsibility and material harmony: a reminder to return to what genuinely needs care while noticing where this exact number keeps appearing. Use 6666 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 6666 highlights repair, devotion and healthy responsibility. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to return to what genuinely needs care, especially before turning a sign into a story about someone else.",
+      "career": "For career, 6666 points toward service, quality and relational leadership. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 6666 speaks to household harmony and values-based spending. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid carrying obligations that are not yours, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 6666 blends four-digit amplified repeating signal with root number 6, which carries care, responsibility and material harmony. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 6666 encourages nourishment, rest and sustainable routines. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 6666 emphasizes care that does not erase either person. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 6666,
+      "english": 144,
+      "simple": 6666,
+      "jewish": 72,
+      "reduction": 6
+    },
+    "numerology": {
+      "rootNumber": 6,
+      "rootMeaning": "Root number 6 brings care, responsibility and material harmony.",
+      "calculation": "6+6+6+6 = 24 -> 2+4 = 6"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "6666 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 6666 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "6",
+      "666",
+      "66"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 6666 mean?",
+        "answer": "Angel number 6666 means care, responsibility and material harmony, expressed through four-digit amplified repeating signal. Its practical message is to return to what genuinely needs care."
+      },
+      {
+        "question": "Why do I keep seeing 6666?",
+        "answer": "You may keep seeing 6666 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 6."
+      },
+      {
+        "question": "What should I do after seeing 6666?",
+        "answer": "Pause, write down where 6666 appeared, then choose one concrete action that supports care, responsibility and material harmony instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 6666 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 6666 meaning for love, career, money, twin flames and spiritual growth. Learn why 6666 appears and what to do next.",
+      "keywords": [
+        "angel number 6666",
+        "6666 meaning",
+        "6666 spiritual meaning",
+        "6666 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "7777",
+    "slug": "7777",
+    "title": "Angel Number 7777 Meaning",
+    "shortMeaning": "Initiative, Self-Trust And Fresh Intention Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 7777 is a four-digit amplified repeating signal shaped by root number 1. Its core message is initiative, self-trust and fresh intention: a reminder to begin with one honest step while noticing where this exact number keeps appearing. Use 7777 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 7777 highlights clear desire and direct communication. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to begin with one honest step, especially before turning a sign into a story about someone else.",
+      "career": "For career, 7777 points toward visible initiative and a cleaner direction. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 7777 speaks to a specific goal that guides daily choices. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid forcing certainty before the first signal has time to mature, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 7777 blends four-digit amplified repeating signal with root number 1, which carries initiative, self-trust and fresh intention. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 7777 encourages a simple reset practiced consistently. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 7777 emphasizes self-recognition before projection. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 7777,
+      "english": 168,
+      "simple": 7777,
+      "jewish": 84,
+      "reduction": 1
+    },
+    "numerology": {
+      "rootNumber": 1,
+      "rootMeaning": "Root number 1 brings initiative, self-trust and fresh intention.",
+      "calculation": "7+7+7+7 = 28 -> 2+8 = 1"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "7777 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 7777 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "1",
+      "7",
+      "777",
+      "77"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 7777 mean?",
+        "answer": "Angel number 7777 means initiative, self-trust and fresh intention, expressed through four-digit amplified repeating signal. Its practical message is to begin with one honest step."
+      },
+      {
+        "question": "Why do I keep seeing 7777?",
+        "answer": "You may keep seeing 7777 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 1."
+      },
+      {
+        "question": "What should I do after seeing 7777?",
+        "answer": "Pause, write down where 7777 appeared, then choose one concrete action that supports initiative, self-trust and fresh intention instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 7777 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 7777 meaning for love, career, money, twin flames and spiritual growth. Learn why 7777 appears and what to do next.",
+      "keywords": [
+        "angel number 7777",
+        "7777 meaning",
+        "7777 spiritual meaning",
+        "7777 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "8888",
+    "slug": "8888",
+    "title": "Angel Number 8888 Meaning",
+    "shortMeaning": "Change, Freedom And Adaptive Movement Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 8888 is a four-digit amplified repeating signal shaped by root number 5. Its core message is change, freedom and adaptive movement: a reminder to move with change without abandoning your center while noticing where this exact number keeps appearing. Use 8888 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 8888 highlights space, honesty and a livelier pattern. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to move with change without abandoning your center, especially before turning a sign into a story about someone else.",
+      "career": "For career, 8888 points toward experimentation, travel or a flexible pivot. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 8888 speaks to adaptable income choices and impulse control. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid changing everything because one thing feels restless, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 8888 blends four-digit amplified repeating signal with root number 5, which carries change, freedom and adaptive movement. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 8888 encourages variety that still respects the body. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 8888 emphasizes a turning point that asks for freedom and truth. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 8888,
+      "english": 192,
+      "simple": 8888,
+      "jewish": 96,
+      "reduction": 5
+    },
+    "numerology": {
+      "rootNumber": 5,
+      "rootMeaning": "Root number 5 brings change, freedom and adaptive movement.",
+      "calculation": "8+8+8+8 = 32 -> 3+2 = 5"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "8888 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 8888 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "5",
+      "8",
+      "888",
+      "88"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 8888 mean?",
+        "answer": "Angel number 8888 means change, freedom and adaptive movement, expressed through four-digit amplified repeating signal. Its practical message is to move with change without abandoning your center."
+      },
+      {
+        "question": "Why do I keep seeing 8888?",
+        "answer": "You may keep seeing 8888 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 5."
+      },
+      {
+        "question": "What should I do after seeing 8888?",
+        "answer": "Pause, write down where 8888 appeared, then choose one concrete action that supports change, freedom and adaptive movement instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 8888 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 8888 meaning for love, career, money, twin flames and spiritual growth. Learn why 8888 appears and what to do next.",
+      "keywords": [
+        "angel number 8888",
+        "8888 meaning",
+        "8888 spiritual meaning",
+        "8888 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "9999",
+    "slug": "9999",
+    "title": "Angel Number 9999 Meaning",
+    "shortMeaning": "Completion, Compassion And Higher Purpose Through A Four-Digit Amplified Repeating Signal",
+    "summary": "Angel number 9999 is a four-digit amplified repeating signal shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 9999 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 9999 highlights forgiveness, closure and larger-hearted truth. The four-digit amplified repeating signal asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 9999 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 9999 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 9999 blends four-digit amplified repeating signal with root number 9, which carries completion, compassion and higher purpose. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 9999 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 9999 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 9999,
+      "english": 216,
+      "simple": 9999,
+      "jewish": 108,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "9+9+9+9 = 36 -> 3+6 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Symbolic note",
+        "text": "9999 is interpreted through pattern, numerology and reflective angel number symbolism.",
+        "relevance": "The four-digit amplified repeating signal shape gives the number its emphasis while root numerology gives it direction."
+      }
+    ],
+    "affirmation": "I receive the message of 9999 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "999",
+      "99"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 9999 mean?",
+        "answer": "Angel number 9999 means completion, compassion and higher purpose, expressed through four-digit amplified repeating signal. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 9999?",
+        "answer": "You may keep seeing 9999 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 9999?",
+        "answer": "Pause, write down where 9999 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 9999 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 9999 meaning for love, career, money, twin flames and spiritual growth. Learn why 9999 appears and what to do next.",
+      "keywords": [
+        "angel number 9999",
+        "9999 meaning",
+        "9999 spiritual meaning",
+        "9999 love meaning"
+      ]
+    },
+    "category": "quad",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
+  },
+  {
+    "number": "144000",
+    "slug": "144000",
+    "title": "Angel Number 144000 Meaning",
+    "shortMeaning": "Sealed Protection, Devotion And Vast Spiritual Belonging",
+    "summary": "Angel number 144000 is a sealed protection, devotion and vast spiritual belonging shaped by root number 9. Its core message is completion, compassion and higher purpose: a reminder to release what is complete with dignity while noticing where this exact number keeps appearing. Use 144000 as a practical prompt, not a superstition: record the context, name the repeated pattern and choose the next grounded action.",
+    "meanings": {
+      "love": "In love, angel number 144000 highlights forgiveness, closure and larger-hearted truth. The sealed protection, devotion and vast spiritual belonging asks you to notice what is being repeated between people: the tone, the timing and the choice that keeps returning. Its guidance is to release what is complete with dignity, especially before turning a sign into a story about someone else.",
+      "career": "For career, 144000 points toward finishing cycles and serving a wider purpose. Treat the number as a checkpoint for direction, workload and visibility. If the same concern has appeared more than once, the practical message is to choose one next action that makes the work clearer and more stable.",
+      "money": "For money, 144000 speaks to generosity balanced with endings and cleanup. It is not a promise of sudden luck; it is a prompt to review patterns around spending, earning, saving and obligation. The warning is to avoid reopening a finished lesson because it feels familiar, then make one grounded financial decision today.",
+      "spiritual": "Spiritually, 144000 blends sealed protection, devotion and vast spiritual belonging with root number 9, which carries completion, compassion and higher purpose. Its symbolic background also points to a highly symbolic image of guarded devotion and collective identity. The message becomes useful when it leads to reflection, prayer, journaling or a quieter decision that changes how you move through the day.",
+      "health": "For health, 144000 encourages letting the body finish a stress cycle. Start with the body before chasing a dramatic interpretation: sleep, hydration, breath, movement and medical follow-through all count as spiritual obedience when they help you become steady enough to hear yourself.",
+      "twinFlame": "For twin flames, 144000 emphasizes closure or integration without clinging. It can feel meaningful when the number appears around contact, silence or reunion, but its healthiest use is to create maturity. Ask what both people are learning, not only whether the sign proves the connection."
+    },
+    "gematriaValues": {
+      "hebrew": 144000,
+      "english": 54,
+      "simple": 144000,
+      "jewish": 27,
+      "reduction": 9
+    },
+    "numerology": {
+      "rootNumber": 9,
+      "rootMeaning": "Root number 9 brings completion, compassion and higher purpose.",
+      "calculation": "1+4+4+0+0+0 = 9"
+    },
+    "biblicalReferences": [
+      {
+        "verse": "Revelation 14:1",
+        "text": "144000 is treated here as a symbolic number connected with sealed protection, devotion and vast spiritual belonging.",
+        "relevance": "This reference gives 144000 a reflective layer without turning it into a fixed doctrinal claim."
+      }
+    ],
+    "affirmation": "I receive the message of 144000 and let it become one grounded, honest action.",
+    "relatedNumbers": [
+      "9",
+      "1",
+      "0",
+      "12",
+      "144",
+      "1212"
+    ],
+    "faqs": [
+      {
+        "question": "What does angel number 144000 mean?",
+        "answer": "Angel number 144000 means completion, compassion and higher purpose, expressed through sealed protection, devotion and vast spiritual belonging. Its practical message is to release what is complete with dignity."
+      },
+      {
+        "question": "Why do I keep seeing 144000?",
+        "answer": "You may keep seeing 144000 when your attention is being drawn to a repeated pattern, decision point or lesson connected with root number 9."
+      },
+      {
+        "question": "What should I do after seeing 144000?",
+        "answer": "Pause, write down where 144000 appeared, then choose one concrete action that supports completion, compassion and higher purpose instead of only collecting more signs."
+      }
+    ],
+    "meta": {
+      "title": "Angel Number 144000 Meaning - Love, Career, Money & Spiritual Guide",
+      "description": "Discover angel number 144000 meaning for love, career, money, twin flames and spiritual growth. Learn why 144000 appears and what to do next.",
+      "keywords": [
+        "angel number 144000",
+        "144000 meaning",
+        "144000 spiritual meaning",
+        "144000 love meaning"
+      ]
+    },
+    "category": "special",
+    "isPriority": false,
+    "lastUpdated": "2026-05-09"
   }
 ];

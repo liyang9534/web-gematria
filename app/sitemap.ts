@@ -10,6 +10,12 @@ export const dynamic = 'force-dynamic'
 
 type ChangeFrequency = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' | undefined
 
+export function dedupeSitemapEntries(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
+  return Array.from(
+    new Map(entries.map((entry) => [entry.url, entry])).values()
+  )
+}
+
 async function getSitemapSiteUrl() {
   const configuredSiteUrl = getConfiguredPublicSiteUrl()
 
@@ -47,6 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const seoStaticPages = [
     '/angel-number',
+    '/ai',
     '/calculator',
     '/calculator/gematria',
     '/calculator/numerology',
@@ -106,9 +113,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const uniqueBlogPostEntries = Array.from(
-    new Map(allBlogSitemapEntries.map((entry) => [entry.url, entry])).values()
-  );
+  const uniqueBlogPostEntries = dedupeSitemapEntries(allBlogSitemapEntries);
 
   // Glossary entries (server-side only, no local file system access)
   const allGlossarySitemapEntries: MetadataRoute.Sitemap = [];
@@ -146,15 +151,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const uniqueGlossaryEntries = Array.from(
-    new Map(allGlossarySitemapEntries.map((entry) => [entry.url, entry])).values()
-  );
+  const uniqueGlossaryEntries = dedupeSitemapEntries(allGlossarySitemapEntries);
 
-  return [
+  return dedupeSitemapEntries([
     ...pages,
     ...seoStaticPages,
     ...angelNumberPages,
     ...uniqueBlogPostEntries,
     ...uniqueGlossaryEntries
-  ]
+  ])
 }

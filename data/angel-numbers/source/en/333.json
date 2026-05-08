@@ -32,7 +32,13 @@
     }
   ],
   "affirmation": "My voice is clear, useful, and welcome.",
-  "relatedNumbers": ["33", "3333", "3", "1333", "303"],
+  "relatedNumbers": [
+    "33",
+    "3333",
+    "3",
+    "1333",
+    "303"
+  ],
   "faqs": [
     {
       "question": "What does angel number 333 mean?",
@@ -50,7 +56,12 @@
   "meta": {
     "title": "Angel Number 333 Meaning - Love, Career, Money & Spiritual Guide",
     "description": "Learn the meaning of angel number 333 for love, career, money, twin flames and spiritual support. Discover why 333 keeps appearing in your life.",
-    "keywords": ["angel number 333", "333 meaning", "333 spiritual meaning", "333 love meaning"]
+    "keywords": [
+      "angel number 333",
+      "333 meaning",
+      "333 spiritual meaning",
+      "333 love meaning"
+    ]
   },
   "category": "triple",
   "isPriority": true,
