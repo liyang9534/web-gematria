@@ -8,9 +8,20 @@ import { ViewCounter } from "@/components/cms/ViewCounter";
 import { TableOfContents } from "@/components/tiptap/TableOfContents";
 import { TiptapRenderer } from "@/components/tiptap/TiptapRenderer";
 import { Button } from "@/components/ui/button";
-import { Link as I18nLink, Locale, LOCALES } from "@/i18n/routing";
+import { siteConfig } from "@/config/site";
+import {
+  DEFAULT_LOCALE,
+  Link as I18nLink,
+  Locale,
+  LOCALES,
+} from "@/i18n/routing";
 import { blogCms } from "@/lib/cms";
 import { constructMetadata } from "@/lib/metadata";
+import {
+  createArticleJsonLd,
+  createBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo/json-ld";
 import { PostBase } from "@/types/cms";
 import dayjs from "dayjs";
 import { ArrowLeftIcon, CalendarIcon, EyeIcon } from "lucide-react";
@@ -158,164 +169,214 @@ export default async function BlogPage({ params }: { params: Params }) {
   };
 
   const visibilityInfo = getVisibilityInfo();
+  const postSlug = post.slug
+    .replace(/^\//, "")
+    .replace(/^blog\//, "")
+    .replace(/\/$/, "");
+  const canonicalPath = `/blog/${postSlug}`;
+  const localePrefix = locale === DEFAULT_LOCALE ? "" : `/${locale}`;
+  const canonicalUrl = `${siteConfig.url}${localePrefix}${canonicalPath}`;
+  const articleJsonLd = createArticleJsonLd({
+    headline: post.title,
+    description: post.description || undefined,
+    url: canonicalUrl,
+    datePublished: toJsonLdDate(post.publishedAt) || new Date().toISOString(),
+    dateModified: toJsonLdDate(post.metadata?.updatedAt),
+    image: normalizeSiteUrl(post.featuredImageUrl),
+    authorName: siteConfig.authors[0]?.name || siteConfig.name,
+    authorUrl: siteConfig.authors[0]?.url,
+    publisherName: siteConfig.name,
+    publisherUrl: siteConfig.url,
+    inLanguage: locale,
+  });
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Home", url: `${siteConfig.url}${localePrefix}` },
+    { name: "Blog", url: `${siteConfig.url}${localePrefix}/blog` },
+    { name: post.title, url: canonicalUrl },
+  ]);
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <ViewCounter
-        slug={slug}
-        postType="blog"
-        trackView={viewCountConfig.enabled}
-        trackMode={viewCountConfig.mode}
-      />
-      <div className="flex gap-8">
-        {/* Main Content */}
-        <div className="flex-1 min-w-0">
-          <div className="mb-8">
-            <Button asChild variant="ghost" size="sm" className="group">
-              <I18nLink
-                href="/blog"
-                title={t("BlogDetail.backToBlogs")}
-                prefetch={false}
-              >
-                <ArrowLeftIcon className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                {t("BlogDetail.backToBlogs")}
-              </I18nLink>
-            </Button>
-          </div>
+    <>
+      <JsonLd id={`blog-${postSlug}-article`} data={articleJsonLd} />
+      <JsonLd id={`blog-${postSlug}-breadcrumb`} data={breadcrumbJsonLd} />
+      <div className="container mx-auto px-4 py-12">
+        <ViewCounter
+          slug={slug}
+          postType="blog"
+          trackView={viewCountConfig.enabled}
+          trackMode={viewCountConfig.mode}
+        />
+        <div className="flex gap-8">
+          {/* Main Content */}
+          <div className="flex-1 min-w-0">
+            <div className="mb-8">
+              <Button asChild variant="ghost" size="sm" className="group">
+                <I18nLink
+                  href="/blog"
+                  title={t("BlogDetail.backToBlogs")}
+                  prefetch={false}
+                >
+                  <ArrowLeftIcon className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                  {t("BlogDetail.backToBlogs")}
+                </I18nLink>
+              </Button>
+            </div>
 
-          <header className="mb-12">
-            {post.visibility !== "public" && (
-              <div
-                className={`${visibilityInfo.bgColor} text-white text-xs px-3 py-1 rounded-full inline-flex mb-6`}
-              >
-                {visibilityInfo.label}
-              </div>
-            )}
-
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-              {post.title}
-            </h1>
-
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
-              <div className="flex items-center">
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {dayjs(post.publishedAt).format("MMMM D, YYYY")}
-              </div>
-
-              {viewCountConfig.enabled &&
-                viewCountConfig.showInUI &&
-                viewCount > 0 && (
-                  <div className="flex items-center">
-                    <EyeIcon className="mr-2 h-4 w-4" />
-                    {t("BlogDetail.viewCount", { count: viewCount })}
-                  </div>
-                )}
-
-              {post.isPinned && (
-                <div className="flex items-center bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 px-2 py-0.5 rounded-md text-xs">
-                  {t("BlogDetail.featured")}
+            <header className="mb-12">
+              {post.visibility !== "public" && (
+                <div
+                  className={`${visibilityInfo.bgColor} text-white text-xs px-3 py-1 rounded-full inline-flex mb-6`}
+                >
+                  {visibilityInfo.label}
                 </div>
               )}
-            </div>
 
-            {post.description && (
-              <div className="bg-muted rounded-lg p-6 text-lg mb-8">
-                {post.description}
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                {post.title}
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+                <div className="flex items-center">
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {dayjs(post.publishedAt).format("MMMM D, YYYY")}
+                </div>
+
+                {viewCountConfig.enabled &&
+                  viewCountConfig.showInUI &&
+                  viewCount > 0 && (
+                    <div className="flex items-center">
+                      <EyeIcon className="mr-2 h-4 w-4" />
+                      {t("BlogDetail.viewCount", { count: viewCount })}
+                    </div>
+                )}
+
+                {post.isPinned && (
+                  <div className="flex items-center bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 px-2 py-0.5 rounded-md text-xs">
+                    {t("BlogDetail.featured")}
+                  </div>
+                )}
+              </div>
+
+              {post.description && (
+                <div className="bg-muted rounded-lg p-6 text-lg mb-8">
+                  {post.description}
+                </div>
+              )}
+            </header>
+
+            {post.featuredImageUrl && (
+              <div className="my-10 rounded-xl overflow-hidden shadow-md aspect-video relative">
+                <Image
+                  src={post.featuredImageUrl}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  priority
+                  className="object-cover"
+                />
               </div>
             )}
-          </header>
 
-          {post.featuredImageUrl && (
-            <div className="my-10 rounded-xl overflow-hidden shadow-md aspect-video relative">
-              <Image
-                src={post.featuredImageUrl}
-                alt={post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 1200px"
-                priority
-                className="object-cover"
+            {tagsArray.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-10">
+                {tagsArray.map((tag) => (
+                  <div
+                    key={tag}
+                    className="rounded-full bg-secondary/80 hover:bg-secondary px-3 py-1 text-sm font-medium transition-colors"
+                  >
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Mobile TOC */}
+            {post.content && (
+              <div className="xl:hidden mb-8">
+                <TableOfContents content={post.content} mobile />
+              </div>
+            )}
+
+            {showRestrictionMessageInsteadOfContent ? (
+              <ContentRestrictionMessage
+                title={messageTitle}
+                message={messageContent}
+                actionText={actionText}
+                actionLink={actionLink}
+                backText={t("BlogDetail.backToBlogs")}
+                backLink={`/blog`}
               />
-            </div>
-          )}
+            ) : (
+              <article>
+                {post.content ? <TiptapRenderer content={post.content} /> : null}
+              </article>
+            )}
 
-          {tagsArray.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-10">
-              {tagsArray.map((tag) => (
-                <div
-                  key={tag}
-                  className="rounded-full bg-secondary/80 hover:bg-secondary px-3 py-1 text-sm font-medium transition-colors"
+            {/* Related Posts */}
+            {post.id && (
+              <RelatedPosts
+                postId={post.id}
+                postType="blog"
+                limit={10}
+                title="Related Posts"
+                locale={locale}
+                CardComponent={BlogPostCard}
+              />
+            )}
+
+            <div className="mt-16 pt-8 border-t">
+              <Button asChild variant="outline" size="sm">
+                <I18nLink
+                  href="/blog"
+                  title={t("BlogDetail.backToBlogs")}
+                  prefetch={false}
+                  className="inline-flex items-center"
                 >
-                  {tag}
-                </div>
-              ))}
+                  <ArrowLeftIcon className="mr-2 h-4 w-4" />
+                  {t("BlogDetail.backToBlogs")}
+                </I18nLink>
+              </Button>
             </div>
-          )}
-
-          {/* Mobile TOC */}
-          {post.content && (
-            <div className="xl:hidden mb-8">
-              <TableOfContents content={post.content} mobile />
-            </div>
-          )}
-
-          {showRestrictionMessageInsteadOfContent ? (
-            <ContentRestrictionMessage
-              title={messageTitle}
-              message={messageContent}
-              actionText={actionText}
-              actionLink={actionLink}
-              backText={t("BlogDetail.backToBlogs")}
-              backLink={`/blog`}
-            />
-          ) : (
-            <article>
-              {post.content ? <TiptapRenderer content={post.content} /> : null}
-            </article>
-          )}
-
-          {/* Related Posts */}
-          {post.id && (
-            <RelatedPosts
-              postId={post.id}
-              postType="blog"
-              limit={10}
-              title="Related Posts"
-              locale={locale}
-              CardComponent={BlogPostCard}
-            />
-          )}
-
-          <div className="mt-16 pt-8 border-t">
-            <Button asChild variant="outline" size="sm">
-              <I18nLink
-                href="/blog"
-                title={t("BlogDetail.backToBlogs")}
-                prefetch={false}
-                className="inline-flex items-center"
-              >
-                <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                {t("BlogDetail.backToBlogs")}
-              </I18nLink>
-            </Button>
           </div>
-        </div>
 
-        {/* PC TOC - Sidebar */}
-        {post.content && (
-          <aside className="hidden xl:block w-64 shrink-0">
-            <div className="sticky top-48">
-              <TableOfContents content={post.content} />
-            </div>
-          </aside>
-        )}
+          {/* PC TOC - Sidebar */}
+          {post.content && (
+            <aside className="hidden xl:block w-64 shrink-0">
+              <div className="sticky top-48">
+                <TableOfContents content={post.content} />
+              </div>
+            </aside>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
 const BlogPostCard = ({ post }: { post: PostBase }) => (
   <PostCard post={post} baseUrl="/blog" />
 );
+
+function toJsonLdDate(value: unknown) {
+  if (!value) {
+    return undefined;
+  }
+
+  const date = new Date(value as string | number | Date);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+}
+
+function normalizeSiteUrl(value: string | undefined) {
+  if (!value) {
+    return undefined;
+  }
+
+  if (value.startsWith("http")) {
+    return value;
+  }
+
+  return `${siteConfig.url}${value.startsWith("/") ? "" : "/"}${value}`;
+}
 
 export async function generateStaticParams() {
   const allParams: { locale: string; slug: string }[] = [];

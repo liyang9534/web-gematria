@@ -17,6 +17,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 import { DEFAULT_LOCALE, Locale, routing } from "@/i18n/routing";
 import { constructMetadata } from "@/lib/metadata";
+import { createWebsiteSearchJsonLd, JsonLd } from "@/lib/seo/json-ld";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeScript } from "@/components/theme/theme-script";
@@ -80,10 +81,16 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const websiteSearchJsonLd = createWebsiteSearchJsonLd({
+    siteName: siteConfig.name,
+    siteUrl: siteConfig.url,
+    searchUrlTemplate: `${siteConfig.url}/angel-number/{search_term_string}`,
+  });
 
   return (
     <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
       <head>
+        <JsonLd id="website-search" data={websiteSearchJsonLd} />
         <ThemeScript defaultTheme={defaultTheme} enableSystem />
         <ToltScript />
       </head>
