@@ -114,6 +114,12 @@ export default async function HomeComponent() {
               description="Name and birthday profile."
             />
             <ToolCard
+              href="/calculator/my-angel-number"
+              icon={<span aria-hidden="true">□</span>}
+              title="My Angel Number"
+              description="Birthday and name entry point."
+            />
+            <ToolCard
               href="/calculator/life-path"
               icon={<span aria-hidden="true">◇</span>}
               title="Life Path"

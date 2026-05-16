@@ -19,3 +19,25 @@ export interface NumerologyProfile {
   personality: NumerologyCalculation;
   birthdayNumber: NumerologyCalculation;
 }
+
+export interface MyAngelNumberProfileInput {
+  fullName?: string;
+  birthday?: string;
+}
+
+export type MyAngelNumberMethod = "birthday" | "name";
+
+export interface MyAngelNumberResult extends NumerologyCalculation {
+  method: MyAngelNumberMethod;
+  label: string;
+  description: string;
+}
+
+export interface MyAngelNumberProfile {
+  fullName: string;
+  birthday: string;
+  primary: MyAngelNumberResult | null;
+  birthdayResult?: MyAngelNumberResult;
+  nameResult?: MyAngelNumberResult;
+  results: MyAngelNumberResult[];
+}

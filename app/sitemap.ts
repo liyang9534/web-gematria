@@ -58,6 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/calculator/gematria',
     '/calculator/numerology',
     '/calculator/life-path',
+    '/calculator/my-angel-number',
   ].map(page => ({
     url: `${siteUrl}${page}`,
     lastModified: new Date(),

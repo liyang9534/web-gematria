@@ -4,6 +4,9 @@ import {
   calculateBirthdayNumber,
   calculateExpressionNumber,
   calculateLifePathNumber,
+  calculateMyAngelNumberProfile,
+  calculateMyAngelNumberFromBirthday,
+  calculateMyAngelNumberFromName,
   calculateNumerologyProfile,
   calculatePersonalityNumber,
   calculateSoulUrgeNumber,
@@ -50,4 +53,35 @@ test("builds a complete numerology profile", () => {
   assert.equal(profile.personality.value, 8);
   assert.equal(profile.birthday, "1815-12-10");
   assert.equal(profile.birthdayNumber.value, 1);
+});
+
+test("calculates my angel number from birthday digits", () => {
+  const result = calculateMyAngelNumberFromBirthday("1990-07-24");
+
+  assert.equal(result.value, 5);
+  assert.equal(result.rawValue, 32);
+  assert.equal(result.calculation, "Birthday method: 1+9+9+0+0+7+2+4 = 32 -> 3+2 = 5");
+  assert.match(result.meaning, /freedom/i);
+});
+
+test("calculates my angel number from name with ordinal letters", () => {
+  const result = calculateMyAngelNumberFromName("Sarah");
+
+  assert.equal(result.value, 11);
+  assert.equal(result.rawValue, 47);
+  assert.equal(result.calculation, "Name method: 19+1+18+1+8 = 47 -> 4+7 = 11");
+  assert.match(result.meaning, /intuition/i);
+});
+
+test("builds my angel number profile from optional birthday and name inputs", () => {
+  const profile = calculateMyAngelNumberProfile({
+    fullName: "Sarah",
+    birthday: "1990-07-24",
+  });
+
+  assert.ok(profile.primary);
+  assert.equal(profile.primary.value, 5);
+  assert.equal(profile.birthdayResult?.value, 5);
+  assert.equal(profile.nameResult?.value, 11);
+  assert.equal(profile.results.length, 2);
 });

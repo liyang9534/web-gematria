@@ -2,7 +2,7 @@ import { GematriaCalculator } from "@/components/calculator/GematriaCalculator";
 import { MysticSectionTitle, MysticSurface } from "@/components/mystic/MysticSurface";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
-import { Calculator, Hash, Sparkles } from "lucide-react";
+import { Calculator, Hash, Sparkles, UserRound } from "lucide-react";
 
 const tools = [
   {
@@ -16,6 +16,12 @@ const tools = [
     title: "Numerology Calculator",
     description: "Decode name and birthday numbers in one compact profile.",
     icon: Sparkles,
+  },
+  {
+    href: "/calculator/my-angel-number",
+    title: "My Angel Number",
+    description: "Find a personal angel number from a birthday or name.",
+    icon: UserRound,
   },
   {
     href: "/calculator/life-path",

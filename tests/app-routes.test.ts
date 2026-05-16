@@ -39,11 +39,30 @@ test("sitemap includes Phase 4 SEO pages without generated angel-number URLs", a
   assert.match(source, /\/calculator\/gematria/);
   assert.match(source, /\/calculator\/numerology/);
   assert.match(source, /\/calculator\/life-path/);
+  assert.match(source, /\/calculator\/my-angel-number/);
   assert.match(source, /\/ai/);
   assert.match(source, /getAllAngelNumbers\(\)/);
   assert.match(source, /dedupeSitemapEntries/);
   assert.doesNotMatch(source, /interpretAnyNumber/);
   assert.doesNotMatch(source, /\/angel-number\/12345/);
+});
+
+test("my angel number calculator public page is exposed for SEO", async () => {
+  const source = await readFile("app/[locale]/(basic-layout)/calculator/my-angel-number/page.tsx", "utf8");
+
+  assert.match(source, /path:\s*["'`]\/calculator\/my-angel-number["'`]/);
+  assert.match(source, /What Is My Angel Number/);
+  assert.match(source, /MyAngelNumberCalculator/);
+});
+
+test("my angel number calculator page includes explanatory SEO copy", async () => {
+  const source = await readFile("app/[locale]/(basic-layout)/calculator/my-angel-number/page.tsx", "utf8");
+
+  assert.match(source, /How this calculator works/);
+  assert.match(source, /Birthday method/);
+  assert.match(source, /Name method/);
+  assert.match(source, /How to read your result/);
+  assert.match(source, /Questions people ask/);
 });
 
 test("AI landing page is separate from the developer AI demo", async () => {

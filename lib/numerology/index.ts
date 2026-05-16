@@ -1,4 +1,7 @@
 import type {
+  MyAngelNumberProfile,
+  MyAngelNumberProfileInput,
+  MyAngelNumberResult,
   NumerologyCalculation,
   NumerologyProfile,
   NumerologyProfileInput,
@@ -73,6 +76,70 @@ export function calculateNumerologyProfile(
   };
 }
 
+export function calculateMyAngelNumberFromBirthday(
+  birthday: string,
+): MyAngelNumberResult {
+  const digits = birthday.replace(/\D/g, "").split("").map(Number);
+  const rawValue = digits.reduce((sum, digit) => sum + digit, 0);
+  const value = reduceNumerologyNumber(rawValue);
+
+  return {
+    method: "birthday",
+    label: "Birthday Method",
+    value,
+    rawValue,
+    calculation: `Birthday method: ${digits.join("+") || "0"} = ${rawValue}${formatReduction(rawValue, value)}`,
+    meaning: getNumerologyMeaning(value),
+    description:
+      "Adds every digit in your birth date, then reduces the sum into one angel number or master number.",
+  };
+}
+
+export function calculateMyAngelNumberFromName(
+  fullName: string,
+): MyAngelNumberResult {
+  const letters = normalizeNameLetters(fullName);
+  const letterValues = letters.map(getOrdinalValue);
+  const rawValue = letterValues.reduce((sum, value) => sum + value, 0);
+  const value = reduceNumerologyNumber(rawValue);
+
+  return {
+    method: "name",
+    label: "Name Method",
+    value,
+    rawValue,
+    calculation: `Name method: ${letterValues.join("+") || "0"} = ${rawValue}${formatReduction(rawValue, value)}`,
+    meaning: getNumerologyMeaning(value),
+    description:
+      "Converts A-Z into 1-26, adds the letters in your name, then reduces the result into an angel number or master number.",
+  };
+}
+
+export function calculateMyAngelNumberProfile(
+  input: MyAngelNumberProfileInput,
+): MyAngelNumberProfile {
+  const fullName = input.fullName?.trim() ?? "";
+  const birthday = input.birthday?.trim() ?? "";
+  const birthdayResult = birthday.replace(/\D/g, "")
+    ? calculateMyAngelNumberFromBirthday(birthday)
+    : undefined;
+  const nameResult = normalizeNameLetters(fullName).length
+    ? calculateMyAngelNumberFromName(fullName)
+    : undefined;
+  const results = [birthdayResult, nameResult].filter(
+    (result): result is MyAngelNumberResult => Boolean(result),
+  );
+
+  return {
+    fullName,
+    birthday,
+    primary: results[0] ?? null,
+    birthdayResult,
+    nameResult,
+    results,
+  };
+}
+
 export function getNumerologyMeaning(value: number): string {
   return getNumerologyDescription(value);
 }
@@ -101,6 +168,14 @@ function calculateNameNumber(
 
 function getPythagoreanValue(letter: string): number {
   return ((letter.charCodeAt(0) - 65) % 9) + 1;
+}
+
+function getOrdinalValue(letter: string): number {
+  return letter.charCodeAt(0) - 64;
+}
+
+function normalizeNameLetters(fullName: string): string[] {
+  return fullName.toUpperCase().replace(/[^A-Z]/g, "").split("");
 }
 
 function sumDigits(value: number): number {
