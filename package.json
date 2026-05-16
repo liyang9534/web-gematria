@@ -14,7 +14,7 @@
     "lint": "next lint",
     "analyze": "ANALYZE=true next build",
     "test": "pnpm test:unit && pnpm test:db-config && pnpm test:d1",
-    "test:unit": "node --import tsx --test tests/app-routes.test.ts tests/angel-numbers.test.ts tests/decoder-search.test.ts tests/gematria.test.ts tests/native-script-tags.test.ts tests/numerology.test.ts tests/number-meanings.test.ts tests/share-cards.test.ts tests/tool-bridges.test.ts",
+    "test:unit": "node --import tsx --test tests/app-routes.test.ts tests/angel-numbers.test.ts tests/blog-content.test.ts tests/decoder-search.test.ts tests/gematria.test.ts tests/native-script-tags.test.ts tests/numerology.test.ts tests/number-meanings.test.ts tests/share-cards.test.ts tests/tool-bridges.test.ts",
     "test:db-config": "node --import tsx --test tests/db-config.test.ts",
     "test:d1": "node --import tsx --test --test-concurrency=1 tests/d1-*.test.ts",
     "test:verify": "pnpm test && pnpm exec tsc --noEmit && pnpm build",
