@@ -109,6 +109,10 @@ export interface GetMetadataResult {
   metadata: PostMetadata | null;
 }
 
+interface GetPostMetadataOptions {
+  allowServerFallback?: boolean;
+}
+
 /**
  * Creates a CMS module for a given post type
  * Configuration is read from POST_CONFIGS in post-config.ts
@@ -316,6 +320,7 @@ export function createCmsModule(postType: PostType) {
   async function getPostMetadata(
     slug: string,
     locale: string = DEFAULT_LOCALE,
+    options: GetPostMetadataOptions = {},
   ): Promise<GetMetadataResult> {
     // Try local filesystem first if localDirectory is configured
     if (localDirectory) {
@@ -369,6 +374,10 @@ export function createCmsModule(postType: PostType) {
           }
         }
       }
+    }
+
+    if (options.allowServerFallback === false) {
+      return { metadata: null };
     }
 
     // Fall back to server

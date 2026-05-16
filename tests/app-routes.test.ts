@@ -116,6 +116,19 @@ test("page previews use generated OG images instead of static public image asset
   assert.doesNotMatch(glossaryOgSource, /logo\.png|<img/);
 });
 
+test("blog metadata locale discovery skips server fallback for missing local translations", async () => {
+  const source = await readFile("app/[locale]/(basic-layout)/blog/[slug]/page.tsx", "utf8");
+
+  assert.match(source, /allowServerFallback:\s*false/);
+});
+
+test("auth client defaults to same-origin requests unless an auth URL is configured", async () => {
+  const source = await readFile("lib/auth/auth-client.ts", "utf8");
+
+  assert.match(source, /NEXT_PUBLIC_BETTER_AUTH_URL/);
+  assert.doesNotMatch(source, /NEXT_PUBLIC_SITE_URL/);
+});
+
 test("public site URL falls back to Cloudflare deployment URL during builds", () => {
   const originalPublicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const originalCloudflarePagesUrl = process.env.CF_PAGES_URL;

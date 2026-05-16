@@ -1,8 +1,10 @@
 import { emailOTPClient, lastLoginMethodClient, magicLinkClient, oneTapClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
+const authBaseURL = process.env.NEXT_PUBLIC_BETTER_AUTH_URL;
+
 export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || process.env.NEXT_PUBLIC_SITE_URL,
+  ...(authBaseURL ? { baseURL: authBaseURL } : {}),
   plugins: [
     ...(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ? [oneTapClient({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,

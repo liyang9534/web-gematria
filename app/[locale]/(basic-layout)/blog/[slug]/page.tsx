@@ -57,7 +57,8 @@ export async function generateMetadata({
   for (const checkLocale of LOCALES) {
     const { metadata: localeMetadata } = await blogCms.getPostMetadata(
       slug,
-      checkLocale
+      checkLocale,
+      { allowServerFallback: false },
     );
     if (localeMetadata) {
       availableLocales.push(checkLocale);
