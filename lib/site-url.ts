@@ -1,4 +1,5 @@
 const LOCAL_SITE_URL = "http://localhost:3000";
+const CANONICAL_SITE_URL = "https://mynumberdecoder.com";
 
 export function normalizePublicSiteUrl(siteUrl: string) {
   return (siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`).replace(/\/+$/, "");
@@ -26,9 +27,7 @@ export function getPublicSiteUrl() {
   }
 
   if (process.env.NODE_ENV === "production") {
-    throw new Error(
-      "SITE_URL, PUBLIC_SITE_URL, NEXT_PUBLIC_SITE_URL, or CF_PAGES_URL must be configured in production.",
-    );
+    return CANONICAL_SITE_URL;
   }
 
   return LOCAL_SITE_URL;

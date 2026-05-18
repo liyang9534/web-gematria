@@ -116,7 +116,7 @@ test("site and blog pages mount canonical SEO schema", async () => {
   assert.match(metadataSource, /LOCALE_TO_HREFLANG/);
 });
 
-test("production public site URL does not silently fall back to localhost", () => {
+test("production public site URL falls back to the canonical domain instead of localhost", () => {
   const originalNodeEnv = process.env.NODE_ENV;
   const originalSiteUrl = process.env.SITE_URL;
   const originalPublicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -133,10 +133,7 @@ test("production public site URL does not silently fall back to localhost", () =
   delete process.env.CF_PAGES_URL;
 
   try {
-    assert.throws(
-      () => getPublicSiteUrl(),
-      /SITE_URL|NEXT_PUBLIC_SITE_URL|CF_PAGES_URL/,
-    );
+    assert.equal(getPublicSiteUrl(), "https://mynumberdecoder.com");
   } finally {
     if (originalNodeEnv === undefined) {
       delete (process.env as Record<string, string | undefined>).NODE_ENV;
