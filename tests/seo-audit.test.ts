@@ -10,6 +10,7 @@ import {
   createFAQJsonLd,
   createWebsiteSearchJsonLd,
 } from "../lib/seo/schema";
+import { getPublicSiteUrl } from "../lib/site-url";
 
 const BLOG_TITLE_MINIMUM = 20;
 const BLOG_TITLE_MAXIMUM = 65;
@@ -92,9 +93,12 @@ test("schema builders emit SearchAction, FAQPage, BreadcrumbList, and Article JS
 });
 
 test("site and blog pages mount canonical SEO schema", async () => {
+  const rootLayoutSource = await readFile("app/layout.tsx", "utf8");
   const layoutSource = await readFile("app/[locale]/layout.tsx", "utf8");
   const blogPageSource = await readFile("app/[locale]/(basic-layout)/blog/[slug]/page.tsx", "utf8");
   const metadataSource = await readFile("lib/metadata.ts", "utf8");
+
+  assert.match(rootLayoutSource, /metadataBase:\s*new URL\(siteConfig\.url\)/);
 
   assert.match(layoutSource, /createWebsiteSearchJsonLd/);
   assert.match(layoutSource, /id="website-search"/);
@@ -110,6 +114,59 @@ test("site and blog pages mount canonical SEO schema", async () => {
   assert.match(metadataSource, /languages:\s*alternateLanguages/);
   assert.match(metadataSource, /x-default/);
   assert.match(metadataSource, /LOCALE_TO_HREFLANG/);
+});
+
+test("production public site URL does not silently fall back to localhost", () => {
+  const originalNodeEnv = process.env.NODE_ENV;
+  const originalSiteUrl = process.env.SITE_URL;
+  const originalPublicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const originalCloudflarePagesUrl = process.env.CF_PAGES_URL;
+
+  Object.defineProperty(process.env, "NODE_ENV", {
+    value: "production",
+    writable: true,
+    configurable: true,
+    enumerable: true,
+  });
+  delete process.env.SITE_URL;
+  delete process.env.NEXT_PUBLIC_SITE_URL;
+  delete process.env.CF_PAGES_URL;
+
+  try {
+    assert.throws(
+      () => getPublicSiteUrl(),
+      /SITE_URL|NEXT_PUBLIC_SITE_URL|CF_PAGES_URL/,
+    );
+  } finally {
+    if (originalNodeEnv === undefined) {
+      delete (process.env as Record<string, string | undefined>).NODE_ENV;
+    } else {
+      Object.defineProperty(process.env, "NODE_ENV", {
+        value: originalNodeEnv,
+        writable: true,
+        configurable: true,
+        enumerable: true,
+      });
+    }
+
+    if (originalSiteUrl === undefined) {
+      delete process.env.SITE_URL;
+    } else {
+      process.env.SITE_URL = originalSiteUrl;
+    }
+
+    if (originalPublicSiteUrl === undefined) {
+      delete process.env.NEXT_PUBLIC_SITE_URL;
+    } else {
+      process.env.NEXT_PUBLIC_SITE_URL = originalPublicSiteUrl;
+    }
+
+    if (originalCloudflarePagesUrl === undefined) {
+      delete process.env.CF_PAGES_URL;
+    } else {
+      process.env.CF_PAGES_URL = originalCloudflarePagesUrl;
+    }
+  }
 });
 
 test("package exposes an SEO audit script", async () => {

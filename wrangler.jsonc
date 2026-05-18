@@ -13,6 +13,8 @@
   },
   "vars": {
     "DEPLOYMENT_PLATFORM": "cloudflare",
+    "SITE_URL": "https://mynumberdecoder.com",
+    "NEXT_PUBLIC_SITE_URL": "https://mynumberdecoder.com",
   },
   "services": [
     {

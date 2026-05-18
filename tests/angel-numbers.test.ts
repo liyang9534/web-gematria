@@ -10,6 +10,7 @@ import {
   interpretAnyNumber,
   isKnownAngelNumber,
 } from "../lib/angel-numbers";
+import { LOCALES } from "../i18n/routing";
 import { getAngelNumberRobotsPolicy } from "../lib/angel-numbers/seo";
 import { getAngelNumberStaticParams } from "../lib/angel-numbers/static-params";
 
@@ -137,10 +138,23 @@ test("loads 87 curated angel numbers with unique numeric slugs", () => {
 });
 
 test("covers every curated angel number in static params", () => {
-  const staticSlugs = getAngelNumberStaticParams().map((param) => param.number);
+  const staticParams = getAngelNumberStaticParams();
+  const staticSlugs = staticParams
+    .filter((param) => param.locale === "en")
+    .map((param) => param.number);
 
   assert.deepEqual(staticSlugs, EXPECTED_CURATED_SLUGS);
   assert.equal(new Set(staticSlugs).size, staticSlugs.length);
+  assert.equal(staticParams.length, EXPECTED_CURATED_SLUGS.length * LOCALES.length);
+
+  for (const locale of LOCALES) {
+    assert.deepEqual(
+      staticParams
+        .filter((param) => param.locale === locale)
+        .map((param) => param.number),
+      EXPECTED_CURATED_SLUGS,
+    );
+  }
 });
 
 test("returns complete SEO and reading data for 444", () => {
