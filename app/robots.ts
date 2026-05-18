@@ -1,7 +1,4 @@
-import { siteConfig } from '@/config/site'
 import type { MetadataRoute } from 'next'
-
-const siteUrl = siteConfig.url
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -13,8 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         '/api/',
         '/auth/',
         '/dashboard/',
-        '/_next/',
-        '/assets/',
+        '/_next/data/',
         '/error',
         '/redirect-error',
         '/stripe-error',
@@ -26,6 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         '/cdn-cgi/',
       ],
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: 'https://mynumberdecoder.com/sitemap.xml',
   }
 }
